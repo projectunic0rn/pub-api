@@ -1,8 +1,6 @@
 using System;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
-using API.DTOs;
 
 namespace API.Controllers
 {
@@ -14,20 +12,5 @@ namespace API.Controllers
     [Route("api/[controller]")]
     [AllowAnonymous]
     [ApiController]
-    public class AuthController : ControllerBase
-    {
-        // POST api/[controller]/login
-        [HttpPost("login")]
-        public ActionResult Login([FromBody] SlackEventDto slackEvent)
-        {
-            return Ok();
-        }
-
-        // POST api/[controller]/slack
-        [HttpPost("register")]
-        public async Task<ActionResult> Slack([FromBody] SlackAuthDto slackAuthDto)
-        {
-            return Ok();
-        }
-    }
+    public class AuthController : ControllerBase { }
 }

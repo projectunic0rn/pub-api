@@ -1,36 +1,37 @@
-using Domain.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using API.DTOs;
 
 namespace API.Controllers
 {
     /// <summary>
-    ///  This controller class defines the endpoints
+    ///  This controller class defines the set of endpoints
+    ///  available to handle all project related functionality
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
     public class ProjectsController
     {
-        public ActionResult<IEnumerable<Project>> GetProjects()
+        public ActionResult<IEnumerable<ProjectDto>> GetProjects()
         {
-            return new List<Project>()
+            return new List<ProjectDto>()
             {
-                new Project()
+                new ProjectDto()
                 {
                     Id = 1,
                     Name = "Remote Hackathon",
                     Description = "A website for organizing remote hackathons",
                     LaunchDate = DateTime.Now
                 },
-                new Project()
+                new ProjectDto()
                 {
                     Id = 2,
                     Name = "Project Unicorn",
                     Description = "A place for developers to create and collborate on projects",
                     LaunchDate = DateTime.Now
                 },
-                new Project()
+                new ProjectDto()
                 {
                     Id = 3,
                     Name = "Mentrship",
@@ -41,9 +42,9 @@ namespace API.Controllers
         }
 
         [Route("{id}")]
-        public ActionResult<Project> GetProject(int id)
+        public ActionResult<ProjectDto> GetProject(int id)
         {
-            return new Project()
+            return new ProjectDto()
             {
                 Id = id,
                 Name = "Remote Hackathon",
