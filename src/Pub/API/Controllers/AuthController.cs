@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using API.DTOs;
@@ -25,7 +23,7 @@ namespace API.Controllers
             return Ok();
         }
 
-         // POST api/[controller]/slack
+        // POST api/[controller]/slack
         [HttpPost("register")]
         public async Task<ActionResult> Slack([FromBody] SlackAuthDto slackAuthDto)
         {
