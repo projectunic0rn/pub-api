@@ -35,7 +35,7 @@ steps:
     command: login
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
-- script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" -t roymoran/pub-api:build .
+- script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" -t roymoran/pub-api:build -f ci/Dockerfile src/Pub
   displayName: 'build docker image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
