@@ -18,13 +18,13 @@ variables:
 
 steps:
 
-- script: dotnet restore ../src/Pub/
+- script: dotnet restore src/Pub/
   displayName: 'dotnet restore'
 
-- script: dotnet build --configuration $(buildConfiguration) ../src/Pub
+- script: dotnet build --configuration $(buildConfiguration) src/Pub/
   displayName: 'dotnet build $(buildConfiguration)'
 
-- script: dotnet test ../src/Pub
+- script: dotnet test /src/Pub/
   displayName: 'dotnet test'
 
 - task: Docker@1
