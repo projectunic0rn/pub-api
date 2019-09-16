@@ -1,0 +1,45 @@
+# ASP.NET Core
+# Build and test ASP.NET Core projects targeting .NET Core.
+# Add steps that run tests, create a NuGet package, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  buildConfiguration: 'Release'
+  connectionStrng: $(ConnectionString)
+  jwtSecret: $(JwtSecretKey)
+  audience: $(JwtAudience)
+  issuer: $(JwtIssuer)
+
+steps:
+
+- script: dotnet restore src/Pub/
+  displayName: 'dotnet restore'
+
+- script: dotnet build --configuration $(buildConfiguration) src/Pub/
+  displayName: 'dotnet build $(buildConfiguration)'
+
+- script: dotnet test src/Pub/
+  displayName: 'dotnet test'
+
+- task: Docker@1
+  displayName: Container registry login
+  inputs:
+    containerregistrytype: Container Registry
+    dockerRegistryEndpoint: DockerHub
+    command: login
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" -t roymoran/pub-api:build -f ci/Dockerfile src/Pub
+  displayName: 'build docker image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+  
+- script: docker push roymoran/pub-api:build
+  displayName: 'push docker image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
