@@ -43,7 +43,7 @@ dotnet run --project API
     │   |   ├── Infrastructure   # Persistence layer, code persisting to storage or message bus
     │   |   └── Tests            # Automated tests
     ├── infrastructure           # Infrastructure as code deployment scripts                      
-    ├── ci                       # Continous integration, build scripts                      
+    ├── ci                       # Continuous integration, build scripts                      
     └── README.md
 
 ## Documentation
