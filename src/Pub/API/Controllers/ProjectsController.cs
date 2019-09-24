@@ -11,8 +11,10 @@ namespace API.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    public class ProjectsController
+    public class ProjectsController : ControllerBase
     {
+        // GET api/[controller]
+        [HttpGet]
         public ActionResult<IEnumerable<ProjectDto>> GetProjects()
         {
             return new List<ProjectDto>()
@@ -38,7 +40,8 @@ namespace API.Controllers
             }.ToArray();
         }
 
-        [Route("{id}")]
+        // GET api/[controller]/{id}
+        [HttpGet("{id}")]
         public ActionResult<ProjectDto> GetProject(int id)
         {
             return new ProjectDto()
