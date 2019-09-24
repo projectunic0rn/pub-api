@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
-using API.DTOs;
+using Common.DTOs;
 
 namespace API.Controllers
 {
