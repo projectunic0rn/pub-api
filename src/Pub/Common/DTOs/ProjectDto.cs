@@ -1,6 +1,6 @@
 using System;
 
-namespace API.DTOs
+namespace Common.DTOs
 {
     public class ProjectDto
     {
