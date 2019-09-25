@@ -1,6 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Pomelo.EntityFrameworkCore;
+using Common.AppSettings;
 
 namespace Infrastructure.Persistence
 {
@@ -9,7 +10,7 @@ namespace Infrastructure.Persistence
     public DatabaseContext CreateDbContext(string[] args)
     {
       var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-      optionsBuilder.UseMySql("Server=localhost;Database=pub-dev;Uid=root;Pwd=;SslMode=Preferred;");
+      optionsBuilder.UseMySql(AppSettings.ConnectionString);
       return new DatabaseContext(optionsBuilder.Options);
     }
   }

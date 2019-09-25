@@ -34,19 +34,11 @@ namespace API.Controllers
 
         [HttpGet("projecttypes")]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectTypeDto>))]
-        public IActionResult GetProjectTypes()
+        public async Task<IActionResult> GetProjectTypes()
         {
             ResponseDto<List<ProjectTypeDto>> okResponse = new ResponseDto<List<ProjectTypeDto>>(true);
-            //TODO: Update to return project types
-            List<ProjectTypeDto> projectTypes = new List<ProjectTypeDto>(){
-                new ProjectTypeDto { Id = Guid.NewGuid(), Type = "Healthcare"},
-                new ProjectTypeDto { Id = Guid.NewGuid(), Type = "Hardware"},
-                new ProjectTypeDto { Id = Guid.NewGuid(), Type = "Hardtech"},
-                new ProjectTypeDto { Id = Guid.NewGuid(), Type = "Language Learning"},
-            };
-            
+            var projectTypes = await _utilities.GetProjectTypes();
             okResponse.Data = projectTypes;
-
             return Ok(okResponse);
         }
     }
