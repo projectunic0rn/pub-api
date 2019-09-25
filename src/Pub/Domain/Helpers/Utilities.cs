@@ -3,18 +3,25 @@ using Common.Contracts;
 using Common.DTOs;
 using Domain.Models;
 using Infrastructure.Persistence.Entities;
+using System.Collections.Generic;
+using AutoMapper;
+using Domain.MappingConfig;
 
 namespace Domain.Helpers
 {
     public class Utilities : IUtilities
     {
-        private readonly IStorage<UserEntity> _storage;
+        private readonly IMapper _mapper;
+        private readonly IStorage<UserEntity> _userStorage;
+        private readonly IStorage<ProjectTypeEntity> _projectTypesStorage;
         private User _user;
 
         public Utilities()
         {
             _user = new User();
-            _storage = new UserEntity();
+            _userStorage = new UserEntity();
+            _projectTypesStorage = new ProjectTypeEntity();
+            _mapper = new InitializeMapper().GetMapper;
         }
 
         public async Task<ValidationDto> ValidateUsernameAsync(string username)
@@ -34,7 +41,7 @@ namespace Domain.Helpers
                 validationDto.Reason = "Your username must be at least 1 character.";
                 return validationDto;
             }
-            
+
             if (!_user.ValidUsernameCharacters(username))
             {
                 validationDto.Valid = false;
@@ -42,16 +49,22 @@ namespace Domain.Helpers
                 return validationDto;
             }
 
-            var user = await _storage.FindAsync(u => u.Username == username);
-            if(user == null)
+            var user = await _userStorage.FindAsync(u => u.Username == username);
+            if (user == null)
             {
                 validationDto.Valid = true;
                 validationDto.Reason = "Username is available";
                 return validationDto;
-             }
-            
+            }
+
             return validationDto;
         }
-        
+
+        public async Task<List<ProjectTypeDto>> GetProjectTypes()
+        {
+            var projectTypes = await _projectTypesStorage.FindAsync();
+            var projectTypesDto = _mapper.Map<List<ProjectTypeDto>>(projectTypes);
+            return projectTypesDto;
+        }
     }
 }

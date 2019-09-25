@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using Common.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
@@ -45,6 +46,12 @@ namespace Infrastructure.Persistence.Entities
             _context.Users.Attach(user);
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task<List<UserEntity>> FindAsync()
+        {
+            List<UserEntity> items = await _context.Users.ToListAsync();
+            return items;
         }
 
         public async Task<UserEntity> FindAsync(Expression<Func<UserEntity, bool>> predicate)

@@ -1,6 +1,7 @@
 using AutoMapper;
 using Domain.Models;
 using Infrastructure.Persistence.Entities;
+using Common.DTOs;
 
 namespace Domain.MappingConfig
 {
@@ -9,6 +10,7 @@ namespace Domain.MappingConfig
         public MappingProfile()
         {
             CreateMap<User, UserEntity>().ReverseMap();
+            CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
         }
     }
 }
