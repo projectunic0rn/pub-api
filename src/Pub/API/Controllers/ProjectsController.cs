@@ -5,6 +5,7 @@ using Common.DTOs;
 using System.Threading.Tasks;
 using Common.Contracts;
 using Domain.Exceptions;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -51,6 +52,7 @@ namespace API.Controllers
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
+        [Authorize]
         public async Task<ActionResult<ProjectDto>> CreateProject([FromBody] ProjectDto project)
         {
             ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true);
@@ -72,6 +74,7 @@ namespace API.Controllers
 
         // DELETE api/[controller]/{id}
         [HttpDelete("{id}")]
+        [Authorize]
         public async Task<IActionResult> DeleteProject(Guid id)
         {
             await _project.DeleteProjectAsync(id);

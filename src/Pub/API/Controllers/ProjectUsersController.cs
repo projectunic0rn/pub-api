@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using Common.DTOs;
 using System.Threading.Tasks;
 using Common.Contracts;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -13,6 +13,7 @@ namespace API.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class ProjectUsersController : ControllerBase
     {
         private readonly IProjectUser _projectUser;
