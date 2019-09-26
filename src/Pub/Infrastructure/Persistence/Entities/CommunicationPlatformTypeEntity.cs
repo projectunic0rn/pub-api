@@ -8,10 +8,10 @@ using System.Collections.Generic;
 
 namespace Infrastructure.Persistence.Entities
 {
-    public class ProjectTypeEntity : IStorage<ProjectTypeEntity>
+    public class CommunicationPlatformTypeEntity : IStorage<CommunicationPlatformTypeEntity>
     {
         private readonly DatabaseContext _context;
-        public ProjectTypeEntity()
+        public CommunicationPlatformTypeEntity()
         {
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
             optionsBuilder.UseMySql(AppSettings.ConnectionString);
@@ -19,45 +19,45 @@ namespace Infrastructure.Persistence.Entities
         }
 
         public Guid Id { get; set; }
-        public string Type { get; set; }
+        public string Name { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
 
-        public async Task<ProjectTypeEntity> CreateAsync(ProjectTypeEntity item)
+        public async Task<CommunicationPlatformTypeEntity> CreateAsync(CommunicationPlatformTypeEntity item)
         {
             item.CreatedAt = DateTimeOffset.UtcNow;
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            await _context.ProjectTypes.AddAsync(item);
+            await _context.CommunicationPlatforms.AddAsync(item);
             await _context.SaveChangesAsync();
             return item;
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var projectType = new ProjectTypeEntity { Id = id };
-            _context.ProjectTypes.Attach(projectType);
-            _context.ProjectTypes.Remove(projectType);
+            var communicationPlatformType = new CommunicationPlatformTypeEntity { Id = id };
+            _context.CommunicationPlatforms.Attach(communicationPlatformType);
+            _context.CommunicationPlatforms.Remove(communicationPlatformType);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ProjectTypeEntity>> FindAsync()
+        public async Task<List<CommunicationPlatformTypeEntity>> FindAsync()
         {
-            List<ProjectTypeEntity> items = await _context.ProjectTypes.ToListAsync();
+            List<CommunicationPlatformTypeEntity> items = await _context.CommunicationPlatforms.ToListAsync();
             return items;
         }
 
-        public async Task<ProjectTypeEntity> FindAsync(Expression<Func<ProjectTypeEntity, bool>> predicate)
+        public async Task<CommunicationPlatformTypeEntity> FindAsync(Expression<Func<CommunicationPlatformTypeEntity, bool>> predicate)
         {
-            ProjectTypeEntity item = await _context.ProjectTypes.SingleOrDefaultAsync(predicate);
+            CommunicationPlatformTypeEntity item = await _context.CommunicationPlatforms.SingleOrDefaultAsync(predicate);
             return item;
         }
 
-        public async Task<ProjectTypeEntity> UpdateAsync(ProjectTypeEntity item)
+        public async Task<CommunicationPlatformTypeEntity> UpdateAsync(CommunicationPlatformTypeEntity item)
         {
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            _context.ProjectTypes.Update(item);
+            _context.CommunicationPlatforms.Update(item);
             await _context.SaveChangesAsync();
             return item;
         }

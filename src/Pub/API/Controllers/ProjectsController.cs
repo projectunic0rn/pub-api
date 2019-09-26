@@ -2,6 +2,9 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using Common.DTOs;
+using System.Threading.Tasks;
+using Common.Contracts;
+using Domain.Exceptions;
 
 namespace API.Controllers
 {
@@ -13,43 +16,66 @@ namespace API.Controllers
     [ApiController]
     public class ProjectsController : ControllerBase
     {
+        private readonly IProject _project;
+
+        public ProjectsController(IProject project)
+        {
+            _project = project;
+        }
+
         // GET api/[controller]
         [HttpGet]
-        public ActionResult<IEnumerable<ProjectDto>> GetProjects()
+        [ProducesResponseType(200, Type = typeof(ResponseDto<List<ProjectDto>>))]
+        public async Task<ActionResult<List<ProjectDto>>> GetProjects()
         {
-            return new List<ProjectDto>()
+            ResponseDto<List<ProjectDto>> okResponse = new ResponseDto<List<ProjectDto>>(true)
             {
-                new ProjectDto()
-                {
-                    Name = "Remote Hackathon",
-                    Description = "A website for organizing remote hackathons",
-                    LaunchDate = DateTime.Now
-                },
-                new ProjectDto()
-                {
-                    Name = "Project Unicorn",
-                    Description = "A place for developers to create and collborate on projects",
-                    LaunchDate = DateTime.Now
-                },
-                new ProjectDto()
-                {
-                    Name = "Mentrship",
-                    Description = "Project Unicorn's first project",
-                    LaunchDate = DateTime.Now
-                }
-            }.ToArray();
+                Data = await _project.GetProjectsAsync()
+            };
+            return Ok(okResponse);
         }
 
         // GET api/[controller]/{id}
         [HttpGet("{id}")]
-        public ActionResult<ProjectDto> GetProject(int id)
+        [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectDto>))]
+        public async Task<ActionResult<ProjectDto>> GetProject(Guid id)
         {
-            return new ProjectDto()
+            ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true)
             {
-                Name = "Remote Hackathon",
-                Description = "A website for organizing remote hackathons",
-                LaunchDate = DateTime.Now,
+                Data = await _project.GetProjectAsync(id)
             };
+            return Ok(okResponse);
+        }
+
+        // POST api/[controller]
+        [HttpPost]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectDto>))]
+        [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
+        public async Task<ActionResult<ProjectDto>> CreateProject([FromBody] ProjectDto project)
+        {
+            ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true);
+            ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
+
+            try
+            {
+                var createdProject = await _project.CreateProjectAsync(project);
+                okResponse.Data = createdProject;
+            }
+            catch (ProjectException e)
+            {
+                errorResponse.Data = new ErrorDto(e.Message);
+                return BadRequest(errorResponse);
+            }
+
+            return Ok(okResponse);
+        }
+
+        // DELETE api/[controller]/{id}
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteProject(Guid id)
+        {
+            await _project.DeleteProjectAsync(id);
+            return Ok();
         }
     }
 }

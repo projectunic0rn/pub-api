@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Common.DTOs
 {
@@ -8,10 +9,12 @@ namespace Common.DTOs
         public string Name { get; set; }
         public string Description { get; set; }
         public DateTimeOffset LaunchDate { get; set; }
-        public Guid ProjectTypeId { get; set; }
+        public string ProjectType { get; set; }
         public string RepositoryUrl { get; set; }
         public string CommunicationPlatformUrl { get; set; }
         public bool LookingForMembers { get; set; }
-        public Guid CommunicationPlatformOd { get; set; }
+        public string CommunicationPlatform { get; set; }
+        public List<ProjectTechnologyDto> ProjectTechnologies { get; set; }
+        public List<ProjectUserDto> ProjectUsers { get; set; }
     }
 }
