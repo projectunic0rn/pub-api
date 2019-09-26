@@ -54,6 +54,8 @@ namespace API
                     };
                 });
 
+            services.AddScoped<IProject, Project>();
+            services.AddScoped<IProjectUser, ProjectUser>();
             services.AddScoped<IAuthentication, Authentication>();
             services.AddScoped<IUtilities, Utilities>();
         }

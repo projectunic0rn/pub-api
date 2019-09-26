@@ -60,7 +60,7 @@ namespace Domain.Helpers
             return validationDto;
         }
 
-        public async Task<List<ProjectTypeDto>> GetProjectTypes()
+        public async Task<List<ProjectTypeDto>> GetProjectTypesAsync()
         {
             var projectTypes = await _projectTypesStorage.FindAsync();
             var projectTypesDto = _mapper.Map<List<ProjectTypeDto>>(projectTypes);

@@ -11,6 +11,6 @@ namespace Common.Contracts
         Task<T> FindAsync(Expression<Func<T, bool>> predicate);
         Task<List<T>> FindAsync();
         Task<T> UpdateAsync(T item);
-        Task DeleteAsync(T item);
+        Task DeleteAsync(Guid id);
     }
 }

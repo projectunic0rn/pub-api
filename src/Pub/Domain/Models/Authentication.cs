@@ -22,7 +22,7 @@ namespace Domain.Models
         private readonly IMapper _mapper;
         private User _user;
         private readonly IStorage<UserEntity> _storage;
-        PasswordHasher<User> _passwordHasher;
+        private readonly PasswordHasher<User> _passwordHasher;
 
         public Authentication()
         {
@@ -37,7 +37,7 @@ namespace Domain.Models
             JsonWebTokenDto jsonWebToken;
             PasswordVerificationResult verificationResult;
             
-            var user = await _storage.FindAsync(m => m.Username == login.Username);
+            var user = await _storage.FindAsync(m => m.Email == login.Email);
             verificationResult = ValidatePassword(_user, user.HashedPassword, login.Password);
             jsonWebToken = GenerateJsonWebToken(new JwtUserClaimsDto(user.Id.ToString()));
 

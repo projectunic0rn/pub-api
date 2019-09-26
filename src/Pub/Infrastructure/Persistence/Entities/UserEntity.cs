@@ -27,6 +27,8 @@ namespace Infrastructure.Persistence.Entities
         public string Timezone { get; set; }
         public string Locale { get; set; }
         public bool LookingForProject { get; set; }
+        public List<ProjectUserEntity> ProjectUsers { get; set; }
+        public List<TechnologyEntity> UserTechnologies { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
 
@@ -40,9 +42,9 @@ namespace Infrastructure.Persistence.Entities
             return item;
         }
 
-        public async Task DeleteAsync(UserEntity item)
+        public async Task DeleteAsync(Guid id)
         {
-            var user = new UserEntity { Id = item.Id };
+            var user = new UserEntity { Id = id };
             _context.Users.Attach(user);
             _context.Users.Remove(user);
             await _context.SaveChangesAsync();

@@ -7,6 +7,6 @@ namespace Common.Contracts
     public interface IUtilities
     {
         Task<ValidationDto> ValidateUsernameAsync(string username);
-        Task<List<ProjectTypeDto>> GetProjectTypes();
+        Task<List<ProjectTypeDto>> GetProjectTypesAsync();
     }
 }

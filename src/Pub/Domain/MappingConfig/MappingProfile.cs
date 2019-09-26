@@ -11,6 +11,10 @@ namespace Domain.MappingConfig
         {
             CreateMap<User, UserEntity>().ReverseMap();
             CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
+            CreateMap<ProjectDto, ProjectEntity>().ReverseMap();
+            CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
+            CreateMap<ProjectTechnologyDto, TechnologyEntity>().ReverseMap();
+            CreateMap<ProjectUserDto, ProjectUserEntity>().ReverseMap();
         }
     }
 }

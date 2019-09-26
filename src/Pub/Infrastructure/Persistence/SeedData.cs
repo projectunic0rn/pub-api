@@ -14,8 +14,9 @@ namespace Infrastructure.Persistence
             {
                 SeedUsers(modelBuilder);
             }
-            
+
             SeedProjectTypes(modelBuilder);
+            SeedCommunicationPlatformTypes(modelBuilder);
         }
 
         private static void SeedUsers(ModelBuilder modelBuilder)
@@ -26,6 +27,11 @@ namespace Infrastructure.Persistence
         private static void SeedProjectTypes(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<ProjectTypeEntity>().HasData(GetProjectTypeSeedData());
+        }
+
+        private static void SeedCommunicationPlatformTypes(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<CommunicationPlatformTypeEntity>().HasData(GetCommunicationPlatformSeedData());
         }
 
         private static List<ProjectTypeEntity> GetProjectTypeSeedData()
@@ -75,5 +81,15 @@ namespace Infrastructure.Persistence
             return projectTypes;
         }
 
+        private static List<CommunicationPlatformTypeEntity> GetCommunicationPlatformSeedData()
+        {
+            List<CommunicationPlatformTypeEntity> communicationPlatformTypes = new List<CommunicationPlatformTypeEntity>()
+            {
+                new CommunicationPlatformTypeEntity { Id = new Guid("7d73c8aa-055c-4702-b825-0e8fb4e77ac0"), CreatedAt = DateTimeOffset.UtcNow, UpdatedAt = DateTimeOffset.UtcNow, Name = "slack" },
+                new CommunicationPlatformTypeEntity { Id = new Guid("7d73c8aa-055c-4702-b825-0e8fb4e77ac1"), CreatedAt = DateTimeOffset.UtcNow, UpdatedAt = DateTimeOffset.UtcNow, Name = "discord" },
+            };
+
+            return communicationPlatformTypes;
+        }
     }
 }

@@ -37,7 +37,7 @@ namespace API.Controllers
         public async Task<IActionResult> GetProjectTypes()
         {
             ResponseDto<List<ProjectTypeDto>> okResponse = new ResponseDto<List<ProjectTypeDto>>(true);
-            var projectTypes = await _utilities.GetProjectTypes();
+            var projectTypes = await _utilities.GetProjectTypesAsync();
             okResponse.Data = projectTypes;
             return Ok(okResponse);
         }

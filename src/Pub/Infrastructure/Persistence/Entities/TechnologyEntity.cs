@@ -5,13 +5,14 @@ using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Common.AppSettings;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Infrastructure.Persistence.Entities
 {
-    public class ProjectTypeEntity : IStorage<ProjectTypeEntity>
+    public class TechnologyEntity : IStorage<TechnologyEntity>
     {
         private readonly DatabaseContext _context;
-        public ProjectTypeEntity()
+        public TechnologyEntity()
         {
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
             optionsBuilder.UseMySql(AppSettings.ConnectionString);
@@ -19,45 +20,51 @@ namespace Infrastructure.Persistence.Entities
         }
 
         public Guid Id { get; set; }
-        public string Type { get; set; }
+        public string Name { get; set; }
+        [ForeignKey("ProjectId")]
+        public ProjectEntity Project { get; set; }
+        public Guid? ProjectId { get; set; }
+        [ForeignKey("UserId")]
+        public UserEntity User { get; set; }
+        public Guid? UserId { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
 
-        public async Task<ProjectTypeEntity> CreateAsync(ProjectTypeEntity item)
+        public async Task<TechnologyEntity> CreateAsync(TechnologyEntity item)
         {
             item.CreatedAt = DateTimeOffset.UtcNow;
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            await _context.ProjectTypes.AddAsync(item);
+            await _context.Technologies.AddAsync(item);
             await _context.SaveChangesAsync();
             return item;
         }
 
         public async Task DeleteAsync(Guid id)
         {
-            var projectType = new ProjectTypeEntity { Id = id };
-            _context.ProjectTypes.Attach(projectType);
-            _context.ProjectTypes.Remove(projectType);
+            var projectType = new TechnologyEntity { Id = id };
+            _context.Technologies.Attach(projectType);
+            _context.Technologies.Remove(projectType);
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<ProjectTypeEntity>> FindAsync()
+        public async Task<List<TechnologyEntity>> FindAsync()
         {
-            List<ProjectTypeEntity> items = await _context.ProjectTypes.ToListAsync();
+            List<TechnologyEntity> items = await _context.Technologies.ToListAsync();
             return items;
         }
 
-        public async Task<ProjectTypeEntity> FindAsync(Expression<Func<ProjectTypeEntity, bool>> predicate)
+        public async Task<TechnologyEntity> FindAsync(Expression<Func<TechnologyEntity, bool>> predicate)
         {
-            ProjectTypeEntity item = await _context.ProjectTypes.SingleOrDefaultAsync(predicate);
+            TechnologyEntity item = await _context.Technologies.SingleOrDefaultAsync(predicate);
             return item;
         }
 
-        public async Task<ProjectTypeEntity> UpdateAsync(ProjectTypeEntity item)
+        public async Task<TechnologyEntity> UpdateAsync(TechnologyEntity item)
         {
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            _context.ProjectTypes.Update(item);
+            _context.Technologies.Update(item);
             await _context.SaveChangesAsync();
             return item;
         }
