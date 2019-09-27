@@ -50,13 +50,17 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<List<ProjectUserEntity>> FindAsync()
         {
-            List<ProjectUserEntity> items = await _context.ProjectUsers.ToListAsync();
+            List<ProjectUserEntity> items = await _context.ProjectUsers
+                .Include(p => p.User)
+                .ToListAsync();
             return items;
         }
 
         public async Task<ProjectUserEntity> FindAsync(Expression<Func<ProjectUserEntity, bool>> predicate)
         {
-            ProjectUserEntity item = await _context.ProjectUsers.SingleOrDefaultAsync(predicate);
+            ProjectUserEntity item = await _context.ProjectUsers
+                .Include(p => p.User)
+                .SingleOrDefaultAsync(predicate);
             return item;
         }
 

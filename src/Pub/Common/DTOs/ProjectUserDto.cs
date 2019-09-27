@@ -7,6 +7,7 @@ namespace Common.DTOs
         public Guid Id { get; set; }
         public Guid ProjectId { get; set; }
         public Guid UserId { get; set; }
+        public string Username { get; set; }
         public bool IsOwner { get; set; }
     }
 }
