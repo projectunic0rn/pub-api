@@ -56,6 +56,7 @@ namespace Infrastructure.Persistence.Entities
             List<ProjectEntity> items = await _context.Projects
                 .Include(p => p.ProjectTechnologies)
                 .Include(p => p.ProjectUsers)
+                .ThenInclude(p => p.User)
                 .ToListAsync();
             return items;
         }
@@ -65,6 +66,7 @@ namespace Infrastructure.Persistence.Entities
             ProjectEntity item = await _context.Projects
                 .Include(p => p.ProjectTechnologies)
                 .Include(p => p.ProjectUsers)
+                .ThenInclude(p => p.User)
                 .SingleOrDefaultAsync(predicate);
             return item;
         }
