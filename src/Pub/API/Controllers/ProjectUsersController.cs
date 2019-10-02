@@ -4,6 +4,7 @@ using Common.DTOs;
 using System.Threading.Tasks;
 using Common.Contracts;
 using Microsoft.AspNetCore.Authorization;
+using Domain.Exceptions;
 
 namespace API.Controllers
 {
@@ -29,13 +30,21 @@ namespace API.Controllers
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectUserDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
-        public async Task<ActionResult<ProjectDto>> CreateProject([FromBody] ProjectUserDto project)
+        public async Task<ActionResult<ProjectDto>> CreateProjectUser([FromBody] ProjectUserDto project)
         {
-            ResponseDto<ProjectUserDto> okResponse = new ResponseDto<ProjectUserDto>(true)
-            {
-                Data = await _projectUser.CreateProjectUserAsync(project)
-            };
+            ResponseDto<ProjectUserDto> okResponse = new ResponseDto<ProjectUserDto>(true);
+            ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
 
+            try
+            {
+                okResponse.Data = await _projectUser.CreateProjectUserAsync(project);
+            }
+            catch(ProjectUserException e)
+            {
+                errorResponse.Data = new ErrorDto(e.Message);
+                return BadRequest(errorResponse);
+            }
+            
             return Ok(okResponse);
         }
 

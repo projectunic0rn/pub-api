@@ -8,7 +8,9 @@ namespace Domain.Exceptions
         // Error on Project Created
         public static string InvalidProjectType { get; } = "Invalid project type.";
         public static string InvalidCommunicationPlatform { get; } = "Invalid communication platform - supported platforms include ";
-        
+        // Error on Project User Created
+        public static string InvalidUserId { get; } = "Invalid user id.";
+
         // EF Core/Database Exceptions
         public static string UniquenessConstraintViolation { get; } = "Value violates uniqueness constraint";
         
