@@ -13,7 +13,6 @@ namespace API.Controllers
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class ProjectUsersController : ControllerBase
     {
         private readonly IProjectUser _projectUser;
@@ -22,8 +21,11 @@ namespace API.Controllers
         {
             _projectUser = projectUser;
         }
-        
+
         // POST api/[controller]
+        #if !DEBUG
+        [Authorize]
+        #endif
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectUserDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
@@ -36,8 +38,11 @@ namespace API.Controllers
 
             return Ok(okResponse);
         }
-        
+
         // DELETE api/[controller]
+        #if !DEBUG
+        [Authorize]
+        #endif
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProject(Guid id)
         {
