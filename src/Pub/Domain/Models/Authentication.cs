@@ -38,6 +38,11 @@ namespace Domain.Models
             PasswordVerificationResult verificationResult;
             
             var user = await _storage.FindAsync(m => m.Email == login.Email);
+            if(user == null)
+            {
+                throw new AuthenticationException(ExceptionMessage.InvalidCredentials);
+            }
+            
             verificationResult = ValidatePassword(_user, user.HashedPassword, login.Password);
             jsonWebToken = GenerateJsonWebToken(new JwtUserClaimsDto(user.Id.ToString()));
 
