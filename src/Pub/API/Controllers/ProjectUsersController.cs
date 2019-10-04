@@ -66,10 +66,11 @@ namespace API.Controllers
             }
             catch (ProjectUserException e)
             {
-                return errorResponse;
+                errorResponse.Data = new ErrorDto(e.Message);
+                return BadRequest(errorResponse);
             }
 
-            return okResponse;
+            return Ok(okResponse);
         }
     }
 }
