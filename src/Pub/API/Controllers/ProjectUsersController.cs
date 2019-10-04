@@ -17,16 +17,16 @@ namespace API.Controllers
     public class ProjectUsersController : ControllerBase
     {
         private readonly IProjectUser _projectUser;
-        
+
         public ProjectUsersController(IProjectUser projectUser)
         {
             _projectUser = projectUser;
         }
 
         // POST api/[controller]
-        #if !DEBUG
+#if !DEBUG
         [Authorize]
-        #endif
+#endif
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectUserDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
@@ -39,24 +39,37 @@ namespace API.Controllers
             {
                 okResponse.Data = await _projectUser.CreateProjectUserAsync(project);
             }
-            catch(ProjectUserException e)
+            catch (ProjectUserException e)
             {
                 errorResponse.Data = new ErrorDto(e.Message);
                 return BadRequest(errorResponse);
             }
-            
+
             return Ok(okResponse);
         }
 
         // DELETE api/[controller]
-        #if !DEBUG
+#if !DEBUG
         [Authorize]
-        #endif
+#endif
         [HttpDelete("{id}")]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectUserDto>))]
+        [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
         public async Task<IActionResult> DeleteProject(Guid id)
         {
-            await _projectUser.DeleteProjectUserAsync(id);
-            return Ok();
+            ResponseDto<ProjectUserDto> okResponse = new ResponseDto<ProjectUserDto>(true);
+            ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
+
+            try
+            {
+                await _projectUser.DeleteProjectUserAsync(id);
+            }
+            catch (ProjectUserException e)
+            {
+                return errorResponse;
+            }
+
+            return okResponse;
         }
     }
 }
