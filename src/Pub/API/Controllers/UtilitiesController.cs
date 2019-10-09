@@ -20,13 +20,13 @@ namespace API.Controllers
             _utilities = utilities;
         }
 
-        [HttpPost("{username}")]
+        [HttpPost]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ValidationDto>))]
-        public async Task<IActionResult> ValidateUsername(string username)
+        public async Task<IActionResult> ValidateUsername([FromBody] UsernameDto usernameDto)
         {
             ResponseDto<ValidationDto> okResponse = new ResponseDto<ValidationDto>(true);
 
-            var response = await _utilities.ValidateUsernameAsync(username);
+            var response = await _utilities.ValidateUsernameAsync(usernameDto.Username);
             okResponse.Data = response;
 
             return Ok(okResponse);
