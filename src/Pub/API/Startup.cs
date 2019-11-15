@@ -94,7 +94,7 @@ namespace API
         {
             EmailConfiguration emailConfiguration = new EmailConfiguration() {
                 SmtpServer = Configuration["SmtpServer"],
-                SmtpPort = Convert.ToInt32(Configuration["SmtpPort"]),
+                SmtpPort = Configuration["SmtpPort"],
                 SmtpUsername = Configuration["SmtpUsername"],
                 SmtpPassword = Configuration["SmtpPassword"]
             };
