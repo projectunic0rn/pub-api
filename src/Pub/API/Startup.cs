@@ -10,10 +10,13 @@ using Swashbuckle.AspNetCore.Swagger;
 using Common.Contracts;
 using Domain.Models;
 using Domain.Helpers;
+using Domain.Notifiers.Mailer;
 using Common.AppSettings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using System;
+using Domain.Mailer;
 
 namespace API
 {
@@ -58,6 +61,7 @@ namespace API
             services.AddScoped<IProjectUser, ProjectUser>();
             services.AddScoped<IAuthentication, Authentication>();
             services.AddScoped<IUtilities, Utilities>();
+            services.AddScoped<INotifier, MailerNotifier>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -88,10 +92,22 @@ namespace API
 
         private void InitializeSettings()
         {
+            EmailConfiguration emailConfiguration = new EmailConfiguration() {
+                SmtpServer = Configuration["SmtpServer"],
+                SmtpPort = Convert.ToInt32(Configuration["SmtpPort"]),
+                SmtpUsername = Configuration["SmtpUsername"],
+                SmtpPassword = Configuration["SmtpPassword"]
+            };
+
             AppSettings.JwtIssuer = Configuration["JwtIssuer"];
             AppSettings.JwtAudience = Configuration["JwtAudience"];
             AppSettings.JwtSecretKey = Configuration["JwtSecretKey"];
             AppSettings.ConnectionString = Configuration["ConnectionString"];
+            
+            AppSettings.EmailConfiguration = emailConfiguration;
+            AppSettings.FeedbackRecipients = Configuration["FeedbackRecipients"];
+            AppSettings.MailerFromAddress = Configuration["MailerFromAddress"];
+            AppSettings.Env = Configuration["ASPNETCORE_ENVIRONMENT"];
         }
     }
 }
