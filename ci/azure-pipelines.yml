@@ -15,6 +15,13 @@ variables:
   jwtSecret: $(JwtSecretKey)
   audience: $(JwtAudience)
   issuer: $(JwtIssuer)
+  server: $(SmtpServer)
+  port: $(SmtpPort)
+  username: $(SmtpUsername)
+  password: $(SmtpPassword)
+  feedbackEmails: $(FeedbackRecipients)
+  fromAddress: $(MailerFromAddress)
+  netCoreEnv: $(Env)
 
 steps:
 
@@ -49,7 +56,7 @@ steps:
     command: login
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
-- script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" -t roymoran/pub-api:build -f ci/Dockerfile src/Pub
+- script: docker build --build-arg NETCORE_ENV="$(netCoreEnv)" --build-arg SMTP_SERVER="$(server)" --build-arg SMTP_PORT="$(port)" --build-arg SMTP_USERNAME="$(username)" --build-arg SMTP_PASSWORD="$(password)" --build-arg MAILER_FROM_ADDRESS="$(fromAddress)" --build-arg FEEDBACK_RECIPIENTS="$(feedbackEmails)" --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" -t roymoran/pub-api:build -f ci/Dockerfile src/Pub
   displayName: 'build docker image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
