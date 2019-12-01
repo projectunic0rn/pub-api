@@ -5,6 +5,7 @@ using Common.Contracts;
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 using Common.AppSettings;
+using System.Linq;
 
 namespace Infrastructure.Persistence.Entities
 {
@@ -27,6 +28,10 @@ namespace Infrastructure.Persistence.Entities
         public string Timezone { get; set; }
         public string Locale { get; set; }
         public bool LookingForProject { get; set; }
+        public string ProfilePictureUrl { get; set; }
+        public string GitHubUsername { get; set; }
+        public string MagicLoginToken { get; set; }
+        public DateTimeOffset MagicLoginTokenExpiresAt { get; set; }
         public List<ProjectUserEntity> ProjectUsers { get; set; }
         public List<TechnologyEntity> UserTechnologies { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
@@ -60,6 +65,14 @@ namespace Infrastructure.Persistence.Entities
         {
             UserEntity user = await _context.Users.SingleOrDefaultAsync(predicate);
             return user;
+        }
+
+        // used to assign generated username 
+        // with incrementing value
+        public async Task<UserEntity> FindLastUnicornRecord()
+        {
+            UserEntity item = await _context.Users.OrderByDescending(u => u.CreatedAt).Where(u => u.Username.Contains("unicorn")).FirstOrDefaultAsync();
+            return item;
         }
 
         public async Task<UserEntity> UpdateAsync(UserEntity item)

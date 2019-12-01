@@ -1,5 +1,5 @@
 using AutoMapper;
-using Domain.Models;
+using Common.Models;
 using Infrastructure.Persistence.Entities;
 using Common.DTOs;
 

@@ -10,6 +10,7 @@ pool:
   vmImage: 'ubuntu-latest'
 
 variables:
+  # API App
   buildConfiguration: 'Release'
   connectionStrng: $(ConnectionString)
   jwtSecret: $(JwtSecretKey)
@@ -22,6 +23,16 @@ variables:
   feedbackEmails: $(FeedbackRecipients)
   fromAddress: $(MailerFromAddress)
   netCoreEnv: $(Env)
+
+  # Slack App
+  aUrl: $(AppUrl)
+  mUrl: $(MainUrl)
+  signingSecret: $(SlackSigningSecret)
+  authToken: $(SlackAuthToken)
+  ghOrganization: $(GitHubOrganization)
+  ghAppId: $(GitHubAppId)
+  ghPrivateRsaKey: $(GitHubAppPrivateRSAKey)
+  ghAppInstallationId: $(GitHubInstallationAccessToken)
 
 steps:
 
@@ -42,7 +53,8 @@ steps:
 - script: dotnet restore src/Pub/
   displayName: 'dotnet restore'
 
-- script: dotnet build --configuration $(buildConfiguration) src/Pub/
+# output of this build does not get used, soley for CI purposes
+- script: dotnet build -c $(buildConfiguration) src/Pub/ -o out
   displayName: 'dotnet build $(buildConfiguration)'
 
 - script: dotnet test src/Pub/
@@ -57,10 +69,17 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - script: docker build --build-arg NETCORE_ENV="$(netCoreEnv)" --build-arg SMTP_SERVER="$(server)" --build-arg SMTP_PORT="$(port)" --build-arg SMTP_USERNAME="$(username)" --build-arg SMTP_PASSWORD="$(password)" --build-arg MAILER_FROM_ADDRESS="$(fromAddress)" --build-arg FEEDBACK_RECIPIENTS="$(feedbackEmails)" --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" -t roymoran/pub-api:build -f ci/Dockerfile src/Pub
-  displayName: 'build docker image'
+  displayName: 'build docker api image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
 - script: docker push roymoran/pub-api:build
   displayName: 'push docker image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
+- script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg APP_URL="$(aUrl)" --build-arg MAIN_URL="$(mUrl)" --build-arg SLACK_AUTH_TOKEN="$(authToken)" --build-arg SLACK_SIGNING_SECRET="$(signingSecret)" --build-arg GITHUB_APP_PRIVATE_RSA_KEY="$(ghPrivateRsaKey)" --build-arg GITHUB_APP_ID="$(ghAppId)" --build-arg GITHUB_APP_INSTALLATION_ID="$(ghAppInstallationId)" --build-arg GITHUB_ORGANIZATION="$(ghOrganization)" -t roymoran/pub-slack-app:build -f ci/slackapp.Dockerfile src/Pub
+  displayName: 'build docker slack app image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: docker push roymoran/pub-slack-app:build
+  displayName: 'push docker image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
