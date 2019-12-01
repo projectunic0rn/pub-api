@@ -14,6 +14,7 @@ using System.IdentityModel.Tokens.Jwt;
 using Common.AppSettings;
 using Newtonsoft.Json.Serialization;
 using Domain.Exceptions;
+using Common.Models;
 
 namespace Domain.Models
 {

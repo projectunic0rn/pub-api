@@ -1,21 +1,23 @@
 using System;
 using System.Text.RegularExpressions;
 
-namespace Domain.Models
+namespace Common.Models
 {
     public class User
     {
         public User()
         {
         }
-        
-        public User(string username, string email, string timezone, string locale, bool lookingForProject)
+
+        public User(string username, string email, string timezone, string locale, bool lookingForProject, string gitHubUsername = "", string profilePictureUrl = "")
         {
             Username = username;
             Email = email;
             Timezone = timezone;
             Locale = locale;
             LookingForProject = lookingForProject;
+            ProfilePictureUrl = profilePictureUrl;
+            GitHubUsername = gitHubUsername;
         }
 
         public Guid Id { get; set; }
@@ -25,7 +27,9 @@ namespace Domain.Models
         public string Timezone { get; set; }
         public string Locale { get; set; }
         public bool LookingForProject { get; set; }
-        
+        public string GitHubUsername { get; set; }
+        public string ProfilePictureUrl { get; set; }
+
         public bool ValidUsernameCharacters(string username)
         {
             return Regex.IsMatch(username, @"^[a-zA-Z0-9_]+$");

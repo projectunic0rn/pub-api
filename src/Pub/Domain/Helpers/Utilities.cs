@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 using Common.Contracts;
 using Common.DTOs;
-using Domain.Models;
+using Common.Models;
 using Infrastructure.Persistence.Entities;
 using System.Collections.Generic;
 using AutoMapper;

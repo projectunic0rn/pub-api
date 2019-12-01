@@ -4,9 +4,15 @@
     <TargetFramework>netcoreapp2.2</TargetFramework>
   </PropertyGroup>
 
+   <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Contracts\" />
     <Folder Include="DTOs\" />
     <Folder Include="AppSettings\" />
+    <Folder Include="DTOs\SlackAppDTOs\" />
+    <Folder Include="DTOs\GitHubDTOs\" />
   </ItemGroup>
 </Project>
