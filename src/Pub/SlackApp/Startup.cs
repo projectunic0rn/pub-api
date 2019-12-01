@@ -53,6 +53,7 @@ namespace SlackApp
 
         private void InitializeSettings()
         {
+            AppSettings.ConnectionString = Configuration["ConnectionString"];
             AppSettings.AppUrl = Configuration["AppUrl"];
             AppSettings.MainUrl = Configuration["MainUrl"];
             AppSettings.SlackSigningSecret = Configuration["SlackSigningSecret"];
