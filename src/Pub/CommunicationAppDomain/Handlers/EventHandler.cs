@@ -83,7 +83,7 @@ namespace CommunicationAppDomain.Handlers
                 // user to new user entity
                 string username = await GenerateUsername();
                 string password = GenerateTemporaryPassword();
-                User user = new User(username, slackUserInfoDto.User.Profile.Email, slackUserInfoDto.User.Timezone, slackUserInfoDto.User.Locale, true, slackEventDto.Event.User.Profile.Image192);
+                User user = new User(username, slackUserInfoDto.User.Profile.Email, slackUserInfoDto.User.Timezone, slackUserInfoDto.User.Locale, true, "", slackEventDto.Event.User.Profile.Image192);
                 UserEntity userEntity = _mapper.Map<UserEntity>(user);
                 userEntity.HashedPassword = HashPassword(user, password);
 
