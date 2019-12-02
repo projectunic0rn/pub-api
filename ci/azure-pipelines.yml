@@ -32,7 +32,7 @@ variables:
   ghOrganization: $(GitHubOrganization)
   ghAppId: $(GitHubAppId)
   ghPrivateRsaKey: $(GitHubAppPrivateRSAKey)
-  ghAppInstallationId: $(GitHubInstallationAccessToken)
+  ghAppInstallationId: $(GitHubInstallationId)
 
 steps:
 
