@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 
 namespace Common.DTOs.SlackAppDTOs
 {
-    public class SlackEventDto
+    public class SlackEventFullDto<EventType>
     {
         [JsonProperty(PropertyName = "token")]
         public string Token { get; set; }
@@ -15,7 +14,7 @@ namespace Common.DTOs.SlackAppDTOs
         [JsonProperty(PropertyName = "api_app_id")]
         public string ApiAppId { get; set; }
         [JsonProperty(PropertyName = "event")]
-        public JRaw EventRaw { get; set; }
+        public EventType Event { get; set; }
         [JsonProperty(PropertyName = "type")]
         public string Type { get; set; }
         [JsonProperty(PropertyName = "authed_users")]
@@ -24,10 +23,5 @@ namespace Common.DTOs.SlackAppDTOs
         public string EventId { get; set; }
         [JsonProperty(PropertyName = "event_time")]
         public int EventTime { get; set; }
-    }
-
-    public class UrlVerificationResponseDto
-    {
-        public string challenge { get; set; }
     }
 }

@@ -29,21 +29,24 @@ namespace SlackApp.Controllers
         // POST api/slack/event
         [HttpPost("event")]
         public async Task<ActionResult> RecieveEvent([FromBody] SlackEventDto slackEventDto)
-        {   
+        {
+
             if (await _slackRequestValidator.IsValid(Request))
             {
-                if (slackEventDto.Type == "url_verification")
+                var eventType = slackEventDto.Type;
+
+                if (eventType == "url_verification")
                 {
                     var urlVerificationResponseDto = _eventHandler.UrlVerification(slackEventDto);
                     return Ok(urlVerificationResponseDto);
                 }
-                
+
                 await _eventHandler.ProcessEvent(slackEventDto);
                 return Ok();
             }
-            
+
             return BadRequest();
-            
+
         }
 
         // POST api/slack/command

@@ -56,6 +56,7 @@ namespace SlackApp
             AppSettings.ConnectionString = Configuration["ConnectionString"];
             AppSettings.AppUrl = Configuration["AppUrl"];
             AppSettings.MainUrl = Configuration["MainUrl"];
+            AppSettings.IntroductionChannelId = Configuration["IntroductionChannelId"];
             AppSettings.SlackSigningSecret = Configuration["SlackSigningSecret"];
             AppSettings.SlackAuthToken = Configuration["SlackAuthToken"];
             AppSettings.GitHubOrganization = Configuration["GithubOrganization"];

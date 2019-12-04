@@ -11,7 +11,7 @@ using CommunicationAppDomain.Services;
 using CommunicationAppDomain.ChatMessages;
 using AutoMapper;
 using CommunicationAppDomain.MappingConfig;
-using System.Linq;
+using Newtonsoft.Json;
 
 namespace CommunicationAppDomain.Handlers
 {
@@ -24,11 +24,13 @@ namespace CommunicationAppDomain.Handlers
         private readonly IStorage<ChatAppUserEntity> _chatAppUserStorage;
         private readonly PasswordHasher<User> _passwordHasher;
         private readonly SlackService _slackService;
+        private readonly string _introductionChannelId;
 
         public EventHandler()
         {
             _githubOrganization = AppSettings.GitHubOrganization;
             _frontendUrl = AppSettings.JwtAudience;
+            _introductionChannelId = AppSettings.IntroductionChannelId;
             _userStorage = new UserEntity();
             _chatAppUserStorage = new ChatAppUserEntity();
             _slackService = new SlackService();
@@ -44,30 +46,69 @@ namespace CommunicationAppDomain.Handlers
 
         public async Task ProcessEvent(SlackEventDto slackEventDto)
         {
-            if (slackEventDto.Type == "event_callback")
+            if (slackEventDto.Type != "event_callback")
             {
-                switch (slackEventDto.Event.Type)
-                {
-                    case "team_join":
-                        await ProcessTeamJoinEvent(slackEventDto);
-                        break;
-                    case "user_change":
-                        await ProcessUserChangeEvent(slackEventDto);
-                        break;
-                    default:
-                        break;
-                }
+                return;
             }
+
+            string eventData = slackEventDto.EventRaw.Value.ToString();
+            EventType eventType = ParseEventType(eventData);
+            
+            if(eventType.SubType == "channel_join") {
+                return;
+            }
+
+            switch (eventType.Type)
+            {
+                // team_join and user_change use same event type, TeamJoinEventDto.
+                case "team_join":
+                    SlackEventFullDto<TeamJoinEventDto> teamJoinEvent = MapSlackEventObject<TeamJoinEventDto>(slackEventDto, eventData);
+                    await ProcessTeamJoinEvent(teamJoinEvent);
+                    break;
+                case "user_change":
+                    SlackEventFullDto<TeamJoinEventDto> userChangeEvent = MapSlackEventObject<TeamJoinEventDto>(slackEventDto, eventData);
+                    await ProcessUserChangeEvent(userChangeEvent);
+                    break;
+                case "message":
+                    SlackEventFullDto<MessageChannelsEventDto> messageEvent = MapSlackEventObject<MessageChannelsEventDto>(slackEventDto, eventData);
+                    await ProcessMessageEvent(messageEvent);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private async Task ProcessMessageEvent(SlackEventFullDto<MessageChannelsEventDto> slackEventDto)
+        {
+
+            // Validate the message was received posted on introduce yourself channel
+            if (slackEventDto.Event.Channel != _introductionChannelId)
+            {
+                return;
+            }
+
+            string workspaceId = slackEventDto.TeamId;
+            string workspaceMemberId = slackEventDto.Event.User;
+
+            ChatAppUserEntity workspaceUser = await _chatAppUserStorage.FindAsync(u => u.WorkspaceId == workspaceId && u.WorkspaceMemberId == workspaceMemberId);
+            UserEntity user = workspaceUser.User;
+
+            if (String.IsNullOrWhiteSpace(user.Bio))
+            {
+                user.Bio = slackEventDto.Event.Text;
+                await _userStorage.UpdateAsync(user);
+            }
+
             return;
         }
 
-        private async Task ProcessTeamJoinEvent(SlackEventDto slackEventDto)
+        private async Task ProcessTeamJoinEvent(SlackEventFullDto<TeamJoinEventDto> slackEventDto)
         {
             if (slackEventDto.Event.User.IsBot)
             {
                 return;
             }
-            
+
             string workspaceId = slackEventDto.Event.User.SlackTeamId;
             string workspaceMemberId = slackEventDto.Event.User.SlackId;
 
@@ -116,7 +157,7 @@ namespace CommunicationAppDomain.Handlers
             return;
         }
 
-        private async Task ProcessUserChangeEvent(SlackEventDto slackEventDto)
+        private async Task ProcessUserChangeEvent(SlackEventFullDto<TeamJoinEventDto> slackEventDto)
         {
             SlackUserInfoDto slackUserInfoDto = await _slackService.GetSlackUserInfo(slackEventDto.Event.User.SlackId);
 
@@ -134,7 +175,8 @@ namespace CommunicationAppDomain.Handlers
         private async Task<string> GenerateUsername()
         {
             var member = await _userStorage.FindLastUnicornRecord();
-            if(member == null) {
+            if (member == null)
+            {
                 return $"unicorn1";
             }
             var usernameValue = member.Username.Substring(7);
@@ -165,6 +207,27 @@ namespace CommunicationAppDomain.Handlers
         private string HashPassword(User user, string password)
         {
             return _passwordHasher.HashPassword(user, password);
+        }
+
+        private SlackEventFullDto<T> MapSlackEventObject<T>(SlackEventDto slackEventDto, string innerEventData)
+        {
+            SlackEventFullDto<T> slackEventFullDto = new SlackEventFullDto<T>();
+            slackEventFullDto.ApiAppId = slackEventDto.ApiAppId;
+            slackEventFullDto.AuthedUsers = slackEventDto.AuthedUsers;
+            slackEventFullDto.EventId = slackEventDto.EventId;
+            slackEventFullDto.EventTime = slackEventDto.EventTime;
+            slackEventFullDto.TeamId = slackEventDto.TeamId;
+            slackEventFullDto.Token = slackEventDto.Token;
+            slackEventFullDto.Type = slackEventFullDto.Type;
+
+            slackEventFullDto.Event = JsonConvert.DeserializeObject<T>(innerEventData);
+
+            return slackEventFullDto;
+        }
+
+        private EventType ParseEventType(string eventData) {
+            EventType eventType = JsonConvert.DeserializeObject<EventType>(eventData);
+            return eventType;
         }
     }
 }

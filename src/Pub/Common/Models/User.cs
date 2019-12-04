@@ -24,6 +24,7 @@ namespace Common.Models
         public string FullName { get; set; }
         public string Username { get; set; }
         public string Email { get; set; }
+        public string Bio { get; set; }
         public string Timezone { get; set; }
         public string Locale { get; set; }
         public bool LookingForProject { get; set; }
