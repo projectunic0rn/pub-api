@@ -53,8 +53,9 @@ namespace CommunicationAppDomain.Handlers
 
             string eventData = slackEventDto.EventRaw.Value.ToString();
             EventType eventType = ParseEventType(eventData);
-            
-            if(eventType.SubType == "channel_join") {
+
+            if (eventType.SubType == "channel_join")
+            {
                 return;
             }
 
@@ -225,7 +226,8 @@ namespace CommunicationAppDomain.Handlers
             return slackEventFullDto;
         }
 
-        private EventType ParseEventType(string eventData) {
+        private EventType ParseEventType(string eventData)
+        {
             EventType eventType = JsonConvert.DeserializeObject<EventType>(eventData);
             return eventType;
         }
