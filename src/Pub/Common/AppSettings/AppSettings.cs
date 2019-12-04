@@ -22,6 +22,7 @@ namespace Common.AppSettings
         public static string AppUrl { get; set; } = Environment.GetEnvironmentVariable("AppUrl", EnvironmentVariableTarget.Process);
         public static string MainUrl { get; set; } = Environment.GetEnvironmentVariable("MainUrl", EnvironmentVariableTarget.Process);
         public static string SlackSigningSecret { get; set; } = Environment.GetEnvironmentVariable("SlackSigningSecret", EnvironmentVariableTarget.Process);
+        public static string IntroductionChannelId { get; set; } = Environment.GetEnvironmentVariable("IntroductionChannelId", EnvironmentVariableTarget.Process);
         public static string SlackAuthToken { get; set; } = Environment.GetEnvironmentVariable("SlackAuthToken", EnvironmentVariableTarget.Process);
         public static string GitHubOrganization { get; set; } = Environment.GetEnvironmentVariable("GitHubOrganization", EnvironmentVariableTarget.Process);
         public static string GitHubAppId { get; set; } = Environment.GetEnvironmentVariable("GitHubAppId", EnvironmentVariableTarget.Process);
