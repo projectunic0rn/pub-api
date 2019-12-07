@@ -145,6 +145,8 @@ namespace CommunicationAppDomain.Handlers
             {
                 // User email is already register to frontend
                 // associate new chat user record with existing user
+                existingUser.ProfilePictureUrl = slackEventDto.Event.User.Profile.Image192;
+
                 ChatAppUserEntity newChatAppUser = new ChatAppUserEntity()
                 {
                     WorkspaceId = workspaceId,
@@ -152,6 +154,7 @@ namespace CommunicationAppDomain.Handlers
                     UserId = existingUser.Id,
                 };
 
+                await _userStorage.UpdateAsync(existingUser);
                 await _chatAppUserStorage.CreateAsync(newChatAppUser);
             }
 
