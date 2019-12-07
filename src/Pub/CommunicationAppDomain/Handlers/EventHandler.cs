@@ -163,13 +163,19 @@ namespace CommunicationAppDomain.Handlers
 
         private async Task ProcessUserChangeEvent(SlackEventFullDto<TeamJoinEventDto> slackEventDto)
         {
-            SlackUserInfoDto slackUserInfoDto = await _slackService.GetSlackUserInfo(slackEventDto.Event.User.SlackId);
+            if (slackEventDto.Event.User.IsBot)
+            {
+                return;
+            }
+            
+            string workspaceId = slackEventDto.Event.User.SlackTeamId;
+            string workspaceMemberId = slackEventDto.Event.User.SlackId;
 
-            string chatAppMemberEmail = slackUserInfoDto.User.Profile.Email;
-            UserEntity existingUser = await _userStorage.FindAsync(u => u.Email == chatAppMemberEmail);
-            existingUser.Email = slackUserInfoDto.User.Profile.Email;
-            existingUser.Timezone = slackUserInfoDto.User.Timezone;
-            existingUser.Locale = slackUserInfoDto.User.Locale;
+            ChatAppUserEntity workspaceUser = await _chatAppUserStorage.FindAsync(u => u.WorkspaceId == workspaceId && u.WorkspaceMemberId == workspaceMemberId);
+            UserEntity existingUser = workspaceUser.User;
+            existingUser.Email = slackEventDto.Event.User.Profile.Email;
+            existingUser.Timezone = slackEventDto.Event.User.Timezone;
+            existingUser.Locale = slackEventDto.Event.User.Locale;
             existingUser.ProfilePictureUrl = slackEventDto.Event.User.Profile.Image192;
 
             await _userStorage.UpdateAsync(existingUser);
