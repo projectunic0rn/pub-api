@@ -6,7 +6,6 @@ namespace CommunicationAppDomain.ChatMessages
     {
         private static string _frontendUrl = AppSettings.MainUrl;
         private static string _appUrl = AppSettings.AppUrl;
-        private static string _introductionChannel = AppSettings.IntroductionChannelId;
         
         public static string OnboardingMessage(string slackId, string signinId, string signinPassword)
         {
