@@ -18,7 +18,7 @@ using Common.Models;
 
 namespace Domain.Models
 {
-    public class Authentication: IAuthentication
+    public class Authentication : IAuthentication
     {
         private readonly IMapper _mapper;
         private User _user;
@@ -32,31 +32,57 @@ namespace Domain.Models
             _mapper = new InitializeMapper().GetMapper;
             _passwordHasher = new PasswordHasher<User>();
         }
-        
+
         public async Task<JsonWebTokenDto> LoginUserAsync(LoginDto login)
         {
-            JsonWebTokenDto jsonWebToken;
             PasswordVerificationResult verificationResult;
-            
-            var user = await _storage.FindAsync(m => m.Email == login.Email);
-            if(user == null)
+            UserEntity user;
+            bool magicTokenLoginMethod = login.Email == "token";
+
+            if (magicTokenLoginMethod)
+            {
+                // user has logged in via a workspace command 
+                // so log them in by validating against stored token
+                string magicToken = login.Password;
+                user = await _storage.FindAsync(m => m.MagicLoginToken == magicToken);
+            }
+            else
+            {
+                user = await _storage.FindAsync(m => m.Email == login.Email);
+            }
+
+            if (user == null)
             {
                 throw new AuthenticationException(ExceptionMessage.InvalidCredentials);
             }
-            
-            verificationResult = ValidatePassword(_user, user.HashedPassword, login.Password);
-            jsonWebToken = GenerateJsonWebToken(new JwtUserClaimsDto(user.Id.ToString()));
+
+            if (magicTokenLoginMethod)
+            {
+                bool magicTokenNotExpired = DateTimeOffset.Compare(user.MagicLoginTokenExpiresAt, DateTimeOffset.Now) > 0;
+                if (magicTokenNotExpired)
+                {
+                    verificationResult = PasswordVerificationResult.Success;
+                }
+                else
+                {
+                    verificationResult = PasswordVerificationResult.Failed;
+                }
+            }
+            else
+            {
+                verificationResult = ValidatePassword(_user, user.HashedPassword, login.Password);
+            }
 
             switch (verificationResult)
             {
                 case PasswordVerificationResult.Success:
-                    return jsonWebToken;
+                    return GenerateJsonWebToken(new JwtUserClaimsDto(user.Id.ToString()));
                 case PasswordVerificationResult.Failed:
                     throw new AuthenticationException(ExceptionMessage.InvalidCredentials);
                 case PasswordVerificationResult.SuccessRehashNeeded:
                     user.HashedPassword = HashPassword(_user, login.Password);
                     await user.UpdateAsync(user);
-                    return jsonWebToken;
+                    return GenerateJsonWebToken(new JwtUserClaimsDto(user.Id.ToString()));
                 default:
                     throw new AuthenticationException(ExceptionMessage.ExceptionThrown);
             }
@@ -64,11 +90,11 @@ namespace Domain.Models
 
         public async Task<JsonWebTokenDto> RegisterUserAsync(RegistrationDto registration)
         {
-            if(registration.Password != registration.PasswordConfirmation)
+            if (registration.Password != registration.PasswordConfirmation)
             {
                 throw new AuthenticationException(ExceptionMessage.NonMatchingPasswords);
             }
-            
+
             JsonWebTokenDto jsonWebToken;
             _user = new User(registration.Username, registration.Email, registration.Timezone, registration.Locale, true);
 
@@ -111,6 +137,6 @@ namespace Domain.Models
             JsonWebTokenDto jsonWebToken = new JsonWebTokenDto(jwtToken);
             return jsonWebToken;
         }
-        
+
     }
 }

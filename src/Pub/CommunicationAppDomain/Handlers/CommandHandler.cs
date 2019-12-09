@@ -14,6 +14,7 @@ namespace CommunicationAppDomain.Handlers
     {
         private readonly string _githubOrganization;
         private readonly string _appUrl;
+        private readonly string _mainUrl;
         private readonly IStorage<ProjectEntity> _projectStorage;
         private readonly IStorage<UserEntity> _userStorage;
         private readonly IStorage<ChatAppUserEntity> _chatAppUserStorage;
@@ -22,6 +23,7 @@ namespace CommunicationAppDomain.Handlers
         {
             _githubOrganization = AppSettings.GitHubOrganization;
             _appUrl = AppSettings.AppUrl;
+            _mainUrl = AppSettings.MainUrl;
             _projectStorage = new ProjectEntity();
             _userStorage = new UserEntity();
             _chatAppUserStorage = new ChatAppUserEntity();
@@ -95,7 +97,7 @@ namespace CommunicationAppDomain.Handlers
             await _userStorage.UpdateAsync(user);
             var slackCommandResponse = new SlackCommandResponseDto();
 
-            slackCommandResponse.Text = $"Your magic login link expires in {linkExpirationInMinutes} minutes.\n\n {_appUrl}/magic-link/{token}";
+            slackCommandResponse.Text = $"Your magic login link expires in {linkExpirationInMinutes} minutes.\n\n {_mainUrl}/magic-login?token={token}";
             return slackCommandResponse;
         }
 
