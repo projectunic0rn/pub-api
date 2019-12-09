@@ -85,7 +85,6 @@ namespace CommunicationAppDomain.Handlers
         {
             var linkExpirationInMinutes = 5;
             var token = TokenHelper.GenerateToken();
-            token = token.Replace("/", "");
             string workspaceId = slackCommand.team_id;
             string workspaceMemberId = slackCommand.user_id;
 
