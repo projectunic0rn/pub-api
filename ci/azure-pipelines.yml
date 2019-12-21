@@ -4,7 +4,10 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/dotnet-core
 
 trigger:
-- master
+  branches: 
+    include:
+      - master
+      - refs/tags/v*
 
 pool:
   vmImage: 'ubuntu-latest'
@@ -35,6 +38,11 @@ variables:
   ghAppInstallationId: $(GitHubAppInstallationId)
   introChannelId: $(IntroductionChannelId)
 
+  # Mailer App
+  busConnectionString: $(ServiceBusConnectionString)
+  queueName: $(ServiceBusQueueName)
+  sendGridKey: $(SendGridApiKey)
+
 steps:
 
 - task: CopyFiles@2
@@ -42,19 +50,19 @@ steps:
   inputs:
     contents: '**/*'
     targetFolder: $(Build.ArtifactStagingDirectory)
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
+  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),contains(variables['Build.SourceBranch'], 'refs/tags/v')))
 
 - task: PublishBuildArtifacts@1
   displayName: 'Publish src to: $(Build.ArtifactStagingDirectory)'
   inputs:
     pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
     artifactName: 'deploy' 
-  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
+  condition: and(succeeded(), or(eq(variables['Build.SourceBranch'], 'refs/heads/master'),contains(variables['Build.SourceBranch'], 'refs/tags/v')))
 
 - script: dotnet restore src/Pub/
   displayName: 'dotnet restore'
 
-# output of this build does not get used, soley for CI purposes
+# output of this build does not get used, it's only for CI purposes
 - script: dotnet build -c $(buildConfiguration) src/Pub/ -o out
   displayName: 'dotnet build $(buildConfiguration)'
 
@@ -82,5 +90,13 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - script: docker push roymoran/pub-slack-app:build
+  displayName: 'push docker image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: docker build --build-arg SERVICE_BUS_CONNECTION_STRING="$(busConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(queueName)" --build-arg SEND_GRID_API_KEY="$(sendGridKey)" -t roymoran/pub-mailer:build -f ci/mailer.Dockerfile src/Pub
+  displayName: 'build docker mailer image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: docker push roymoran/pub-mailer:build
   displayName: 'push docker image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))

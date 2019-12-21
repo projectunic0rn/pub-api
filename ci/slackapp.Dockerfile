@@ -1,3 +1,4 @@
+# Dockerfile to build Pub Slack App image
 FROM microsoft/dotnet:2.2-sdk AS build-env
 COPY . /app
 WORKDIR /app
