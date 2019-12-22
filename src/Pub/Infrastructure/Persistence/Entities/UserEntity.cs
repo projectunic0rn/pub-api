@@ -58,14 +58,20 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<List<UserEntity>> FindAsync()
         {
-            List<UserEntity> items = await _context.Users.ToListAsync();
+            List<UserEntity> items = await _context.Users
+            .Include(u => u.UserTechnologies)
+            .Include(u => u.ProjectUsers)
+            .ToListAsync();
             return items;
         }
 
         public async Task<UserEntity> FindAsync(Expression<Func<UserEntity, bool>> predicate)
         {
-            UserEntity user = await _context.Users.SingleOrDefaultAsync(predicate);
-            return user;
+            UserEntity item = await _context.Users
+            .Include(u => u.UserTechnologies)
+            .Include(u => u.ProjectUsers)
+            .SingleOrDefaultAsync(predicate);
+            return item;
         }
 
         // used to assign generated username 
@@ -79,7 +85,6 @@ namespace Infrastructure.Persistence.Entities
         public async Task<UserEntity> UpdateAsync(UserEntity item)
         {
             item.UpdatedAt = DateTimeOffset.UtcNow;
-
             _context.Users.Update(item);
             await _context.SaveChangesAsync();
             return item;

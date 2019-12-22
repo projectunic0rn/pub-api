@@ -62,6 +62,7 @@ namespace API
             services.AddScoped<IAuthentication, Authentication>();
             services.AddScoped<IUtilities, Utilities>();
             services.AddScoped<INotifier, MailerNotifier>();
+            services.AddScoped<IUser, User>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

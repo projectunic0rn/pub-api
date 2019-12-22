@@ -21,16 +21,16 @@ namespace Domain.Models
     public class Authentication : IAuthentication
     {
         private readonly IMapper _mapper;
-        private User _user;
+        private Common.Models.User _user;
         private readonly IStorage<UserEntity> _storage;
-        private readonly PasswordHasher<User> _passwordHasher;
+        private readonly PasswordHasher<Common.Models.User> _passwordHasher;
 
         public Authentication()
         {
-            _user = new User();
+            _user = new Common.Models.User();
             _storage = new UserEntity();
             _mapper = new InitializeMapper().GetMapper;
-            _passwordHasher = new PasswordHasher<User>();
+            _passwordHasher = new PasswordHasher<Common.Models.User>();
         }
 
         public async Task<JsonWebTokenDto> LoginUserAsync(LoginDto login)
@@ -96,7 +96,7 @@ namespace Domain.Models
             }
 
             JsonWebTokenDto jsonWebToken;
-            _user = new User(registration.Username, registration.Email, registration.Timezone, registration.Locale, true);
+            _user = new Common.Models.User(registration.Username, registration.Email, registration.Timezone, registration.Locale, true);
 
             var userEntity = _mapper.Map<UserEntity>(_user);
             userEntity.HashedPassword = HashPassword(_user, registration.Password);
@@ -106,12 +106,12 @@ namespace Domain.Models
             return jsonWebToken;
         }
 
-        private PasswordVerificationResult ValidatePassword(User user, string hashedPassword, string providedPassword)
+        private PasswordVerificationResult ValidatePassword(Common.Models.User user, string hashedPassword, string providedPassword)
         {
             return _passwordHasher.VerifyHashedPassword(user, hashedPassword, providedPassword);
         }
 
-        private string HashPassword(User user, string password)
+        private string HashPassword(Common.Models.User user, string password)
         {
             return _passwordHasher.HashPassword(user, password);
         }

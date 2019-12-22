@@ -42,9 +42,15 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task DeleteAsync(Guid id)
         {
-            var projectType = new TechnologyEntity { Id = id };
-            _context.Technologies.Attach(projectType);
-            _context.Technologies.Remove(projectType);
+            var tech = new TechnologyEntity { Id = id };
+            _context.Technologies.Attach(tech);
+            _context.Technologies.Remove(tech);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(List<TechnologyEntity> technologies)
+        {
+            _context.Technologies.RemoveRange(technologies);
             await _context.SaveChangesAsync();
         }
 
