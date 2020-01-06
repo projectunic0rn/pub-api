@@ -123,7 +123,7 @@ namespace API
 
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
-            AppSettings.SendGridApiKey = Configuration["SendGridApiKey"];
+            AppSettings.SendGridTemplatesApiKey = Configuration["SendGridApiKey"];
 
             if (emailConfiguration.SmtpPassword == null
             || emailConfiguration.SmtpPassword == null
@@ -139,7 +139,7 @@ namespace API
             || AppSettings.Env == null
             || AppSettings.TableStorageConnectionString == null
             || AppSettings.StorageTableName == null
-            || AppSettings.SendGridApiKey == null)
+            || AppSettings.SendGridTemplatesApiKey == null)
             {
                 throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);
             }

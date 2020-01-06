@@ -14,7 +14,7 @@ namespace Mailer.Services
         public SendGridService()
         {
             _http = new Http();
-            _headers.Add("Authorization", $"Bearer {AppSettings.SendGridApiKey}");
+            _headers.Add("Authorization", $"Bearer {AppSettings.SendGridTemplatesApiKey}");
         }
 
         public async Task<SendGridTemplateDto> GetMailTemplate(string templateId) {

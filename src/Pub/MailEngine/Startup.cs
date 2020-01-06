@@ -46,7 +46,7 @@ namespace MailEngine
             AppSettings.ConnectionString = Configuration["ConnectionString"];
             AppSettings.ServiceBusConnectionString = Configuration["ServiceBusConnectionString"];
             AppSettings.ServiceBusQueueName = Configuration["ServiceBusQueueName"];
-            AppSettings.SendGridApiKey = Configuration["SendGridApiKey"];
+            AppSettings.SendGridTemplatesApiKey = Configuration["SendGridApiKey"];
             AppSettings.AppUrl = Configuration["AppUrl"];
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
@@ -54,7 +54,7 @@ namespace MailEngine
             if (AppSettings.ConnectionString == null
             || AppSettings.ServiceBusConnectionString == null
             || AppSettings.ServiceBusQueueName == null
-            || AppSettings.SendGridApiKey == null
+            || AppSettings.SendGridTemplatesApiKey == null
             || AppSettings.AppUrl == null
             || AppSettings.TableStorageConnectionString == null
             || AppSettings.StorageTableName == null)

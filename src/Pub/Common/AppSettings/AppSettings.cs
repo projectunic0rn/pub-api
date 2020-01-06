@@ -31,7 +31,7 @@ namespace Common.AppSettings
         public static string GitHubInstallationAccessToken { get; set; } = Environment.GetEnvironmentVariable("GitHubInstallationAccessToken", EnvironmentVariableTarget.Process);
 
         // Mail Engine
-        public static string SendGridApiKey { get; set; } = Environment.GetEnvironmentVariable("SendGridApiKey", EnvironmentVariableTarget.Process);
+        public static string SendGridTemplatesApiKey { get; set; } = Environment.GetEnvironmentVariable("SendGridTemplatesApiKey", EnvironmentVariableTarget.Process);
         public static string ServiceBusConnectionString { get; set; } = Environment.GetEnvironmentVariable("ServiceBusConnectionString", EnvironmentVariableTarget.Process);
         public static string ServiceBusQueueName { get; set; } = Environment.GetEnvironmentVariable("ServiceBusQueueName", EnvironmentVariableTarget.Process);
         public static string TableStorageConnectionString { get; set; } = Environment.GetEnvironmentVariable("TableStorageConnectionString", EnvironmentVariableTarget.Process);
