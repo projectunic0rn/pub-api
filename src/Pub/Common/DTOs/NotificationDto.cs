@@ -1,16 +1,21 @@
+using System;
 using System.Collections.Generic;
 
 namespace Common.DTOs
 {
     public class NotificationDto
     {
-        public NotificationDto(string content, string type)
+        
+        public NotificationDto(string content)
         {
             Content = content;
-            NotificationType = type;
+        }
+
+        public NotificationDto(Guid? notifierId)
+        {
+            NotifierId = notifierId;
         }
         public string Content { get; set; }
-        public string NotificationType { get; set; }
-        public List<string> NotificationRecipients { get; set; }
+        public Guid? NotifierId { get; set; }
     }
 }

@@ -39,6 +39,9 @@ namespace API.Controllers
         // PUT api/[controller]
         [HttpPut]
         [ProducesResponseType(200, Type = typeof(ResponseDto<UserDto>))]
+        #if !DEBUG
+        [Authorize]
+        #endif
         public async Task<ActionResult<UserDto>> UpdateUser([FromBody]UserDto user)
         {
             ResponseDto<UserDto> okResponse = new ResponseDto<UserDto>(true)

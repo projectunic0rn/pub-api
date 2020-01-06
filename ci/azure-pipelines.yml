@@ -35,6 +35,13 @@ variables:
   ghAppInstallationId: $(GitHubAppInstallationId)
   introChannelId: $(IntroductionChannelId)
 
+  # Mail Engine
+  sbConnectionString: $(ServiceBusConnectionString)
+  sbQueueName: $(ServiceBusQueueName)
+  sendGridTemplatesKey: $(SendGridTemplatesApiKey)
+  azStorageConnectionString: $(TableStorageConnectionString)
+  azStorageTableName: $(StorageTableName)
+
 steps:
 
 - task: CopyFiles@2
@@ -82,5 +89,13 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - script: docker push roymoran/pub-slack-app:build
+  displayName: 'push docker image'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" --build-arg APP_URL="$(aUrl)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" -t roymoran/pub-mail-engine:build -f ci/mailengines.Dockerfile src/Pub
+  displayName: 'build docker mail engine'
+  condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+- script: docker push roymoran/pub-mail-engine:build
   displayName: 'push docker image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))

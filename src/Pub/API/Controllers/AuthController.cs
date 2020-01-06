@@ -55,7 +55,7 @@ namespace API.Controllers
         {
             ResponseDto<JsonWebTokenDto> okResponse = new ResponseDto<JsonWebTokenDto>(true);
             ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
-            
+
             try
             {
                 okResponse.Data = await _authentication.RegisterUserAsync(registrationDto);

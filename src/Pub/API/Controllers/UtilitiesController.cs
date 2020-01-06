@@ -14,12 +14,12 @@ namespace API.Controllers
     public class UtilitiesController : ControllerBase
     {
         private readonly IUtilities _utilities;
-        private readonly INotifier _mailer;
+        private readonly INotifier _notifier;
 
         public UtilitiesController(IUtilities utilities, INotifier notifier)
         {
             _utilities = utilities;
-            _mailer = notifier;
+            _notifier = notifier;
         }
 
         [HttpPost]
@@ -49,11 +49,11 @@ namespace API.Controllers
         public async Task<IActionResult> SendFeedback([FromBody] FeedbackDto feedback)
         {
             ResponseDto<NotificationDto> okResponse = new ResponseDto<NotificationDto>(true);
-            NotificationDto notification = new NotificationDto(feedback.Content, "Feedback");
+            NotificationDto notification = new NotificationDto(feedback.Content);
             try
             {
-                var response = await _mailer.SendNotificationAsync(notification);
-                okResponse.Data = response;
+                await _notifier.SendFeedbackNotificationAsync(notification);
+                okResponse.Data = notification;
             }
             catch (Exception e)
             {
