@@ -5,6 +5,7 @@ namespace Common.Contracts
 {
     public interface INotifier
     {
-        Task<NotificationDto> SendNotificationAsync(NotificationDto notification);
+        Task SendFeedbackNotificationAsync(NotificationDto notification);
+        Task SendWelcomeNotificationAsync(NotificationDto notification);
     }
 }

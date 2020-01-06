@@ -10,24 +10,29 @@ using Swashbuckle.AspNetCore.Swagger;
 using Common.Contracts;
 using Domain.Models;
 using Domain.Helpers;
-using Domain.Notifiers.Mailer;
 using Common.AppSettings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
 using Domain.Mailer;
+using MailEngine.Mails.ScheduledMails;
+using Infrastructure.Messaging;
+using Infrastructure.Persistence.TableStorage;
+using Common.Exceptions;
 
 namespace API
 {
     public class Startup
     {
+        private readonly ILogger _logger;
         private readonly string _apiName = AppSettings.ApiName;
         private readonly string _apiVersion = AppSettings.ApiV1;
 
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            _logger = logger;
             InitializeSettings();
         }
 
@@ -61,8 +66,10 @@ namespace API
             services.AddScoped<IProjectUser, ProjectUser>();
             services.AddScoped<IAuthentication, Authentication>();
             services.AddScoped<IUtilities, Utilities>();
-            services.AddScoped<INotifier, MailerNotifier>();
+            services.AddScoped<INotifier, TransactionalMailNotifier>();
             services.AddScoped<IUser, User>();
+            services.AddSingleton<IMessageQueue, MessageQueue>(provider => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName));
+            services.AddSingleton<IMailConfigStorage, MailConfigStorage>(provider => new MailConfigStorage(AppSettings.TableStorageConnectionString, AppSettings.StorageTableName));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -86,29 +93,58 @@ namespace API
                 c.SwaggerEndpoint($"/swagger/v1/swagger.json", $"{_apiName} {_apiVersion}");
                 c.RoutePrefix = string.Empty;
             });
-            
+
             app.UseAuthentication();
             app.UseMvc();
         }
 
         private void InitializeSettings()
         {
-            EmailConfiguration emailConfiguration = new EmailConfiguration() {
+            EmailConfiguration emailConfiguration = new EmailConfiguration()
+            {
                 SmtpServer = Configuration["SmtpServer"],
                 SmtpPort = Convert.ToInt32(Configuration["SmtpPort"]),
                 SmtpUsername = Configuration["SmtpUsername"],
                 SmtpPassword = Configuration["SmtpPassword"]
             };
 
+            AppSettings.ServiceBusConnectionString = Configuration["ServiceBusConnectionString"];
+            AppSettings.ServiceBusQueueName = Configuration["ServiceBusQueueName"];
+
             AppSettings.JwtIssuer = Configuration["JwtIssuer"];
             AppSettings.JwtAudience = Configuration["JwtAudience"];
             AppSettings.JwtSecretKey = Configuration["JwtSecretKey"];
             AppSettings.ConnectionString = Configuration["ConnectionString"];
-            
+
             AppSettings.EmailConfiguration = emailConfiguration;
             AppSettings.FeedbackRecipients = Configuration["FeedbackRecipients"];
             AppSettings.MailerFromAddress = Configuration["MailerFromAddress"];
             AppSettings.Env = Configuration["ASPNETCORE_ENVIRONMENT"];
+
+            AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
+            AppSettings.StorageTableName = Configuration["StorageTableName"];
+            AppSettings.SendGridApiKey = Configuration["SendGridApiKey"];
+
+            if (emailConfiguration.SmtpPassword == null
+            || emailConfiguration.SmtpPassword == null
+            || emailConfiguration.SmtpServer == null
+            || AppSettings.ServiceBusConnectionString == null
+            || AppSettings.ServiceBusQueueName == null
+            || AppSettings.JwtIssuer == null
+            || AppSettings.JwtAudience == null
+            || AppSettings.JwtSecretKey == null
+            || AppSettings.ConnectionString == null
+            || AppSettings.FeedbackRecipients == null
+            || AppSettings.MailerFromAddress == null
+            || AppSettings.Env == null
+            || AppSettings.TableStorageConnectionString == null
+            || AppSettings.StorageTableName == null
+            || AppSettings.SendGridApiKey == null)
+            {
+                throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);
+            }
+
+            _logger.LogInformation("Initialized App Settings");
         }
     }
 }

@@ -24,13 +24,14 @@ namespace Domain.Models
         private Common.Models.User _user;
         private readonly IStorage<UserEntity> _storage;
         private readonly PasswordHasher<Common.Models.User> _passwordHasher;
-
-        public Authentication()
+        private readonly INotifier _notifier;
+        public Authentication(INotifier notifier)
         {
             _user = new Common.Models.User();
             _storage = new UserEntity();
             _mapper = new InitializeMapper().GetMapper;
             _passwordHasher = new PasswordHasher<Common.Models.User>();
+            _notifier = notifier;
         }
 
         public async Task<JsonWebTokenDto> LoginUserAsync(LoginDto login)
@@ -102,7 +103,8 @@ namespace Domain.Models
             userEntity.HashedPassword = HashPassword(_user, registration.Password);
             await _storage.CreateAsync(userEntity);
             jsonWebToken = GenerateJsonWebToken(new JwtUserClaimsDto(userEntity.Id.ToString()));
-
+            NotificationDto notification = new NotificationDto(userEntity.Id);
+            await _notifier.SendWelcomeNotificationAsync(notification);
             return jsonWebToken;
         }
 

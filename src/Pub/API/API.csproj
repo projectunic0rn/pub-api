@@ -14,5 +14,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\MailEngine\MailEngine.csproj" />
   </ItemGroup>
 </Project>

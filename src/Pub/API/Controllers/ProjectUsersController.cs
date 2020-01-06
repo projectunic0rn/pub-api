@@ -24,9 +24,9 @@ namespace API.Controllers
         }
 
         // POST api/[controller]
-#if !DEBUG
+        #if !DEBUG
         [Authorize]
-#endif
+        #endif
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectUserDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]

@@ -7,18 +7,20 @@
     <ItemGroup>
         <PackageReference Include="Microsoft.AspNetCore.All" />
         <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
+        <PackageReference Include="Microsoft.Azure.ServiceBus" Version="4.1.1" />
+        <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
     </ItemGroup>
 
     <ItemGroup>
         <Folder Include="Persistence\" />
     </ItemGroup>
     <ItemGroup>
-      <None Remove="Persistence\Entities\.gitkeep" />
+        <None Remove="Persistence\Entities\.gitkeep" />
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\Common\Common.csproj" />
+        <ProjectReference Include="..\Common\Common.csproj" />
     </ItemGroup>
     <ItemGroup>
-      <Compile Remove="Persistence\Entities\BaseEntity.cs" />
+        <Compile Remove="Persistence\Entities\BaseEntity.cs" />
     </ItemGroup>
 </Project>

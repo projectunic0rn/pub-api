@@ -9,13 +9,14 @@ using Common.AppSettings;
 
 namespace Domain.Notifiers.Mailer
 {
-    public class MailerNotifier : INotifier
+    public class MailerNotifier
     {
         private readonly MailerClient _mailerClient;
         private EmailMessage _emailMessage;
         private readonly string _appName;
         private readonly string _testEmailIndicator;
-        public MailerNotifier() {
+        public MailerNotifier()
+        {
             // Initializing 2 instances of EmailMessage in order to
             // deserialize FeedbackRecipients and MailerFromAddress. 
             // Deserializing each onto same instance overwrites value of 
@@ -33,12 +34,10 @@ namespace Domain.Notifiers.Mailer
         public async Task<NotificationDto> SendNotificationAsync(NotificationDto notification)
         {
             _emailMessage.Content = notification.Content;
-            _emailMessage.Subject = $"{_testEmailIndicator}{_appName} {notification.NotificationType}";
+            _emailMessage.Subject = $"{_testEmailIndicator}{_appName}";
             await _mailerClient.SendMailAsync(_emailMessage);
             return notification;
         }
-
-
     }
 
     public class EmailAddress
