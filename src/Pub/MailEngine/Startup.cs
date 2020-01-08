@@ -46,7 +46,7 @@ namespace MailEngine
             AppSettings.ConnectionString = Configuration["ConnectionString"];
             AppSettings.ServiceBusConnectionString = Configuration["ServiceBusConnectionString"];
             AppSettings.ServiceBusQueueName = Configuration["ServiceBusQueueName"];
-            AppSettings.SendGridTemplatesApiKey = Configuration["SendGridApiKey"];
+            AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
             AppSettings.AppUrl = Configuration["AppUrl"];
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
