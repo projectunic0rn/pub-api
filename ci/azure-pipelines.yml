@@ -81,7 +81,7 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
 - script: docker push roymoran/pub-api:build
-  displayName: 'push docker image'
+  displayName: 'push api image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg APP_URL="$(aUrl)" --build-arg MAIN_URL="$(mUrl)" --build-arg SLACK_AUTH_TOKEN="$(authToken)" --build-arg SLACK_SIGNING_SECRET="$(signingSecret)" --build-arg GITHUB_APP_PRIVATE_RSA_KEY="$(ghPrivateRsaKey)" --build-arg GITHUB_APP_ID="$(ghAppId)" --build-arg GITHUB_APP_INSTALLATION_ID="$(ghAppInstallationId)" --build-arg GITHUB_ORGANIZATION="$(ghOrganization)" --build-arg INTRODUCTION_CHANNEL_ID="$(introChannelId)" -t roymoran/pub-slack-app:build -f ci/slackapp.Dockerfile src/Pub
@@ -89,13 +89,13 @@ steps:
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - script: docker push roymoran/pub-slack-app:build
-  displayName: 'push docker image'
+  displayName: 'push slack app image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
-- script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" --build-arg APP_URL="$(aUrl)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" -t roymoran/pub-mail-engine:build -f ci/mailengine.Dockerfile src/Pub
+- script: docker build --build-arg NETCORE_ENV="$(netCoreEnv)" --build-arg CONNECTION_STRING="$(connectionString)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" --build-arg APP_URL="$(aUrl)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" -t roymoran/pub-mail-engine:build -f ci/mailengine.Dockerfile src/Pub
   displayName: 'build docker mail engine'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
 - script: docker push roymoran/pub-mail-engine:build
-  displayName: 'push docker image'
+  displayName: 'push mail engine image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
