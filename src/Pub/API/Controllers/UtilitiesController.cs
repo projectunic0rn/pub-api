@@ -46,9 +46,12 @@ namespace API.Controllers
 
         [HttpPost("send-feedback")]
         [ProducesResponseType(200, Type = typeof(ResponseDto<NotificationDto>))]
+        [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
         public async Task<IActionResult> SendFeedback([FromBody] FeedbackDto feedback)
         {
             ResponseDto<NotificationDto> okResponse = new ResponseDto<NotificationDto>(true);
+            ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
+
             NotificationDto notification = new NotificationDto(feedback.Content);
             try
             {
@@ -58,7 +61,8 @@ namespace API.Controllers
             catch (Exception e)
             {
                 // TODO: Update Exception type. Catch failed email sent, pass to bus/queue to re-try mailing later
-                okResponse.Data = notification;
+                errorResponse.Data = new ErrorDto(e.Message);
+                return BadRequest(errorResponse);
             }
 
             return Ok(okResponse);
