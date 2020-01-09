@@ -123,7 +123,7 @@ namespace API
 
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
-            AppSettings.SendGridTemplatesApiKey = Configuration["SendGridApiKey"];
+            AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
 
             if (emailConfiguration.SmtpPassword == null
             || emailConfiguration.SmtpPassword == null
