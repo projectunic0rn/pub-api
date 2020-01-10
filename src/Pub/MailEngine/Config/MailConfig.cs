@@ -79,7 +79,7 @@ namespace MailEngine.Config
                         Name = "ProjectRecommendations",
                         Type = MailType.Scheduled,
                         TemplateId = "d-cd7be025aef24c6cba1724359ff333c5",
-                        IntervalSeconds = 2592000,
+                        IntervalSeconds = 240,
                         LastSend = null,
                         NextSend = null
                      }
@@ -90,7 +90,7 @@ namespace MailEngine.Config
                         Name = "ProjectLaunchShowcase",
                         Type = MailType.Scheduled,
                         TemplateId = "d-e1944eb05d6a47d388ea51efca5f7847",
-                        IntervalSeconds = 2592000,
+                        IntervalSeconds = 240,
                         LastSend = null,
                         NextSend = null
                      }
@@ -101,7 +101,7 @@ namespace MailEngine.Config
                         Name = "WelcomeMessage",
                         Type = MailType.Transactional,
                         TemplateId = "d-532a6f1c50d44cc5861d4754cb5c591b",
-                        IntervalSeconds = 2592000,
+                        IntervalSeconds = 240,
                         LastSend = null,
                         NextSend = null
                      }
@@ -112,7 +112,7 @@ namespace MailEngine.Config
                         Name = "FeedbackMessage",
                         Type = MailType.Transactional,
                         TemplateId = "d-d6967b05bf5c4ad584b602301ef557fd",
-                        IntervalSeconds = 2592000,
+                        IntervalSeconds = 240,
                         LastSend = null,
                         NextSend = null
                      }
