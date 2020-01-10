@@ -50,7 +50,6 @@ namespace MailEngine
             AppSettings.AppUrl = Configuration["AppUrl"];
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
-            AppSettings.Env = Configuration["StorageTableName"];
             AppSettings.Env = Configuration["ASPNETCORE_ENVIRONMENT"];
 
             if (AppSettings.ConnectionString == null
