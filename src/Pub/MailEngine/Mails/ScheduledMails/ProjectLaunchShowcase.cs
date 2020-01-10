@@ -7,6 +7,7 @@ using Microsoft.Extensions.Logging;
 using MailEngine.Config;
 using Common.DTOs.MailDTOs;
 using Common.Contracts;
+using Common.AppSettings;
 
 namespace MailEngine.Mails.ScheduledMails
 {
@@ -16,11 +17,13 @@ namespace MailEngine.Mails.ScheduledMails
         private MailConfigDto _mailConfigDto;
         private readonly MailConfig _mailConfig;
         private readonly string _mailName = "ProjectLaunchShowcase";
+        private readonly string _testEmailIndicator;
 
         public ProjectLaunchShowcase(ILogger<ProjectLaunchShowcase> logger, IMailConfigStorage mailConfigStorage)
         {
             _logger = logger;
             _mailConfig = new MailConfig(mailConfigStorage);
+            _testEmailIndicator = AppSettings.Env == "Staging" || AppSettings.Env == "Development" ? "[TEST EMAIL] " : "";
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
