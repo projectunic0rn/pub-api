@@ -35,6 +35,7 @@ namespace MailEngine.Mails.ScheduledMails
         private MailConfig _mailConfig;
         private MailConfigDto _mailConfigDto;
         private readonly string _mailName = "ProjectRecommendations";
+        private readonly string _testEmailIndicator;
         public ProjectRecommendations(ILogger<ProjectRecommendations> logger, IMessageQueue messageQueue, IMailConfigStorage mailConfigStorage)
         {
             _logger = logger;
@@ -48,6 +49,7 @@ namespace MailEngine.Mails.ScheduledMails
                 {"slack", _slackLogoUrl}
             };
             _messageQueue = messageQueue;
+            _testEmailIndicator = AppSettings.Env == "Staging" || AppSettings.Env == "Development" ? "[TEST EMAIL] " : "";
             _mailConfig = new MailConfig(mailConfigStorage);
         }
 
@@ -153,7 +155,7 @@ namespace MailEngine.Mails.ScheduledMails
             MailContent plainTextContent = new MailContent("text/plain");
             message.ToAddresses.Add(toAddress);
             message.FromAddresses.Add(fromAddress);
-            message.Subject = templateV1.Subject;
+            message.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
             htmlContent.Value = ReplaceMessageVariables(templateV1.HtmlContent, user, projects);
             plainTextContent.Value = ReplaceMessageVariables(templateV1.PlainContent, user, projects);
             message.Content.Add(htmlContent);
