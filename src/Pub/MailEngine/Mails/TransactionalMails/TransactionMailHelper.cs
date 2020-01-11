@@ -41,14 +41,12 @@ namespace MailEngine.Mails.ScheduledMails
             emailMessage = JsonConvert.DeserializeObject<EmailMessage>(AppSettings.FeedbackRecipients);
 
             EmailAddress fromAddress = _fromAddress;
-            MailContent htmlContent = new MailContent("text/html");
-            MailContent plainTextContent = new MailContent("text/plain");
             emailMessage.FromAddresses.Add(fromAddress);
             emailMessage.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
-            htmlContent.Value = templateV1.HtmlContent.Replace("{{feedbackMessage}}", feedbackContent);
-            plainTextContent.Value = templateV1.PlainContent.Replace("{{feedbackMessage}}", feedbackContent);
-            emailMessage.Content.Add(htmlContent);
-            emailMessage.Content.Add(plainTextContent);
+            string htmlContent = templateV1.HtmlContent.Replace("{{feedbackMessage}}", feedbackContent);
+            string plainTextContent = templateV1.PlainContent.Replace("{{feedbackMessage}}", feedbackContent);
+            emailMessage.MailContent.Add("text/html", htmlContent);
+            emailMessage.MailContent.Add("text/plain", plainTextContent);
 
             return emailMessage;
         }
@@ -64,15 +62,13 @@ namespace MailEngine.Mails.ScheduledMails
 
             EmailAddress fromAddress = _fromAddress;
             EmailAddress toAddress = new EmailAddress("", notifierEmail);
-            MailContent htmlContent = new MailContent("text/html");
-            MailContent plainTextContent = new MailContent("text/plain");
             emailMessage.FromAddresses.Add(fromAddress);
             emailMessage.ToAddresses.Add(toAddress);
             emailMessage.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
-            htmlContent.Value = templateV1.HtmlContent.Replace("{{currentYear}}", DateTime.Now.Year.ToString());
-            plainTextContent.Value = templateV1.PlainContent.Replace("{{currentYear}}", DateTime.Now.Year.ToString());
-            emailMessage.Content.Add(htmlContent);
-            emailMessage.Content.Add(plainTextContent);
+            string htmlContent = templateV1.HtmlContent.Replace("{{currentYear}}", DateTime.Now.Year.ToString());
+            string plainTextContent = templateV1.PlainContent.Replace("{{currentYear}}", DateTime.Now.Year.ToString());
+            emailMessage.MailContent.Add("text/html", htmlContent);
+            emailMessage.MailContent.Add("text/plain", plainTextContent);
 
             return emailMessage;
         }
