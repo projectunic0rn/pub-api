@@ -28,8 +28,8 @@ namespace MailEngine.Mails.ScheduledMails
         private readonly int _maxVisibleMembers = 3;
         private readonly int _maxVisibleTechnologies = 3;
         private EmailAddress _fromAddress;
-        private string _slackLogoUrl = "https://sharedstorage2.blob.core.windows.net/pub/slack-logo.svg";
-        private string _discordLogoUrl = "https://sharedstorage2.blob.core.windows.net/pub/discord-logo.svg";
+        private string _slackLogoUrl = "https://i.imgur.com/y3e8lL6.png";
+        private string _discordLogoUrl = "https://i.imgur.com/BoARUGM.png";
         private Dictionary<string, string> _communicationLogos;
         private readonly IMessageQueue _messageQueue;
         private MailConfig _mailConfig;
