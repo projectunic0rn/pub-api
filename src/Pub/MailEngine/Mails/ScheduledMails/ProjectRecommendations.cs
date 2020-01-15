@@ -110,7 +110,7 @@ namespace MailEngine.Mails.ScheduledMails
 
                     IEnumerable<string> userTechnologies = user.UserTechnologies.Select(userTech => userTech.Name);
                     IEnumerable<string> projectTechnologies = project.ProjectTechnologies.Select(projectTech => projectTech.Name);
-                    // TODO: Debug, intersection yields no results
+
                     var intersection = userTechnologies.Intersect(projectTechnologies);
                     if (intersection.Count() > 0)
                     {

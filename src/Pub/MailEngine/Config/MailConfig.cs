@@ -34,8 +34,8 @@ namespace MailEngine.Config
             if (mailConfigDto == null)
             {
                 MailConfigDto cachedMailConfigDto = Config[mailName];
-                cachedMailConfigDto.LastSend = DateTimeOffset.UtcNow;
-                cachedMailConfigDto.NextSend = DateTimeOffset.UtcNow;
+                cachedMailConfigDto.LastSend = cachedMailConfigDto.LastSend;
+                cachedMailConfigDto.NextSend = cachedMailConfigDto.NextSend;
                 mailConfigDto = await _mailConfigStorage.InsertOrUpdateConfig(cachedMailConfigDto);
                 Config[mailName] = mailConfigDto;
             }
@@ -63,12 +63,14 @@ namespace MailEngine.Config
             Config[mailName] = mailConfigDto;
             return;
         }
-        
+
         // Summary:
         //     InitializeConfiguration contains the initial properties
         //     for each transactional and scheduled email. These are
         //     used to populate the storage if they are not already stored.
-        //
+        //     If the record does not exist in the mail config storage, 
+        //     the value of NextSend is used to determine when the initial
+        //     mail will be sent (not applicable for transactional mails).
         private void InitializeConfiguration()
         {
             Config = new Dictionary<string, MailConfigDto>()
@@ -80,8 +82,8 @@ namespace MailEngine.Config
                         Type = MailType.Scheduled,
                         TemplateId = "d-cd7be025aef24c6cba1724359ff333c5",
                         IntervalSeconds = 2592000,
-                        LastSend = null,
-                        NextSend = null
+                        LastSend = DateTimeOffset.UnixEpoch,
+                        NextSend = DateTimeOffset.UtcNow
                      }
                 },
                 {
@@ -90,12 +92,13 @@ namespace MailEngine.Config
                         Name = "ProjectLaunchShowcase",
                         Type = MailType.Scheduled,
                         TemplateId = "d-e1944eb05d6a47d388ea51efca5f7847",
-                        IntervalSeconds = 2592000,
-                        LastSend = null,
-                        NextSend = null
+                        IntervalSeconds = 2147483647,
+                        LastSend = DateTimeOffset.UnixEpoch,
+                        NextSend = DateTimeOffset.MaxValue
                      }
                 },
-                // IntervalSeconds not applicable for Transaction Mail
+                // IntervalSeconds, LastSend, and NextSend 
+                // not applicable for Transaction Mail
                 {
                     "WelcomeMessage",
                     new MailConfigDto {
@@ -103,8 +106,8 @@ namespace MailEngine.Config
                         Type = MailType.Transactional,
                         TemplateId = "d-532a6f1c50d44cc5861d4754cb5c591b",
                         IntervalSeconds = 0,
-                        LastSend = null,
-                        NextSend = null
+                        LastSend = DateTimeOffset.UnixEpoch,
+                        NextSend = DateTimeOffset.UnixEpoch
                      }
                 },
                 {
@@ -114,8 +117,8 @@ namespace MailEngine.Config
                         Type = MailType.Transactional,
                         TemplateId = "d-d6967b05bf5c4ad584b602301ef557fd",
                         IntervalSeconds = 0,
-                        LastSend = null,
-                        NextSend = null
+                        LastSend = DateTimeOffset.UnixEpoch,
+                        NextSend = DateTimeOffset.UnixEpoch
                      }
                 },
             };
