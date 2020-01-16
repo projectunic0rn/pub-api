@@ -42,7 +42,7 @@ namespace MailEngine.Mails.ScheduledMails
             _sendGridService = new SendGridService();
             _userStorage = new UserEntity();
             _projectStorage = new ProjectEntity();
-            _fromAddress = new EmailAddress("Team from Project Unicorn", "admin@projectunicorn.dev");
+            _fromAddress = new EmailAddress("Team at Project Unicorn", "team@projectunicorn.dev");
             // TODO: Read communication platform from database
             _communicationLogos = new Dictionary<string, string>() {
                 {"discord", _discordLogoUrl},

@@ -35,7 +35,7 @@ namespace MailEngine.Mails.ScheduledMails
             _testEmailIndicator = AppSettings.Env == "Staging" || AppSettings.Env == "Development" ? "[TEST EMAIL] " : "";
             _sendGridService = new SendGridService();
             _userStorage = new UserEntity();
-            _fromAddress = new EmailAddress("Team from Project Unicorn", "admin@projectunicorn.dev");
+            _fromAddress = new EmailAddress("Team at Project Unicorn", "team@projectunicorn.dev");
             _messageQueue = messageQueue;
         }
 
@@ -90,8 +90,8 @@ namespace MailEngine.Mails.ScheduledMails
             message.ToAddresses.Add(toAddress);
             message.FromAddresses.Add(fromAddress);
             message.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
-            string htmlContent = templateV1.HtmlContent;
-            string plainTextContent = templateV1.PlainContent;
+            string htmlContent = templateV1.HtmlContent.Replace("{{currentYear}}",DateTimeOffset.Now.Year.ToString());
+            string plainTextContent = templateV1.PlainContent.Replace("{{currentYear}}",DateTimeOffset.Now.Year.ToString());
             message.MailContent.Add("text/html", htmlContent);
             message.MailContent.Add("text/plain", plainTextContent);
             return message;

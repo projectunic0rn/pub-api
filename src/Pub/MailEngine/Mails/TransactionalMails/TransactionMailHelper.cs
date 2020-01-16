@@ -23,7 +23,7 @@ namespace MailEngine.Mails.ScheduledMails
 
         public TransactionalMailHelper(SendGridService sendGridService, IMailConfigStorage mailConfigStorage)
         {
-            _fromAddress = new EmailAddress("Team from Project Unicorn", "admin@projectunicorn.dev");
+            _fromAddress = new EmailAddress("Team at Project Unicorn", "team@projectunicorn.dev");
             _testEmailIndicator = AppSettings.Env == "Staging" || AppSettings.Env == "Development" ? "[TEST EMAIL] " : "";
             _sendGridService = sendGridService;
             _mailConfig = new MailConfig(mailConfigStorage);
