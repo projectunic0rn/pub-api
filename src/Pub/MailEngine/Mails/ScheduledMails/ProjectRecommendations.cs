@@ -35,7 +35,7 @@ namespace MailEngine.Mails.ScheduledMails
         private MailConfig _mailConfig;
         private MailConfigDto _mailConfigDto;
         private readonly string _mailName = "ProjectRecommendations";
-        private readonly string  _testEmailIndicator;
+        private readonly string _testEmailIndicator;
         public ProjectRecommendations(ILogger<ProjectRecommendations> logger, IMessageQueue messageQueue, IMailConfigStorage mailConfigStorage)
         {
             _logger = logger;
@@ -63,11 +63,18 @@ namespace MailEngine.Mails.ScheduledMails
             {
                 if (BackgroundTask.ShouldStart(_mailConfigDto.NextSend))
                 {
-                    _mailConfigDto = await _mailConfig.GetConfig(_mailName);
-                    _logger.LogInformation($"Preparing {_mailConfigDto.Name} mail.");
-                    List<EmailMessage> emailMessages = await PrepareMail();
-                    await _messageQueue.SendMessagesAsync<EmailMessage>(emailMessages);
-                    await _mailConfig.UpdateConfigNextSend(_mailName);
+                    try
+                    {
+                        _mailConfigDto = await _mailConfig.GetConfig(_mailName);
+                        _logger.LogInformation($"Preparing {_mailConfigDto.Name} mail.");
+                        List<EmailMessage> emailMessages = await PrepareMail();
+                        // await _messageQueue.SendMessagesAsync<EmailMessage>(emailMessages);
+                        await _mailConfig.UpdateConfigNextSend(_mailName);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "ProjectRecommendations ecountered an error");
+                    }
                 }
 
                 await Task.Delay(1000, cancellationToken);
