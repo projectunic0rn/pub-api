@@ -49,11 +49,18 @@ namespace MailEngine.Mails.ScheduledMails
             {
                 if (BackgroundTask.ShouldStart(_mailConfigDto.NextSend))
                 {
-                    _mailConfigDto = await _mailConfig.GetConfig(_mailName);
-                    _logger.LogInformation($"Preparing {_mailConfigDto.Name} mail.");
-                    List<EmailMessage> emailMessages = await PrepareMail();
-                    await _messageQueue.SendMessagesAsync<EmailMessage>(emailMessages);
-                    await _mailConfig.UpdateConfigNextSend(_mailName);
+                    try
+                    {
+                        _mailConfigDto = await _mailConfig.GetConfig(_mailName);
+                        _logger.LogInformation($"Preparing {_mailConfigDto.Name} mail.");
+                        List<EmailMessage> emailMessages = await PrepareMail();
+                        await _messageQueue.SendMessagesAsync<EmailMessage>(emailMessages);
+                        await _mailConfig.UpdateConfigNextSend(_mailName);
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.LogError(ex, "ProjectLaunchShowcase ecountered an error");
+                    }
                 }
 
                 await Task.Delay(1000, cancellationToken);
@@ -90,8 +97,8 @@ namespace MailEngine.Mails.ScheduledMails
             message.ToAddresses.Add(toAddress);
             message.FromAddresses.Add(fromAddress);
             message.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
-            string htmlContent = templateV1.HtmlContent.Replace("{{currentYear}}",DateTimeOffset.Now.Year.ToString());
-            string plainTextContent = templateV1.PlainContent.Replace("{{currentYear}}",DateTimeOffset.Now.Year.ToString());
+            string htmlContent = templateV1.HtmlContent.Replace("{{currentYear}}", DateTimeOffset.Now.Year.ToString());
+            string plainTextContent = templateV1.PlainContent.Replace("{{currentYear}}", DateTimeOffset.Now.Year.ToString());
             message.MailContent.Add("text/html", htmlContent);
             message.MailContent.Add("text/plain", plainTextContent);
             return message;
