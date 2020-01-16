@@ -68,7 +68,7 @@ namespace MailEngine.Mails.ScheduledMails
                         _mailConfigDto = await _mailConfig.GetConfig(_mailName);
                         _logger.LogInformation($"Preparing {_mailConfigDto.Name} mail.");
                         List<EmailMessage> emailMessages = await PrepareMail();
-                        // await _messageQueue.SendMessagesAsync<EmailMessage>(emailMessages);
+                        await _messageQueue.SendMessagesAsync<EmailMessage>(emailMessages);
                         await _mailConfig.UpdateConfigNextSend(_mailName);
                     }
                     catch (Exception ex)
