@@ -16,12 +16,14 @@ namespace MailEngine
     public class Startup
     {
         private readonly ILogger _logger;
+        private readonly ILogger<MessageQueue> _mqLogger;
         public IConfiguration Configuration { get; }
 
-        public Startup(IConfiguration configuration, ILogger<Startup> logger)
+        public Startup(IConfiguration configuration, ILogger<Startup> logger, ILogger<MessageQueue> mqLogger)
         {
             Configuration = configuration;
             _logger = logger;
+            _mqLogger = mqLogger;
             InitializeAppSettings();
         }
 
@@ -31,7 +33,7 @@ namespace MailEngine
         {
             services.AddHostedService<ProjectRecommendations>();
             services.AddHostedService<ProjectLaunchShowcase>();
-            services.AddSingleton<IMessageQueue, MessageQueue>(provider => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName));
+            services.AddSingleton<IMessageQueue, MessageQueue>(provider => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName, _mqLogger));
             services.AddSingleton<IMailConfigStorage, MailConfigStorage>(provider => new MailConfigStorage(AppSettings.TableStorageConnectionString, AppSettings.StorageTableName));
             _logger.LogInformation("Configured Hosted Service(s)");
         }

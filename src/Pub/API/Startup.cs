@@ -26,13 +26,15 @@ namespace API
     public class Startup
     {
         private readonly ILogger _logger;
+        private readonly ILogger<MessageQueue> _mqLogger;
         private readonly string _apiName = AppSettings.ApiName;
         private readonly string _apiVersion = AppSettings.ApiV1;
 
-        public Startup(IConfiguration configuration, ILogger<Startup> logger)
+        public Startup(IConfiguration configuration, ILogger<Startup> logger, ILogger<MessageQueue> mqLogger)
         {
             Configuration = configuration;
             _logger = logger;
+            _mqLogger = mqLogger;
             InitializeSettings();
         }
 
@@ -68,7 +70,7 @@ namespace API
             services.AddScoped<IUtilities, Utilities>();
             services.AddScoped<INotifier, TransactionalMailNotifier>();
             services.AddScoped<IUser, User>();
-            services.AddSingleton<IMessageQueue, MessageQueue>(provider => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName));
+            services.AddSingleton<IMessageQueue, MessageQueue>(provider => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName, _mqLogger));
             services.AddSingleton<IMailConfigStorage, MailConfigStorage>(provider => new MailConfigStorage(AppSettings.TableStorageConnectionString, AppSettings.StorageTableName));
         }
 
