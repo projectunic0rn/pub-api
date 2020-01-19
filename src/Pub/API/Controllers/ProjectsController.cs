@@ -52,7 +52,9 @@ namespace API.Controllers
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
+         #if !DEBUG
         [Authorize]
+        #endif
         public async Task<ActionResult<ProjectDto>> CreateProject([FromBody] ProjectDto project)
         {
             ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true);
@@ -74,7 +76,9 @@ namespace API.Controllers
 
         // DELETE api/[controller]/{id}
         [HttpDelete("{id}")]
+         #if !DEBUG
         [Authorize]
+        #endif
         public async Task<IActionResult> DeleteProject(Guid id)
         {
             await _project.DeleteProjectAsync(id);

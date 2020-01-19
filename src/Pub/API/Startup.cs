@@ -127,7 +127,7 @@ namespace API
             AppSettings.StorageTableName = Configuration["StorageTableName"];
             AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
 
-            if (emailConfiguration.SmtpPassword == null
+            if (emailConfiguration.SmtpUsername == null
             || emailConfiguration.SmtpPassword == null
             || emailConfiguration.SmtpServer == null
             || AppSettings.ServiceBusConnectionString == null
