@@ -16,7 +16,6 @@ namespace Common.AppSettings
         public static string ConnectionString { get; set; } = Environment.GetEnvironmentVariable("ConnectionString", EnvironmentVariableTarget.Process);
         public static IEmailConfiguration EmailConfiguration { get; set; }
         public static string FeedbackRecipients { get; set; } = Environment.GetEnvironmentVariable("FeedbackRecipients", EnvironmentVariableTarget.Process);
-        public static string MailerFromAddress { get; set; } = Environment.GetEnvironmentVariable("MailerFromAddress", EnvironmentVariableTarget.Process);
 
         // Communication Apps (e.g. slack, discord)
         public static string AppUrl { get; set; } = Environment.GetEnvironmentVariable("AppUrl", EnvironmentVariableTarget.Process);
