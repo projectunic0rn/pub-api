@@ -15,7 +15,6 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using System;
-using Domain.Mailer;
 using MailEngine.Mails.ScheduledMails;
 using Infrastructure.Messaging;
 using Infrastructure.Persistence.TableStorage;
@@ -102,14 +101,6 @@ namespace API
 
         private void InitializeSettings()
         {
-            EmailConfiguration emailConfiguration = new EmailConfiguration()
-            {
-                SmtpServer = Configuration["SmtpServer"],
-                SmtpPort = Convert.ToInt32(Configuration["SmtpPort"]),
-                SmtpUsername = Configuration["SmtpUsername"],
-                SmtpPassword = Configuration["SmtpPassword"]
-            };
-
             AppSettings.ServiceBusConnectionString = Configuration["ServiceBusConnectionString"];
             AppSettings.ServiceBusQueueName = Configuration["ServiceBusQueueName"];
 
@@ -118,26 +109,20 @@ namespace API
             AppSettings.JwtSecretKey = Configuration["JwtSecretKey"];
             AppSettings.ConnectionString = Configuration["ConnectionString"];
 
-            AppSettings.EmailConfiguration = emailConfiguration;
             AppSettings.FeedbackRecipients = Configuration["FeedbackRecipients"];
-            AppSettings.MailerFromAddress = Configuration["MailerFromAddress"];
             AppSettings.Env = Configuration["ASPNETCORE_ENVIRONMENT"];
 
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
             AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
 
-            if (emailConfiguration.SmtpUsername == null
-            || emailConfiguration.SmtpPassword == null
-            || emailConfiguration.SmtpServer == null
-            || AppSettings.ServiceBusConnectionString == null
+            if (AppSettings.ServiceBusConnectionString == null
             || AppSettings.ServiceBusQueueName == null
             || AppSettings.JwtIssuer == null
             || AppSettings.JwtAudience == null
             || AppSettings.JwtSecretKey == null
             || AppSettings.ConnectionString == null
             || AppSettings.FeedbackRecipients == null
-            || AppSettings.MailerFromAddress == null
             || AppSettings.Env == null
             || AppSettings.TableStorageConnectionString == null
             || AppSettings.StorageTableName == null
