@@ -16,10 +16,6 @@ variables:
   jwtSecret: $(JwtSecretKey)
   audience: $(JwtAudience)
   issuer: $(JwtIssuer)
-  server: $(SmtpServer)
-  port: $(SmtpPort)
-  username: $(SmtpUsername)
-  password: $(SmtpPassword)
   feedbackEmails: $(FeedbackRecipients)
   netCoreEnv: $(Env)
 
@@ -75,7 +71,7 @@ steps:
     command: login
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
-- script: docker build --build-arg NETCORE_ENV="$(netCoreEnv)" --build-arg SMTP_SERVER="$(server)" --build-arg SMTP_PORT="$(port)" --build-arg SMTP_USERNAME="$(username)" --build-arg SMTP_PASSWORD="$(password)" --build-arg FEEDBACK_RECIPIENTS="$(feedbackEmails)" --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" -t roymoran/pub-api:build -f ci/Dockerfile src/Pub
+- script: docker build --build-arg NETCORE_ENV="$(netCoreEnv)" --build-arg FEEDBACK_RECIPIENTS="$(feedbackEmails)" --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" -t roymoran/pub-api:build -f ci/Dockerfile src/Pub
   displayName: 'build docker api image'
   condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
