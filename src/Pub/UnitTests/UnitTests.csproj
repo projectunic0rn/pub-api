@@ -8,9 +8,15 @@
 
     <ItemGroup>
         <ProjectReference Include="..\Common\Common.csproj" />
+        <ProjectReference Include="..\API\API.csproj" />
+        <ProjectReference Include="..\SlackApp\SlackApp.csproj" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.9.0" />
+        <PackageReference Include="coverlet.collector" Version="1.2.0">
+          <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+          <PrivateAssets>all</PrivateAssets>
+        </PackageReference>
+        <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.1.0" />
         <PackageReference Include="xunit" Version="2.4.0" />
         <PackageReference Include="xunit.runner.visualstudio" Version="2.4.0" />
     </ItemGroup>
