@@ -3,8 +3,12 @@
 </p>
 
 <p align="center">
-  <a href="https://travis-ci.com/projectunic0rn/pub">
-    <img src="https://travis-ci.com/projectunic0rn/pub.svg" alt="Travis CI">
+  <a href="https://dev.azure.com/project-unicorn/pub/_apis/build/status/projectunic0rn.pub-api?branchName=master">
+    <img src="https://dev.azure.com/project-unicorn/pub/_apis/build/status/projectunic0rn.pub-api?branchName=master" alt="Travis CI">
+  </a>
+
+  <a href="https://codecov.io/gh/projectunic0rn/pub-api">
+    <img src="https://codecov.io/gh/projectunic0rn/pub-api/branch/master/graph/badge.svg" />
   </a>
 
   <a href="https://projectunicorn.net/">
