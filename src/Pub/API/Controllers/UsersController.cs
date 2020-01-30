@@ -27,6 +27,9 @@ namespace API.Controllers
         // GET api/[controller]/{id}
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(ResponseDto<UserDto>))]
+        #if !DEBUG
+        [Authorize]
+        #endif
         public async Task<ActionResult<UserDto>> GetUser(Guid id)
         {
             ResponseDto<UserDto> okResponse = new ResponseDto<UserDto>(true)
