@@ -28,6 +28,17 @@ namespace Domain.Helpers
         {
             ValidationDto validationDto = new ValidationDto(false, "Username is unavailable");
 
+            // check for special case if username
+            // starts with unicorn since this is a 
+            // reserved string used for generating usernames
+            // see GenerateUsername() method inside EventHandler.cs
+            if (username.StartsWith("unicorn"))
+            {
+                validationDto.Valid = false;
+                validationDto.Reason = "Username is unavailable";
+                return validationDto;
+            }
+
             if (!_user.ValidUsernameMaxLength(username))
             {
                 validationDto.Valid = false;
