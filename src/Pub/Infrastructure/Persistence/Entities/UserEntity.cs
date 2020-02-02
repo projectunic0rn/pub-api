@@ -78,7 +78,7 @@ namespace Infrastructure.Persistence.Entities
         // with incrementing value
         public async Task<UserEntity> FindLastUnicornRecord()
         {
-            UserEntity item = await _context.Users.OrderByDescending(u => u.CreatedAt).Where(u => u.Username.Contains("unicorn")).FirstOrDefaultAsync();
+            UserEntity item = await _context.Users.OrderByDescending(u => u.CreatedAt).Where(u => u.Username.StartsWith("unicorn")).FirstOrDefaultAsync();
             return item;
         }
 
