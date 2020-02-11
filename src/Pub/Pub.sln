@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API", "API\API.csproj", "{4D03F2E0-FADF-44AA-9653-1F2D0143BC77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "UnitTests\UnitTests.csproj", "{6E8BBFA1-C4E0-4DDE-8ED3-9F86F4FF2674}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{4DA631F2-7EDD-4930-907C-091ACFD12805}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "Infrastructure\Infrastructure.csproj", "{06B89B9D-F469-477B-889C-78BF20C6FDCE}"
@@ -17,6 +15,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommunicationAppDomain", "C
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MailEngine", "MailEngine\MailEngine.csproj", "{CCCB7EE9-A06C-4CE5-BF48-02463AEC2C86}"
 EndProject
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "Unit.Tests", "UnitTests\Unit.Tests.csproj", "{D44A3A6D-8C57-4678-BDD6-A617DAE6D2E4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,10 +27,6 @@ Global
 		{4D03F2E0-FADF-44AA-9653-1F2D0143BC77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D03F2E0-FADF-44AA-9653-1F2D0143BC77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D03F2E0-FADF-44AA-9653-1F2D0143BC77}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6E8BBFA1-C4E0-4DDE-8ED3-9F86F4FF2674}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6E8BBFA1-C4E0-4DDE-8ED3-9F86F4FF2674}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6E8BBFA1-C4E0-4DDE-8ED3-9F86F4FF2674}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6E8BBFA1-C4E0-4DDE-8ED3-9F86F4FF2674}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4DA631F2-7EDD-4930-907C-091ACFD12805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4DA631F2-7EDD-4930-907C-091ACFD12805}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4DA631F2-7EDD-4930-907C-091ACFD12805}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -55,5 +51,9 @@ Global
 		{CCCB7EE9-A06C-4CE5-BF48-02463AEC2C86}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CCCB7EE9-A06C-4CE5-BF48-02463AEC2C86}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CCCB7EE9-A06C-4CE5-BF48-02463AEC2C86}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D44A3A6D-8C57-4678-BDD6-A617DAE6D2E4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D44A3A6D-8C57-4678-BDD6-A617DAE6D2E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D44A3A6D-8C57-4678-BDD6-A617DAE6D2E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D44A3A6D-8C57-4678-BDD6-A617DAE6D2E4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
