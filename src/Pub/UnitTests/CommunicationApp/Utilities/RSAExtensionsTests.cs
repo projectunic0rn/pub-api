@@ -21,6 +21,7 @@ namespace UnitTests
             // Assert
             Assert.NotNull(privateKey);
         }
+        
         [Fact]
         public void FromXmlString_InvalidRsaFromat_Throws()
         {
@@ -30,7 +31,6 @@ namespace UnitTests
             RSA privateRsa = RSA.Create();
             // Assert
             Assert.Throws<System.Xml.XmlException>(() => RSAKeyExtensions.FromXmlString(privateRsa, rsaSample));
-            ;
         }
     }
 }
