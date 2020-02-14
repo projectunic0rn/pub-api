@@ -64,7 +64,7 @@ jobs:
     displayName: 'dotnet build $(buildConfiguration)'
   
   # Run test and generate code coverage
-  - script: dotnet test src/Pub/ --settings src/Pub/coverlet.runsettings.xml
+  - script: dotnet test src/Pub/ --settings src/Pub/UnitTests/coverlet.runsettings.xml
     displayName: 'dotnet test'
 
   # Upload code coverage report
