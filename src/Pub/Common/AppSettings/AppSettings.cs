@@ -28,6 +28,7 @@ namespace Common.AppSettings
         public static string GitHubAppInstallationId { get; set; } = Environment.GetEnvironmentVariable("GitHubAppInstallationId", EnvironmentVariableTarget.Process);
         public static string GitHubAppPrivateRSAKey { get; set; } = Environment.GetEnvironmentVariable("GitHubAppPrivateRSAKey", EnvironmentVariableTarget.Process);
         public static string GitHubInstallationAccessToken { get; set; } = Environment.GetEnvironmentVariable("GitHubInstallationAccessToken", EnvironmentVariableTarget.Process);
+        public static string PrivilegedMembers { get; set; } = Environment.GetEnvironmentVariable("PrivilegedMembers", EnvironmentVariableTarget.Process);
 
         // Mail Engine
         public static string SendGridTemplatesApiKey { get; set; } = Environment.GetEnvironmentVariable("SendGridTemplatesApiKey", EnvironmentVariableTarget.Process);
