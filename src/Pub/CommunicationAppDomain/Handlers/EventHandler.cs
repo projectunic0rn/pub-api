@@ -158,6 +158,12 @@ namespace CommunicationAppDomain.Handlers
             UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
             TechnologyEntity technology = user.UserTechnologies.Find(tech => tech.Name == technologyName);
 
+            // if technology has been deleted that for
+            // some reason doesn't exist in db return
+            if (technology == null)
+            {
+                return;
+            }
             await _technologiesStorage.DeleteAsync(technology.Id);
         }
 
@@ -226,6 +232,8 @@ namespace CommunicationAppDomain.Handlers
             {
                 // User email is already register to frontend
                 // associate new chat user record with existing user
+                // TODO: Picture may be overwritten here if member
+                // previously uploaded a profile pic through frontend
                 existingUser.ProfilePictureUrl = slackEventDto.Event.User.Profile.Image192;
 
                 ChatAppUserEntity newChatAppUser = new ChatAppUserEntity()
