@@ -84,7 +84,7 @@ namespace CommunicationAppDomain.Handlers
         private async Task<SlackCommandResponseDto> GenerateMagicLoginLink(SlackCommandDto slackCommand)
         {
             var linkExpirationInMinutes = 5;
-            string token = TokenHelper.GenerateWebSafeToken();
+            string token = TokenHelper.GenerateToken().Replace("/", "");
             string workspaceId = slackCommand.team_id;
             string workspaceMemberId = slackCommand.user_id;
 
@@ -96,7 +96,7 @@ namespace CommunicationAppDomain.Handlers
             await _userStorage.UpdateAsync(user);
             var slackCommandResponse = new SlackCommandResponseDto();
 
-            slackCommandResponse.Text = $"Your magic login link expires in {linkExpirationInMinutes} minutes.\n\n {_mainUrl}/magic-login?token={token}";
+            slackCommandResponse.Text = $"Your magic login link expires in {linkExpirationInMinutes} minutes.\n\n {_mainUrl}/magic-login?token={Uri.EscapeDataString(token)}";
             return slackCommandResponse;
         }
 
