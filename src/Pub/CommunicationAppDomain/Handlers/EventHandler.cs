@@ -103,7 +103,7 @@ namespace CommunicationAppDomain.Handlers
 
             // get technology from reaction and persist
             string reaction = slackEventDto.Event.Reaction;
-            string technologyName = reaction.Remove(reaction.IndexOf("-"));
+            string technologyName = reaction.Remove(reaction.LastIndexOf("-"));
             string workspaceId = slackEventDto.TeamId;
             string workspaceMemberId = slackEventDto.Event.ItemUser;
             UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
@@ -152,7 +152,7 @@ namespace CommunicationAppDomain.Handlers
                 }
             }
 
-            string technologyName = reactionName.Remove(reactionName.IndexOf("-"));
+            string technologyName = reactionName.Remove(reactionName.LastIndexOf("-"));
             string workspaceId = slackEventDto.TeamId;
             string workspaceMemberId = slackEventDto.Event.ItemUser;
             UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
