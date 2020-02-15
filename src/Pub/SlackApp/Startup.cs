@@ -13,14 +13,17 @@ using Microsoft.Extensions.Options;
 using Common.AppSettings;
 using Common.Contracts;
 using CommunicationAppDomain.Handlers;
+using Common.Exceptions;
 
 namespace SlackApp
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        private readonly ILogger _logger;
+        public Startup(IConfiguration configuration, ILogger<Startup> logger)
         {
             Configuration = configuration;
+            _logger = logger;
             InitializeSettings();
         }
 
@@ -63,6 +66,25 @@ namespace SlackApp
             AppSettings.GitHubAppId = Configuration["GithubAppId"];
             AppSettings.GitHubAppInstallationId = Configuration["GithubAppInstallationId"];
             AppSettings.GitHubAppPrivateRSAKey = Configuration["GithubAppPrivateRSAKey"];
+            AppSettings.PrivilegedMembers = Configuration["PrivilegedMembers"];
+
+            if (AppSettings.ConnectionString == null
+            || AppSettings.AppUrl == null
+            || AppSettings.MainUrl == null
+            || AppSettings.IntroductionChannelId == null
+            || AppSettings.SlackSigningSecret == null
+            || AppSettings.SlackAuthToken == null
+            || AppSettings.GitHubOrganization == null
+            || AppSettings.GitHubAppId == null
+            || AppSettings.GitHubAppInstallationId == null
+            || AppSettings.GitHubAppPrivateRSAKey == null
+            || AppSettings.PrivilegedMembers == null)
+            {
+                throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);
+            }
+
+            _logger.LogInformation("Initialized App Settings");
+
         }
     }
 }

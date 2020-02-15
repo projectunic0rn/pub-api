@@ -49,13 +49,13 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<List<ChatAppUserEntity>> FindAsync()
         {
-            List<ChatAppUserEntity> items = await _context.ChatAppUsers.Include(c => c.User).ToListAsync();
+            List<ChatAppUserEntity> items = await _context.ChatAppUsers.Include(c => c.User).ThenInclude(u => u.UserTechnologies).ToListAsync();
             return items;
         }
 
         public async Task<ChatAppUserEntity> FindAsync(Expression<Func<ChatAppUserEntity, bool>> predicate)
         {
-            ChatAppUserEntity item = await _context.ChatAppUsers.Include(c => c.User).SingleOrDefaultAsync(predicate);
+            ChatAppUserEntity item = await _context.ChatAppUsers.Include(c => c.User).ThenInclude(u => u.UserTechnologies).SingleOrDefaultAsync(predicate);
             return item;
         }
 

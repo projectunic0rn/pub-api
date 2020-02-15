@@ -29,5 +29,11 @@ namespace CommunicationAppDomain.Services
             var chatMessageDto = await _http.Post<SlackChatMessageDto>($"{_baseUri}/chat.postMessage?token={_slackAuthToken}&channel={channelId}&text={text}", headers);
             return chatMessageDto;
         }
+
+        public async Task<SlackMessageDto> ChatRetrieveMessage(string channelId, string messageTs)
+        {
+            var MessageDto = await _http.Post<SlackMessageDto>($"{_baseUri}/conversations.history?token={_slackAuthToken}&channel={channelId}&latest={messageTs}&limit=1&inclusive=true", headers);
+            return MessageDto;
+        }
     }
 }

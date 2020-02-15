@@ -4,6 +4,7 @@ using Common.AppSettings;
 using Common.Contracts;
 using Common.Models;
 using Common.DTOs.SlackAppDTOs;
+using Common.DTOs;
 using Infrastructure.Persistence.Entities;
 using Microsoft.AspNetCore.Identity;
 using System.Text;
@@ -12,6 +13,7 @@ using CommunicationAppDomain.ChatMessages;
 using AutoMapper;
 using CommunicationAppDomain.MappingConfig;
 using Newtonsoft.Json;
+using System.Linq;
 
 namespace CommunicationAppDomain.Handlers
 {
@@ -22,9 +24,11 @@ namespace CommunicationAppDomain.Handlers
         private readonly string _frontendUrl;
         private readonly UserEntity _userStorage;
         private readonly IStorage<ChatAppUserEntity> _chatAppUserStorage;
+        private readonly IStorage<TechnologyEntity> _technologiesStorage;
         private readonly PasswordHasher<User> _passwordHasher;
         private readonly SlackService _slackService;
         private readonly string _introductionChannelId;
+        private readonly PrivilegedMembersDto _privilegedMembers;
 
         public EventHandler()
         {
@@ -33,9 +37,11 @@ namespace CommunicationAppDomain.Handlers
             _introductionChannelId = AppSettings.IntroductionChannelId;
             _userStorage = new UserEntity();
             _chatAppUserStorage = new ChatAppUserEntity();
+            _technologiesStorage = new TechnologyEntity();
             _slackService = new SlackService();
             _passwordHasher = new PasswordHasher<User>();
             _mapper = new InitializeMapper().GetMapper;
+            _privilegedMembers = JsonConvert.DeserializeObject<PrivilegedMembersDto>(AppSettings.PrivilegedMembers);
         }
 
         public UrlVerificationResponseDto UrlVerification(SlackEventDto slackEventDto)
@@ -74,9 +80,85 @@ namespace CommunicationAppDomain.Handlers
                     SlackEventFullDto<MessageChannelsEventDto> messageEvent = MapSlackEventObject<MessageChannelsEventDto>(slackEventDto, eventData);
                     await ProcessMessageEvent(messageEvent);
                     break;
+                case "reaction_added":
+                    SlackEventFullDto<ReactionEventDto> reactionAddedEvent = MapSlackEventObject<ReactionEventDto>(slackEventDto, eventData);
+                    await ProcessReactionAddedEvent(reactionAddedEvent);
+                    break;
+                // manage user technologie through reaction events
+                case "reaction_removed":
+                    SlackEventFullDto<ReactionEventDto> reactionRemovedEvent = MapSlackEventObject<ReactionEventDto>(slackEventDto, eventData);
+                    await ProcessReactionRemovedEvent(reactionRemovedEvent);
+                    break;
                 default:
                     break;
             }
+        }
+
+        private async Task ProcessReactionAddedEvent(SlackEventFullDto<ReactionEventDto> slackEventDto)
+        {
+            if (InvalidTechnologyReaction(slackEventDto))
+            {
+                return;
+            }
+
+            // get technology from reaction and persist
+            string reaction = slackEventDto.Event.Reaction;
+            string technologyName = reaction.Remove(reaction.IndexOf("-"));
+            string workspaceId = slackEventDto.TeamId;
+            string workspaceMemberId = slackEventDto.Event.ItemUser;
+            UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
+            TechnologyEntity technology = new TechnologyEntity()
+            {
+                Name = technologyName,
+                UserId = user.Id
+            };
+
+            TechnologyEntity technologyExists = user.UserTechnologies.Find(t => t.Name == technologyName);
+            // avoid duplicate entries by checking if
+            // technology already exists in db
+            if (technologyExists != null)
+            {
+                return;
+            }
+
+            await _technologiesStorage.CreateAsync(technology);
+            return;
+        }
+
+        private async Task ProcessReactionRemovedEvent(SlackEventFullDto<ReactionEventDto> slackEventDto)
+        {
+            if (InvalidTechnologyReaction(slackEventDto))
+            {
+                return;
+            }
+
+            string reactionName = slackEventDto.Event.Reaction;
+            SlackMessageDto messageDto = await _slackService.ChatRetrieveMessage(slackEventDto.Event.Item.Channel, slackEventDto.Event.Item.Ts);
+            MessageDetailsDto initialMessage = messageDto.Messages.First();
+            Reaction reaction = initialMessage.Reactions?.Find(r => r.Name == reactionName);
+
+            // Only delete technology if it's the last
+            // instance of the particular reaction and
+            // if the remaining reactions do not belong 
+            // to privileged members.
+            if (reaction != null)
+            {
+                bool reactedByPrivilegedUsers = reaction.Users.Intersect(_privilegedMembers.Members).Count() > 0;
+                bool reactedByOwner = reaction.Users.Contains(initialMessage.User);
+                if (!reactedByPrivilegedUsers || !reactedByOwner) { }
+                else
+                {
+                    return;
+                }
+            }
+
+            string technologyName = reactionName.Remove(reactionName.IndexOf("-"));
+            string workspaceId = slackEventDto.TeamId;
+            string workspaceMemberId = slackEventDto.Event.ItemUser;
+            UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
+            TechnologyEntity technology = user.UserTechnologies.Find(tech => tech.Name == technologyName);
+
+            await _technologiesStorage.DeleteAsync(technology.Id);
         }
 
         private async Task ProcessMessageEvent(SlackEventFullDto<MessageChannelsEventDto> slackEventDto)
@@ -91,8 +173,7 @@ namespace CommunicationAppDomain.Handlers
             string workspaceId = slackEventDto.TeamId;
             string workspaceMemberId = slackEventDto.Event.User;
 
-            ChatAppUserEntity workspaceUser = await _chatAppUserStorage.FindAsync(u => u.WorkspaceId == workspaceId && u.WorkspaceMemberId == workspaceMemberId);
-            UserEntity user = workspaceUser.User;
+            UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
 
             if (String.IsNullOrWhiteSpace(user.Bio))
             {
@@ -167,12 +248,11 @@ namespace CommunicationAppDomain.Handlers
             {
                 return;
             }
-            
+
             string workspaceId = slackEventDto.Event.User.SlackTeamId;
             string workspaceMemberId = slackEventDto.Event.User.SlackId;
 
-            ChatAppUserEntity workspaceUser = await _chatAppUserStorage.FindAsync(u => u.WorkspaceId == workspaceId && u.WorkspaceMemberId == workspaceMemberId);
-            UserEntity existingUser = workspaceUser.User;
+            UserEntity existingUser = await GetUserEntity(workspaceId, workspaceMemberId);
             existingUser.Email = slackEventDto.Event.User.Profile.Email;
             existingUser.Timezone = slackEventDto.Event.User.Timezone;
             existingUser.Locale = slackEventDto.Event.User.Locale;
@@ -239,6 +319,47 @@ namespace CommunicationAppDomain.Handlers
         {
             EventType eventType = JsonConvert.DeserializeObject<EventType>(eventData);
             return eventType;
+        }
+
+        private async Task<UserEntity> GetUserEntity(string workspaceId, string workspaceMemberId)
+        {
+            ChatAppUserEntity workspaceUser = await _chatAppUserStorage.FindAsync(u => u.WorkspaceId == workspaceId && u.WorkspaceMemberId == workspaceMemberId);
+            UserEntity user = workspaceUser.User;
+            return user;
+        }
+
+        private bool InvalidTechnologyReaction(SlackEventFullDto<ReactionEventDto> slackEventDto)
+        {
+            bool invalidTechnologyReaction = false;
+            // Validate reaction performed in intro channel
+            if (slackEventDto.Event.Item.Channel != _introductionChannelId)
+            {
+                invalidTechnologyReaction = true;
+            }
+
+            // Validate reaction is performed on message
+            if (slackEventDto.Event.Item.Type != "message")
+            {
+                invalidTechnologyReaction = true;
+            }
+
+            // Validate reaction performed by privileged member
+            // or message owner
+            string reactingMember = slackEventDto.Event.User;
+            string messageOwner = slackEventDto.Event.ItemUser;
+            if (!_privilegedMembers.Members.Contains(reactingMember) && reactingMember != messageOwner)
+            {
+                invalidTechnologyReaction = true;
+            }
+
+            // Validate reaction is of type -tech or -lang
+            string reaction = slackEventDto.Event.Reaction;
+            if (!reaction.Contains("-lang") && !reaction.Contains("-tech"))
+            {
+                invalidTechnologyReaction = true;
+            }
+
+            return invalidTechnologyReaction;
         }
     }
 }

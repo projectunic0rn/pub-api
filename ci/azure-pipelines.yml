@@ -26,6 +26,7 @@ variables:
   ghPrivateRsaKey: $(GitHubAppPrivateRSAKey)
   ghAppInstallationId: $(GitHubAppInstallationId)
   introChannelId: $(IntroductionChannelId)
+  privileged: $(PrivilegedMembers)
 
   # Mail Engine
   sbConnectionString: $(ServiceBusConnectionString)
@@ -90,7 +91,7 @@ jobs:
     displayName: 'push api image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
-  - script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg APP_URL="$(aUrl)" --build-arg MAIN_URL="$(mUrl)" --build-arg SLACK_AUTH_TOKEN="$(authToken)" --build-arg SLACK_SIGNING_SECRET="$(signingSecret)" --build-arg GITHUB_APP_PRIVATE_RSA_KEY="$(ghPrivateRsaKey)" --build-arg GITHUB_APP_ID="$(ghAppId)" --build-arg GITHUB_APP_INSTALLATION_ID="$(ghAppInstallationId)" --build-arg GITHUB_ORGANIZATION="$(ghOrganization)" --build-arg INTRODUCTION_CHANNEL_ID="$(introChannelId)" -t roymoran/pub-slack-app:build -f ci/slackapp.Dockerfile src/Pub
+  - script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg APP_URL="$(aUrl)" --build-arg MAIN_URL="$(mUrl)" --build-arg SLACK_AUTH_TOKEN="$(authToken)" --build-arg SLACK_SIGNING_SECRET="$(signingSecret)" --build-arg GITHUB_APP_PRIVATE_RSA_KEY="$(ghPrivateRsaKey)" --build-arg GITHUB_APP_ID="$(ghAppId)" --build-arg GITHUB_APP_INSTALLATION_ID="$(ghAppInstallationId)" --build-arg GITHUB_ORGANIZATION="$(ghOrganization)" --build-arg INTRODUCTION_CHANNEL_ID="$(introChannelId)" --build-arg PRIVILEGED_MEMBERS="$(privileged)" -t roymoran/pub-slack-app:build -f ci/slackapp.Dockerfile src/Pub
     displayName: 'build docker slack app image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
