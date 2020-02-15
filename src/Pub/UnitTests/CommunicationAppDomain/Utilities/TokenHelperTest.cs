@@ -17,16 +17,5 @@ namespace UnitTests
             // Assert
             Assert.Equal(44, generatedToken.Length);
         }
-
-        [Fact]
-        public void GenerateWebSafeToken_DoesNotContainInvalidChars_ToReturnSuccess()
-        {
-            // Arrange
-            string generatedToken;
-            // Act
-            generatedToken = TokenHelper.GenerateWebSafeToken();
-            // Assert
-            Assert.True(Uri.IsWellFormedUriString(generatedToken, UriKind.Relative));
-        }
     }
 }
