@@ -145,9 +145,8 @@ namespace CommunicationAppDomain.Handlers
             {
                 bool reactedByPrivilegedUsers = reaction.Users.Intersect(_privilegedMembers.Members).Count() > 0;
                 bool reactedByOwner = reaction.Users.Contains(initialMessage.User);
-                if (!reactedByPrivilegedUsers || !reactedByOwner) { }
-                else
-                {
+                // TODO: Validate logic w/ test
+                if (reactedByPrivilegedUsers || reactedByOwner) { 
                     return;
                 }
             }
