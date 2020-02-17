@@ -11,7 +11,7 @@ namespace Common.DTOs
         public string Bio { get; set; }
         public bool LookingForProject { get; set; }
         public string GitHubUsername { get; set; }
-        public List<UserTechnologyDto> UserTechnologies { get; set; }
+        public List<UserTechnologyDto> Technologies { get; set; }
         public List<ProjectUserDto> ProjectUsers { get; set; }
 
     }

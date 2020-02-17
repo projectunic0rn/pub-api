@@ -80,11 +80,11 @@ namespace CommunicationAppDomain.Handlers
                     SlackEventFullDto<MessageChannelsEventDto> messageEvent = MapSlackEventObject<MessageChannelsEventDto>(slackEventDto, eventData);
                     await ProcessMessageEvent(messageEvent);
                     break;
+                // manage user technologie through reaction events
                 case "reaction_added":
                     SlackEventFullDto<ReactionEventDto> reactionAddedEvent = MapSlackEventObject<ReactionEventDto>(slackEventDto, eventData);
                     await ProcessReactionAddedEvent(reactionAddedEvent);
                     break;
-                // manage user technologie through reaction events
                 case "reaction_removed":
                     SlackEventFullDto<ReactionEventDto> reactionRemovedEvent = MapSlackEventObject<ReactionEventDto>(slackEventDto, eventData);
                     await ProcessReactionRemovedEvent(reactionRemovedEvent);

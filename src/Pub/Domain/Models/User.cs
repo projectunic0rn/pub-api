@@ -41,7 +41,7 @@ namespace Domain.Models
             userEntity.Email = user.Email;
             userEntity.LookingForProject = user.LookingForProject;
             userEntity.GitHubUsername = user.GitHubUsername;
-            userEntity.UserTechnologies.AddRange(MapTechnologies(user.UserTechnologies));
+            userEntity.UserTechnologies.AddRange(MapTechnologies(user.Technologies));
             await _userStorage.UpdateAsync(userEntity);
             await _techStorage.DeleteAsync(technologiesToDelete);
             UserDto userDto = _mapper.Map<UserDto>(userEntity);
