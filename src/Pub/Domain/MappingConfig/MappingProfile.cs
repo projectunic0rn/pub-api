@@ -10,7 +10,7 @@ namespace Domain.MappingConfig
         public MappingProfile()
         {
             CreateMap<User, UserEntity>().ReverseMap();
-            CreateMap<UserDto, UserEntity>().ReverseMap();
+            CreateMap<UserDto, UserEntity>().ReverseMap().ForMember(dest => dest.Technologies, opt => opt.MapFrom(src => src.UserTechnologies));
             CreateMap<UserTechnologyDto, TechnologyEntity>().ReverseMap();
             CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
             CreateMap<ProjectDto, ProjectEntity>().ReverseMap();
