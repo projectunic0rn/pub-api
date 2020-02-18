@@ -9,6 +9,7 @@ namespace Common.DTOs
         public string Username { get; set; }
         public string Email { get; set; }
         public string Bio { get; set; }
+        public string ProfilePictureUrl { get; set; }
         public bool LookingForProject { get; set; }
         public string GitHubUsername { get; set; }
         public List<UserTechnologyDto> Technologies { get; set; }
