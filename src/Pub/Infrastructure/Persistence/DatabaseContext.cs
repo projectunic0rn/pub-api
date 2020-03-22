@@ -23,6 +23,7 @@ namespace Infrastructure.Persistence
         {
             modelBuilder.Entity<UserEntity>().HasIndex(u => u.Email).IsUnique();
             modelBuilder.Entity<UserEntity>().HasIndex(u => u.Username).IsUnique();
+            modelBuilder.Entity<ProjectEntity>().Property(p => p.Searchable).HasDefaultValue(true);
             modelBuilder.Entity<ProjectEntity>().Property(p => p.LookingForMembers).HasDefaultValue(true);
             modelBuilder.Entity<ChatAppUserEntity>().HasIndex(u => new {u.WorkspaceId, u.WorkspaceMemberId}).IsUnique();
             SeedData.SeedAll(modelBuilder, Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));

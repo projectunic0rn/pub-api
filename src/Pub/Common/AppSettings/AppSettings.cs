@@ -4,6 +4,8 @@ using Common.Contracts;
 
 namespace Common.AppSettings
 {
+    // AppSettings will be removed
+    // Start using Settings.cs
     public static class AppSettings
     {
         // API
@@ -16,6 +18,7 @@ namespace Common.AppSettings
         public static string ConnectionString { get; set; } = Environment.GetEnvironmentVariable("ConnectionString", EnvironmentVariableTarget.Process);
         public static IEmailConfiguration EmailConfiguration { get; set; }
         public static string FeedbackRecipients { get; set; } = Environment.GetEnvironmentVariable("FeedbackRecipients", EnvironmentVariableTarget.Process);
+        public static string ApiKey { get; set; } = Environment.GetEnvironmentVariable("ApiKey", EnvironmentVariableTarget.Process);
 
         // Communication Apps (e.g. slack, discord)
         public static string AppUrl { get; set; } = Environment.GetEnvironmentVariable("AppUrl", EnvironmentVariableTarget.Process);
