@@ -56,6 +56,14 @@ namespace Domain.Models
             return _mapper.Map<ProjectDto>(createdProject);
         }
 
+        public async Task<ProjectDto> UpdateProjectAsync(ProjectDto project)
+        {
+            await ValidateProject(project);
+            var mappedEntity = _mapper.Map<ProjectEntity>(project);
+            ProjectEntity updatedProject = await _projectStorage.UpdateAsync(mappedEntity);
+            return _mapper.Map<ProjectDto>(updatedProject);
+        }
+
         public async Task DeleteProjectAsync(Guid id)
         {
             await _projectStorage.DeleteAsync(id);

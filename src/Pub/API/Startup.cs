@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
 using Common.Contracts;
 using Domain.Models;
@@ -14,11 +13,13 @@ using Common.AppSettings;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
-using System;
 using MailEngine.Mails.ScheduledMails;
 using Infrastructure.Messaging;
 using Infrastructure.Persistence.TableStorage;
 using Common.Exceptions;
+using API.AuthScheme;
+using API.ApiKeys;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API
 {
@@ -61,7 +62,18 @@ namespace API
                         ValidAudience = AppSettings.JwtAudience,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(AppSettings.JwtSecretKey))
                     };
-                });
+                })
+                .AddScheme<ApiKeyAuthenticationOptions, ApiKeyAuthenticationHandler>(ApiKeyAuthenticationOptions.DefaultScheme, config =>{});
+
+            services.AddAuthorization(options =>
+            {
+                var defaultAuthorizationPolicyBuilder = new AuthorizationPolicyBuilder(
+                    JwtBearerDefaults.AuthenticationScheme,
+                    ApiKeyAuthenticationOptions.DefaultScheme);
+                defaultAuthorizationPolicyBuilder =
+                    defaultAuthorizationPolicyBuilder.RequireAuthenticatedUser();
+                options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
+            });
 
             services.AddScoped<IProject, Project>();
             services.AddScoped<IProjectUser, ProjectUser>();
@@ -69,6 +81,7 @@ namespace API
             services.AddScoped<IUtilities, Utilities>();
             services.AddScoped<INotifier, TransactionalMailNotifier>();
             services.AddScoped<IUser, User>();
+            services.AddSingleton<IFetchApiKey, ApiKeysStore>(provider => new ApiKeysStore(AppSettings.ApiKey));
             services.AddSingleton<IMessageQueue, MessageQueue>(provider => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName, _mqLogger));
             services.AddSingleton<IMailConfigStorage, MailConfigStorage>(provider => new MailConfigStorage(AppSettings.TableStorageConnectionString, AppSettings.StorageTableName));
         }
@@ -115,6 +128,7 @@ namespace API
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
             AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
+            AppSettings.ApiKey = Configuration["ApiKey"];
 
             if (AppSettings.ServiceBusConnectionString == null
             || AppSettings.ServiceBusQueueName == null
@@ -126,7 +140,8 @@ namespace API
             || AppSettings.Env == null
             || AppSettings.TableStorageConnectionString == null
             || AppSettings.StorageTableName == null
-            || AppSettings.SendGridTemplatesApiKey == null)
+            || AppSettings.SendGridTemplatesApiKey == null
+            || AppSettings.ApiKey == null)
             {
                 throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);
             }

@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using Common.AppSettings;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 
 namespace Infrastructure.Persistence.Entities
 {
@@ -30,6 +31,7 @@ namespace Infrastructure.Persistence.Entities
         public string CommunicationPlatform { get; set; }
         public List<ProjectUserEntity> ProjectUsers { get; set; }
         public List<TechnologyEntity> ProjectTechnologies { get; set; }
+        public bool Searchable { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
 
@@ -57,6 +59,7 @@ namespace Infrastructure.Persistence.Entities
                 .Include(p => p.ProjectTechnologies)
                 .Include(p => p.ProjectUsers)
                 .ThenInclude(p => p.User)
+                .Where(p => p.Searchable)
                 .ToListAsync();
             return items;
         }

@@ -14,5 +14,7 @@
     <Folder Include="AppSettings\" />
     <Folder Include="DTOs\SlackAppDTOs\" />
     <Folder Include="DTOs\GitHubDTOs\" />
+    <Folder Include="Services\" />
+    <Folder Include="POCOs\" />
   </ItemGroup>
 </Project>

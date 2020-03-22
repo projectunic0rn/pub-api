@@ -34,6 +34,9 @@ ENV TableStorageConnectionString=$TABLE_STORAGE_CONNECTION_STRING
 ARG STORAGE_TABLE_NAME
 ENV StorageTableName=$STORAGE_TABLE_NAME
 
+ARG API_KEY
+ENV ApiKey=$API_KEY
+
 WORKDIR /app
 COPY --from=build-env /app/API/out .
 ENTRYPOINT ["dotnet", "API.dll"]

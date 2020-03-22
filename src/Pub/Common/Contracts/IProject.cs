@@ -10,6 +10,7 @@ namespace Common.Contracts
         Task<List<ProjectDto>> GetProjectsAsync();
         Task<ProjectDto> GetProjectAsync(Guid id);
         Task<ProjectDto> CreateProjectAsync(ProjectDto project);
+        Task<ProjectDto> UpdateProjectAsync(ProjectDto project);
         Task DeleteProjectAsync(Guid id);
     }
 }
