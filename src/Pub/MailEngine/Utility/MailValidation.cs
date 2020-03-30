@@ -17,7 +17,7 @@ namespace MailEngine.Utility
             _sendingTrackingEntity = sendingTrackingEntity;
         }
 
-        public async Task<bool> IsDuplicateSend(string mailIdentifier, string projectId, string notifierId)
+        public async Task<bool> IsDuplicateSend(string mailIdentifier, string notifierId)
         {
             string partitionKey = mailIdentifier;
             string rowKey = notifierId;
