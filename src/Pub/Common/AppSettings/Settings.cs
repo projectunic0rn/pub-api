@@ -36,6 +36,7 @@ namespace Common.AppSettings
         public string ServiceBusQueueName { get; set; } = Environment.GetEnvironmentVariable("ServiceBusQueueName", EnvironmentVariableTarget.Process);
         public string TableStorageConnectionString { get; set; } = Environment.GetEnvironmentVariable("TableStorageConnectionString", EnvironmentVariableTarget.Process);
         public string StorageTableName { get; set; } = Environment.GetEnvironmentVariable("StorageTableName", EnvironmentVariableTarget.Process);
+        public string MailTrackingTableName { get; set; } = Environment.GetEnvironmentVariable("StorageTableName", EnvironmentVariableTarget.Process);
 
         // Pub Jobs
         public string PubApiEndpoint { get; set; } = Environment.GetEnvironmentVariable("PubApiEndpoint", EnvironmentVariableTarget.Process);

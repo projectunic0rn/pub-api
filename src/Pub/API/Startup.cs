@@ -29,13 +29,13 @@ namespace API
         private readonly ILogger<MessageQueue> _mqLogger;
         private readonly string _apiName = AppSettings.ApiName;
         private readonly string _apiVersion = AppSettings.ApiV1;
+        private Settings _settings { get; set; }
 
         public Startup(IConfiguration configuration, ILogger<Startup> logger, ILogger<MessageQueue> mqLogger)
         {
             Configuration = configuration;
             _logger = logger;
             _mqLogger = mqLogger;
-            InitializeSettings();
         }
 
         public IConfiguration Configuration { get; }
@@ -75,6 +75,10 @@ namespace API
                 options.DefaultPolicy = defaultAuthorizationPolicyBuilder.Build();
             });
 
+            Settings settings = Configuration.Get<Settings>();
+            _settings = settings;
+            services.AddSingleton(p => settings);
+
             services.AddScoped<IProject, Project>();
             services.AddScoped<IProjectUser, ProjectUser>();
             services.AddScoped<IAuthentication, Authentication>();
@@ -84,6 +88,7 @@ namespace API
             services.AddSingleton<IFetchApiKey, ApiKeysStore>(provider => new ApiKeysStore(AppSettings.ApiKey));
             services.AddSingleton<IMessageQueue, MessageQueue>(provider => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName, _mqLogger));
             services.AddSingleton<IMailConfigStorage, MailConfigStorage>(provider => new MailConfigStorage(AppSettings.TableStorageConnectionString, AppSettings.StorageTableName));
+            InitializeSettings();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -140,6 +145,7 @@ namespace API
             || AppSettings.Env == null
             || AppSettings.TableStorageConnectionString == null
             || AppSettings.StorageTableName == null
+            || _settings.MailTrackingTableName == null
             || AppSettings.SendGridTemplatesApiKey == null
             || AppSettings.ApiKey == null)
             {

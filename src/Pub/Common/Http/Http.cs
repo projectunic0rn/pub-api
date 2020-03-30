@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
+using System.Linq; 
 
 namespace Common.Http
 {
@@ -15,6 +16,12 @@ namespace Common.Http
         {
             var result = await _httpClient.SendAsync(request);
             return await ParseResponse<T>(result);
+        }
+
+        private async Task<string> MakeRequestForHtmlAsync(HttpRequestMessage request)
+        {
+            var result = await _httpClient.SendAsync(request);
+            return await result.Content.ReadAsStringAsync();
         }
 
         private async Task MakeRequestAsync(HttpRequestMessage request)
@@ -34,6 +41,20 @@ namespace Common.Http
 
             await MakeRequestAsync(httpRequestMessage);
             return;
+        }
+
+
+        public async Task<string> GetHtml(string requestUri, Dictionary<string, string> headers)
+        {
+            HttpRequestMessage httpRequestMessage = BuildRequestMessage(HttpMethod.Get, requestUri);
+
+            foreach (var header in headers)
+            {
+                httpRequestMessage.Headers.Add(header.Key, header.Value);
+            }
+
+            var response = await MakeRequestForHtmlAsync(httpRequestMessage);
+            return response;
         }
 
         public async Task<T> Get<T>(string requestUri, Dictionary<string, string> headers)

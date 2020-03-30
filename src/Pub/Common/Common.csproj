@@ -6,6 +6,7 @@
 
    <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.23" />
   </ItemGroup>
 
   <ItemGroup>
@@ -16,5 +17,8 @@
     <Folder Include="DTOs\GitHubDTOs\" />
     <Folder Include="Services\" />
     <Folder Include="POCOs\" />
+    <Folder Include="DTOs\DiscordDTOs\" />
+    <Folder Include="DTOs\WorkspaceAppDTOs\" />
+    <Folder Include="Enums\" />
   </ItemGroup>
 </Project>

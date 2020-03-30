@@ -7,5 +7,6 @@ namespace Common.Contracts
     {
         Task SendFeedbackNotificationAsync(NotificationDto notification);
         Task SendWelcomeNotificationAsync(NotificationDto notification);
+        Task SendInvalidWorkspaceInviteNotificationAsync(NotificationDto notification);
     }
 }

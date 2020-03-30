@@ -11,22 +11,22 @@ namespace Common.Services
         private readonly Http.Http _http = new Http.Http();
         private readonly string _baseUri;
         private readonly Dictionary<string, string> headers = new Dictionary<string, string>();
-        private readonly string _authToken;
 
-        public PubService(Settings settings)
+        public PubService(string pubApiEndpoint, string apiKey)
         {
-            _baseUri = settings.PubApiEndpoint;
+            _baseUri = pubApiEndpoint;
+            headers.Add("X-Api-Key", apiKey);
         }
 
         public async Task<ResponseDto<List<ProjectDto>>> GetProjects()
         {
-            ResponseDto<List<ProjectDto>> response = await _http.Get<ResponseDto<List<ProjectDto>>>($"{_baseUri}/projects", headers);
+            ResponseDto<List<ProjectDto>> response = await _http.Get<ResponseDto<List<ProjectDto>>>($"{_baseUri}/projects?searchableonly=false", headers);
             return response;
         }
 
         public async Task<ProjectDto> UpdateProject(ProjectDto project)
         {
-            var response = await _http.Put<ProjectDto>($"{_baseUri}/projects", headers);
+            var response = await _http.Put<ProjectDto>($"{_baseUri}/projects", headers, project);
             return response;
         }
     }

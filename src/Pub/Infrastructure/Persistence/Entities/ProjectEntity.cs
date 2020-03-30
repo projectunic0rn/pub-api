@@ -64,6 +64,16 @@ namespace Infrastructure.Persistence.Entities
             return items;
         }
 
+        public async Task<List<ProjectEntity>> FindAllAsync()
+        {
+            List<ProjectEntity> items = await _context.Projects
+                .Include(p => p.ProjectTechnologies)
+                .Include(p => p.ProjectUsers)
+                .ThenInclude(p => p.User)
+                .ToListAsync();
+            return items;
+        }
+
         public async Task<ProjectEntity> FindAsync(Expression<Func<ProjectEntity, bool>> predicate)
         {
             ProjectEntity item = await _context.Projects
