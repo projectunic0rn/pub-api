@@ -14,7 +14,7 @@ namespace Domain.Models
     {
         private readonly IMapper _mapper;
 
-        private readonly IStorage<ProjectEntity> _projectStorage;
+        private readonly ProjectEntity _projectStorage;
         private readonly IStorage<ProjectTypeEntity> _projectTypeStorage;
         private readonly IStorage<CommunicationPlatformTypeEntity> _communicationPlatformTypeStorage;
         
@@ -34,11 +34,18 @@ namespace Domain.Models
         public string RepositoryLink { get; set; }
         public string InvitationLink { get; set; }
 
-        public async Task<List<ProjectDto>> GetProjectsAsync()
+        public async Task<List<ProjectDto>> GetProjectsAsync(bool searchableOnly)
         {
-            List<ProjectEntity> projects = await _projectStorage.FindAsync();
-            List<ProjectDto> projectDtos = _mapper.Map<List<ProjectDto>>(projects);
-            return projectDtos;
+            if(searchableOnly) {
+                List<ProjectEntity> projects = await _projectStorage.FindAsync();
+                List<ProjectDto> projectDtos = _mapper.Map<List<ProjectDto>>(projects);
+                return projectDtos;
+            }
+            else {
+                List<ProjectEntity> projects = await _projectStorage.FindAllAsync();
+                List<ProjectDto> projectDtos = _mapper.Map<List<ProjectDto>>(projects);
+                return projectDtos;
+            }
         }
 
         public async Task<ProjectDto> GetProjectAsync(Guid id)

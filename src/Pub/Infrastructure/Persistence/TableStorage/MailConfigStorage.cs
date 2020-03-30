@@ -6,6 +6,9 @@ using Common.Contracts;
 
 namespace Infrastructure.Persistence.TableStorage
 {
+    // TODO: Deprecated, please use Storage.cs in same directory
+    // services should own their entity and use Storage.cs in 
+    // Infrastructure to persists
     public class MailConfigStorage : IMailConfigStorage
     {
         private readonly CloudTable _mailConfigTable;

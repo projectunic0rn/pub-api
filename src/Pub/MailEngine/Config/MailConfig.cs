@@ -121,6 +121,17 @@ namespace MailEngine.Config
                         NextSend = DateTimeOffset.UnixEpoch
                      }
                 },
+                {
+                    "InvalidWorkspaceInviteMessage",
+                    new MailConfigDto {
+                        Name = "InvalidWorkspaceInviteMessage",
+                        Type = MailType.Transactional,
+                        TemplateId = "d-47642e22242f4c09bf2f98b225723718",
+                        IntervalSeconds = 0,
+                        LastSend = DateTimeOffset.UnixEpoch,
+                        NextSend = DateTimeOffset.UnixEpoch
+                     }
+                },
             };
         }
     }

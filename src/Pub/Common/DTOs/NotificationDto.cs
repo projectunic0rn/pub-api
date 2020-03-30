@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace Common.DTOs
 {
@@ -15,7 +14,9 @@ namespace Common.DTOs
         {
             NotifierId = notifierId;
         }
+
         public string Content { get; set; }
         public Guid? NotifierId { get; set; }
+        public object NotificationObject { get; set; }
     }
 }

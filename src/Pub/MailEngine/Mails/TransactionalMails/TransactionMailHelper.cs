@@ -72,5 +72,33 @@ namespace MailEngine.Mails.ScheduledMails
 
             return emailMessage;
         }
+
+        public async Task<EmailMessage> PrepareInvalidWorkspaceInviteMail(NotificationDto notification)
+        {
+            string notifierEmail = (await _userStorage.FindAsync(u => u.Id == notification.NotifierId)).Email;
+            EmailMessage emailMessage = new EmailMessage();
+            string mailName = "InvalidWorkspaceInviteMessage";
+            MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
+            SendGridTemplateDto template = await _sendGridService.GetMailTemplate(mailConfigDto.TemplateId);
+            DTOs.Version templateV1 = template.Versions.FirstOrDefault(v => v.Active == 1);
+
+            EmailAddress fromAddress = _fromAddress;
+            EmailAddress toAddress = new EmailAddress("", notifierEmail);
+            emailMessage.FromAddresses.Add(fromAddress);
+            emailMessage.ToAddresses.Add(toAddress);
+            emailMessage.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
+
+            ProjectDto project = notification.NotificationObject as ProjectDto;
+            string htmlContent = templateV1.HtmlContent
+                .Replace("{{projectName}}", project.Name)
+                .Replace("{{workspaceName}}", project.CommunicationPlatform);
+            string plainTextContent = templateV1.PlainContent
+                .Replace("{{projectName}}", project.Name)
+                .Replace("{{workspaceName}}", project.CommunicationPlatform);
+            emailMessage.MailContent.Add("text/html", htmlContent);
+            emailMessage.MailContent.Add("text/plain", plainTextContent);
+
+            return emailMessage;
+        }
     }
 }

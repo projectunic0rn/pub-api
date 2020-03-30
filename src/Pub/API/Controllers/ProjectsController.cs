@@ -27,11 +27,11 @@ namespace API.Controllers
         // GET api/[controller]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(ResponseDto<List<ProjectDto>>))]
-        public async Task<ActionResult<List<ProjectDto>>> GetProjects()
+        public async Task<ActionResult<List<ProjectDto>>> GetProjects(bool searchableOnly = true)
         {
             ResponseDto<List<ProjectDto>> okResponse = new ResponseDto<List<ProjectDto>>(true)
             {
-                Data = await _project.GetProjectsAsync()
+                Data = await _project.GetProjectsAsync(searchableOnly)
             };
             return Ok(okResponse);
         }
