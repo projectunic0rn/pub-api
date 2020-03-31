@@ -2,7 +2,7 @@ FROM microsoft/dotnet:2.2-sdk AS build-env
 COPY . /app
 WORKDIR /app
 
-RUN dotnet restore 
+RUN dotnet restore API/API.csproj
 RUN dotnet publish -c Release -o out
  
 # Build runtime image
