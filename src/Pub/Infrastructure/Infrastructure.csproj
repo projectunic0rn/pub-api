@@ -21,9 +21,9 @@
         <None Remove="Persistence\Entities\.gitkeep" />
     </ItemGroup>
     <ItemGroup>
-        <ProjectReference Include="..\Common\Common.csproj" />
+        <Compile Remove="Persistence\Entities\BaseEntity.cs" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Remove="Persistence\Entities\BaseEntity.cs" />
+      <ProjectReference Include="..\Common\Common.csproj" />
     </ItemGroup>
 </Project>
