@@ -3,7 +3,7 @@ COPY . /app
 WORKDIR /app
 
 RUN dotnet restore API/API.csproj
-RUN dotnet publish -c Release -o out
+RUN dotnet publish API/API.csproj -c Release -o out
  
 # Build runtime image
 FROM microsoft/dotnet:2.2-aspnetcore-runtime

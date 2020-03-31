@@ -3,8 +3,8 @@ FROM microsoft/dotnet:2.2-sdk AS build-env
 COPY . /app
 WORKDIR /app
 
-RUN dotnet restore 
-RUN dotnet publish -c Release -o out
+RUN dotnet restore MailEngine/MailEngine.csproj
+RUN dotnet publish MailEngine/MailEngine.csproj -c Release -o out
  
 # Build runtime image
 FROM microsoft/dotnet:2.2-aspnetcore-runtime
