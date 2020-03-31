@@ -37,6 +37,10 @@ variables:
   azStorageTableName: $(StorageTableName)
   azStorageMailTrackingTableName: $(MailTrackingTableName)
 
+  # Pub Jobs
+  pubEndpoint: $"(PubApiEndpoint)"
+  endpointKey: $"(ApiKey)"
+  
   # Code Coverage 
   codeCovKey: $(CodeCovToken)
 
@@ -108,3 +112,11 @@ jobs:
   - script: docker push roymoran/pub-mail-engine:build
     displayName: 'push mail engine image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+  - script: docker build --build-arg PUB_API_ENDPOINT="$(pubEndpoint)" --build-arg API_KEY="$(endpointKey)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg MAIL_TRACKING_TABLE_NAME="$(azStorageMailTrackingTableName)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" -t roymoran/pubjobs:build -f ci/Dockerfile .
+    displayName: 'build pub jobs docker image'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
+    
+  - script: docker push roymoran/pubjobs:build
+    displayName: 'push docker image'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
