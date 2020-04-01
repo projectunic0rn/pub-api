@@ -112,7 +112,7 @@ jobs:
     displayName: 'push mail engine image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
-  - script: docker build --build-arg PUB_API_ENDPOINT="$(pubEndpoint)" --build-arg API_KEY="$(key)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg MAIL_TRACKING_TABLE_NAME="$(azStorageMailTrackingTableName)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" -t roymoran/pubjobs:build -f ci/pubjobs.Dockerfile src/Pub
+  - script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg PUB_API_ENDPOINT="$(pubEndpoint)" --build-arg API_KEY="$(key)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg MAIL_TRACKING_TABLE_NAME="$(azStorageMailTrackingTableName)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" -t roymoran/pubjobs:build -f ci/pubjobs.Dockerfile src/Pub
     displayName: 'build pub jobs docker image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
     
