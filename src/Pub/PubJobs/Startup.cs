@@ -67,6 +67,7 @@ namespace PubJobs
             if (_settings.PubApiEndpoint == null
                 || _settings.ServiceBusConnectionString == null
                 || _settings.ServiceBusQueueName == null
+                || _settings.ConnectionString == null
                 || _settings.ApiKey == null
                 || _settings.SendGridTemplatesApiKey == null
                 || _settings.TableStorageConnectionString == null
