@@ -61,6 +61,15 @@ namespace PubJobs.Jobs
                         await _notifier.SendInvalidWorkspaceInviteNotificationAsync(notificationDto);
                     }
 
+                    if (invite.Valid)
+                    {
+                        if(!project.Searchable)
+                        {
+                            project.Searchable = true;
+                            await _pubService.UpdateProject(project);
+                        }
+                    }
+
                 }
 
                 _logger.LogDebug($"Found {projects.Data.Count} projects.");
