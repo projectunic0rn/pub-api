@@ -9,8 +9,6 @@ RUN dotnet publish SlackApp/SlackApp.csproj -c Release -o out
 FROM microsoft/dotnet:2.2-aspnetcore-runtime
 ARG CONNECTION_STRING
 ENV ConnectionString=$CONNECTION_STRING
-ARG APP_URL
-ENV AppUrl=$APP_URL
 ARG MAIN_URL
 ENV MainUrl=$MAIN_URL
 ARG SLACK_AUTH_TOKEN

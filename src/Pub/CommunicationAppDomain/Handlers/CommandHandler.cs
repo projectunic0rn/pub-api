@@ -13,7 +13,6 @@ namespace CommunicationAppDomain.Handlers
     public class CommandHandler : IChatAppCommandHandler
     {
         private readonly string _githubOrganization;
-        private readonly string _appUrl;
         private readonly string _mainUrl;
         private readonly IStorage<ProjectEntity> _projectStorage;
         private readonly IStorage<UserEntity> _userStorage;
@@ -22,7 +21,6 @@ namespace CommunicationAppDomain.Handlers
         public CommandHandler()
         {
             _githubOrganization = AppSettings.GitHubOrganization;
-            _appUrl = AppSettings.AppUrl;
             _mainUrl = AppSettings.MainUrl;
             _projectStorage = new ProjectEntity();
             _userStorage = new UserEntity();
@@ -105,16 +103,16 @@ namespace CommunicationAppDomain.Handlers
             var slackCommandResponse = new SlackCommandResponseDto();
             if (projects.Count == 0)
             {
-                slackCommandResponse.Text = $"It doesn't look like there are any projects looking for members right now. \n Start a new project on {_appUrl}/projects.";
+                slackCommandResponse.Text = $"It doesn't look like there are any projects looking for members right now. \n Start a new project on {_mainUrl}/projects.";
             }
             else
             {
-                slackCommandResponse.Text = $"Here's a list of available projects you can join (visit the <{_appUrl}/projects|project page> for more advanced filtering). \n";
+                slackCommandResponse.Text = $"Here's a list of available projects you can join (visit the <{_mainUrl}/projects|project page> for more advanced filtering). \n";
             }
 
             foreach (var project in projects)
             {
-                slackCommandResponse.Text += $"{project.Name}, <{_appUrl}/projects/{project.Id}|project page>\n\n";
+                slackCommandResponse.Text += $"{project.Name}, <{_mainUrl}/projects/{project.Id}|project page>\n\n";
             }
             return slackCommandResponse;
         }
