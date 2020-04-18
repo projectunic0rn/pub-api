@@ -49,7 +49,7 @@ namespace MailEngine
             AppSettings.ServiceBusConnectionString = Configuration["ServiceBusConnectionString"];
             AppSettings.ServiceBusQueueName = Configuration["ServiceBusQueueName"];
             AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
-            AppSettings.AppUrl = Configuration["AppUrl"];
+            AppSettings.MainUrl = Configuration["MainUrl"];
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
             AppSettings.Env = Configuration["ASPNETCORE_ENVIRONMENT"];
@@ -58,7 +58,7 @@ namespace MailEngine
             || AppSettings.ServiceBusConnectionString == null
             || AppSettings.ServiceBusQueueName == null
             || AppSettings.SendGridTemplatesApiKey == null
-            || AppSettings.AppUrl == null
+            || AppSettings.MainUrl == null
             || AppSettings.TableStorageConnectionString == null
             || AppSettings.StorageTableName == null)
             {

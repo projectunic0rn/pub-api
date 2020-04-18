@@ -18,7 +18,6 @@ namespace Common.AppSettings
         public string ApiKey { get; set; } = Environment.GetEnvironmentVariable("ApiKey", EnvironmentVariableTarget.Process);
 
         // Communication Apps (e.g. slack, discord)
-        public string AppUrl { get; set; } = Environment.GetEnvironmentVariable("AppUrl", EnvironmentVariableTarget.Process);
         public string MainUrl { get; set; } = Environment.GetEnvironmentVariable("MainUrl", EnvironmentVariableTarget.Process);
         public string SlackSigningSecret { get; set; } = Environment.GetEnvironmentVariable("SlackSigningSecret", EnvironmentVariableTarget.Process);
         public string IntroductionChannelId { get; set; } = Environment.GetEnvironmentVariable("IntroductionChannelId", EnvironmentVariableTarget.Process);

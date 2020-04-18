@@ -295,7 +295,7 @@ namespace MailEngine.Mails.ScheduledMails
                 content = content
                 .Replace("{{this.title}}", project.Name)
                 .Replace("{{this.description}}", project.Description)
-                .Replace("{{this.projectUrl}}", $"{AppSettings.AppUrl}/projects/{project.Id.ToString()}")
+                .Replace("{{this.projectUrl}}", $"{AppSettings.MainUrl}/projects/{project.Id.ToString()}")
                 .Replace("{{this.communicationPlatformIcon}}", _communicationLogos[project.CommunicationPlatform])
                 .Replace("{{startproject}}", string.Empty)
                 .Replace("{{endproject}}", string.Empty)

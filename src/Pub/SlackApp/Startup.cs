@@ -57,7 +57,6 @@ namespace SlackApp
         private void InitializeSettings()
         {
             AppSettings.ConnectionString = Configuration["ConnectionString"];
-            AppSettings.AppUrl = Configuration["AppUrl"];
             AppSettings.MainUrl = Configuration["MainUrl"];
             AppSettings.IntroductionChannelId = Configuration["IntroductionChannelId"];
             AppSettings.SlackSigningSecret = Configuration["SlackSigningSecret"];
@@ -69,7 +68,6 @@ namespace SlackApp
             AppSettings.PrivilegedMembers = Configuration["PrivilegedMembers"];
 
             if (AppSettings.ConnectionString == null
-            || AppSettings.AppUrl == null
             || AppSettings.MainUrl == null
             || AppSettings.IntroductionChannelId == null
             || AppSettings.SlackSigningSecret == null
