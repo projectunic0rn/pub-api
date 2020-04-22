@@ -56,5 +56,13 @@ namespace MailEngine.Mails.ScheduledMails
             await _messageQueue.SendMessageAsync(emailMessage);
             return;
         }
+
+        public async Task SendYouJoinedProjectNotificationAsync(NotificationDto notification)
+        {
+            _logger.LogInformation($"Sending you joined project mail...");
+            EmailMessage emailMessage = await _transactionalMailHelper.PrepareYouJoinedProjectMail(notification);
+            await _messageQueue.SendMessageAsync(emailMessage);
+            return;
+        }
     }
 }
