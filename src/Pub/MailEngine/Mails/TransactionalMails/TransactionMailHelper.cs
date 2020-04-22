@@ -37,14 +37,14 @@ namespace MailEngine.Mails.ScheduledMails
             string mailName = "FeedbackMessage";
             MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
             SendGridTemplateDto template = await _sendGridService.GetMailTemplate(mailConfigDto.TemplateId);
-            MailEngine.DTOs.Version templateV1 = template.Versions.First();
+            DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
             emailMessage = JsonConvert.DeserializeObject<EmailMessage>(AppSettings.FeedbackRecipients);
 
             EmailAddress fromAddress = _fromAddress;
             emailMessage.FromAddresses.Add(fromAddress);
-            emailMessage.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
-            string htmlContent = templateV1.HtmlContent.Replace("{{feedbackMessage}}", feedbackContent);
-            string plainTextContent = templateV1.PlainContent.Replace("{{feedbackMessage}}", feedbackContent);
+            emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
+            string htmlContent = activeTemplate.HtmlContent.Replace("{{feedbackMessage}}", feedbackContent);
+            string plainTextContent = activeTemplate.PlainContent.Replace("{{feedbackMessage}}", feedbackContent);
             emailMessage.MailContent.Add("text/html", htmlContent);
             emailMessage.MailContent.Add("text/plain", plainTextContent);
 
@@ -58,15 +58,15 @@ namespace MailEngine.Mails.ScheduledMails
             string mailName = "WelcomeMessage";
             MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
             SendGridTemplateDto template = await _sendGridService.GetMailTemplate(mailConfigDto.TemplateId);
-            MailEngine.DTOs.Version templateV1 = template.Versions.First();
+            DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
 
             EmailAddress fromAddress = _fromAddress;
             EmailAddress toAddress = new EmailAddress("", notifierEmail);
             emailMessage.FromAddresses.Add(fromAddress);
             emailMessage.ToAddresses.Add(toAddress);
-            emailMessage.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
-            string htmlContent = templateV1.HtmlContent.Replace("{{currentYear}}", DateTime.Now.Year.ToString());
-            string plainTextContent = templateV1.PlainContent.Replace("{{currentYear}}", DateTime.Now.Year.ToString());
+            emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
+            string htmlContent = activeTemplate.HtmlContent.Replace("{{currentYear}}", DateTime.Now.Year.ToString());
+            string plainTextContent = activeTemplate.PlainContent.Replace("{{currentYear}}", DateTime.Now.Year.ToString());
             emailMessage.MailContent.Add("text/html", htmlContent);
             emailMessage.MailContent.Add("text/plain", plainTextContent);
 
@@ -80,21 +80,52 @@ namespace MailEngine.Mails.ScheduledMails
             string mailName = "InvalidWorkspaceInviteMessage";
             MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
             SendGridTemplateDto template = await _sendGridService.GetMailTemplate(mailConfigDto.TemplateId);
-            DTOs.Version templateV1 = template.Versions.FirstOrDefault(v => v.Active == 1);
+            DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
 
             EmailAddress fromAddress = _fromAddress;
             EmailAddress toAddress = new EmailAddress("", notifierEmail);
             emailMessage.FromAddresses.Add(fromAddress);
             emailMessage.ToAddresses.Add(toAddress);
-            emailMessage.Subject = $"{templateV1.Subject} {_testEmailIndicator}";
+            emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
 
             ProjectDto project = notification.NotificationObject as ProjectDto;
-            string htmlContent = templateV1.HtmlContent
+            string htmlContent = activeTemplate.HtmlContent
                 .Replace("{{projectName}}", project.Name)
                 .Replace("{{workspaceName}}", project.CommunicationPlatform);
-            string plainTextContent = templateV1.PlainContent
+            string plainTextContent = activeTemplate.PlainContent
                 .Replace("{{projectName}}", project.Name)
                 .Replace("{{workspaceName}}", project.CommunicationPlatform);
+            emailMessage.MailContent.Add("text/html", htmlContent);
+            emailMessage.MailContent.Add("text/plain", plainTextContent);
+
+         
+            return emailMessage;
+        }
+
+        public async Task<EmailMessage> PrepareYouJoinedProjectMail(NotificationDto notification)
+        {
+            string notifierEmail = (await _userStorage.FindAsync(u => u.Id == notification.NotifierId)).Email;
+            EmailMessage emailMessage = new EmailMessage();
+            string mailName = "YouJoinedProjectMessage";
+            MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
+            SendGridTemplateDto template = await _sendGridService.GetMailTemplate(mailConfigDto.TemplateId);
+            DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
+
+            EmailAddress fromAddress = _fromAddress;
+            EmailAddress toAddress = new EmailAddress("", notifierEmail);
+            emailMessage.FromAddresses.Add(fromAddress);
+            emailMessage.ToAddresses.Add(toAddress);
+            emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
+
+            ProjectDto project = notification.NotificationObject as ProjectDto;
+            string htmlContent = activeTemplate.HtmlContent
+                .Replace("{{projectName}}", project.Name)
+                .Replace("{{workspaceName}}", project.CommunicationPlatform)
+                .Replace("{{inviteUrl}}", project.CommunicationPlatformUrl);
+            string plainTextContent = activeTemplate.PlainContent
+                .Replace("{{projectName}}", project.Name)
+                .Replace("{{workspaceName}}", project.CommunicationPlatform)
+                .Replace("{{inviteUrl}}", project.CommunicationPlatformUrl);
             emailMessage.MailContent.Add("text/html", htmlContent);
             emailMessage.MailContent.Add("text/plain", plainTextContent);
 
