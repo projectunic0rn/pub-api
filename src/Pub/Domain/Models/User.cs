@@ -14,9 +14,12 @@ namespace Domain.Models
         private readonly IMapper _mapper;
 
         private readonly IStorage<UserEntity> _userStorage;
+        private readonly TechnologyEntity _techStorage;
+
         public User()
         {
             _userStorage = new UserEntity();
+            _techStorage = new TechnologyEntity();
             _mapper = new InitializeMapper().GetMapper;
 
         }
@@ -42,6 +45,7 @@ namespace Domain.Models
             userEntity.GitHubUsername = user.GitHubUsername;
             userEntity.UserTechnologies.AddRange(MapTechnologies(user.Technologies));
             await _userStorage.UpdateAsync(userEntity);
+            await _techStorage.DeleteAsync(technologiesToDelete);
             UserDto userDto = _mapper.Map<UserDto>(userEntity);
             return userDto;
         }
