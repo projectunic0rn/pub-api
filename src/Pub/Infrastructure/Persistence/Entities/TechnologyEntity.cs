@@ -17,6 +17,9 @@ namespace Infrastructure.Persistence.Entities
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
             optionsBuilder.UseMySql(AppSettings.ConnectionString);
             _context = new DatabaseContext(optionsBuilder.Options);
+
+            CreatedAt = DateTimeOffset.UtcNow;
+            UpdatedAt = DateTimeOffset.UtcNow;
         }
 
         public Guid Id { get; set; }
