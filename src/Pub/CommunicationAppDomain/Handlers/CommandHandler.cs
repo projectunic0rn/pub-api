@@ -48,7 +48,7 @@ namespace CommunicationAppDomain.Handlers
 
         private async Task<SlackCommandResponseDto> ProcessProjectsCommand(SlackCommandDto slackCommand)
         {
-            var projects = (await _projectStorage.FindAsync()).FindAll(p => p.LookingForMembers == true);
+            var projects = (await _projectStorage.FindAsync()).FindAll(p => p.LookingForMembers && p.Searchable);
             var slackCommandResponse = BuildProjectsResponse(projects);
             return slackCommandResponse;
         }
