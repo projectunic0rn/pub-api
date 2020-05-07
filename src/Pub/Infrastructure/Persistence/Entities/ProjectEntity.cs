@@ -59,7 +59,7 @@ namespace Infrastructure.Persistence.Entities
                 .Include(p => p.ProjectTechnologies)
                 .Include(p => p.ProjectUsers)
                 .ThenInclude(p => p.User)
-                .Where(p => p.Searchable)
+                .Where(p => p.Searchable && p.LookingForMembers)
                 .ToListAsync();
             return items;
         }
