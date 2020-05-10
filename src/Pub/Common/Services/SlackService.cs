@@ -1,11 +1,8 @@
-using Common.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Common.AppSettings;
 using Common.DTOs.SlackAppDTOs;
 using Common.Contracts;
 using Common.DTOs.WorkspaceAppDTOs;
-using HtmlAgilityPack;
 
 namespace Common.Services
 {
@@ -42,10 +39,8 @@ namespace Common.Services
         public async Task<InviteDto> GetInviteStatus(string inviteUrl)
         {
             var html = await _http.GetHtml($"{inviteUrl}", headers);
-            var doc = new HtmlDocument();
-            doc.LoadHtml(html);
-            var title = doc.DocumentNode.SelectSingleNode("//head/title");
-            var inviteValid = title.InnerText == "Create Account | Slack";
+            // if data contains empty team id indicates invalid
+            var inviteValid = !html.Contains("data-team_id=\"\"");
             var inviteDto = new InviteDto(inviteValid);
             return inviteDto;
         }
