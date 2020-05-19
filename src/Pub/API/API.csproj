@@ -22,5 +22,6 @@
   <ItemGroup>
     <Folder Include="AuthScheme\" />
     <Folder Include="ApiKeys\" />
+    <Folder Include="Extensions\" />
   </ItemGroup>
 </Project>
