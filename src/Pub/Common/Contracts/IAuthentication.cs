@@ -6,6 +6,7 @@ namespace Common.Contracts
     public interface IAuthentication
     {
         Task<JsonWebTokenDto> LoginUserAsync(LoginDto login);
-        Task<JsonWebTokenDto> RegisterUserAsync(RegistrationDto login);
+        Task<JsonWebTokenDto> RegisterUserAsync(RegistrationDto register);
+        Task ChangePassword(string userId, ChangePasswordDto changePassword);
     }
 }

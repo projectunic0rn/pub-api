@@ -108,6 +108,20 @@ namespace Domain.Models
             return jsonWebToken;
         }
 
+        public async Task ChangePassword(string userId, ChangePasswordDto changePassword)
+        {
+            if (changePassword.NewPassword != changePassword.ConfirmedNewPassword)
+            {
+                throw new AuthenticationException(ExceptionMessage.NonMatchingPasswords);
+            }
+
+            UserEntity user = await _storage.FindAsync(u => u.Id == Guid.Parse(userId));
+            _user = new Common.Models.User(user.Username, user.Email, user.Timezone, user.Locale, true);
+            user.HashedPassword = HashPassword(_user, changePassword.NewPassword);
+            var updatedUser = await _storage.UpdateAsync(user);
+            return;
+        }
+
         private PasswordVerificationResult ValidatePassword(Common.Models.User user, string hashedPassword, string providedPassword)
         {
             return _passwordHasher.VerifyHashedPassword(user, hashedPassword, providedPassword);
@@ -120,8 +134,11 @@ namespace Domain.Models
 
         public JsonWebTokenDto GenerateJsonWebToken(object jwtTokenData)
         {
+            IdentityOptions _options = new IdentityOptions();
+
             var claims = new[]
             {
+                new Claim(_options.ClaimsIdentity.UserIdClaimType, jwtTokenData.ToString()),
                 new Claim(ClaimTypes.UserData, JsonConvert.SerializeObject(jwtTokenData, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() }), null)
             };
 
@@ -139,6 +156,5 @@ namespace Domain.Models
             JsonWebTokenDto jsonWebToken = new JsonWebTokenDto(jwtToken);
             return jsonWebToken;
         }
-
     }
 }

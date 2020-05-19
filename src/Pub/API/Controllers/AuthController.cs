@@ -5,6 +5,9 @@ using Common.DTOs;
 using Common.Contracts;
 using Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
+using API.Extensions;
+using System.Security.Claims;
+using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -14,7 +17,6 @@ namespace API.Controllers
     ///  workflow.
     /// </summary>
     [Route("api/[controller]")]
-    [AllowAnonymous]
     [ApiController]
     public class AuthController : ControllerBase
     {
@@ -29,6 +31,7 @@ namespace API.Controllers
         [HttpPost("login")]
         [ProducesResponseType(200, Type = typeof(ResponseDto<JsonWebTokenDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] LoginDto loginDto)
         {
             ResponseDto<JsonWebTokenDto> okResponse = new ResponseDto<JsonWebTokenDto>(true);
@@ -51,6 +54,7 @@ namespace API.Controllers
         [HttpPost("register")]
         [ProducesResponseType(200, Type = typeof(ResponseDto<JsonWebTokenDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegistrationDto registrationDto)
         {
             ResponseDto<JsonWebTokenDto> okResponse = new ResponseDto<JsonWebTokenDto>(true);
@@ -60,6 +64,37 @@ namespace API.Controllers
             {
                 okResponse.Data = await _authentication.RegisterUserAsync(registrationDto);
                 return Ok(okResponse);
+            }
+            catch (AuthenticationException ex)
+            {
+                errorResponse.Data = new ErrorDto(ex.Message);
+                return BadRequest(errorResponse);
+            }
+            catch (DbUpdateException)
+            {
+                errorResponse.Data = new ErrorDto(ExceptionMessage.UniquenessConstraintViolation);
+                return BadRequest(errorResponse);
+            }
+
+        }
+
+        // POST api/[controller]/change-password
+        [HttpPost("change-password")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        #if !DEBUG
+        [Authorize]
+        #endif
+        public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto changePassword)
+        {
+            string userId = HttpContext.User.Identity.GetUserId();
+
+            ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
+
+            try
+            {
+                await _authentication.ChangePassword(userId, changePassword);
+                return Ok();
             }
             catch (AuthenticationException ex)
             {
