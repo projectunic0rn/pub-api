@@ -101,11 +101,6 @@ namespace API.Controllers
                 errorResponse.Data = new ErrorDto(ex.Message);
                 return BadRequest(errorResponse);
             }
-            catch (DbUpdateException)
-            {
-                errorResponse.Data = new ErrorDto(ExceptionMessage.UniquenessConstraintViolation);
-                return BadRequest(errorResponse);
-            }
 
         }
     }
