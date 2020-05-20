@@ -110,12 +110,26 @@ namespace Domain.Models
 
         public async Task ChangePassword(string userId, ChangePasswordDto changePassword)
         {
+            PasswordVerificationResult verificationResult;
+            UserEntity user = await _storage.FindAsync(u => u.Id == Guid.Parse(userId));
+            _user = new Common.Models.User(user.Username, user.Email, user.Timezone, user.Locale, true);
+            verificationResult = ValidatePassword(_user, user.HashedPassword, changePassword.OldPassword);
+
+            switch (verificationResult)
+            {
+                case PasswordVerificationResult.Success:
+                    break;
+                case PasswordVerificationResult.Failed:
+                    throw new AuthenticationException(ExceptionMessage.OldPasswordIncorrect);
+                case PasswordVerificationResult.SuccessRehashNeeded:
+                    break;
+            }
+
             if (changePassword.NewPassword != changePassword.ConfirmedNewPassword)
             {
                 throw new AuthenticationException(ExceptionMessage.NonMatchingPasswords);
             }
 
-            UserEntity user = await _storage.FindAsync(u => u.Id == Guid.Parse(userId));
             _user = new Common.Models.User(user.Username, user.Email, user.Timezone, user.Locale, true);
             user.HashedPassword = HashPassword(_user, changePassword.NewPassword);
             var updatedUser = await _storage.UpdateAsync(user);
