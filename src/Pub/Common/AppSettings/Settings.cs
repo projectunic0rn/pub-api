@@ -6,7 +6,7 @@ namespace Common.AppSettings
     public class Settings
     {
         // API
-        public static string ApiV1 { get; } = "v1.0.3";
+        public static string ApiV1 { get; } = "v1.0.4";
         public string ApiName { get; } = "Pub";
         public string Env { get; set; } = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", EnvironmentVariableTarget.Process);
         public string JwtAudience { get; set; } = Environment.GetEnvironmentVariable("JwtAudience", EnvironmentVariableTarget.Process);
