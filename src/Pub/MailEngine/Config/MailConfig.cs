@@ -143,6 +143,17 @@ namespace MailEngine.Config
                         NextSend = DateTimeOffset.UnixEpoch
                      }
                 },
+                {
+                    "PasswordResetRequestMessage",
+                    new MailConfigDto {
+                        Name = "PasswordResetRequestMessage",
+                        Type = MailType.Transactional,
+                        TemplateId = "d-01d8c4985fca43d8bfe346185a62215f",
+                        IntervalSeconds = 0,
+                        LastSend = DateTimeOffset.UnixEpoch,
+                        NextSend = DateTimeOffset.UnixEpoch
+                     }
+                },
             };
         }
     }

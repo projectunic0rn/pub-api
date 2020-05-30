@@ -31,6 +31,8 @@ namespace Infrastructure.Persistence.Entities
         public bool LookingForProject { get; set; }
         public string ProfilePictureUrl { get; set; }
         public string GitHubUsername { get; set; }
+        public string ResetPasswordToken { get; set; }
+        public DateTimeOffset ResetPasswordTokenExpiresAt { get; set; }
         public string MagicLoginToken { get; set; }
         public DateTimeOffset MagicLoginTokenExpiresAt { get; set; }
         public List<ProjectUserEntity> ProjectUsers { get; set; }

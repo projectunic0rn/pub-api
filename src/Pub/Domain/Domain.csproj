@@ -19,6 +19,5 @@
     </ItemGroup>
     <ItemGroup>
         <Folder Include="Exceptions\" />
-        <Folder Include="Helpers\" />
     </ItemGroup>
 </Project>

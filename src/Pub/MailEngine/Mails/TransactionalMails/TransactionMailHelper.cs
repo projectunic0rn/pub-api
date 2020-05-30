@@ -53,7 +53,7 @@ namespace MailEngine.Mails.ScheduledMails
 
         public async Task<EmailMessage> PrepareWelcomeMail(NotificationDto notification)
         {
-            string notifierEmail = (await _userStorage.FindAsync(u => u.Id == notification.NotifierId)).Email;
+            string notificantEmail = (await _userStorage.FindAsync(u => u.Id == notification.NotificantId)).Email;
             EmailMessage emailMessage = new EmailMessage();
             string mailName = "WelcomeMessage";
             MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
@@ -61,7 +61,7 @@ namespace MailEngine.Mails.ScheduledMails
             DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
 
             EmailAddress fromAddress = _fromAddress;
-            EmailAddress toAddress = new EmailAddress("", notifierEmail);
+            EmailAddress toAddress = new EmailAddress("", notificantEmail);
             emailMessage.FromAddresses.Add(fromAddress);
             emailMessage.ToAddresses.Add(toAddress);
             emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
@@ -75,7 +75,7 @@ namespace MailEngine.Mails.ScheduledMails
 
         public async Task<EmailMessage> PrepareInvalidWorkspaceInviteMail(NotificationDto notification)
         {
-            string notifierEmail = (await _userStorage.FindAsync(u => u.Id == notification.NotifierId)).Email;
+            string notificantEmail = (await _userStorage.FindAsync(u => u.Id == notification.NotificantId)).Email;
             EmailMessage emailMessage = new EmailMessage();
             string mailName = "InvalidWorkspaceInviteMessage";
             MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
@@ -83,7 +83,7 @@ namespace MailEngine.Mails.ScheduledMails
             DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
 
             EmailAddress fromAddress = _fromAddress;
-            EmailAddress toAddress = new EmailAddress("", notifierEmail);
+            EmailAddress toAddress = new EmailAddress("", notificantEmail);
             emailMessage.FromAddresses.Add(fromAddress);
             emailMessage.ToAddresses.Add(toAddress);
             emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
@@ -98,13 +98,13 @@ namespace MailEngine.Mails.ScheduledMails
             emailMessage.MailContent.Add("text/html", htmlContent);
             emailMessage.MailContent.Add("text/plain", plainTextContent);
 
-         
+
             return emailMessage;
         }
 
         public async Task<EmailMessage> PrepareYouJoinedProjectMail(NotificationDto notification)
         {
-            string notifierEmail = (await _userStorage.FindAsync(u => u.Id == notification.NotifierId)).Email;
+            string notificantEmail = (await _userStorage.FindAsync(u => u.Id == notification.NotificantId)).Email;
             EmailMessage emailMessage = new EmailMessage();
             string mailName = "YouJoinedProjectMessage";
             MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
@@ -112,7 +112,7 @@ namespace MailEngine.Mails.ScheduledMails
             DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
 
             EmailAddress fromAddress = _fromAddress;
-            EmailAddress toAddress = new EmailAddress("", notifierEmail);
+            EmailAddress toAddress = new EmailAddress("", notificantEmail);
             emailMessage.FromAddresses.Add(fromAddress);
             emailMessage.ToAddresses.Add(toAddress);
             emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
@@ -126,6 +126,31 @@ namespace MailEngine.Mails.ScheduledMails
                 .Replace("{{projectName}}", project.Name)
                 .Replace("{{workspaceName}}", project.CommunicationPlatform)
                 .Replace("{{inviteUrl}}", project.CommunicationPlatformUrl);
+            emailMessage.MailContent.Add("text/html", htmlContent);
+            emailMessage.MailContent.Add("text/plain", plainTextContent);
+
+            return emailMessage;
+        }
+        public async Task<EmailMessage> PreparePasswordResetMail(NotificationDto notification)
+        {
+            UserEntity user = (await _userStorage.FindAsync(u => u.Id == notification.NotificantId));
+            string notificantEmail = user.Email;
+            string resetToken = user.ResetPasswordToken;
+
+            EmailMessage emailMessage = new EmailMessage();
+            string mailName = "PasswordResetRequestMessage";
+            MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
+            SendGridTemplateDto template = await _sendGridService.GetMailTemplate(mailConfigDto.TemplateId);
+            DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
+
+            EmailAddress fromAddress = _fromAddress;
+            EmailAddress toAddress = new EmailAddress("", notificantEmail);
+            emailMessage.FromAddresses.Add(fromAddress);
+            emailMessage.ToAddresses.Add(toAddress);
+            emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
+
+            string htmlContent = activeTemplate.HtmlContent.Replace("{{passwordResetToken}}", Uri.EscapeDataString(resetToken));
+            string plainTextContent = activeTemplate.PlainContent.Replace("{{passwordResetToken}}", Uri.EscapeDataString(resetToken));
             emailMessage.MailContent.Add("text/html", htmlContent);
             emailMessage.MailContent.Add("text/plain", plainTextContent);
 

@@ -30,7 +30,7 @@ namespace MailEngine.Mails.ScheduledMails
 
         public async Task SendFeedbackNotificationAsync(NotificationDto notification)
         {
-            _logger.LogInformation($"Sending feedback mail...");
+            _logger.LogInformation($"Sending feedback notification...");
             EmailMessage emailMessage = await _transactionalMailHelper.PrepareFeedbackMail(notification);
             await _messageQueue.SendMessageAsync(emailMessage);
             return;
@@ -38,7 +38,7 @@ namespace MailEngine.Mails.ScheduledMails
 
         public async Task SendWelcomeNotificationAsync(NotificationDto notification)
         {
-            _logger.LogInformation($"Sending welcome mail...");
+            _logger.LogInformation($"Sending welcome notification...");
             EmailMessage emailMessage = await _transactionalMailHelper.PrepareWelcomeMail(notification);
             await _messageQueue.SendMessageAsync(emailMessage);
             return;
@@ -46,10 +46,10 @@ namespace MailEngine.Mails.ScheduledMails
 
         public async Task SendInvalidWorkspaceInviteNotificationAsync(NotificationDto notification)
         {
-            _logger.LogInformation($"Sending invalid workspace notification mail...");
+            _logger.LogInformation($"Sending invalid workspace notification notification...");
             ProjectDto project = notification.NotificationObject as ProjectDto;
             EmailMessage emailMessage = await _transactionalMailHelper.PrepareInvalidWorkspaceInviteMail(notification);
-            if (await _mailValidation.IsDuplicateSend($"InvalidWorkspaceInviteMessage-{project.Id.ToString()}", notification.NotifierId.ToString()))
+            if (await _mailValidation.IsDuplicateSend($"InvalidWorkspaceInviteMessage-{project.Id.ToString()}", notification.NotificantId.ToString()))
             {
                 return;
             }
@@ -59,8 +59,16 @@ namespace MailEngine.Mails.ScheduledMails
 
         public async Task SendYouJoinedProjectNotificationAsync(NotificationDto notification)
         {
-            _logger.LogInformation($"Sending you joined project mail...");
+            _logger.LogInformation($"Sending you joined project notification...");
             EmailMessage emailMessage = await _transactionalMailHelper.PrepareYouJoinedProjectMail(notification);
+            await _messageQueue.SendMessageAsync(emailMessage);
+            return;
+        }
+
+        public async Task SendPasswordResetNotificationAsync(NotificationDto notification)
+        {
+            _logger.LogInformation($"Sending password reset notification...");
+            EmailMessage emailMessage = await _transactionalMailHelper.PreparePasswordResetMail(notification);
             await _messageQueue.SendMessageAsync(emailMessage);
             return;
         }

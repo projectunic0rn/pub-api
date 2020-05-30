@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\**" />
+    <EmbeddedResource Remove="Models\**" />
+    <None Remove="Models\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="AutoMapper" Version="8.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.App">
       <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
@@ -20,7 +26,6 @@
   <ItemGroup>
     <Folder Include="MappingConfig\" />
     <Folder Include="Handlers\" />
-    <Folder Include="Models\" />
     <Folder Include="Services\" />
   </ItemGroup>
 </Project>

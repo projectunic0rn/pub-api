@@ -9,5 +9,6 @@ namespace Common.Contracts
         Task SendWelcomeNotificationAsync(NotificationDto notification);
         Task SendInvalidWorkspaceInviteNotificationAsync(NotificationDto notification);
         Task SendYouJoinedProjectNotificationAsync(NotificationDto notification);
+        Task SendPasswordResetNotificationAsync(NotificationDto notification);
     }
 }

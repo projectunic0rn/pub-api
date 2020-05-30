@@ -10,7 +10,6 @@
 
   <ItemGroup>
     <Folder Include="Contracts\" />
-    <Folder Include="DTOs\" />
     <Folder Include="AppSettings\" />
     <Folder Include="DTOs\SlackAppDTOs\" />
     <Folder Include="DTOs\GitHubDTOs\" />

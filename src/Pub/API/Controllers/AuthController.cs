@@ -7,7 +7,6 @@ using Domain.Exceptions;
 using Microsoft.EntityFrameworkCore;
 using API.Extensions;
 using System.Security.Claims;
-using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -94,6 +93,36 @@ namespace API.Controllers
             try
             {
                 await _authentication.ChangePassword(userId, changePassword);
+                return Ok();
+            }
+            catch (AuthenticationException ex)
+            {
+                errorResponse.Data = new ErrorDto(ex.Message);
+                return BadRequest(errorResponse);
+            }
+
+        }
+
+        // POST api/[controller]/reset-password-request
+        [HttpPost("reset-passsword-request")]
+        [ProducesResponseType(200)]
+        public async Task<IActionResult> ResetPasswordRequest([FromBody] ResetPasswordRequestDto resetPasswordRequest)
+        {
+            await _authentication.ResetPasswordRequest(resetPasswordRequest);
+            return Ok();
+        }
+
+        // POST api/[controller]/reset-password
+        [HttpPost("reset-passsword")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordDto resetPassword)
+        {
+            ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
+
+            try
+            {
+                await _authentication.ResetPassword(resetPassword);
                 return Ok();
             }
             catch (AuthenticationException ex)
