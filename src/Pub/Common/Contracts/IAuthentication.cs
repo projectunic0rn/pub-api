@@ -8,5 +8,8 @@ namespace Common.Contracts
         Task<JsonWebTokenDto> LoginUserAsync(LoginDto login);
         Task<JsonWebTokenDto> RegisterUserAsync(RegistrationDto register);
         Task ChangePassword(string userId, ChangePasswordDto changePassword);
+        Task ResetPasswordRequest(ResetPasswordRequestDto resetPasswordRequest);
+        Task ResetPassword(ResetPasswordDto resetPassword);
+
     }
 }

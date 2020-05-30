@@ -6,6 +6,8 @@ namespace Domain.Exceptions
         public static string NonMatchingPasswords { get; } = "Passwords don't match";
         public static string InvalidCredentials { get; } = "Invalid email or password";
         public static string OldPasswordIncorrect { get; } = "Old password provided is incorrect.";
+        public static string InvalidPasswordResetToken { get; } = "Invalid password reset token.";
+        public static string PasswordResetTokenExpired { get; } = "Password reset token has expired.";
         // Error on Project Created
         public static string InvalidProjectType { get; } = "Invalid project type.";
         public static string InvalidCommunicationPlatform { get; } = "Invalid communication platform - supported platforms include ";

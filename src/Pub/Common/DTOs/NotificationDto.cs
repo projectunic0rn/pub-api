@@ -12,11 +12,11 @@ namespace Common.DTOs
 
         public NotificationDto(Guid? notifierId)
         {
-            NotifierId = notifierId;
+            NotificantId = notifierId;
         }
 
         public string Content { get; set; }
-        public Guid? NotifierId { get; set; }
+        public Guid? NotificantId { get; set; }
         public object NotificationObject { get; set; }
     }
 }

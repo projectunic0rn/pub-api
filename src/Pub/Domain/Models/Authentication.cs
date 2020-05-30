@@ -15,6 +15,7 @@ using Common.AppSettings;
 using Newtonsoft.Json.Serialization;
 using Domain.Exceptions;
 using Common.Models;
+using Domain.Helpers;
 
 namespace Domain.Models
 {
@@ -110,6 +111,11 @@ namespace Domain.Models
 
         public async Task ChangePassword(string userId, ChangePasswordDto changePassword)
         {
+            if (changePassword.NewPassword != changePassword.ConfirmedNewPassword)
+            {
+                throw new AuthenticationException(ExceptionMessage.NonMatchingPasswords);
+            }
+
             PasswordVerificationResult verificationResult;
             UserEntity user = await _storage.FindAsync(u => u.Id == Guid.Parse(userId));
             _user = new Common.Models.User(user.Username, user.Email, user.Timezone, user.Locale, true);
@@ -125,13 +131,49 @@ namespace Domain.Models
                     break;
             }
 
-            if (changePassword.NewPassword != changePassword.ConfirmedNewPassword)
+            _user = new Common.Models.User(user.Username, user.Email, user.Timezone, user.Locale, true);
+            user.HashedPassword = HashPassword(_user, changePassword.NewPassword);
+            var updatedUser = await _storage.UpdateAsync(user);
+            return;
+        }
+
+        public async Task ResetPasswordRequest(ResetPasswordRequestDto resetPasswordRequest)
+        {
+            var user = await _storage.FindAsync(m => m.Email == resetPasswordRequest.Email);
+            if (user == null)
+            {
+                return;
+            }
+
+            user.ResetPasswordToken = TokenHelper.GenerateToken().Replace("/", "");
+            user.ResetPasswordTokenExpiresAt = DateTimeOffset.Now.AddMinutes(30);
+            await _storage.UpdateAsync(user);
+            var notification = new NotificationDto(user.Id);
+            await _notifier.SendPasswordResetNotificationAsync(notification);
+        }
+
+        public async Task ResetPassword(ResetPasswordDto resetPassword)
+        {
+            var user = await _storage.FindAsync(m => m.ResetPasswordToken == resetPassword.ValidationToken);
+            if (user == null)
+            {
+                throw new AuthenticationException(ExceptionMessage.InvalidPasswordResetToken);
+            }
+
+            if(DateTimeOffset.Compare(DateTimeOffset.UtcNow, user.ResetPasswordTokenExpiresAt) > 0)
+            {
+                throw new AuthenticationException(ExceptionMessage.PasswordResetTokenExpired);
+            }
+
+            if (resetPassword.NewPassword != resetPassword.ConfirmNewPassword)
             {
                 throw new AuthenticationException(ExceptionMessage.NonMatchingPasswords);
             }
 
             _user = new Common.Models.User(user.Username, user.Email, user.Timezone, user.Locale, true);
-            user.HashedPassword = HashPassword(_user, changePassword.NewPassword);
+            user.HashedPassword = HashPassword(_user, resetPassword.NewPassword);
+            // invalidate token after initial use
+            user.ResetPasswordTokenExpiresAt = DateTimeOffset.MinValue;
             var updatedUser = await _storage.UpdateAsync(user);
             return;
         }
