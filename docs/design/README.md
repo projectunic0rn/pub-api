@@ -1,4 +1,8 @@
-## Design Document
-### Entity Relationship Diagram
+# Design Doc
 
-![Project Unicorn Entity Relationship Diagram](../images/pub-erd.png)
+## Pub System Architecture
+![Project Unicorn Entity Relationship Diagram](../images/pub.png)
+
+## Generated Database Graph
+
+![Project Unicorn Entity Relationship Diagram](../images/generated-database-graph.png)

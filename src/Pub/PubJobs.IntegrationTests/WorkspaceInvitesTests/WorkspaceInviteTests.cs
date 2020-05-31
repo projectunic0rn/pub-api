@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 using Common.Services;
 using Xunit;
@@ -36,7 +36,7 @@ namespace PubJobs.IntegrationTests.WorkspaceInvitesTests
         {
             //Arrange
             DiscordService _workspaceService = new DiscordService();
-            string inviteLink = "https://discordapp.com/invite/s7x5M4T";
+            string inviteLink = "https://discord.gg/GmurfHD";
             //Act
             var result = await _workspaceService.GetInviteStatus(inviteLink);
             //Assert
