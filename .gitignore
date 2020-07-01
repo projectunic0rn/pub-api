@@ -360,3 +360,5 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/visualstudio
 coverage*
+
+.DS_Store
