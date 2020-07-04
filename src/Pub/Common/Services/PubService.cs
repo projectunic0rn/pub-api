@@ -1,6 +1,4 @@
-﻿using System;
-using Common.AppSettings;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.DTOs;
 

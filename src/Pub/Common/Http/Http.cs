@@ -4,7 +4,6 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Newtonsoft.Json;
-using System.Linq; 
 
 namespace Common.Http
 {
@@ -30,8 +29,13 @@ namespace Common.Http
             return;
         }
 
-        public async Task Get(string requestUri, Dictionary<string, string> headers)
+        public async Task Get(string requestUri, Dictionary<string, string> headers = null)
         {
+            if (headers == null)
+            {
+                headers = new Dictionary<string, string>();
+            }
+
             HttpRequestMessage httpRequestMessage = BuildRequestMessage(HttpMethod.Get, requestUri);
 
             foreach (var header in headers)
@@ -44,8 +48,13 @@ namespace Common.Http
         }
 
 
-        public async Task<string> GetHtml(string requestUri, Dictionary<string, string> headers)
+        public async Task<string> GetHtml(string requestUri, Dictionary<string, string> headers = null)
         {
+            if (headers == null)
+            {
+                headers = new Dictionary<string, string>();
+            }
+
             HttpRequestMessage httpRequestMessage = BuildRequestMessage(HttpMethod.Get, requestUri);
 
             foreach (var header in headers)
@@ -57,8 +66,13 @@ namespace Common.Http
             return response;
         }
 
-        public async Task<T> Get<T>(string requestUri, Dictionary<string, string> headers)
+        public async Task<T> Get<T>(string requestUri, Dictionary<string, string> headers = null)
         {
+            if (headers == null)
+            {
+                headers = new Dictionary<string, string>();
+            }
+
             HttpRequestMessage httpRequestMessage = BuildRequestMessage(HttpMethod.Get, requestUri);
 
             foreach (var header in headers)
@@ -69,8 +83,13 @@ namespace Common.Http
             return await MakeRequestAsync<T>(httpRequestMessage);
         }
 
-        public async Task<T> Put<T>(string requestUri, Dictionary<string, string> headers)
+        public async Task<T> Put<T>(string requestUri, Dictionary<string, string> headers = null)
         {
+            if (headers == null)
+            {
+                headers = new Dictionary<string, string>();
+            }
+
             HttpRequestMessage httpRequestMessage = BuildRequestMessage(HttpMethod.Put, requestUri);
 
             foreach (var header in headers)
@@ -92,9 +111,14 @@ namespace Common.Http
 
             return await MakeRequestAsync<T>(httpRequestMessage);
         }
-        
-        public async Task<T> Post<T>(string requestUri, Dictionary<string, string> headers)
+
+        public async Task<T> Post<T>(string requestUri, Dictionary<string, string> headers = null)
         {
+            if (headers == null)
+            {
+                headers = new Dictionary<string, string>();
+            }
+
             HttpRequestMessage httpRequestMessage = BuildRequestMessage(HttpMethod.Post, requestUri);
 
             foreach (var header in headers)
@@ -117,8 +141,13 @@ namespace Common.Http
             return await MakeRequestAsync<T>(httpRequestMessage);
         }
 
-        public async Task Post(string requestUri, Dictionary<string, string> headers)
+        public async Task Post(string requestUri, Dictionary<string, string> headers = null)
         {
+            if (headers == null)
+            {
+                headers = new Dictionary<string, string>();
+            }
+
             HttpRequestMessage httpRequestMessage = BuildRequestMessage(HttpMethod.Post, requestUri);
 
             foreach (var header in headers)

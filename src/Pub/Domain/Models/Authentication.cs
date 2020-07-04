@@ -26,6 +26,7 @@ namespace Domain.Models
         private readonly IStorage<UserEntity> _storage;
         private readonly PasswordHasher<Common.Models.User> _passwordHasher;
         private readonly INotifier _notifier;
+
         public Authentication(INotifier notifier)
         {
             _user = new Common.Models.User();

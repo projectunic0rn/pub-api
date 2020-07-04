@@ -20,6 +20,8 @@ using Common.Exceptions;
 using API.AuthScheme;
 using API.ApiKeys;
 using Microsoft.AspNetCore.Authorization;
+using Common.Services;
+using System.Collections.Generic;
 
 namespace API
 {
@@ -29,6 +31,7 @@ namespace API
         private readonly ILogger<MessageQueue> _mqLogger;
         private readonly string _apiName = AppSettings.ApiName;
         private readonly string _apiVersion = AppSettings.ApiV1;
+        private readonly Dictionary<string, string> _workspaceAppUrls;
         private Settings _settings { get; set; }
 
         public Startup(IConfiguration configuration, ILogger<Startup> logger, ILogger<MessageQueue> mqLogger)
@@ -36,6 +39,10 @@ namespace API
             Configuration = configuration;
             _logger = logger;
             _mqLogger = mqLogger;
+            _workspaceAppUrls = Configuration["ASPNETCORE_ENVIRONMENT"] == "Production" ?
+                new Dictionary<string, string> { { "slack", "https://pub-slack-workspace.azurewebsites.net" }, { "discord", "https://pub-discord-workspace.azurewebsites.net" } } 
+                :
+                new Dictionary<string, string> { { "slack", "https://pub-slack-workspace-test.azurewebsites.net" }, { "discord", "https://pub-discord-workspace-test.azurewebsites.net" } };
         }
 
         public IConfiguration Configuration { get; }
@@ -99,6 +106,7 @@ namespace API
             services.AddSingleton<IFetchApiKey, ApiKeysStore>(provider => new ApiKeysStore(AppSettings.ApiKey));
             services.AddSingleton<IMessageQueue, MessageQueue>(provider => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName, _mqLogger));
             services.AddSingleton<IMailConfigStorage, MailConfigStorage>(provider => new MailConfigStorage(AppSettings.TableStorageConnectionString, AppSettings.StorageTableName));
+            services.AddSingleton(provider => new WorkspaceAppService(_workspaceAppUrls));
             InitializeSettings();
         }
 

@@ -154,6 +154,17 @@ namespace MailEngine.Config
                         NextSend = DateTimeOffset.UnixEpoch
                      }
                 },
+                {
+                    "ProjectPostedMessage",
+                    new MailConfigDto {
+                        Name = "ProjectPostedMessage",
+                        Type = MailType.Transactional,
+                        TemplateId = "d-376a90b290c440e98b8c6381ffd10dba",
+                        IntervalSeconds = 0,
+                        LastSend = DateTimeOffset.UnixEpoch,
+                        NextSend = DateTimeOffset.UnixEpoch
+                     }
+                },
             };
         }
     }
