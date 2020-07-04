@@ -23,9 +23,16 @@ namespace PubJobs
 {
     public class Startup
     {
+        private readonly Dictionary<string, string> _workspaceAppUrls;
+
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            _workspaceAppUrls = Configuration["ASPNETCORE_ENVIRONMENT"] == "Production" ?
+                new Dictionary<string, string> { { "slack", "https://pub-slack-workspace.azurewebsites.net" }, { "discord", "https://pub-discord-workspace.azurewebsites.net" } }
+                :
+                new Dictionary<string, string> { { "slack", "https://pub-slack-workspace-test.azurewebsites.net" }, { "discord", "https://pub-discord-workspace-test.azurewebsites.net" } };
+
         }
 
         public IConfiguration Configuration { get; }
@@ -46,6 +53,7 @@ namespace PubJobs
                 return new MessageQueue(_settings.ServiceBusConnectionString, _settings.ServiceBusQueueName, logger);
             });
             services.AddSingleton<IMailConfigStorage, MailConfigStorage>(provider => new MailConfigStorage(_settings.TableStorageConnectionString, _settings.StorageTableName));
+            services.AddSingleton(provider => new WorkspaceAppService(_workspaceAppUrls));
 
             services.AddHostedService<HideDeadProjects>();
             ValidateSettings();

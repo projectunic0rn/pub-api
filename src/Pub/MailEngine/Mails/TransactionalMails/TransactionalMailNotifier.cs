@@ -10,6 +10,7 @@ using MailEngine.Persistence.Entities;
 using MailEngine.Utility;
 using Mailer.Services;
 using Microsoft.Extensions.Logging;
+using Common.Services;
 
 namespace MailEngine.Mails.ScheduledMails
 {
@@ -20,11 +21,11 @@ namespace MailEngine.Mails.ScheduledMails
         private readonly TransactionalMailHelper _transactionalMailHelper;
         private readonly MailValidation _mailValidation;
 
-        public TransactionalMailNotifier(ILogger<TransactionalMailNotifier> logger, IMessageQueue messageQueue, IMailConfigStorage mailConfigStorage, Settings settings)
+        public TransactionalMailNotifier(ILogger<TransactionalMailNotifier> logger, IMessageQueue messageQueue, IMailConfigStorage mailConfigStorage, Settings settings, WorkspaceAppService workspaceAppService)
         {
             _logger = logger;
             _messageQueue = messageQueue;
-            _transactionalMailHelper = new TransactionalMailHelper(new SendGridService(), mailConfigStorage);
+            _transactionalMailHelper = new TransactionalMailHelper(new SendGridService(), mailConfigStorage, workspaceAppService);
             _mailValidation = new MailValidation(new Storage<SendTrackingEntity>(settings.TableStorageConnectionString, settings.MailTrackingTableName));
         }
 
@@ -69,6 +70,15 @@ namespace MailEngine.Mails.ScheduledMails
         {
             _logger.LogInformation($"Sending password reset notification...");
             EmailMessage emailMessage = await _transactionalMailHelper.PreparePasswordResetMail(notification);
+            await _messageQueue.SendMessageAsync(emailMessage);
+            return;
+        }
+
+        public async Task SendProjectPostedNotificationAsync(NotificationDto notification)
+        {
+            _logger.LogInformation($"Sending project posted notification...");
+            ProjectDto project = notification.NotificationObject as ProjectDto;
+            EmailMessage emailMessage = await _transactionalMailHelper.PrepareProjectPostedMail(notification, project);
             await _messageQueue.SendMessageAsync(emailMessage);
             return;
         }

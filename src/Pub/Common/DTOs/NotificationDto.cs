@@ -10,9 +10,14 @@ namespace Common.DTOs
             Content = content;
         }
 
-        public NotificationDto(Guid? notifierId)
+        /// <summary>
+        /// New up NotificationDto object with the Guid Id
+        /// of the member being notified.
+        /// </summary>
+        /// <param name="notificantId">guid id of member being notified</param>
+        public NotificationDto(Guid? notificantId)
         {
-            NotificantId = notifierId;
+            NotificantId = notificantId;
         }
 
         public string Content { get; set; }

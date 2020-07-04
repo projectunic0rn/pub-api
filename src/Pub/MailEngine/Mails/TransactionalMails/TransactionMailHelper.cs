@@ -5,6 +5,7 @@ using Common.AppSettings;
 using Common.Contracts;
 using Common.DTOs;
 using Common.DTOs.MailDTOs;
+using Common.Services;
 using Infrastructure.Persistence.Entities;
 using MailEngine.Config;
 using MailEngine.DTOs;
@@ -20,14 +21,16 @@ namespace MailEngine.Mails.ScheduledMails
         private EmailAddress _fromAddress;
         private readonly IStorage<UserEntity> _userStorage;
         private readonly string _testEmailIndicator;
+        private readonly WorkspaceAppService _workspaceAppService;
 
-        public TransactionalMailHelper(SendGridService sendGridService, IMailConfigStorage mailConfigStorage)
+        public TransactionalMailHelper(SendGridService sendGridService, IMailConfigStorage mailConfigStorage, WorkspaceAppService workspaceAppService)
         {
             _fromAddress = new EmailAddress("Team at Project Unicorn", "team@projectunicorn.dev");
             _testEmailIndicator = AppSettings.Env == "Staging" || AppSettings.Env == "Development" ? "[TEST EMAIL] " : "";
             _sendGridService = sendGridService;
             _mailConfig = new MailConfig(mailConfigStorage);
             _userStorage = new UserEntity();
+            _workspaceAppService = workspaceAppService;
         }
 
         public async Task<EmailMessage> PrepareFeedbackMail(NotificationDto notification)
@@ -131,9 +134,10 @@ namespace MailEngine.Mails.ScheduledMails
 
             return emailMessage;
         }
+
         public async Task<EmailMessage> PreparePasswordResetMail(NotificationDto notification)
         {
-            UserEntity user = (await _userStorage.FindAsync(u => u.Id == notification.NotificantId));
+            UserEntity user = await _userStorage.FindAsync(u => u.Id == notification.NotificantId);
             string notificantEmail = user.Email;
             string resetToken = user.ResetPasswordToken;
 
@@ -151,6 +155,40 @@ namespace MailEngine.Mails.ScheduledMails
 
             string htmlContent = activeTemplate.HtmlContent.Replace("{{passwordResetToken}}", Uri.EscapeDataString(resetToken));
             string plainTextContent = activeTemplate.PlainContent.Replace("{{passwordResetToken}}", Uri.EscapeDataString(resetToken));
+            emailMessage.MailContent.Add("text/html", htmlContent);
+            emailMessage.MailContent.Add("text/plain", plainTextContent);
+
+            return emailMessage;
+        }
+
+        public async Task<EmailMessage> PrepareProjectPostedMail(NotificationDto notification, ProjectDto project)
+        {
+            UserEntity user = await _userStorage.FindAsync(u => u.Id == notification.NotificantId);
+            string notificantEmail = user.Email;
+
+            EmailMessage emailMessage = new EmailMessage();
+            string mailName = "ProjectPostedMessage";
+            MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
+            SendGridTemplateDto template = await _sendGridService.GetMailTemplate(mailConfigDto.TemplateId);
+            DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
+
+            // Get workspace install url
+            string workspaceType = project.CommunicationPlatform;
+            string installUrl = await _workspaceAppService.GetInstallUrl(workspaceType);
+
+            EmailAddress fromAddress = _fromAddress;
+            EmailAddress toAddress = new EmailAddress("", notificantEmail);
+            emailMessage.FromAddresses.Add(fromAddress);
+            emailMessage.ToAddresses.Add(toAddress);
+            emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
+
+            string htmlContent = activeTemplate.HtmlContent
+                .Replace("{{workspaceType}}", workspaceType)
+                .Replace("{{workspaceAppInstallUrl}}", installUrl);
+            string plainTextContent = activeTemplate.PlainContent
+                .Replace("{{workspaceType}}", workspaceType)
+                .Replace("{{workspaceAppInstallUrl}}", installUrl);
+
             emailMessage.MailContent.Add("text/html", htmlContent);
             emailMessage.MailContent.Add("text/plain", plainTextContent);
 

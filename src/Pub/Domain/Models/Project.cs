@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using Common.Contracts;
@@ -17,15 +18,17 @@ namespace Domain.Models
         private readonly ProjectEntity _projectStorage;
         private readonly IStorage<ProjectTypeEntity> _projectTypeStorage;
         private readonly IStorage<CommunicationPlatformTypeEntity> _communicationPlatformTypeStorage;
-        
-        public Project()
+        private readonly INotifier _notifier;
+
+        public Project(INotifier notifier)
         {
             _projectStorage = new ProjectEntity();
             _projectTypeStorage = new ProjectTypeEntity();
             _communicationPlatformTypeStorage = new CommunicationPlatformTypeEntity();
             _mapper = new InitializeMapper().GetMapper;
+            _notifier = notifier;
         }
-        
+
         public int Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
@@ -60,6 +63,15 @@ namespace Domain.Models
             await ValidateProject(project);
             var mappedEntity = _mapper.Map<ProjectEntity>(project);
             ProjectEntity createdProject = await _projectStorage.CreateAsync(mappedEntity);
+
+            // By default when project is created, there is only 1 ProjectUser
+            // the user that created the project aka project owner.
+            var projectOwner = project.ProjectUsers.First();
+            var notificationDto = new NotificationDto(projectOwner.UserId)
+            {
+                NotificationObject = project
+            };
+            await _notifier.SendProjectPostedNotificationAsync(notificationDto);
             return _mapper.Map<ProjectDto>(createdProject);
         }
 
