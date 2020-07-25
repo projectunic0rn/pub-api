@@ -59,7 +59,8 @@ namespace MailEngine
             || AppSettings.SendGridTemplatesApiKey == null
             || AppSettings.MainUrl == null
             || AppSettings.TableStorageConnectionString == null
-            || AppSettings.StorageTableName == null)
+            || AppSettings.StorageTableName == null
+            || AppSettings.Env == null)
             {
                 throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);
             }
