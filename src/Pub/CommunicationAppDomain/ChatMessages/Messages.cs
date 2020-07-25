@@ -26,13 +26,13 @@ namespace CommunicationAppDomain.ChatMessages
 
         public static string DeveloperRecommendationsBasedOnSkillsMessage(string slackId)
         {
-            string message = $"here's a few devs you can DM based on tech you mentioned. They all joined for similar reasons so don't hesitate to reach out to them and ask if they'd like to collaborate with you.\n";
+            string message = $"<@{slackId}>, here's a few devs you can DM based on tech you mentioned. They all joined for similar reasons so don't hesitate to reach out to them and ask if they'd like to collaborate with you.\n";
             return message;
         }
 
         public static string ProjectRecommendationsBasedOnSkillsMessage(string slackId)
         {
-            string message = $"here are some projects you can check out based on tech you mentioned. If you're looking for collaborators to help you on your project or want to start your own you can post it on our UI and I will share it with other devs that join this group. Get to the UI using the slack command `/magic-login-link`.\n\n";
+            string message = $"<@{slackId}>, here are some projects you can check out based on tech you mentioned. If you're looking for collaborators to help you on your project or want to start your own you can post it on our UI and I will share it with other devs that join this group. Get to the UI using the slack command `/magic-login-link`.\n\n";
             return message;
         }
     }

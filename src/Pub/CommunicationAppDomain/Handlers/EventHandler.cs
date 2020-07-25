@@ -235,8 +235,6 @@ namespace CommunicationAppDomain.Handlers
         private Dictionary<string, List<string>> FindRecommendations(List<List<string>> powerset, ILookup<string, string> itemsLookups)
         {
             Dictionary<string, List<string>> recommendations = new Dictionary<string, List<string>>();
-            int currentRecommendationsCount = 0;
-            int totalRecommendationsCount = 5;
 
             foreach (var set in powerset)
             {
@@ -262,13 +260,7 @@ namespace CommunicationAppDomain.Handlers
                     if ((set.Intersect(technologyList)).Count() == setLength)
                     {
                         memberList.Add(memberId);
-                        currentRecommendationsCount++;
                     }
-                }
-
-                if (currentRecommendationsCount == totalRecommendationsCount)
-                {
-                    break;
                 }
             }
 
