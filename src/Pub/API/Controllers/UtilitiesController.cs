@@ -60,7 +60,6 @@ namespace API.Controllers
             }
             catch (Exception e)
             {
-                // TODO: Update Exception type. Catch failed email sent, pass to bus/queue to re-try mailing later
                 errorResponse.Data = new ErrorDto(e.Message);
                 return BadRequest(errorResponse);
             }
