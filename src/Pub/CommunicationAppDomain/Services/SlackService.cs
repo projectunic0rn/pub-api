@@ -24,9 +24,9 @@ namespace CommunicationAppDomain.Services
             return slackUserInfoDto;
         }
 
-        public async Task<SlackChatMessageDto> ChatPostMessage(string channelId, string text, bool asUser = false)
+        public async Task<SlackChatMessageDto> ChatPostMessage(string channelId, string text, bool asUser = false, bool unfurl_links = true)
         {
-            var chatMessageDto = await _http.Post<SlackChatMessageDto>($"{_baseUri}/chat.postMessage?token={_slackAuthToken}&channel={channelId}&text={text}&as_user={asUser}", headers);
+            var chatMessageDto = await _http.Post<SlackChatMessageDto>($"{_baseUri}/chat.postMessage?token={_slackAuthToken}&channel={channelId}&text={text}&as_user={asUser}&unfurl_links={unfurl_links}", headers);
             return chatMessageDto;
         }
 

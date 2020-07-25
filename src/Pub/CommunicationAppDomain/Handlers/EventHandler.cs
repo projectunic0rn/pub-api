@@ -222,13 +222,13 @@ namespace CommunicationAppDomain.Handlers
                 foreach (var projectId in recommendation.Value)
                 {
                     var project = projects.Find(p => p.Id.ToString() == projectId);
-                    projectRecommendationList = $"{techList}{projectRecommendationList}\nProject: {project.ProjectName}\nDescription: {project.ProjectDescription}\nWorkspace: {project.ProjectWorkspaceLink}\n\n";
+                    projectRecommendationList = $"{projectRecommendationList}\nProject: {project.ProjectName}\nDescription: {project.ProjectDescription}\nWorkspace: {project.ProjectWorkspaceLink}\n\n";
                 }
 
-                message = $"{message}{projectRecommendationList}";
+                message = $"{message}{techList}{projectRecommendationList}";
             }
 
-            await _slackService.ChatPostMessage(workspaceMemberId, message, true);
+            await _slackService.ChatPostMessage(workspaceMemberId, message, true, false);
             return;
         }
 
