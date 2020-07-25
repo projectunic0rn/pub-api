@@ -8,7 +8,6 @@ using MailEngine.Mails.ScheduledMails;
 using Common.Contracts;
 using Common.Exceptions;
 using Infrastructure.Messaging;
-using System.Collections.Generic;
 using Infrastructure.Persistence.TableStorage;
 
 namespace MailEngine
@@ -39,7 +38,7 @@ namespace MailEngine
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
         }
 

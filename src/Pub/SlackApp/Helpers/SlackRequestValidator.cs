@@ -17,9 +17,24 @@ namespace SlackApp.Helpers
         private readonly string _versionNumber = "v0";
         private readonly string _slackSigningSecret = AppSettings.SlackSigningSecret;
 
+        public SlackRequestValidator()
+        {
+
+        }
+
+        /// <summary>
+        /// Constructor which takes slack signing secret
+        /// for testing purposes.
+        /// </summary>
+        public SlackRequestValidator(string slackSigningSecret)
+        {
+            _slackSigningSecret = slackSigningSecret;
+        }
+
         public async Task<bool> IsValid(HttpRequest request)
         {
             string body = string.Empty;
+            request.EnableBuffering();
             if (request.HasFormContentType)
             {
                 foreach (var key in request.Form.Keys)

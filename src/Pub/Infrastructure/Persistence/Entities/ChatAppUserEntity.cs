@@ -3,9 +3,11 @@ using System.Threading.Tasks;
 using System.Collections.Generic;
 using Common.Contracts;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Linq.Expressions;
 using Common.AppSettings;
 using System.ComponentModel.DataAnnotations.Schema;
+using Infrastructure.Persistence.Entities;
 
 namespace Infrastructure.Persistence.Entities
 {
@@ -66,6 +68,23 @@ namespace Infrastructure.Persistence.Entities
             _context.ChatAppUsers.Update(item);
             await _context.SaveChangesAsync();
             return item;
+        }
+
+        public async Task<List<DeveloperTechnologies>> GetDeveloperTechnologiesAsync(params string[] technologyNames)
+        {
+            var query = from c in _context.Set<ChatAppUserEntity>()
+            join t in _context.Set<TechnologyEntity>()
+                on c.UserId equals t.UserId 
+                where technologyNames.Contains(t.Name)
+            select new DeveloperTechnologies
+            {
+                CreatedAt = t.CreatedAt,
+                Name = t.Name,
+                WorkspaceMemberId = c.WorkspaceMemberId
+            };
+
+            var entities = await query.ToListAsync();
+            return entities;
         }
     }
 }

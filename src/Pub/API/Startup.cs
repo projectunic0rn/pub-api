@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 using Swashbuckle.AspNetCore.Swagger;
 using Common.Contracts;
 using Domain.Models;
@@ -22,6 +23,7 @@ using API.ApiKeys;
 using Microsoft.AspNetCore.Authorization;
 using Common.Services;
 using System.Collections.Generic;
+using Microsoft.OpenApi.Models;
 
 namespace API
 {
@@ -61,10 +63,10 @@ namespace API
                     });
             });
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            services.AddControllers().AddNewtonsoftJson();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new Info { Title = $"{_apiName}", Version = $"{_apiVersion}" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = $"{_apiName}", Version = $"{_apiVersion}" });
             });
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
@@ -111,7 +113,7 @@ namespace API
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -133,8 +135,15 @@ namespace API
                 c.RoutePrefix = string.Empty;
             });
 
+            app.UseRouting();
+
             app.UseAuthentication();
-            app.UseMvc();
+            app.UseAuthorization();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
 
         private void InitializeSettings()

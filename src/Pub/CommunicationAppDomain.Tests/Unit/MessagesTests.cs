@@ -2,7 +2,7 @@ using System;
 using Xunit;
 using CommunicationAppDomain.ChatMessages;
 
-namespace UnitTests
+namespace CommunicationAppDomain.Tests.Unit
 {
     public class MessagesTest
     {

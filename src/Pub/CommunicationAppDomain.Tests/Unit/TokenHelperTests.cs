@@ -1,9 +1,8 @@
-using Xunit;
-using CommunicationAppDomain.Utilities;
-using System.Collections.Generic;
 using System;
+using CommunicationAppDomain.Utilities;
+using Xunit;
 
-namespace UnitTests
+namespace CommunicationAppDomain.Tests.Unit
 {
     public class TokenHelperTests
     {

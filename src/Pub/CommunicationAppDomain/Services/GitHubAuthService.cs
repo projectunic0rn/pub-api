@@ -56,7 +56,7 @@ namespace CommunicationAppDomain.Services
         {
             RsaSecurityKey privateKey;
             RSA privateRsa = RSA.Create();
-            RSAKeyExtensions.FromXmlString(privateRsa, _githubRSAPrivateKey);
+            privateRsa.FromXmlString(_githubRSAPrivateKey);
             privateKey = new RsaSecurityKey(privateRsa);
             var creds = new SigningCredentials(privateKey, SecurityAlgorithms.RsaSha256);
 

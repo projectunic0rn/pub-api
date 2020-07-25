@@ -6,6 +6,6 @@ namespace Common.Contracts
 {
     public interface IChatAppCommandHandler
     {
-        Task<SlackCommandResponseDto> ProcessCommand(SlackCommandDto slackCommandDto);
+        Task ProcessCommand(SlackCommandDto slackCommandDto);
     }
 }

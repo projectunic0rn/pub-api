@@ -8,7 +8,7 @@ namespace Common.AppSettings
     public static class AppSettings
     {
         // API
-        public static string ApiV1 { get; } = "v1.0.6";
+        public static string ApiV1 { get; } = "v1.0.7";
         public static string ApiName { get; } = "Pub";
         public static string Env { get; set; } = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT", EnvironmentVariableTarget.Process);
         public static string JwtAudience { get; set; } = Environment.GetEnvironmentVariable("JwtAudience", EnvironmentVariableTarget.Process);
@@ -23,6 +23,8 @@ namespace Common.AppSettings
         public static string MainUrl { get; set; } = Environment.GetEnvironmentVariable("MainUrl", EnvironmentVariableTarget.Process);
         public static string SlackSigningSecret { get; set; } = Environment.GetEnvironmentVariable("SlackSigningSecret", EnvironmentVariableTarget.Process);
         public static string IntroductionChannelId { get; set; } = Environment.GetEnvironmentVariable("IntroductionChannelId", EnvironmentVariableTarget.Process);
+        public static string PrivateIntroChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateIntroChannelId", EnvironmentVariableTarget.Process);
+        public static string PrivateRegistrationChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateRegistrationChannelId", EnvironmentVariableTarget.Process);
         public static string SlackAuthToken { get; set; } = Environment.GetEnvironmentVariable("SlackAuthToken", EnvironmentVariableTarget.Process);
         public static string GitHubOrganization { get; set; } = Environment.GetEnvironmentVariable("GitHubOrganization", EnvironmentVariableTarget.Process);
         public static string GitHubAppId { get; set; } = Environment.GetEnvironmentVariable("GitHubAppId", EnvironmentVariableTarget.Process);
@@ -37,5 +39,7 @@ namespace Common.AppSettings
         public static string ServiceBusQueueName { get; set; } = Environment.GetEnvironmentVariable("ServiceBusQueueName", EnvironmentVariableTarget.Process);
         public static string TableStorageConnectionString { get; set; } = Environment.GetEnvironmentVariable("TableStorageConnectionString", EnvironmentVariableTarget.Process);
         public static string StorageTableName { get; set; } = Environment.GetEnvironmentVariable("StorageTableName", EnvironmentVariableTarget.Process);
+
+        //
     }
 }

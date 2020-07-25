@@ -1,7 +1,8 @@
-using Xunit;
+using System;
 using Common.Models;
+using Xunit;
 
-namespace UnitTests
+namespace Common.Tests.Unit
 {
     public class UserTests
     {

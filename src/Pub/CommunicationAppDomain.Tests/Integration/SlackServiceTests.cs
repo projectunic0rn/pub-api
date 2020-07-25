@@ -1,8 +1,7 @@
 using System;
 using Xunit;
-using CommunicationAppDomain.Services;
 
-namespace UnitTests
+namespace CommunicationAppDomain.Tests.Integration
 {
     public class SlackServiceTests
     {
@@ -30,8 +29,6 @@ namespace UnitTests
             // Assert
         }
 
-
-
         [Fact]
         public void ChatPostMessage_FailedRequest_Throws()
         {
@@ -55,6 +52,5 @@ namespace UnitTests
             // Act
             // Assert
         }
-
     }
 }

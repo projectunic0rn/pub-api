@@ -7,6 +7,5 @@ namespace Common.Contracts
     public interface IChatAppEventHandler
     {
         Task ProcessEvent(SlackEventDto slackEventDto);
-        UrlVerificationResponseDto UrlVerification(SlackEventDto slackEventDto);
     }
 }

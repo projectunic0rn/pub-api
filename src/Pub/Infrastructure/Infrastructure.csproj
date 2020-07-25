@@ -1,16 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netcoreapp2.2</TargetFramework>
+        <TargetFramework>netcoreapp3.1</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.All">
-          <PrivateAssets Condition="'%(PackageReference.Version)' == ''">all</PrivateAssets>
-          <Publish Condition="'%(PackageReference.Version)' == ''">true</Publish>
-        </PackageReference>
-        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="2.1.4" />
-        <PackageReference Include="Microsoft.Azure.ServiceBus" Version="4.1.1" />
+        <PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="3.1.1" />
+        <PackageReference Include="Microsoft.Azure.ServiceBus" Version="4.1.3" />
         <PackageReference Include="WindowsAzure.Storage" Version="9.3.3" />
     </ItemGroup>
 

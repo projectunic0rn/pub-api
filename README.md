@@ -7,12 +7,8 @@
     <img src="https://dev.azure.com/project-unicorn/pub/_apis/build/status/projectunic0rn.pub-api?branchName=master" alt="Travis CI">
   </a>
 
-  <a href="https://codecov.io/gh/projectunic0rn/pub-api">
-    <img src="https://codecov.io/gh/projectunic0rn/pub-api/branch/master/graph/badge.svg" />
-  </a>
-
   <a href="https://projectunicorn.net/">
-    <img src="https://img.shields.io/badge/website-https://projectunicorn.net/-blue.svg" alt="Project Unicorn Blog">
+    <img src="https://img.shields.io/badge/website-https://projectunicorn.net/-blue.svg" alt="Project Unicorn">
   </a>
 </p>
 

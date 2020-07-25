@@ -17,6 +17,7 @@ namespace CommunicationAppDomain.Handlers
         private readonly IStorage<ProjectEntity> _projectStorage;
         private readonly IStorage<UserEntity> _userStorage;
         private readonly IStorage<ChatAppUserEntity> _chatAppUserStorage;
+        private readonly SlackService _slackService;
 
         public CommandHandler()
         {
@@ -25,35 +26,37 @@ namespace CommunicationAppDomain.Handlers
             _projectStorage = new ProjectEntity();
             _userStorage = new UserEntity();
             _chatAppUserStorage = new ChatAppUserEntity();
+            _slackService = new SlackService();
         }
 
-        public async Task<SlackCommandResponseDto> ProcessCommand(SlackCommandDto slackCommandDto)
+        public async Task ProcessCommand(SlackCommandDto slackCommandDto)
         {
             SlackCommandResponseDto slackCommandResponse = new SlackCommandResponseDto();
             switch (slackCommandDto.command)
             {
                 case "/projects":
-                    slackCommandResponse = await ProcessProjectsCommand(slackCommandDto);
+                    await ProcessProjectsCommand(slackCommandDto);
                     break;
                 case "/github-connect":
-                    slackCommandResponse = await ProcessGithubConnectCommand(slackCommandDto);
+                    await ProcessGithubConnectCommand(slackCommandDto);
                     break;
                 case "/magic-login-link":
-                    slackCommandResponse = await GenerateMagicLoginLink(slackCommandDto);
+                    await GenerateMagicLoginLink(slackCommandDto);
                     break;
             }
 
-            return slackCommandResponse;
+            return;
         }
 
-        private async Task<SlackCommandResponseDto> ProcessProjectsCommand(SlackCommandDto slackCommand)
+        private async Task ProcessProjectsCommand(SlackCommandDto slackCommand)
         {
             var projects = (await _projectStorage.FindAsync()).FindAll(p => p.LookingForMembers && p.Searchable);
             var slackCommandResponse = BuildProjectsResponse(projects);
-            return slackCommandResponse;
+            await _slackService.RespondViaResponsUrl(slackCommand.response_url, slackCommandResponse);
+            return;
         }
 
-        private async Task<SlackCommandResponseDto> ProcessGithubConnectCommand(SlackCommandDto slackCommand)
+        private async Task ProcessGithubConnectCommand(SlackCommandDto slackCommand)
         {
             string workspaceId = slackCommand.team_id;
             string workspaceMemberId = slackCommand.user_id;
@@ -72,14 +75,16 @@ namespace CommunicationAppDomain.Handlers
             catch
             {
                 slackCommandResponse.Text = "Sorry, something happened with our GitHub api call. :(\n Please try once more. If that doesn't work, reach out to <@UBW8QQG86> to be added manually.";
-                return slackCommandResponse;
+                await _slackService.RespondViaResponsUrl(slackCommand.response_url, slackCommandResponse);
+                return;
             }
 
             slackCommandResponse.Text = $"Success! You should have gotten an email with an invite to the GitHub org. You can also visit https://github.com/{_githubOrganization} to accept the invite.";
-            return slackCommandResponse;
+            await _slackService.RespondViaResponsUrl(slackCommand.response_url, slackCommandResponse);
+            return;
         }
 
-        private async Task<SlackCommandResponseDto> GenerateMagicLoginLink(SlackCommandDto slackCommand)
+        private async Task GenerateMagicLoginLink(SlackCommandDto slackCommand)
         {
             var linkExpirationInMinutes = 5;
             string token = TokenHelper.GenerateToken().Replace("/", "");
@@ -95,7 +100,8 @@ namespace CommunicationAppDomain.Handlers
             var slackCommandResponse = new SlackCommandResponseDto();
 
             slackCommandResponse.Text = $"Your magic login link expires in {linkExpirationInMinutes} minutes.\n\n {_mainUrl}/magic-login?token={Uri.EscapeDataString(token)}";
-            return slackCommandResponse;
+            await _slackService.RespondViaResponsUrl(slackCommand.response_url, slackCommandResponse);
+            return;
         }
 
         private SlackCommandResponseDto BuildProjectsResponse(List<ProjectEntity> projects)

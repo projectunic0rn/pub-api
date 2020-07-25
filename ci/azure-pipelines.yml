@@ -56,35 +56,6 @@ jobs:
     vmImage: 'ubuntu-latest'
   steps:
 
-  # install dotnet 2.2.x, remove once api migrated t0 3.x
-  - task: UseDotNet@2
-    displayName: 'Use .NET Core sdk'
-    inputs:
-      packageType: sdk
-      version: 2.2.x
-      installationPath: $(Agent.ToolsDirectory)/dotnet
-
-  - task: UseDotNet@2
-    displayName: 'Use .NET Core sdk'
-    inputs:
-      packageType: sdk
-      version: 3.1.x
-      installationPath: $(Agent.ToolsDirectory)/dotnet
-  
-  - task: CopyFiles@2
-    displayName: 'Copy Files to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      contents: '**/*'
-      targetFolder: $(Build.ArtifactStagingDirectory)
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
-
-  - task: PublishBuildArtifacts@1
-    displayName: 'Publish src to: $(Build.ArtifactStagingDirectory)'
-    inputs:
-      pathtoPublish: '$(Build.ArtifactStagingDirectory)' 
-      artifactName: 'deploy' 
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
-
   - script: dotnet restore src/Pub/
     displayName: 'dotnet restore'
 
@@ -92,8 +63,8 @@ jobs:
   - script: dotnet build -c $(buildConfiguration) src/Pub/ -o out
     displayName: 'dotnet build $(buildConfiguration)'
   
-  # Run test and generate code coverage
-  - script: dotnet test src/Pub/ --settings src/Pub/UnitTests/coverlet.runsettings.xml
+  # Run test projects and generate code coverage
+  - script: dotnet test src/Pub/ --settings src/Pub/coverlet.runsettings.xml
     displayName: 'dotnet test'
 
   # Upload code coverage report
@@ -111,34 +82,42 @@ jobs:
       command: login
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
-  - script: docker build --build-arg API_KEY="$(key)" --build-arg NETCORE_ENV="$(netCoreEnv)" --build-arg FEEDBACK_RECIPIENTS="$(feedbackEmails)" --build-arg CONNECTION_STRING="$(connectionString)" --build-arg JWT_SECRET_KEY="$(jwtSecret)" --build-arg JWT_AUDIENCE="$(audience)" --build-arg JWT_ISSUER="$(issuer)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg MAIL_TRACKING_TABLE_NAME="$(azStorageMailTrackingTableName)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" -t roymoran/pub-api:build -f ci/Dockerfile src/Pub
+  - script: docker build -t roymoran/pub-api -f ci/Dockerfile src/Pub
     displayName: 'build docker api image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     
-  - script: docker push roymoran/pub-api:build
+  - script: docker push roymoran/pub-api
     displayName: 'push api image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
-  - script: docker build --build-arg CONNECTION_STRING="$(connectionString)" --build-arg MAIN_URL="$(mUrl)" --build-arg SLACK_AUTH_TOKEN="$(authToken)" --build-arg SLACK_SIGNING_SECRET="$(signingSecret)" --build-arg GITHUB_APP_PRIVATE_RSA_KEY="$(ghPrivateRsaKey)" --build-arg GITHUB_APP_ID="$(ghAppId)" --build-arg GITHUB_APP_INSTALLATION_ID="$(ghAppInstallationId)" --build-arg GITHUB_ORGANIZATION="$(ghOrganization)" --build-arg INTRODUCTION_CHANNEL_ID="$(introChannelId)" --build-arg PRIVILEGED_MEMBERS="$(privileged)" -t roymoran/pub-slack-app:build -f ci/slackapp.Dockerfile src/Pub
+  - script: docker build -t roymoran/pub-slack-app -f ci/slackapp.Dockerfile src/Pub
     displayName: 'build docker slack app image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
-  - script: docker push roymoran/pub-slack-app:build
+  - script: docker push roymoran/pub-slack-app
     displayName: 'push slack app image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
-  - script: docker build --build-arg NETCORE_ENV="$(netCoreEnv)" --build-arg CONNECTION_STRING="$(connectionString)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" --build-arg MAIN_URL="$(mUrl)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" -t roymoran/pub-mail-engine:build -f ci/mailengine.Dockerfile src/Pub
+  - script: docker build -t roymoran/pub-mail-engine -f ci/mailengine.Dockerfile src/Pub
     displayName: 'build docker mail engine'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
-  - script: docker push roymoran/pub-mail-engine:build
+  - script: docker push roymoran/pub-mail-engine
     displayName: 'push mail engine image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
 
-  - script: docker build --build-arg NETCORE_ENV="$(netCoreEnv)" --build-arg CONNECTION_STRING="$(connectionString)" --build-arg PUB_API_ENDPOINT="$(pubEndpoint)" --build-arg API_KEY="$(key)" --build-arg SEND_GRID_TEMPLATES_API_KEY="$(sendGridTemplatesKey)" --build-arg TABLE_STORAGE_CONNECTION_STRING="$(azStorageConnectionString)" --build-arg MAIL_TRACKING_TABLE_NAME="$(azStorageMailTrackingTableName)" --build-arg STORAGE_TABLE_NAME="$(azStorageTableName)" --build-arg SERVICE_BUS_CONNECTION_STRING="$(sbConnectionString)" --build-arg SERVICE_BUS_QUEUE_NAME="$(sbQueueName)" -t roymoran/pubjobs:build -f ci/pubjobs.Dockerfile src/Pub
+  - script: docker build -t roymoran/pubjobs -f ci/pubjobs.Dockerfile src/Pub
     displayName: 'build pub jobs docker image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
     
-  - script: docker push roymoran/pubjobs:build
+  - script: docker push roymoran/pubjobs
     displayName: 'push docker image'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
+
+  - script: docker build -t roymoran/pub-slack-app-bot -f ci/slackappbot.Dockerfile src/Pub
+    displayName: 'build slack app bot docker image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))  
+    
+  - script: docker push roymoran/pub-slack-app-bot
+    displayName: 'push docker image'
+    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
