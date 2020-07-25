@@ -1,8 +1,7 @@
 using System;
 using Xunit;
-using CommunicationAppDomain.Handlers;
 
-namespace UnitTests
+namespace CommunicationAppDomain.Tests.Unit
 {
     public class EventHandlerTests
     {
@@ -61,6 +60,5 @@ namespace UnitTests
             // Act
             // Assert
         }
-
     }
 }

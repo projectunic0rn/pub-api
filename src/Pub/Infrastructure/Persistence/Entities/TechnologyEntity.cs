@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Common.Contracts;
 using Microsoft.EntityFrameworkCore;
@@ -17,7 +18,7 @@ namespace Infrastructure.Persistence.Entities
             var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
             optionsBuilder.UseMySql(AppSettings.ConnectionString);
             _context = new DatabaseContext(optionsBuilder.Options);
-
+            
             CreatedAt = DateTimeOffset.UtcNow;
             UpdatedAt = DateTimeOffset.UtcNow;
         }
@@ -76,6 +77,26 @@ namespace Infrastructure.Persistence.Entities
             _context.Technologies.Update(item);
             await _context.SaveChangesAsync();
             return item;
+        }
+
+        public async Task<List<ProjectTechnologies>> GetProjectTechnologiesAsync(params string[] technologyNames)
+        {
+            var query = from p in _context.Set<ProjectEntity>()
+                        join t in _context.Set<TechnologyEntity>()
+                        on p.Id equals t.ProjectId
+                        where p.Searchable && p.LookingForMembers && technologyNames.Contains(t.Name)
+                        select new ProjectTechnologies
+                        {
+                            Id = p.Id,
+                            ProjectName = p.Name,
+                            ProjectDescription = p.Description,
+                            ProjectWorkspaceLink = p.CommunicationPlatformUrl,
+                            TechnologyName = t.Name,
+                            CreatedAt = t.CreatedAt
+                        };
+
+            var entities = await query.ToListAsync();
+            return entities;
         }
     }
 }

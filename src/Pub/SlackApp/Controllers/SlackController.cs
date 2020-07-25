@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Common.Contracts;
 using Common.DTOs.SlackAppDTOs;
 using Microsoft.AspNetCore.Authorization;
@@ -16,14 +13,12 @@ namespace SlackApp.Controllers
     public class SlackController : ControllerBase
     {
         private SlackRequestValidator _slackRequestValidator;
-        private readonly IChatAppCommandHandler _commandHandler;
-        private readonly IChatAppEventHandler _eventHandler;
+        private readonly IMessageQueue _messageQueue;
 
-        public SlackController(IChatAppCommandHandler commandHandler, IChatAppEventHandler eventHandler)
+        public SlackController(IMessageQueue messageQueue)
         {
+            _messageQueue = messageQueue;
             _slackRequestValidator = new SlackRequestValidator();
-            _commandHandler = commandHandler;
-            _eventHandler = eventHandler;
         }
 
         // POST api/slack/event
@@ -37,16 +32,15 @@ namespace SlackApp.Controllers
 
                 if (eventType == "url_verification")
                 {
-                    var urlVerificationResponseDto = _eventHandler.UrlVerification(slackEventDto);
+                    var urlVerificationResponseDto = new UrlVerificationResponseDto { challenge = slackEventDto.Challenge };
                     return Ok(urlVerificationResponseDto);
                 }
 
-                await _eventHandler.ProcessEvent(slackEventDto);
+                await _messageQueue.SendMessageAsync(slackEventDto, "event");
                 return Ok();
             }
 
             return BadRequest();
-
         }
 
         // POST api/slack/command
@@ -55,8 +49,8 @@ namespace SlackApp.Controllers
         {
             if (await _slackRequestValidator.IsValid(Request))
             {
-                var response = await _commandHandler.ProcessCommand(slackCommandDto);
-                return Ok(response);
+                await _messageQueue.SendMessageAsync(slackCommandDto, "command");
+                return Ok();
             }
             return BadRequest();
         }

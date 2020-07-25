@@ -1,29 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using Common.AppSettings;
 using Common.Contracts;
-using CommunicationAppDomain.Handlers;
 using Common.Exceptions;
+using Infrastructure.Messaging;
 
 namespace SlackApp
 {
     public class Startup
     {
         private readonly ILogger _logger;
-        public Startup(IConfiguration configuration, ILogger<Startup> logger)
+        private readonly ILogger<MessageQueue> _mqLogger;
+        public Startup(IConfiguration configuration, ILogger<Startup> logger, ILogger<MessageQueue> mqLogger)
         {
             Configuration = configuration;
             _logger = logger;
+            _mqLogger = mqLogger;
             InitializeSettings();
         }
 
@@ -32,14 +29,19 @@ namespace SlackApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-            services.AddScoped<IChatAppEventHandler, CommunicationAppDomain.Handlers.EventHandler>();
-            services.AddScoped<IChatAppCommandHandler, CommandHandler>();
+            services.AddControllers().AddNewtonsoftJson();
+            services.AddScoped<IMessageQueue>((provider) => new MessageQueue(AppSettings.ServiceBusConnectionString, AppSettings.ServiceBusQueueName, _mqLogger));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.Use((context, next) =>
+            {
+                context.Request.EnableBuffering();
+                return next();
+            });
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -51,32 +53,23 @@ namespace SlackApp
                 app.UseHsts();
             }
 
-            app.UseMvc();
+            app.UseRouting();
+
+            app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
         }
 
         private void InitializeSettings()
         {
-            AppSettings.ConnectionString = Configuration["ConnectionString"];
-            AppSettings.MainUrl = Configuration["MainUrl"];
-            AppSettings.IntroductionChannelId = Configuration["IntroductionChannelId"];
             AppSettings.SlackSigningSecret = Configuration["SlackSigningSecret"];
-            AppSettings.SlackAuthToken = Configuration["SlackAuthToken"];
-            AppSettings.GitHubOrganization = Configuration["GithubOrganization"];
-            AppSettings.GitHubAppId = Configuration["GithubAppId"];
-            AppSettings.GitHubAppInstallationId = Configuration["GithubAppInstallationId"];
-            AppSettings.GitHubAppPrivateRSAKey = Configuration["GithubAppPrivateRSAKey"];
-            AppSettings.PrivilegedMembers = Configuration["PrivilegedMembers"];
+            AppSettings.ServiceBusConnectionString = Configuration["ServiceBusConnectionString"];
+            AppSettings.ServiceBusQueueName = Configuration["ServiceBusQueueName"];
 
-            if (AppSettings.ConnectionString == null
-            || AppSettings.MainUrl == null
-            || AppSettings.IntroductionChannelId == null
-            || AppSettings.SlackSigningSecret == null
-            || AppSettings.SlackAuthToken == null
-            || AppSettings.GitHubOrganization == null
-            || AppSettings.GitHubAppId == null
-            || AppSettings.GitHubAppInstallationId == null
-            || AppSettings.GitHubAppPrivateRSAKey == null
-            || AppSettings.PrivilegedMembers == null)
+            if (AppSettings.SlackSigningSecret == null
+            || AppSettings.ServiceBusConnectionString == null
+            || AppSettings.ServiceBusQueueName == null)
             {
                 throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);
             }

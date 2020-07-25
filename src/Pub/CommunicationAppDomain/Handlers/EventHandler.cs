@@ -14,27 +14,28 @@ using AutoMapper;
 using CommunicationAppDomain.MappingConfig;
 using Newtonsoft.Json;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace CommunicationAppDomain.Handlers
 {
     public class EventHandler : IChatAppEventHandler
     {
         private readonly IMapper _mapper;
-        private readonly string _githubOrganization;
-        private readonly string _frontendUrl;
         private readonly UserEntity _userStorage;
-        private readonly IStorage<ChatAppUserEntity> _chatAppUserStorage;
-        private readonly IStorage<TechnologyEntity> _technologiesStorage;
+        private readonly ChatAppUserEntity _chatAppUserStorage;
+        private readonly TechnologyEntity _technologiesStorage;
         private readonly PasswordHasher<User> _passwordHasher;
         private readonly SlackService _slackService;
         private readonly string _introductionChannelId;
+        private readonly string _privateIntroChannelId;
+        private readonly string _privateRegistrationChannelId;
         private readonly PrivilegedMembersDto _privilegedMembers;
 
         public EventHandler()
         {
-            _githubOrganization = AppSettings.GitHubOrganization;
-            _frontendUrl = AppSettings.JwtAudience;
             _introductionChannelId = AppSettings.IntroductionChannelId;
+            _privateIntroChannelId = AppSettings.PrivateIntroChannelId;
+            _privateRegistrationChannelId = AppSettings.PrivateRegistrationChannelId;
             _userStorage = new UserEntity();
             _chatAppUserStorage = new ChatAppUserEntity();
             _technologiesStorage = new TechnologyEntity();
@@ -42,12 +43,6 @@ namespace CommunicationAppDomain.Handlers
             _passwordHasher = new PasswordHasher<User>();
             _mapper = new InitializeMapper().GetMapper;
             _privilegedMembers = JsonConvert.DeserializeObject<PrivilegedMembersDto>(AppSettings.PrivilegedMembers);
-        }
-
-        public UrlVerificationResponseDto UrlVerification(SlackEventDto slackEventDto)
-        {
-            var urlVerificationResponseDto = new UrlVerificationResponseDto { challenge = slackEventDto.Challenge };
-            return urlVerificationResponseDto;
         }
 
         public async Task ProcessEvent(SlackEventDto slackEventDto)
@@ -95,6 +90,208 @@ namespace CommunicationAppDomain.Handlers
         }
 
         private async Task ProcessReactionAddedEvent(SlackEventFullDto<ReactionEventDto> slackEventDto)
+        {
+            string channelId = slackEventDto.Event.Item.Channel;
+            // process reaction event based on channel
+            if (channelId == _introductionChannelId)
+            {
+                await ProcessReactionIntroAddedEvent(slackEventDto);
+            }
+
+            if (channelId == _privateIntroChannelId)
+            {
+                await ProcessPrivateIntroReactionAddedEvent(slackEventDto);
+            }
+
+            if (channelId == _privateRegistrationChannelId)
+            {
+                await ProcessPrivateRegistrationReactionAddedEvent(slackEventDto);
+            }
+        }
+
+        private async Task ProcessPrivateIntroReactionAddedEvent(SlackEventFullDto<ReactionEventDto> slackEventDto)
+        {
+            string reaction = slackEventDto.Event.Reaction;
+
+            if (reaction == "developers")
+            {
+                string workspaceMemberId = await ParseMemberFromMessage(slackEventDto);
+                await ProcessDeveloperRecommendationsReaction(slackEventDto, workspaceMemberId);
+                return;
+            }
+
+            if (reaction == "projects")
+            {
+                string workspaceMemberId = await ParseMemberFromMessage(slackEventDto);
+                await ProcessProjectRecommendationsReaction(slackEventDto, workspaceMemberId);
+                return;
+            }
+
+            return;
+        }
+
+        private async Task ProcessRegistrationMessageReaction(SlackEventFullDto<ReactionEventDto> slackEventDto, string workspaceMemberId)
+        {
+            string message = Messages.OnboardingDm(workspaceMemberId);
+            await _slackService.ChatPostMessage(workspaceMemberId, message, true);
+            return;
+        }
+
+        private async Task ProcessDeveloperRecommendationsReaction(SlackEventFullDto<ReactionEventDto> slackEventDto, string workspaceMemberId)
+        {
+            string workspaceId = slackEventDto.TeamId;
+            UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
+            var userTechnologies = user.UserTechnologies.Select(t => t.Name);
+
+            // retrieve all slack member records with matching technologies
+            List<DeveloperTechnologies> technologies = await _chatAppUserStorage.GetDeveloperTechnologiesAsync(userTechnologies.ToArray());
+            // Remove self technologies and convert to lookup
+            technologies.RemoveAll(t => t.WorkspaceMemberId == workspaceMemberId);
+            if (technologies.Count == 0)
+            {
+                // no members with technologies, no
+                // recommendations available
+                await _slackService.ChatPostMessage(_privateIntroChannelId, $"no collaborator recommendations for <@{workspaceMemberId}> and tech {string.Join(", ", userTechnologies)}");
+                return;
+            }
+
+            var technologiesLookup = technologies.ToLookup(t => t.WorkspaceMemberId, t => t.Name);
+            // hashset used to filter out duplicates from list in order to generate powerset
+            var uniqueTechnologiesList = new HashSet<string>(technologies.Select(t => t.Name)).ToList();
+            List<List<string>> technologiesPowerSet = GeneratePowerSet(uniqueTechnologiesList);
+            string message = Messages.DeveloperRecommendationsBasedOnSkillsMessage(workspaceMemberId);
+            Dictionary<string, List<string>> developerRecommendations = FindRecommendations(technologiesPowerSet, technologiesLookup);
+
+            foreach (var recommendation in developerRecommendations)
+            {
+                if (recommendation.Value.Count == 0)
+                {
+                    // exclude the empty set
+                    continue;
+                }
+
+                string memberList = string.Empty;
+                foreach(var memberId in recommendation.Value)
+                {
+                    memberList = $"{memberList}\n<@{memberId}>";
+                }
+
+                string techList = $"\n{recommendation.Key}\n";
+                message = $"{message}{techList}{memberList}\n";
+            }
+
+            await _slackService.ChatPostMessage(workspaceMemberId, message, true);
+            return;
+        }
+
+        private async Task ProcessProjectRecommendationsReaction(SlackEventFullDto<ReactionEventDto> slackEventDto, string workspaceMemberId)
+        {
+            string workspaceId = slackEventDto.TeamId;
+            UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
+            var userTechnologies = user.UserTechnologies.Select(t => t.Name);
+
+            // retrieve all slack member records with matching technologies
+            List<ProjectTechnologies> projects = await _technologiesStorage.GetProjectTechnologiesAsync(userTechnologies.ToArray());
+            // Remove self technologies and convert to lookup
+            if (projects.Count == 0)
+            {
+                // no projects with associated technologies, 
+                // no project recommendations available
+                await _slackService.ChatPostMessage(_privateIntroChannelId, $"no project recommendations for <@{workspaceMemberId}> and tech {string.Join(", ", userTechnologies)}");
+                return;
+            }
+
+            var projectsLookup = projects.ToLookup(p => p.Id.ToString(), p => p.TechnologyName);
+            // hashset used to filter out duplicates from list in order to generate powerset
+            var uniqueTechnologiesList = new HashSet<string>(projects.Select(p => p.TechnologyName)).ToList();
+            List<List<string>> technologiesPowerSet = GeneratePowerSet(uniqueTechnologiesList);
+            string message = Messages.ProjectRecommendationsBasedOnSkillsMessage(workspaceMemberId);
+            Dictionary<string, List<string>> projectRecommendations = FindRecommendations(technologiesPowerSet, projectsLookup);
+
+            foreach (var recommendation in projectRecommendations)
+            {
+                if (recommendation.Value.Count == 0)
+                {
+                    // exclude the empty set
+                    continue;
+                }
+
+                string techList = $"{recommendation.Key}\n";
+                string projectRecommendationList = string.Empty;
+
+                foreach (var projectId in recommendation.Value)
+                {
+                    var project = projects.Find(p => p.Id.ToString() == projectId);
+                    projectRecommendationList = $"{techList}{projectRecommendationList}\nProject: {project.ProjectName}\nDescription: {project.ProjectDescription}\nWorkspace: {project.ProjectWorkspaceLink}\n\n";
+                }
+
+                message = $"{message}{projectRecommendationList}";
+            }
+
+            await _slackService.ChatPostMessage(workspaceMemberId, message, true);
+            return;
+        }
+
+        private Dictionary<string, List<string>> FindRecommendations(List<List<string>> powerset, ILookup<string, string> itemsLookups)
+        {
+            Dictionary<string, List<string>> recommendations = new Dictionary<string, List<string>>();
+            int currentRecommendationsCount = 0;
+            int totalRecommendationsCount = 5;
+
+            foreach (var set in powerset)
+            {
+                if (set.Count == 0)
+                {
+                    continue;
+                }
+
+                var memberList = new List<string>();
+                recommendations.Add(string.Join(", ", set), memberList);
+                foreach (IGrouping<string, string> technologyList in itemsLookups)
+                {
+                    string memberId = technologyList.Key;
+                    int setLength = set.Count;
+                    int technologyLength = technologyList.Count();
+                    // if size of both sets are equal continue otherwise continue
+                    // to next member
+                    if (setLength != technologyLength)
+                    {
+                        continue;
+                    }
+
+                    if ((set.Intersect(technologyList)).Count() == setLength)
+                    {
+                        memberList.Add(memberId);
+                        currentRecommendationsCount++;
+                    }
+                }
+
+                if (currentRecommendationsCount == totalRecommendationsCount)
+                {
+                    break;
+                }
+            }
+
+            return recommendations;
+        }
+
+        private async Task ProcessPrivateRegistrationReactionAddedEvent(SlackEventFullDto<ReactionEventDto> slackEventDto)
+        {
+            string reaction = slackEventDto.Event.Reaction;
+            if (reaction == "message")
+            {
+                string workspaceMemberId = await ParseMemberFromMessage(slackEventDto);
+                await ProcessRegistrationMessageReaction(slackEventDto, workspaceMemberId);
+            }
+
+            if (reaction == "mail")
+            {
+                // TODO: Implement mail for members that register via UI but
+                // never join slack group
+            }
+        }
+
+        private async Task ProcessReactionIntroAddedEvent(SlackEventFullDto<ReactionEventDto> slackEventDto)
         {
             if (InvalidTechnologyReaction(slackEventDto))
             {
@@ -146,7 +343,8 @@ namespace CommunicationAppDomain.Handlers
                 bool reactedByPrivilegedUsers = reaction.Users.Intersect(_privilegedMembers.Members).Count() > 0;
                 bool reactedByOwner = reaction.Users.Contains(initialMessage.User);
                 // TODO: Validate logic w/ test
-                if (reactedByPrivilegedUsers || reactedByOwner) { 
+                if (reactedByPrivilegedUsers || reactedByOwner)
+                {
                     return;
                 }
             }
@@ -180,10 +378,11 @@ namespace CommunicationAppDomain.Handlers
 
             UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
 
-            if (String.IsNullOrWhiteSpace(user.Bio))
+            if (string.IsNullOrWhiteSpace(user.Bio))
             {
                 user.Bio = slackEventDto.Event.Text;
                 await _userStorage.UpdateAsync(user);
+                await _slackService.ChatPostMessage(_privateIntroChannelId, $"<@{workspaceMemberId}> posted intro.");
             }
 
             return;
@@ -225,14 +424,17 @@ namespace CommunicationAppDomain.Handlers
                 };
 
                 await _chatAppUserStorage.CreateAsync(newChatAppUser);
-                await SendOnboardingSlackMessage(workspaceMemberId, user.Email, password);
+                string message = Messages.OnboardingMessage(workspaceMemberId, user.Email, password);
+                await _slackService.ChatPostMessage(workspaceMemberId, message);
+                await _slackService.ChatPostMessage(_privateRegistrationChannelId, $"<@{workspaceMemberId}>, `{username}`, `{user.Email}` joined the slack group. Send follow up.");
             }
             else
             {
                 // User email is already register to frontend
                 // associate new chat user record with existing user
                 // TODO: Picture may be overwritten here if member
-                // previously uploaded a profile pic through frontend
+                // previously uploaded a profile pic through frontend,
+                // remove once we have profile upload functionality on UI.
                 existingUser.ProfilePictureUrl = slackEventDto.Event.User.Profile.Image192;
 
                 ChatAppUserEntity newChatAppUser = new ChatAppUserEntity()
@@ -244,6 +446,9 @@ namespace CommunicationAppDomain.Handlers
 
                 await _userStorage.UpdateAsync(existingUser);
                 await _chatAppUserStorage.CreateAsync(newChatAppUser);
+                string message = Messages.OnboardingRegisteredMessage(workspaceMemberId);
+                await _slackService.ChatPostMessage(workspaceMemberId, message);
+                await _slackService.ChatPostMessage(_privateRegistrationChannelId, $"<@{workspaceMemberId}>, `{existingUser.Username}`, `{existingUser.Username}` registered and joined the slack group. Send follow up.");
             }
 
             return;
@@ -293,12 +498,6 @@ namespace CommunicationAppDomain.Handlers
                 res.Append(valid[rnd.Next(valid.Length)]);
             }
             return $"unicorn{res.ToString()}";
-        }
-
-        private async Task SendOnboardingSlackMessage(string slackId, string signinId, string signinPassword)
-        {
-            string message = Messages.OnboardingMessage(slackId, signinId, signinPassword);
-            await _slackService.ChatPostMessage(slackId, message);
         }
 
         private string HashPassword(User user, string password)
@@ -367,6 +566,39 @@ namespace CommunicationAppDomain.Handlers
             }
 
             return invalidTechnologyReaction;
+        }
+
+        private List<List<T>> GeneratePowerSet<T>(List<T> items)
+        {
+            List<List<T>> powerSet = new List<List<T>>();
+            int n = items.Count;
+            int powerSetCount = 1 << n;
+            for (int setMask = 0; setMask < powerSetCount; setMask++)
+            {
+                var subset = new List<T>();
+                for (int i = 0; i < n; i++)
+                {
+                    if ((setMask & (1 << i)) > 0)
+                    {
+                        subset.Add(items[i]);
+                    }
+                }
+                powerSet.Add(subset);
+            }
+
+            return powerSet;
+        }
+
+        private async Task<string> ParseMemberFromMessage(SlackEventFullDto<ReactionEventDto> slackEventDto)
+        {
+            SlackMessageDto messageDto = await _slackService.ChatRetrieveMessage(slackEventDto.Event.Item.Channel, slackEventDto.Event.Item.Ts);
+            MessageDetailsDto initialMessage = messageDto.Messages.FirstOrDefault();
+            int startIndex = initialMessage.Text.IndexOf('@') + 1;
+            int endIndex = initialMessage.Text.IndexOf('>') - 1;
+            int length = endIndex - startIndex + 1;
+            string memberId = initialMessage.Text.Substring(startIndex, length);
+
+            return memberId;
         }
     }
 }

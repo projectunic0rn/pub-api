@@ -27,20 +27,40 @@ namespace Infrastructure.Messaging
             _logger = logger;
         }
 
-        public async Task SendMessageAsync<T>(T messageObject)
+        /// <summary>
+        /// Send a single message to the Azure service bus message queue.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="messageObject">Object set as message body.</param>
+        /// <param name="messageLabel">A label associated with the message used by the receiving application for app specific processing</param>
+        /// <param name="enqueueTime">Message enqueue time</param>
+        /// <returns></returns>
+        public async Task SendMessageAsync<T>(T messageObject, string messageLabel = null, DateTime? enqueueTime = null)
         {
             int totalMessageCount = 1;
             _queueClient = new QueueClient(_serviceBusConnectionString, _serviceBusQueueName);
             string serializedMessage = JsonConvert.SerializeObject(messageObject);
             byte[] messageContent = Encoding.UTF8.GetBytes(serializedMessage);
-            Message message = new Message(messageContent);
+            Message message = new Message(messageContent)
+            {
+                Label = messageLabel
+            };
+            message.ScheduledEnqueueTimeUtc = (DateTime)(enqueueTime == null ? DateTime.UtcNow : enqueueTime);
             await _queueClient.SendAsync(message);
             await _queueClient.CloseAsync();
             _logger.LogInformation($"Queued {totalMessageCount} of {totalMessageCount} message(s)");
             return;
         }
 
-        public async Task SendMessagesAsync<T>(List<T> messageObjects)
+        /// <summary>
+        /// Send multiple messages to the Azure service bus message queue.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="messageObject">Object set as message body.</param>
+        /// <param name="messageLabel">A label associated with the messages used by the receiving application for app specific processing</param>
+        /// <param name="enqueueTime">Message enqueue time</param>
+        /// <returns></returns>
+        public async Task SendMessagesAsync<T>(List<T> messageObjects, string messageLabel = null, DateTime? enqueueTime = null)
         {
             _queueClient = new QueueClient(_serviceBusConnectionString, _serviceBusQueueName);
             List<Message> messages = new List<Message>();
@@ -51,7 +71,11 @@ namespace Infrastructure.Messaging
             {
                 string serializedMessage = JsonConvert.SerializeObject(messageObject);
                 byte[] messageContent = Encoding.UTF8.GetBytes(serializedMessage);
-                Message message = new Message(messageContent);
+                Message message = new Message(messageContent)
+                {
+                    Label = messageLabel
+                };
+                message.ScheduledEnqueueTimeUtc = (DateTime)(enqueueTime == null ? DateTime.UtcNow : enqueueTime);
                 totalMessagesByteCount += message.Size;
 
                 if (totalMessagesByteCount >= _serviceBusMessageLimitByteCount)

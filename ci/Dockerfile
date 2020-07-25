@@ -1,4 +1,4 @@
-FROM microsoft/dotnet:2.2-sdk AS build-env
+FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as build-env
 COPY . /app
 WORKDIR /app
 
@@ -6,39 +6,8 @@ RUN dotnet restore API/API.csproj
 RUN dotnet publish API/API.csproj -c Release -o out
  
 # Build runtime image
-FROM microsoft/dotnet:2.2-aspnetcore-runtime
-ARG CONNECTION_STRING
-ENV ConnectionString=$CONNECTION_STRING
-ARG JWT_SECRET_KEY
-ENV JwtSecretKey=$JWT_SECRET_KEY
-ARG JWT_AUDIENCE
-ENV JwtAudience=$JWT_AUDIENCE
-ARG JWT_ISSUER
-ENV JwtIssuer=$JWT_ISSUER
-
-ARG FEEDBACK_RECIPIENTS
-ENV FeedbackRecipients=$FEEDBACK_RECIPIENTS
-
-ARG NETCORE_ENV
-ENV ASPNETCORE_ENVIRONMENT=$NETCORE_ENV
-
-ARG SERVICE_BUS_CONNECTION_STRING
-ENV ServiceBusConnectionString=$SERVICE_BUS_CONNECTION_STRING
-ARG SERVICE_BUS_QUEUE_NAME
-ENV ServiceBusQueueName=$SERVICE_BUS_QUEUE_NAME
-
-ARG SEND_GRID_TEMPLATES_API_KEY
-ENV SendGridTemplatesApiKey=$SEND_GRID_TEMPLATES_API_KEY
-ARG TABLE_STORAGE_CONNECTION_STRING
-ENV TableStorageConnectionString=$TABLE_STORAGE_CONNECTION_STRING
-ARG STORAGE_TABLE_NAME
-ENV StorageTableName=$STORAGE_TABLE_NAME
-ARG MAIL_TRACKING_TABLE_NAME
-ENV MailTrackingTableName=$MAIL_TRACKING_TABLE_NAME
-
-ARG API_KEY
-ENV ApiKey=$API_KEY
+FROM mcr.microsoft.com/dotnet/core/runtime:3.1
 
 WORKDIR /app
-COPY --from=build-env /app/API/out .
+COPY --from=build-env /app/out .
 ENTRYPOINT ["dotnet", "API.dll"]
