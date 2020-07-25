@@ -228,7 +228,7 @@ namespace CommunicationAppDomain.Handlers
                 message = $"{message}{techList}{projectRecommendationList}";
             }
 
-            await _slackService.ChatPostMessage(workspaceMemberId, message, true);
+            await _slackService.ChatPostMessage(workspaceMemberId, message, true, false);
             return;
         }
 
