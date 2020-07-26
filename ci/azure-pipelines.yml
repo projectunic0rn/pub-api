@@ -15,39 +15,7 @@ schedules:
     always: true
 
 variables:
-  # API App
   buildConfiguration: 'Release'
-  connectionStrng: $(ConnectionString)
-  jwtSecret: $(JwtSecretKey)
-  audience: $(JwtAudience)
-  issuer: $(JwtIssuer)
-  feedbackEmails: $(FeedbackRecipients)
-  netCoreEnv: $(Env)
-  key: $(ApiKey)
-
-  # Slack App
-  mUrl: $(MainUrl)
-  signingSecret: $(SlackSigningSecret)
-  authToken: $(SlackAuthToken)
-  ghOrganization: $(GitHubOrganization)
-  ghAppId: $(GitHubAppId)
-  ghPrivateRsaKey: $(GitHubAppPrivateRSAKey)
-  ghAppInstallationId: $(GitHubAppInstallationId)
-  introChannelId: $(IntroductionChannelId)
-  privileged: $(PrivilegedMembers)
-
-  # Mail Engine
-  sbConnectionString: $(ServiceBusConnectionString)
-  sbQueueName: $(ServiceBusQueueName)
-  sendGridTemplatesKey: $(SendGridTemplatesApiKey)
-  azStorageConnectionString: $(TableStorageConnectionString)
-  azStorageTableName: $(StorageTableName)
-  azStorageMailTrackingTableName: $(MailTrackingTableName)
-
-  # Pub Jobs
-  pubEndpoint: $(PubApiEndpoint)
-  
-  # Code Coverage 
   codeCovKey: $(CodeCovToken)
 
 jobs:
