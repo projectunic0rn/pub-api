@@ -9,6 +9,8 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 using Microsoft.Extensions.Configuration;
+using CommunicationAppDomain.Handlers;
+using Common.DTOs;
 
 namespace SlackAppBot.HostedServices
 {
@@ -19,6 +21,7 @@ namespace SlackAppBot.HostedServices
         private IQueueClient _queueClient;
         private readonly IChatAppCommandHandler _commandHandler;
         private readonly IChatAppEventHandler _eventHandler;
+        private readonly ApiEventHandler _apiEventHandler;
         private readonly ILogger _logger;
 
         public MessageListener(ILogger<MessageListener> logger, IConfiguration configuration, IChatAppCommandHandler chatAppCommandHandler, IChatAppEventHandler chatAppEventHandler)
@@ -27,6 +30,8 @@ namespace SlackAppBot.HostedServices
             _serviceBusQueueName = configuration["ServiceBusQueueName"];
             _eventHandler = chatAppEventHandler;
             _commandHandler = chatAppCommandHandler;
+            _commandHandler = chatAppCommandHandler;
+            _apiEventHandler = new ApiEventHandler();
             _logger = logger;
         }
 
@@ -70,6 +75,21 @@ namespace SlackAppBot.HostedServices
                     case "event":
                         SlackEventDto slackEventDto = JsonConvert.DeserializeObject<SlackEventDto>(messageBody);
                         await _eventHandler.ProcessEvent(slackEventDto);
+                        await _queueClient.CompleteAsync(message.SystemProperties.LockToken);
+                        break;
+                    case "projectpost":
+                        ProjectDto project = JsonConvert.DeserializeObject<ProjectDto>(messageBody);
+                        await _apiEventHandler.ProcessProjectPost(project);
+                        await _queueClient.CompleteAsync(message.SystemProperties.LockToken);
+                        break;
+                    case "registration":
+                        RegistrationDto registration = JsonConvert.DeserializeObject<RegistrationDto>(messageBody);
+                        await _apiEventHandler.ProcessRegistration(registration);
+                        await _queueClient.CompleteAsync(message.SystemProperties.LockToken);
+                        break;
+                    case "feedback":
+                        FeedbackDto feedback = JsonConvert.DeserializeObject<FeedbackDto>(messageBody);
+                        await _apiEventHandler.ProcessFeedback(feedback);
                         await _queueClient.CompleteAsync(message.SystemProperties.LockToken);
                         break;
                     default:

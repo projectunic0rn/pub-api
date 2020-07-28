@@ -34,6 +34,8 @@ namespace SlackAppBot
                     AppSettings.GitHubAppPrivateRSAKey = hostContext.Configuration["GitHubAppPrivateRSAKey"];
                     AppSettings.PrivateIntroChannelId = hostContext.Configuration["PrivateIntroChannelId"];
                     AppSettings.PrivateRegistrationChannelId = hostContext.Configuration["PrivateRegistrationChannelId"];
+                    AppSettings.PrivateProjectsChannelId = hostContext.Configuration["PrivateProjectsChannelId"];
+                    AppSettings.PrivateFeedbackChannelId = hostContext.Configuration["PrivateFeedbackChannelId"];
                     AppSettings.IntroductionChannelId = hostContext.Configuration["IntroductionChannelId"];
                     AppSettings.SlackAuthToken = hostContext.Configuration["SlackAuthToken"];
                     AppSettings.PrivilegedMembers = hostContext.Configuration["PrivilegedMembers"];

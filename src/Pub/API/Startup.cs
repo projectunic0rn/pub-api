@@ -163,6 +163,7 @@ namespace API
             AppSettings.StorageTableName = Configuration["StorageTableName"];
             AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
             AppSettings.ApiKey = Configuration["ApiKey"];
+            AppSettings.PubSlackAppQueueName = Configuration["PubSlackAppQueueName"];
 
             if (AppSettings.ServiceBusConnectionString == null
             || AppSettings.ServiceBusQueueName == null
@@ -176,7 +177,8 @@ namespace API
             || AppSettings.StorageTableName == null
             || _settings.MailTrackingTableName == null
             || AppSettings.SendGridTemplatesApiKey == null
-            || AppSettings.ApiKey == null)
+            || AppSettings.ApiKey == null
+            || AppSettings.PubSlackAppQueueName == null)
             {
                 throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);
             }

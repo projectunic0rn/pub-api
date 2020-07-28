@@ -26,14 +26,18 @@ namespace Domain.Models
         private readonly IStorage<UserEntity> _storage;
         private readonly PasswordHasher<Common.Models.User> _passwordHasher;
         private readonly INotifier _notifier;
+        private readonly IMessageQueue _messageQueue;
+        private readonly string _pubSlackAppQueueName;
 
-        public Authentication(INotifier notifier)
+        public Authentication(INotifier notifier, IMessageQueue messageQueue)
         {
             _user = new Common.Models.User();
             _storage = new UserEntity();
             _mapper = new InitializeMapper().GetMapper;
             _passwordHasher = new PasswordHasher<Common.Models.User>();
             _notifier = notifier;
+            _messageQueue = messageQueue;
+            _pubSlackAppQueueName = AppSettings.PubSlackAppQueueName;
         }
 
         public async Task<JsonWebTokenDto> LoginUserAsync(LoginDto login)
@@ -106,6 +110,9 @@ namespace Domain.Models
             await _storage.CreateAsync(userEntity);
             jsonWebToken = GenerateJsonWebToken(new JwtUserClaimsDto(userEntity.Id.ToString()));
             NotificationDto notification = new NotificationDto(userEntity.Id);
+            // re-create registration object to avoid queueing password info
+            var registrationToQueue = new RegistrationDto() { Email = registration.Email, Username = registration.Username };
+            await _messageQueue.SendMessageAsync(registrationToQueue, "registration", queueName: _pubSlackAppQueueName);
             await _notifier.SendWelcomeNotificationAsync(notification);
             return jsonWebToken;
         }

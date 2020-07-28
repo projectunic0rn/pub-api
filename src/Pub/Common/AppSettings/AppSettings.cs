@@ -18,6 +18,7 @@ namespace Common.AppSettings
         public static IEmailConfiguration EmailConfiguration { get; set; }
         public static string FeedbackRecipients { get; set; } = Environment.GetEnvironmentVariable("FeedbackRecipients", EnvironmentVariableTarget.Process);
         public static string ApiKey { get; set; } = Environment.GetEnvironmentVariable("ApiKey", EnvironmentVariableTarget.Process);
+        public static string PubSlackAppQueueName { get; set; } = Environment.GetEnvironmentVariable("PubSlackAppQueueName", EnvironmentVariableTarget.Process);
 
         // Communication Apps (e.g. slack, discord)
         public static string MainUrl { get; set; } = Environment.GetEnvironmentVariable("MainUrl", EnvironmentVariableTarget.Process);
@@ -25,6 +26,9 @@ namespace Common.AppSettings
         public static string IntroductionChannelId { get; set; } = Environment.GetEnvironmentVariable("IntroductionChannelId", EnvironmentVariableTarget.Process);
         public static string PrivateIntroChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateIntroChannelId", EnvironmentVariableTarget.Process);
         public static string PrivateRegistrationChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateRegistrationChannelId", EnvironmentVariableTarget.Process);
+        public static string PrivateProjectsChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateProjectsChannelId", EnvironmentVariableTarget.Process);
+        public static string PrivateFeedbackChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateFeedbackChannelId", EnvironmentVariableTarget.Process);
+
         public static string SlackAuthToken { get; set; } = Environment.GetEnvironmentVariable("SlackAuthToken", EnvironmentVariableTarget.Process);
         public static string GitHubOrganization { get; set; } = Environment.GetEnvironmentVariable("GitHubOrganization", EnvironmentVariableTarget.Process);
         public static string GitHubAppId { get; set; } = Environment.GetEnvironmentVariable("GitHubAppId", EnvironmentVariableTarget.Process);

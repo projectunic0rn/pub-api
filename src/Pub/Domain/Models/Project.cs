@@ -8,6 +8,7 @@ using Common.DTOs;
 using Domain.Exceptions;
 using Domain.MappingConfig;
 using Infrastructure.Persistence.Entities;
+using Common.AppSettings;
 
 namespace Domain.Models
 {
@@ -19,14 +20,18 @@ namespace Domain.Models
         private readonly IStorage<ProjectTypeEntity> _projectTypeStorage;
         private readonly IStorage<CommunicationPlatformTypeEntity> _communicationPlatformTypeStorage;
         private readonly INotifier _notifier;
+        private readonly IMessageQueue _messageQueue;
+        private readonly string _pubSlackAppQueueName;
 
-        public Project(INotifier notifier)
+        public Project(INotifier notifier, IMessageQueue messageQueue)
         {
             _projectStorage = new ProjectEntity();
             _projectTypeStorage = new ProjectTypeEntity();
             _communicationPlatformTypeStorage = new CommunicationPlatformTypeEntity();
             _mapper = new InitializeMapper().GetMapper;
             _notifier = notifier;
+            _messageQueue = messageQueue;
+            _pubSlackAppQueueName = AppSettings.PubSlackAppQueueName;
         }
 
         public int Id { get; set; }
@@ -71,8 +76,11 @@ namespace Domain.Models
             {
                 NotificationObject = project
             };
+
             await _notifier.SendProjectPostedNotificationAsync(notificationDto);
-            return _mapper.Map<ProjectDto>(createdProject);
+            ProjectDto mappedProject = _mapper.Map<ProjectDto>(createdProject);
+            await _messageQueue.SendMessageAsync(mappedProject, "projectpost", queueName: _pubSlackAppQueueName);
+            return mappedProject;
         }
 
         public async Task<ProjectDto> UpdateProjectAsync(ProjectDto project)
