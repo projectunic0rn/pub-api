@@ -18,6 +18,7 @@ namespace MailEngine.Mails.ScheduledMails
         private readonly IMessageQueue _messageQueue;
         private readonly TransactionalMailHelper _transactionalMailHelper;
         private readonly MailValidation _mailValidation;
+        private readonly string _pubSlackAppQueueName;
 
         public TransactionalMailNotifier(ILogger<TransactionalMailNotifier> logger, IMessageQueue messageQueue, IMailConfigStorage mailConfigStorage, Settings settings, WorkspaceAppService workspaceAppService)
         {
@@ -25,6 +26,7 @@ namespace MailEngine.Mails.ScheduledMails
             _messageQueue = messageQueue;
             _transactionalMailHelper = new TransactionalMailHelper(new SendGridService(), mailConfigStorage, workspaceAppService);
             _mailValidation = new MailValidation(new Storage<SendTrackingEntity>(settings.TableStorageConnectionString, settings.MailTrackingTableName));
+            _pubSlackAppQueueName = AppSettings.PubSlackAppQueueName;
         }
 
         public async Task SendFeedbackNotificationAsync(NotificationDto notification)
@@ -32,6 +34,9 @@ namespace MailEngine.Mails.ScheduledMails
             _logger.LogInformation($"Sending feedback notification...");
             EmailMessage emailMessage = await _transactionalMailHelper.PrepareFeedbackMail(notification);
             await _messageQueue.SendMessageAsync(emailMessage);
+            // Send feedback to slack
+            var feedback = new FeedbackDto() { Content = notification.Content };
+            await _messageQueue.SendMessageAsync(feedback, "feedback", queueName: _pubSlackAppQueueName);
             return;
         }
 

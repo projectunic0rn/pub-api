@@ -16,11 +16,16 @@ namespace Common.AppSettings
         public IEmailConfiguration EmailConfiguration { get; set; }
         public string FeedbackRecipients { get; set; } = Environment.GetEnvironmentVariable("FeedbackRecipients", EnvironmentVariableTarget.Process);
         public string ApiKey { get; set; } = Environment.GetEnvironmentVariable("ApiKey", EnvironmentVariableTarget.Process);
+        public string PubSlackAppQueueName { get; set; } = Environment.GetEnvironmentVariable("PubSlackAppQueueName", EnvironmentVariableTarget.Process);
 
         // Communication Apps (e.g. slack, discord)
         public string MainUrl { get; set; } = Environment.GetEnvironmentVariable("MainUrl", EnvironmentVariableTarget.Process);
         public string SlackSigningSecret { get; set; } = Environment.GetEnvironmentVariable("SlackSigningSecret", EnvironmentVariableTarget.Process);
-        public string IntroductionChannelId { get; set; } = Environment.GetEnvironmentVariable("IntroductionChannelId", EnvironmentVariableTarget.Process);
+        public static string IntroductionChannelId { get; set; } = Environment.GetEnvironmentVariable("IntroductionChannelId", EnvironmentVariableTarget.Process);
+        public static string PrivateIntroChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateIntroChannelId", EnvironmentVariableTarget.Process);
+        public static string PrivateRegistrationChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateRegistrationChannelId", EnvironmentVariableTarget.Process);
+        public static string PrivateProjectsChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateProjectsChannelId", EnvironmentVariableTarget.Process);
+        public static string PrivateFeedbackChannelId { get; set; } = Environment.GetEnvironmentVariable("PrivateFeedbackChannelId", EnvironmentVariableTarget.Process);
         public string SlackAuthToken { get; set; } = Environment.GetEnvironmentVariable("SlackAuthToken", EnvironmentVariableTarget.Process);
         public string GitHubOrganization { get; set; } = Environment.GetEnvironmentVariable("GitHubOrganization", EnvironmentVariableTarget.Process);
         public string GitHubAppId { get; set; } = Environment.GetEnvironmentVariable("GitHubAppId", EnvironmentVariableTarget.Process);

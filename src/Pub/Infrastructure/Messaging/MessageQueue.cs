@@ -34,11 +34,13 @@ namespace Infrastructure.Messaging
         /// <param name="messageObject">Object set as message body.</param>
         /// <param name="messageLabel">A label associated with the message used by the receiving application for app specific processing</param>
         /// <param name="enqueueTime">Message enqueue time</param>
+        /// <param name="queueName">Override default queue name</param>
         /// <returns></returns>
-        public async Task SendMessageAsync<T>(T messageObject, string messageLabel = null, DateTime? enqueueTime = null)
+        public async Task SendMessageAsync<T>(T messageObject, string messageLabel = null, DateTime? enqueueTime = null, string queueName = null)
         {
             int totalMessageCount = 1;
-            _queueClient = new QueueClient(_serviceBusConnectionString, _serviceBusQueueName);
+            string name = queueName == null ? _serviceBusQueueName : queueName;
+            _queueClient = new QueueClient(_serviceBusConnectionString, name);
             string serializedMessage = JsonConvert.SerializeObject(messageObject);
             byte[] messageContent = Encoding.UTF8.GetBytes(serializedMessage);
             Message message = new Message(messageContent)
@@ -59,10 +61,12 @@ namespace Infrastructure.Messaging
         /// <param name="messageObject">Object set as message body.</param>
         /// <param name="messageLabel">A label associated with the messages used by the receiving application for app specific processing</param>
         /// <param name="enqueueTime">Message enqueue time</param>
+        /// <param name="queueName">Override default queue name</param>
         /// <returns></returns>
-        public async Task SendMessagesAsync<T>(List<T> messageObjects, string messageLabel = null, DateTime? enqueueTime = null)
+        public async Task SendMessagesAsync<T>(List<T> messageObjects, string messageLabel = null, DateTime? enqueueTime = null, string queueName = null)
         {
-            _queueClient = new QueueClient(_serviceBusConnectionString, _serviceBusQueueName);
+            string name = queueName == null ? _serviceBusQueueName : queueName;
+            _queueClient = new QueueClient(_serviceBusConnectionString, name);
             List<Message> messages = new List<Message>();
             long totalMessagesByteCount = 0;
             int totalMessageCount = messageObjects.Count;

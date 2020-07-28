@@ -52,6 +52,7 @@ namespace MailEngine
             AppSettings.TableStorageConnectionString = Configuration["TableStorageConnectionString"];
             AppSettings.StorageTableName = Configuration["StorageTableName"];
             AppSettings.Env = Configuration["ASPNETCORE_ENVIRONMENT"];
+            AppSettings.PubSlackAppQueueName = Configuration["PubSlackAppQueueName"];
 
             if (AppSettings.ConnectionString == null
             || AppSettings.ServiceBusConnectionString == null
@@ -60,6 +61,7 @@ namespace MailEngine
             || AppSettings.MainUrl == null
             || AppSettings.TableStorageConnectionString == null
             || AppSettings.StorageTableName == null
+            || AppSettings.PubSlackAppQueueName == null
             || AppSettings.Env == null)
             {
                 throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);
