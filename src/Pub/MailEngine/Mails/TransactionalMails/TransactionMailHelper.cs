@@ -194,5 +194,30 @@ namespace MailEngine.Mails.ScheduledMails
 
             return emailMessage;
         }
+
+        public async Task<EmailMessage> PrepareInitialFeedbackRequestMail(NotificationDto notification)
+        {
+            UserEntity user = await _userStorage.FindAsync(u => u.Id == notification.NotificantId);
+            string notificantEmail = user.Email;
+
+            EmailMessage emailMessage = new EmailMessage();
+            string mailName = "InitialFeedbackRequestMessage";
+            MailConfigDto mailConfigDto = await _mailConfig.GetConfig(mailName);
+            SendGridTemplateDto template = await _sendGridService.GetMailTemplate(mailConfigDto.TemplateId);
+            DTOs.Version activeTemplate = template.Versions.FirstOrDefault(v => v.Active == 1);
+
+            EmailAddress fromAddress = _fromAddress;
+            EmailAddress toAddress = new EmailAddress("", notificantEmail);
+            emailMessage.FromAddresses.Add(fromAddress);
+            emailMessage.ToAddresses.Add(toAddress);
+            emailMessage.Subject = $"{activeTemplate.Subject} {_testEmailIndicator}";
+
+            string htmlContent = activeTemplate.HtmlContent;
+            string plainTextContent = activeTemplate.PlainContent;
+            emailMessage.MailContent.Add("text/html", htmlContent);
+            emailMessage.MailContent.Add("text/plain", plainTextContent);
+
+            return emailMessage;
+        }
     }
 }
