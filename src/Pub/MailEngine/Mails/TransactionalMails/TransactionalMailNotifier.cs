@@ -9,6 +9,7 @@ using MailEngine.Utility;
 using Mailer.Services;
 using Microsoft.Extensions.Logging;
 using Common.Services;
+using System;
 
 namespace MailEngine.Mails.ScheduledMails
 {
@@ -34,7 +35,7 @@ namespace MailEngine.Mails.ScheduledMails
             _logger.LogInformation($"Sending feedback notification...");
             EmailMessage emailMessage = await _transactionalMailHelper.PrepareFeedbackMail(notification);
             await _messageQueue.SendMessageAsync(emailMessage);
-            // Send feedback to slack
+            // Send feedback to slack as well
             var feedback = new FeedbackDto() { Content = notification.Content };
             await _messageQueue.SendMessageAsync(feedback, "feedback", queueName: _pubSlackAppQueueName);
             return;
@@ -83,6 +84,14 @@ namespace MailEngine.Mails.ScheduledMails
             ProjectDto project = notification.NotificationObject as ProjectDto;
             EmailMessage emailMessage = await _transactionalMailHelper.PrepareProjectPostedMail(notification, project);
             await _messageQueue.SendMessageAsync(emailMessage);
+            return;
+        }
+
+        public async Task SendInitialFeedbackRequestNotificationAsync(NotificationDto notification)
+        {
+            _logger.LogInformation($"Sending initial feedback notification...");
+            EmailMessage emailMessage = await _transactionalMailHelper.PrepareInitialFeedbackRequestMail(notification);
+            await _messageQueue.SendMessageAsync(emailMessage, enqueueTime: DateTime.UtcNow.AddDays(7));
             return;
         }
     }

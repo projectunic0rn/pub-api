@@ -11,5 +11,6 @@ namespace Common.Contracts
         Task SendYouJoinedProjectNotificationAsync(NotificationDto notification);
         Task SendPasswordResetNotificationAsync(NotificationDto notification);
         Task SendProjectPostedNotificationAsync(NotificationDto notification);
+        Task SendInitialFeedbackRequestNotificationAsync(NotificationDto notification);
     }
 }

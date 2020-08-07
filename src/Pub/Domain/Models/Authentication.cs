@@ -114,6 +114,7 @@ namespace Domain.Models
             var registrationToQueue = new RegistrationDto() { Email = registration.Email, Username = registration.Username };
             await _messageQueue.SendMessageAsync(registrationToQueue, "registration", queueName: _pubSlackAppQueueName);
             await _notifier.SendWelcomeNotificationAsync(notification);
+            await _notifier.SendInitialFeedbackRequestNotificationAsync(notification);
             return jsonWebToken;
         }
 

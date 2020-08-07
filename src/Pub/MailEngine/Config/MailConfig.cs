@@ -165,6 +165,17 @@ namespace MailEngine.Config
                         NextSend = DateTimeOffset.UnixEpoch
                      }
                 },
+                {
+                    "InitialFeedbackRequestMessage",
+                    new MailConfigDto {
+                        Name = "InitialFeedbackRequestMessage",
+                        Type = MailType.Transactional,
+                        TemplateId = "d-584dfa8b96144f2bb144d9a665843320",
+                        IntervalSeconds = 0,
+                        LastSend = DateTimeOffset.UnixEpoch,
+                        NextSend = DateTimeOffset.UnixEpoch
+                    }
+                }
             };
         }
     }
