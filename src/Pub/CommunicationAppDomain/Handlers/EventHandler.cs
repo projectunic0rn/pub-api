@@ -303,7 +303,7 @@ namespace CommunicationAppDomain.Handlers
                 SlackMessageDto message = await _slackService.ChatRetrieveMessage(slackEventDto.Event.Item.Channel, slackEventDto.Event.Item.Ts);
                 MessageDetailsDto messageDetails = message.Messages.FirstOrDefault();
                 ProjectDto project = JsonConvert.DeserializeObject<ProjectDto>(messageDetails.Text);
-                string projectMessage = Messages.ProjectPostedMessage(project, _mainUrl);
+                string projectMessage = Messages.ProjectPostedMessage(project, $"{_mainUrl}/projects/{project.Id}");
                 await _slackService.ChatPostMessage(_projectIdeasChannel, projectMessage);
             }
         }
