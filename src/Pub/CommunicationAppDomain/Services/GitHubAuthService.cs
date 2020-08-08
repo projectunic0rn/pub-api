@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Common.AppSettings;
 using Common.DTOs.GitHubDTOs;
 using CommunicationAppDomain.Utilities;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 
 namespace CommunicationAppDomain.Services
@@ -34,6 +35,7 @@ namespace CommunicationAppDomain.Services
             _headers.Add("Accept", "application/vnd.github.machine-man-preview+json");
             _headers.Add("User-Agent", _githubOrganization);
         }
+
         public async Task<string> GetInstallationAccessToken()
         {
             if (DateTime.UtcNow > _installationAccessTokenExpirationTime)

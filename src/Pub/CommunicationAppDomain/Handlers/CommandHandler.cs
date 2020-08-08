@@ -7,6 +7,7 @@ using Common.DTOs.SlackAppDTOs;
 using CommunicationAppDomain.Services;
 using CommunicationAppDomain.Utilities;
 using Infrastructure.Persistence.Entities;
+using Microsoft.Extensions.Configuration;
 
 namespace CommunicationAppDomain.Handlers
 {
@@ -19,10 +20,10 @@ namespace CommunicationAppDomain.Handlers
         private readonly IStorage<ChatAppUserEntity> _chatAppUserStorage;
         private readonly SlackService _slackService;
 
-        public CommandHandler()
+        public CommandHandler(IConfiguration configuraiion)
         {
-            _githubOrganization = AppSettings.GitHubOrganization;
-            _mainUrl = AppSettings.MainUrl;
+            _githubOrganization = configuraiion["GitHubOrganization"];
+            _mainUrl = configuraiion["MainUrl"];
             _projectStorage = new ProjectEntity();
             _userStorage = new UserEntity();
             _chatAppUserStorage = new ChatAppUserEntity();

@@ -30,7 +30,6 @@ namespace SlackAppBot.HostedServices
             _serviceBusQueueName = configuration["ServiceBusQueueName"];
             _eventHandler = chatAppEventHandler;
             _commandHandler = chatAppCommandHandler;
-            _commandHandler = chatAppCommandHandler;
             _apiEventHandler = new ApiEventHandler();
             _logger = logger;
         }
