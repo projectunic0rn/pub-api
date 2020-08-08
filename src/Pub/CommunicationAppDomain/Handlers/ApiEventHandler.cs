@@ -1,9 +1,9 @@
-using System;
 using System.Threading.Tasks;
 using Common.DTOs;
 using Common.Services;
 using Common.AppSettings;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace CommunicationAppDomain.Handlers
 {
@@ -24,7 +24,7 @@ namespace CommunicationAppDomain.Handlers
         public async Task ProcessProjectPost(ProjectDto project)
         {
             var tech = project.ProjectTechnologies.Select(t => t.Name);
-            await _slackService.ChatPostMessage(_privateProjectChannelId, $"New Project Posted\n\nId: {project.Id}\nName: {project.Name}\nDescription: {project.Description}\nTechnologies: {string.Join(", ", tech)}\nRepo: {project.RepositoryUrl}\nWorkspace: {project.CommunicationPlatformUrl}");
+            await _slackService.ChatPostMessage(_privateProjectChannelId, JsonConvert.SerializeObject(project));
         }
 
         public async Task ProcessRegistration(RegistrationDto registration)

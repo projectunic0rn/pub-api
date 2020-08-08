@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Common.AppSettings;
 using Common.DTOs.GitHubDTOs;
+using Microsoft.Extensions.Configuration;
 
 namespace CommunicationAppDomain.Services
 {

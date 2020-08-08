@@ -15,6 +15,7 @@ using CommunicationAppDomain.MappingConfig;
 using Newtonsoft.Json;
 using System.Linq;
 using System.Collections.Generic;
+using Microsoft.Extensions.Configuration;
 
 namespace CommunicationAppDomain.Handlers
 {
@@ -29,20 +30,26 @@ namespace CommunicationAppDomain.Handlers
         private readonly string _introductionChannelId;
         private readonly string _privateIntroChannelId;
         private readonly string _privateRegistrationChannelId;
+        private readonly string _privateProjectsChannelId;
+        private readonly string _projectIdeasChannel;
+        private readonly string _mainUrl;
         private readonly PrivilegedMembersDto _privilegedMembers;
 
-        public EventHandler()
+        public EventHandler(IConfiguration configuration)
         {
-            _introductionChannelId = AppSettings.IntroductionChannelId;
-            _privateIntroChannelId = AppSettings.PrivateIntroChannelId;
-            _privateRegistrationChannelId = AppSettings.PrivateRegistrationChannelId;
+            _introductionChannelId = configuration["IntroductionChannelId"];
+            _privateIntroChannelId = configuration["PrivateIntroChannelId"];
+            _privateRegistrationChannelId = configuration["PrivateRegistrationChannelId"];
+            _privateProjectsChannelId = configuration["PrivateProjectsChannelId"];
+            _projectIdeasChannel = configuration["ProjectIdeasChannelId"];
             _userStorage = new UserEntity();
             _chatAppUserStorage = new ChatAppUserEntity();
             _technologiesStorage = new TechnologyEntity();
             _slackService = new SlackService();
             _passwordHasher = new PasswordHasher<User>();
             _mapper = new InitializeMapper().GetMapper;
-            _privilegedMembers = JsonConvert.DeserializeObject<PrivilegedMembersDto>(AppSettings.PrivilegedMembers);
+            _privilegedMembers = JsonConvert.DeserializeObject<PrivilegedMembersDto>(configuration["PrivilegedMembers"]);
+            _mainUrl = configuration["MainUrl"];
         }
 
         public async Task ProcessEvent(SlackEventDto slackEventDto)
@@ -106,6 +113,11 @@ namespace CommunicationAppDomain.Handlers
             if (channelId == _privateRegistrationChannelId)
             {
                 await ProcessPrivateRegistrationReactionAddedEvent(slackEventDto);
+            }
+
+            if (channelId == _privateProjectsChannelId)
+            {
+                await ProcessPrivateProjectsReactionAddedEvent(slackEventDto);
             }
         }
 
@@ -280,6 +292,19 @@ namespace CommunicationAppDomain.Handlers
             {
                 // TODO: Implement mail for members that register via UI but
                 // never join slack group
+            }
+        }
+
+        private async Task ProcessPrivateProjectsReactionAddedEvent(SlackEventFullDto<ReactionEventDto> slackEventDto)
+        {
+            string reaction = slackEventDto.Event.Reaction;
+            if (reaction == "share")
+            {
+                SlackMessageDto message = await _slackService.ChatRetrieveMessage(slackEventDto.Event.Item.Channel, slackEventDto.Event.Item.Ts);
+                MessageDetailsDto messageDetails = message.Messages.FirstOrDefault();
+                ProjectDto project = JsonConvert.DeserializeObject<ProjectDto>(messageDetails.Text);
+                string projectMessage = Messages.ProjectPostedMessage(project, $"{_mainUrl}/projects/{project.Id}");
+                await _slackService.ChatPostMessage(_projectIdeasChannel, projectMessage);
             }
         }
 
