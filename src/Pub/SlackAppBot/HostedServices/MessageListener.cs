@@ -77,8 +77,7 @@ namespace SlackAppBot.HostedServices
                         await _queueClient.CompleteAsync(message.SystemProperties.LockToken);
                         break;
                     case "projectpost":
-                        ProjectDto project = JsonConvert.DeserializeObject<ProjectDto>(messageBody);
-                        await _apiEventHandler.ProcessProjectPost(project);
+                        await _apiEventHandler.ProcessProjectPost(messageBody);
                         await _queueClient.CompleteAsync(message.SystemProperties.LockToken);
                         break;
                     case "registration":

@@ -21,10 +21,9 @@ namespace CommunicationAppDomain.Handlers
             _privateFeedbackChannelId = AppSettings.PrivateFeedbackChannelId;
         }
 
-        public async Task ProcessProjectPost(ProjectDto project)
+        public async Task ProcessProjectPost(string projectJson)
         {
-            var tech = project.ProjectTechnologies.Select(t => t.Name);
-            await _slackService.ChatPostMessage(_privateProjectChannelId, JsonConvert.SerializeObject(project));
+            await _slackService.ChatPostMessage(_privateProjectChannelId, projectJson);
         }
 
         public async Task ProcessRegistration(RegistrationDto registration)
