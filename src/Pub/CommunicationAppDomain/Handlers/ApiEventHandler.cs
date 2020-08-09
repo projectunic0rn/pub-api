@@ -4,6 +4,7 @@ using Common.Services;
 using Common.AppSettings;
 using System.Linq;
 using Newtonsoft.Json;
+using System;
 
 namespace CommunicationAppDomain.Handlers
 {
@@ -23,7 +24,7 @@ namespace CommunicationAppDomain.Handlers
 
         public async Task ProcessProjectPost(string projectJson)
         {
-            await _slackService.ChatPostMessage(_privateProjectChannelId, projectJson);
+            await _slackService.ChatPostMessage(_privateProjectChannelId, Uri.EscapeDataString(projectJson));
         }
 
         public async Task ProcessRegistration(RegistrationDto registration)
