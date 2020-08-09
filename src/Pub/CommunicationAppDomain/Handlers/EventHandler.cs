@@ -302,9 +302,11 @@ namespace CommunicationAppDomain.Handlers
             {
                 SlackMessageDto message = await _slackService.ChatRetrieveMessage(slackEventDto.Event.Item.Channel, slackEventDto.Event.Item.Ts);
                 MessageDetailsDto messageDetails = message.Messages.FirstOrDefault();
-                ProjectDto project = JsonConvert.DeserializeObject<ProjectDto>(messageDetails.Text);
+                // replace unicode left and right quote
+                var text = messageDetails.Text.Replace('\u201c', '"').Replace('\u201d', '"');
+                ProjectDto project = JsonConvert.DeserializeObject<ProjectDto>(text);
                 string projectMessage = Messages.ProjectPostedMessage(project, $"{_mainUrl}/projects/{project.Id}");
-                await _slackService.ChatPostMessage(_projectIdeasChannel, projectMessage);
+                await _slackService.ChatPostMessage(_projectIdeasChannel, projectMessage, asUser: true, unfurlLinks: false);
             }
         }
 
