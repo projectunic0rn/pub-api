@@ -40,8 +40,8 @@ namespace SlackAppBot
                     AppSettings.SlackAuthToken = hostContext.Configuration["SlackAuthToken"];
                     AppSettings.PrivilegedMembers = hostContext.Configuration["PrivilegedMembers"];
 
-                    services.AddTransient<IChatAppEventHandler, EventHandler>();
-                    services.AddTransient<IChatAppCommandHandler, CommandHandler>();
+                    services.AddScoped<IChatAppEventHandler, EventHandler>();
+                    services.AddScoped<IChatAppCommandHandler, CommandHandler>();
                     services.AddHostedService<MessageListener>();
                 });
     }

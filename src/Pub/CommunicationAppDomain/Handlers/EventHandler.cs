@@ -22,7 +22,7 @@ namespace CommunicationAppDomain.Handlers
     public class EventHandler : IChatAppEventHandler
     {
         private readonly IMapper _mapper;
-        private readonly UserEntity _userStorage;
+        private UserEntity _userStorage;
         private readonly ChatAppUserEntity _chatAppUserStorage;
         private readonly TechnologyEntity _technologiesStorage;
         private readonly PasswordHasher<User> _passwordHasher;
@@ -42,7 +42,6 @@ namespace CommunicationAppDomain.Handlers
             _privateRegistrationChannelId = configuration["PrivateRegistrationChannelId"];
             _privateProjectsChannelId = configuration["PrivateProjectsChannelId"];
             _projectIdeasChannel = configuration["ProjectIdeasChannelId"];
-            _userStorage = new UserEntity();
             _chatAppUserStorage = new ChatAppUserEntity();
             _technologiesStorage = new TechnologyEntity();
             _slackService = new SlackService();
@@ -387,6 +386,7 @@ namespace CommunicationAppDomain.Handlers
         {
 
             // Validate the message was received posted on introduce yourself channel
+            _userStorage = new UserEntity();
             if (slackEventDto.Event.Channel != _introductionChannelId)
             {
                 return;
@@ -409,6 +409,8 @@ namespace CommunicationAppDomain.Handlers
 
         private async Task ProcessTeamJoinEvent(SlackEventFullDto<TeamJoinEventDto> slackEventDto)
         {
+            _userStorage = new UserEntity();
+
             if (slackEventDto.Event.User.IsBot)
             {
                 return;
@@ -475,6 +477,8 @@ namespace CommunicationAppDomain.Handlers
 
         private async Task ProcessUserChangeEvent(SlackEventFullDto<TeamJoinEventDto> slackEventDto)
         {
+            _userStorage = new UserEntity();
+
             if (slackEventDto.Event.User.IsBot)
             {
                 return;
