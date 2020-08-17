@@ -1,0 +1,9466 @@
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/DatabaseContext.cs
+FN:13,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.UserEntity> Infrastructure.Persistence.DatabaseContext::get_Users()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.UserEntity> Infrastructure.Persistence.DatabaseContext::get_Users()
+DA:14,0
+FN:14,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.ProjectTypeEntity> Infrastructure.Persistence.DatabaseContext::get_ProjectTypes()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.ProjectTypeEntity> Infrastructure.Persistence.DatabaseContext::get_ProjectTypes()
+DA:15,0
+FN:15,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.ProjectEntity> Infrastructure.Persistence.DatabaseContext::get_Projects()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.ProjectEntity> Infrastructure.Persistence.DatabaseContext::get_Projects()
+DA:16,0
+FN:16,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.ProjectUserEntity> Infrastructure.Persistence.DatabaseContext::get_ProjectUsers()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.ProjectUserEntity> Infrastructure.Persistence.DatabaseContext::get_ProjectUsers()
+DA:17,0
+FN:17,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity> Infrastructure.Persistence.DatabaseContext::get_CommunicationPlatforms()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity> Infrastructure.Persistence.DatabaseContext::get_CommunicationPlatforms()
+DA:18,0
+FN:18,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.TechnologyEntity> Infrastructure.Persistence.DatabaseContext::get_Technologies()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.TechnologyEntity> Infrastructure.Persistence.DatabaseContext::get_Technologies()
+DA:19,0
+FN:19,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.ChatAppUserEntity> Infrastructure.Persistence.DatabaseContext::get_ChatAppUsers()
+FNDA:0,Microsoft.EntityFrameworkCore.DbSet`1<Infrastructure.Persistence.Entities.ChatAppUserEntity> Infrastructure.Persistence.DatabaseContext::get_ChatAppUsers()
+DA:20,0
+FN:22,System.Void Infrastructure.Persistence.DatabaseContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.DatabaseContext::OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+FN:8,System.Void Infrastructure.Persistence.DatabaseContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Infrastructure.Persistence.DatabaseContext>)
+FNDA:0,System.Void Infrastructure.Persistence.DatabaseContext::.ctor(Microsoft.EntityFrameworkCore.DbContextOptions`1<Infrastructure.Persistence.DatabaseContext>)
+DA:9,0
+DA:10,0
+DA:12,0
+LF:18
+LH:0
+BRF:0
+BRH:0
+FNF:9
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/DatabaseContextFactory.cs
+FN:10,Infrastructure.Persistence.DatabaseContext Infrastructure.Persistence.DatabaseContextFactory::CreateDbContext(System.String[])
+FNDA:0,Infrastructure.Persistence.DatabaseContext Infrastructure.Persistence.DatabaseContextFactory::CreateDbContext(System.String[])
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/SeedData.cs
+FN:11,System.Void Infrastructure.Persistence.SeedData::SeedAll(Microsoft.EntityFrameworkCore.ModelBuilder,System.String)
+FNDA:0,System.Void Infrastructure.Persistence.SeedData::SeedAll(Microsoft.EntityFrameworkCore.ModelBuilder,System.String)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+BRDA:13,14,0,0
+BRDA:13,14,1,0
+FN:22,System.Void Infrastructure.Persistence.SeedData::SeedUsers(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.SeedData::SeedUsers(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:23,0
+DA:25,0
+FN:27,System.Void Infrastructure.Persistence.SeedData::SeedProjectTypes(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.SeedData::SeedProjectTypes(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:28,0
+DA:29,0
+DA:30,0
+FN:32,System.Void Infrastructure.Persistence.SeedData::SeedCommunicationPlatformTypes(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.SeedData::SeedCommunicationPlatformTypes(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:33,0
+DA:34,0
+DA:35,0
+FN:37,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.ProjectTypeEntity> Infrastructure.Persistence.SeedData::GetProjectTypeSeedData()
+FNDA:0,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.ProjectTypeEntity> Infrastructure.Persistence.SeedData::GetProjectTypeSeedData()
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:81,0
+DA:82,0
+FN:84,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity> Infrastructure.Persistence.SeedData::GetCommunicationPlatformSeedData()
+FNDA:0,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity> Infrastructure.Persistence.SeedData::GetCommunicationPlatformSeedData()
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:92,0
+DA:93,0
+LF:68
+LH:0
+BRF:2
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/TableStorage/MailConfigEntity.cs
+FN:18,System.String Infrastructure.Persistence.TableStorage.MailConfigEntity::get_Name()
+FNDA:0,System.String Infrastructure.Persistence.TableStorage.MailConfigEntity::get_Name()
+DA:19,0
+FN:19,Common.DTOs.MailDTOs.MailType Infrastructure.Persistence.TableStorage.MailConfigEntity::get_Type()
+FNDA:0,Common.DTOs.MailDTOs.MailType Infrastructure.Persistence.TableStorage.MailConfigEntity::get_Type()
+DA:20,0
+FN:20,System.String Infrastructure.Persistence.TableStorage.MailConfigEntity::get_TemplateId()
+FNDA:0,System.String Infrastructure.Persistence.TableStorage.MailConfigEntity::get_TemplateId()
+DA:21,0
+FN:21,System.Int32 Infrastructure.Persistence.TableStorage.MailConfigEntity::get_IntervalSeconds()
+FNDA:0,System.Int32 Infrastructure.Persistence.TableStorage.MailConfigEntity::get_IntervalSeconds()
+DA:22,0
+FN:22,System.Nullable`1<System.DateTimeOffset> Infrastructure.Persistence.TableStorage.MailConfigEntity::get_LastSend()
+FNDA:0,System.Nullable`1<System.DateTimeOffset> Infrastructure.Persistence.TableStorage.MailConfigEntity::get_LastSend()
+DA:23,0
+FN:23,System.Nullable`1<System.DateTimeOffset> Infrastructure.Persistence.TableStorage.MailConfigEntity::get_NextSend()
+FNDA:0,System.Nullable`1<System.DateTimeOffset> Infrastructure.Persistence.TableStorage.MailConfigEntity::get_NextSend()
+DA:24,0
+FN:8,System.Void Infrastructure.Persistence.TableStorage.MailConfigEntity::.ctor()
+FNDA:0,System.Void Infrastructure.Persistence.TableStorage.MailConfigEntity::.ctor()
+DA:9,0
+DA:10,0
+DA:11,0
+FN:12,System.Void Infrastructure.Persistence.TableStorage.MailConfigEntity::.ctor(System.String)
+FNDA:0,System.Void Infrastructure.Persistence.TableStorage.MailConfigEntity::.ctor(System.String)
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+LF:14
+LH:0
+BRF:0
+BRH:0
+FNF:8
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/TableStorage/MailConfigStorage.cs
+FN:49,Common.DTOs.MailDTOs.MailConfigDto Infrastructure.Persistence.TableStorage.MailConfigStorage::MapToMailConfigDto(Infrastructure.Persistence.TableStorage.MailConfigEntity)
+FNDA:0,Common.DTOs.MailDTOs.MailConfigDto Infrastructure.Persistence.TableStorage.MailConfigStorage::MapToMailConfigDto(Infrastructure.Persistence.TableStorage.MailConfigEntity)
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+FN:55,Infrastructure.Persistence.TableStorage.MailConfigEntity Infrastructure.Persistence.TableStorage.MailConfigStorage::MapToMailEntity(Common.DTOs.MailDTOs.MailConfigDto)
+FNDA:0,Infrastructure.Persistence.TableStorage.MailConfigEntity Infrastructure.Persistence.TableStorage.MailConfigStorage::MapToMailEntity(Common.DTOs.MailDTOs.MailConfigDto)
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+FN:14,System.Void Infrastructure.Persistence.TableStorage.MailConfigStorage::.ctor(System.String,System.String)
+FNDA:0,System.Void Infrastructure.Persistence.TableStorage.MailConfigStorage::.ctor(System.String,System.String)
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+FN:24,System.Void Infrastructure.Persistence.TableStorage.MailConfigStorage/<LoadConfig>d__3::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.TableStorage.MailConfigStorage/<LoadConfig>d__3::MoveNext()
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:35,0
+DA:36,0
+DA:38,0
+BRDA:29,215,0,0
+BRDA:29,215,1,0
+FN:40,System.Void Infrastructure.Persistence.TableStorage.MailConfigStorage/<InsertOrUpdateConfig>d__4::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.TableStorage.MailConfigStorage/<InsertOrUpdateConfig>d__4::MoveNext()
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+LF:40
+LH:0
+BRF:2
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/TableStorage/Storage.cs
+FN:11,System.Void Infrastructure.Persistence.TableStorage.Storage`1::.ctor(System.String,System.String)
+FNDA:0,System.Void Infrastructure.Persistence.TableStorage.Storage`1::.ctor(System.String,System.String)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+FN:20,System.Void Infrastructure.Persistence.TableStorage.Storage`1/<RetrieveEntity>d__2::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.TableStorage.Storage`1/<RetrieveEntity>d__2::MoveNext()
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+FN:28,System.Void Infrastructure.Persistence.TableStorage.Storage`1/<InsertOrMerge>d__3::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.TableStorage.Storage`1/<InsertOrMerge>d__3::MoveNext()
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+LF:19
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20190910053423_InitialCreate.cs
+FN:8,System.Void Infrastructure.Persistence.Migrations.InitialCreate::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.InitialCreate::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+FN:43,System.Void Infrastructure.Persistence.Migrations.InitialCreate::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.InitialCreate::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+LF:35
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20190910053423_InitialCreate.Designer.cs
+FN:15,System.Void Infrastructure.Persistence.Migrations.InitialCreate::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.InitialCreate::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:56,0
+LF:38
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20190925041752_AddProjectTypes.cs
+FN:8,System.Void Infrastructure.Persistence.Migrations.AddProjectTypes::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddProjectTypes::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+FN:71,System.Void Infrastructure.Persistence.Migrations.AddProjectTypes::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddProjectTypes::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+LF:64
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20190925041752_AddProjectTypes.Designer.cs
+FN:15,System.Void Infrastructure.Persistence.Migrations.AddProjectTypes::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddProjectTypes::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:347,0
+LF:328
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20190926090724_AddProjectAndAssociatedTables.cs
+FN:8,System.Void Infrastructure.Persistence.Migrations.AddProjectAndAssociatedTables::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddProjectAndAssociatedTables::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:398,0
+DA:399,0
+DA:400,0
+DA:401,0
+DA:402,0
+FN:404,System.Void Infrastructure.Persistence.Migrations.AddProjectAndAssociatedTables::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddProjectAndAssociatedTables::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:405,0
+DA:406,0
+DA:407,0
+DA:409,0
+DA:410,0
+DA:412,0
+DA:413,0
+DA:415,0
+DA:416,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:425,0
+DA:426,0
+DA:427,0
+DA:428,0
+DA:429,0
+DA:430,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:449,0
+DA:450,0
+DA:451,0
+DA:453,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:458,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:471,0
+DA:472,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:484,0
+DA:485,0
+DA:486,0
+DA:488,0
+DA:489,0
+DA:490,0
+DA:491,0
+DA:492,0
+DA:493,0
+DA:495,0
+DA:496,0
+DA:497,0
+DA:498,0
+DA:499,0
+DA:500,0
+DA:502,0
+DA:503,0
+DA:504,0
+DA:505,0
+DA:506,0
+DA:507,0
+DA:509,0
+DA:510,0
+DA:511,0
+DA:512,0
+DA:513,0
+DA:514,0
+DA:516,0
+DA:517,0
+DA:518,0
+DA:519,0
+DA:520,0
+DA:521,0
+DA:523,0
+DA:524,0
+DA:525,0
+DA:526,0
+DA:527,0
+DA:528,0
+DA:530,0
+DA:531,0
+DA:532,0
+DA:533,0
+DA:534,0
+DA:535,0
+DA:537,0
+DA:538,0
+DA:539,0
+DA:540,0
+DA:541,0
+DA:542,0
+DA:544,0
+DA:545,0
+DA:546,0
+DA:547,0
+DA:548,0
+DA:549,0
+DA:551,0
+DA:552,0
+DA:553,0
+DA:554,0
+DA:555,0
+DA:556,0
+DA:558,0
+DA:559,0
+DA:560,0
+DA:561,0
+DA:562,0
+DA:563,0
+DA:565,0
+DA:566,0
+DA:567,0
+DA:568,0
+DA:569,0
+DA:570,0
+DA:572,0
+DA:573,0
+DA:574,0
+DA:575,0
+DA:576,0
+DA:577,0
+DA:579,0
+DA:580,0
+DA:581,0
+DA:582,0
+DA:583,0
+DA:584,0
+DA:586,0
+DA:587,0
+DA:588,0
+DA:589,0
+DA:590,0
+DA:591,0
+DA:593,0
+DA:594,0
+DA:595,0
+DA:596,0
+DA:597,0
+DA:598,0
+DA:600,0
+DA:601,0
+DA:602,0
+DA:603,0
+DA:604,0
+DA:605,0
+DA:607,0
+DA:608,0
+DA:609,0
+DA:610,0
+DA:611,0
+DA:612,0
+DA:614,0
+DA:615,0
+DA:616,0
+DA:617,0
+DA:618,0
+DA:619,0
+DA:621,0
+DA:622,0
+DA:623,0
+DA:624,0
+DA:625,0
+DA:626,0
+DA:628,0
+DA:629,0
+DA:630,0
+DA:631,0
+DA:632,0
+DA:633,0
+DA:635,0
+DA:636,0
+DA:637,0
+DA:638,0
+DA:639,0
+DA:640,0
+DA:642,0
+DA:643,0
+DA:644,0
+DA:645,0
+DA:646,0
+DA:647,0
+DA:649,0
+DA:650,0
+DA:651,0
+DA:652,0
+DA:653,0
+DA:654,0
+DA:656,0
+DA:657,0
+DA:658,0
+DA:659,0
+DA:660,0
+DA:661,0
+DA:663,0
+DA:664,0
+DA:665,0
+DA:666,0
+DA:667,0
+DA:668,0
+DA:670,0
+DA:671,0
+DA:672,0
+DA:673,0
+DA:674,0
+DA:675,0
+DA:677,0
+DA:678,0
+DA:679,0
+DA:680,0
+DA:681,0
+DA:682,0
+DA:684,0
+DA:685,0
+DA:686,0
+DA:687,0
+DA:688,0
+DA:689,0
+DA:690,0
+LF:591
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20190926090724_AddProjectAndAssociatedTables.Designer.cs
+FN:15,System.Void Infrastructure.Persistence.Migrations.AddProjectAndAssociatedTables::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddProjectAndAssociatedTables::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:401,0
+DA:402,0
+DA:403,0
+DA:404,0
+DA:405,0
+DA:406,0
+DA:407,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:425,0
+DA:426,0
+DA:427,0
+DA:428,0
+DA:429,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:449,0
+DA:450,0
+DA:451,0
+DA:452,0
+DA:453,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:472,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:485,0
+LF:460
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20191201055547_AddChatAppUserTableAndUserColumns.cs
+FN:8,System.Void Infrastructure.Persistence.Migrations.AddChatAppUserTableAndUserColumns::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddChatAppUserTableAndUserColumns::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+FN:376,System.Void Infrastructure.Persistence.Migrations.AddChatAppUserTableAndUserColumns::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddChatAppUserTableAndUserColumns::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:386,0
+DA:387,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:401,0
+DA:402,0
+DA:403,0
+DA:405,0
+DA:406,0
+DA:407,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:426,0
+DA:427,0
+DA:428,0
+DA:429,0
+DA:430,0
+DA:431,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:447,0
+DA:448,0
+DA:449,0
+DA:450,0
+DA:451,0
+DA:452,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:458,0
+DA:459,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:471,0
+DA:472,0
+DA:473,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:482,0
+DA:483,0
+DA:484,0
+DA:485,0
+DA:486,0
+DA:487,0
+DA:489,0
+DA:490,0
+DA:491,0
+DA:492,0
+DA:493,0
+DA:494,0
+DA:496,0
+DA:497,0
+DA:498,0
+DA:499,0
+DA:500,0
+DA:501,0
+DA:503,0
+DA:504,0
+DA:505,0
+DA:506,0
+DA:507,0
+DA:508,0
+DA:510,0
+DA:511,0
+DA:512,0
+DA:513,0
+DA:514,0
+DA:515,0
+DA:517,0
+DA:518,0
+DA:519,0
+DA:520,0
+DA:521,0
+DA:522,0
+DA:524,0
+DA:525,0
+DA:526,0
+DA:527,0
+DA:528,0
+DA:529,0
+DA:531,0
+DA:532,0
+DA:533,0
+DA:534,0
+DA:535,0
+DA:536,0
+DA:538,0
+DA:539,0
+DA:540,0
+DA:541,0
+DA:542,0
+DA:543,0
+DA:545,0
+DA:546,0
+DA:547,0
+DA:548,0
+DA:549,0
+DA:550,0
+DA:552,0
+DA:553,0
+DA:554,0
+DA:555,0
+DA:556,0
+DA:557,0
+DA:559,0
+DA:560,0
+DA:561,0
+DA:562,0
+DA:563,0
+DA:564,0
+DA:566,0
+DA:567,0
+DA:568,0
+DA:569,0
+DA:570,0
+DA:571,0
+DA:573,0
+DA:574,0
+DA:575,0
+DA:576,0
+DA:577,0
+DA:578,0
+DA:580,0
+DA:581,0
+DA:582,0
+DA:583,0
+DA:584,0
+DA:585,0
+DA:587,0
+DA:588,0
+DA:589,0
+DA:590,0
+DA:591,0
+DA:592,0
+DA:594,0
+DA:595,0
+DA:596,0
+DA:597,0
+DA:598,0
+DA:599,0
+DA:601,0
+DA:602,0
+DA:603,0
+DA:604,0
+DA:605,0
+DA:606,0
+DA:608,0
+DA:609,0
+DA:610,0
+DA:611,0
+DA:612,0
+DA:613,0
+DA:615,0
+DA:616,0
+DA:617,0
+DA:618,0
+DA:619,0
+DA:620,0
+DA:622,0
+DA:623,0
+DA:624,0
+DA:625,0
+DA:626,0
+DA:627,0
+DA:629,0
+DA:630,0
+DA:631,0
+DA:632,0
+DA:633,0
+DA:634,0
+DA:636,0
+DA:637,0
+DA:638,0
+DA:639,0
+DA:640,0
+DA:641,0
+DA:643,0
+DA:644,0
+DA:645,0
+DA:646,0
+DA:647,0
+DA:648,0
+DA:650,0
+DA:651,0
+DA:652,0
+DA:653,0
+DA:654,0
+DA:655,0
+DA:657,0
+DA:658,0
+DA:659,0
+DA:660,0
+DA:661,0
+DA:662,0
+DA:664,0
+DA:665,0
+DA:666,0
+DA:667,0
+DA:668,0
+DA:669,0
+DA:671,0
+DA:672,0
+DA:673,0
+DA:674,0
+DA:675,0
+DA:676,0
+DA:678,0
+DA:679,0
+DA:680,0
+DA:681,0
+DA:682,0
+DA:683,0
+DA:685,0
+DA:686,0
+DA:687,0
+DA:688,0
+DA:689,0
+DA:690,0
+DA:692,0
+DA:693,0
+DA:694,0
+DA:695,0
+DA:696,0
+DA:697,0
+DA:698,0
+DA:700,0
+DA:701,0
+DA:702,0
+DA:703,0
+DA:704,0
+DA:705,0
+DA:706,0
+DA:707,0
+LF:597
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20191201055547_AddChatAppUserTableAndUserColumns.Designer.cs
+FN:15,System.Void Infrastructure.Persistence.Migrations.AddChatAppUserTableAndUserColumns::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddChatAppUserTableAndUserColumns::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:400,0
+DA:402,0
+DA:403,0
+DA:404,0
+DA:405,0
+DA:406,0
+DA:407,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:426,0
+DA:427,0
+DA:428,0
+DA:429,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:450,0
+DA:451,0
+DA:452,0
+DA:453,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:458,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:471,0
+DA:472,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:484,0
+DA:485,0
+DA:486,0
+DA:487,0
+DA:488,0
+DA:489,0
+DA:490,0
+DA:492,0
+DA:493,0
+DA:494,0
+DA:495,0
+DA:496,0
+DA:497,0
+DA:498,0
+DA:500,0
+DA:501,0
+DA:502,0
+DA:503,0
+DA:504,0
+DA:505,0
+DA:506,0
+DA:507,0
+DA:508,0
+DA:509,0
+DA:510,0
+DA:511,0
+DA:513,0
+DA:514,0
+DA:515,0
+DA:516,0
+DA:517,0
+DA:518,0
+DA:519,0
+DA:520,0
+DA:521,0
+DA:522,0
+DA:524,0
+LF:497
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20191203214648_AddBioToUsers.cs
+FN:8,System.Void Infrastructure.Persistence.Migrations.AddBioToUsers::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddBioToUsers::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+FN:303,System.Void Infrastructure.Persistence.Migrations.AddBioToUsers::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddBioToUsers::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:386,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:400,0
+DA:401,0
+DA:402,0
+DA:403,0
+DA:404,0
+DA:405,0
+DA:407,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:425,0
+DA:426,0
+DA:428,0
+DA:429,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:449,0
+DA:450,0
+DA:451,0
+DA:452,0
+DA:453,0
+DA:454,0
+DA:456,0
+DA:457,0
+DA:458,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:470,0
+DA:471,0
+DA:472,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:484,0
+DA:485,0
+DA:486,0
+DA:487,0
+DA:488,0
+DA:489,0
+DA:491,0
+DA:492,0
+DA:493,0
+DA:494,0
+DA:495,0
+DA:496,0
+DA:498,0
+DA:499,0
+DA:500,0
+DA:501,0
+DA:502,0
+DA:503,0
+DA:505,0
+DA:506,0
+DA:507,0
+DA:508,0
+DA:509,0
+DA:510,0
+DA:512,0
+DA:513,0
+DA:514,0
+DA:515,0
+DA:516,0
+DA:517,0
+DA:519,0
+DA:520,0
+DA:521,0
+DA:522,0
+DA:523,0
+DA:524,0
+DA:526,0
+DA:527,0
+DA:528,0
+DA:529,0
+DA:530,0
+DA:531,0
+DA:533,0
+DA:534,0
+DA:535,0
+DA:536,0
+DA:537,0
+DA:538,0
+DA:540,0
+DA:541,0
+DA:542,0
+DA:543,0
+DA:544,0
+DA:545,0
+DA:547,0
+DA:548,0
+DA:549,0
+DA:550,0
+DA:551,0
+DA:552,0
+DA:554,0
+DA:555,0
+DA:556,0
+DA:557,0
+DA:558,0
+DA:559,0
+DA:561,0
+DA:562,0
+DA:563,0
+DA:564,0
+DA:565,0
+DA:566,0
+DA:568,0
+DA:569,0
+DA:570,0
+DA:571,0
+DA:572,0
+DA:573,0
+DA:575,0
+DA:576,0
+DA:577,0
+DA:578,0
+DA:579,0
+DA:580,0
+DA:582,0
+DA:583,0
+DA:584,0
+DA:585,0
+DA:586,0
+DA:587,0
+DA:589,0
+DA:590,0
+DA:591,0
+DA:592,0
+DA:593,0
+DA:594,0
+DA:595,0
+LF:503
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20191203214648_AddBioToUsers.Designer.cs
+FN:15,System.Void Infrastructure.Persistence.Migrations.AddBioToUsers::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddBioToUsers::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:400,0
+DA:402,0
+DA:403,0
+DA:404,0
+DA:405,0
+DA:406,0
+DA:407,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:426,0
+DA:427,0
+DA:428,0
+DA:429,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:450,0
+DA:451,0
+DA:452,0
+DA:453,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:458,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:471,0
+DA:472,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:484,0
+DA:485,0
+DA:486,0
+DA:487,0
+DA:488,0
+DA:489,0
+DA:490,0
+DA:491,0
+DA:492,0
+DA:494,0
+DA:495,0
+DA:496,0
+DA:497,0
+DA:498,0
+DA:499,0
+DA:500,0
+DA:502,0
+DA:503,0
+DA:504,0
+DA:505,0
+DA:506,0
+DA:507,0
+DA:508,0
+DA:509,0
+DA:510,0
+DA:511,0
+DA:512,0
+DA:513,0
+DA:515,0
+DA:516,0
+DA:517,0
+DA:518,0
+DA:519,0
+DA:520,0
+DA:521,0
+DA:522,0
+DA:523,0
+DA:524,0
+DA:526,0
+LF:499
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20200320125116_AddSearchablePropertyToProjects.cs
+FN:8,System.Void Infrastructure.Persistence.Migrations.AddSearchablePropertyToProjects::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddSearchablePropertyToProjects::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+FN:304,System.Void Infrastructure.Persistence.Migrations.AddSearchablePropertyToProjects::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddSearchablePropertyToProjects::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:401,0
+DA:402,0
+DA:403,0
+DA:404,0
+DA:405,0
+DA:406,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:425,0
+DA:426,0
+DA:427,0
+DA:429,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:450,0
+DA:451,0
+DA:452,0
+DA:453,0
+DA:454,0
+DA:455,0
+DA:457,0
+DA:458,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:471,0
+DA:472,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:485,0
+DA:486,0
+DA:487,0
+DA:488,0
+DA:489,0
+DA:490,0
+DA:492,0
+DA:493,0
+DA:494,0
+DA:495,0
+DA:496,0
+DA:497,0
+DA:499,0
+DA:500,0
+DA:501,0
+DA:502,0
+DA:503,0
+DA:504,0
+DA:506,0
+DA:507,0
+DA:508,0
+DA:509,0
+DA:510,0
+DA:511,0
+DA:513,0
+DA:514,0
+DA:515,0
+DA:516,0
+DA:517,0
+DA:518,0
+DA:520,0
+DA:521,0
+DA:522,0
+DA:523,0
+DA:524,0
+DA:525,0
+DA:527,0
+DA:528,0
+DA:529,0
+DA:530,0
+DA:531,0
+DA:532,0
+DA:534,0
+DA:535,0
+DA:536,0
+DA:537,0
+DA:538,0
+DA:539,0
+DA:541,0
+DA:542,0
+DA:543,0
+DA:544,0
+DA:545,0
+DA:546,0
+DA:548,0
+DA:549,0
+DA:550,0
+DA:551,0
+DA:552,0
+DA:553,0
+DA:555,0
+DA:556,0
+DA:557,0
+DA:558,0
+DA:559,0
+DA:560,0
+DA:562,0
+DA:563,0
+DA:564,0
+DA:565,0
+DA:566,0
+DA:567,0
+DA:569,0
+DA:570,0
+DA:571,0
+DA:572,0
+DA:573,0
+DA:574,0
+DA:576,0
+DA:577,0
+DA:578,0
+DA:579,0
+DA:580,0
+DA:581,0
+DA:583,0
+DA:584,0
+DA:585,0
+DA:586,0
+DA:587,0
+DA:588,0
+DA:590,0
+DA:591,0
+DA:592,0
+DA:593,0
+DA:594,0
+DA:595,0
+DA:596,0
+LF:504
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20200320125116_AddSearchablePropertyToProjects.Designer.cs
+FN:15,System.Void Infrastructure.Persistence.Migrations.AddSearchablePropertyToProjects::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddSearchablePropertyToProjects::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:400,0
+DA:401,0
+DA:402,0
+DA:403,0
+DA:404,0
+DA:406,0
+DA:407,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:425,0
+DA:426,0
+DA:427,0
+DA:428,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:449,0
+DA:450,0
+DA:451,0
+DA:452,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:458,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:471,0
+DA:472,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:484,0
+DA:485,0
+DA:486,0
+DA:487,0
+DA:488,0
+DA:489,0
+DA:490,0
+DA:491,0
+DA:492,0
+DA:493,0
+DA:494,0
+DA:495,0
+DA:496,0
+DA:498,0
+DA:499,0
+DA:500,0
+DA:501,0
+DA:502,0
+DA:503,0
+DA:504,0
+DA:506,0
+DA:507,0
+DA:508,0
+DA:509,0
+DA:510,0
+DA:511,0
+DA:512,0
+DA:513,0
+DA:514,0
+DA:515,0
+DA:516,0
+DA:517,0
+DA:519,0
+DA:520,0
+DA:521,0
+DA:522,0
+DA:523,0
+DA:524,0
+DA:525,0
+DA:526,0
+DA:527,0
+DA:528,0
+DA:530,0
+LF:503
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20200529185519_AddPassResetTokenFields.cs
+FN:8,System.Void Infrastructure.Persistence.Migrations.AddPassResetTokenFields::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddPassResetTokenFields::Up(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+DA:13,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:112,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+FN:309,System.Void Infrastructure.Persistence.Migrations.AddPassResetTokenFields::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddPassResetTokenFields::Down(Microsoft.EntityFrameworkCore.Migrations.MigrationBuilder)
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:387,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:393,0
+DA:394,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:400,0
+DA:401,0
+DA:403,0
+DA:404,0
+DA:405,0
+DA:406,0
+DA:407,0
+DA:408,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:424,0
+DA:425,0
+DA:426,0
+DA:427,0
+DA:428,0
+DA:429,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:449,0
+DA:450,0
+DA:452,0
+DA:453,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:471,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:484,0
+DA:485,0
+DA:487,0
+DA:488,0
+DA:489,0
+DA:490,0
+DA:491,0
+DA:492,0
+DA:494,0
+DA:495,0
+DA:496,0
+DA:497,0
+DA:498,0
+DA:499,0
+DA:501,0
+DA:502,0
+DA:503,0
+DA:504,0
+DA:505,0
+DA:506,0
+DA:508,0
+DA:509,0
+DA:510,0
+DA:511,0
+DA:512,0
+DA:513,0
+DA:515,0
+DA:516,0
+DA:517,0
+DA:518,0
+DA:519,0
+DA:520,0
+DA:522,0
+DA:523,0
+DA:524,0
+DA:525,0
+DA:526,0
+DA:527,0
+DA:529,0
+DA:530,0
+DA:531,0
+DA:532,0
+DA:533,0
+DA:534,0
+DA:536,0
+DA:537,0
+DA:538,0
+DA:539,0
+DA:540,0
+DA:541,0
+DA:543,0
+DA:544,0
+DA:545,0
+DA:546,0
+DA:547,0
+DA:548,0
+DA:550,0
+DA:551,0
+DA:552,0
+DA:553,0
+DA:554,0
+DA:555,0
+DA:557,0
+DA:558,0
+DA:559,0
+DA:560,0
+DA:561,0
+DA:562,0
+DA:564,0
+DA:565,0
+DA:566,0
+DA:567,0
+DA:568,0
+DA:569,0
+DA:571,0
+DA:572,0
+DA:573,0
+DA:574,0
+DA:575,0
+DA:576,0
+DA:578,0
+DA:579,0
+DA:580,0
+DA:581,0
+DA:582,0
+DA:583,0
+DA:585,0
+DA:586,0
+DA:587,0
+DA:588,0
+DA:589,0
+DA:590,0
+DA:592,0
+DA:593,0
+DA:594,0
+DA:595,0
+DA:596,0
+DA:597,0
+DA:599,0
+DA:600,0
+DA:601,0
+DA:602,0
+DA:603,0
+DA:604,0
+DA:605,0
+LF:511
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/20200529185519_AddPassResetTokenFields.Designer.cs
+FN:15,System.Void Infrastructure.Persistence.Migrations.AddPassResetTokenFields::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.AddPassResetTokenFields::BuildTargetModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:16,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:112,0
+DA:113,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:400,0
+DA:401,0
+DA:402,0
+DA:403,0
+DA:404,0
+DA:406,0
+DA:407,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:425,0
+DA:426,0
+DA:427,0
+DA:428,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:449,0
+DA:450,0
+DA:451,0
+DA:452,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:458,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:471,0
+DA:472,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:484,0
+DA:485,0
+DA:486,0
+DA:487,0
+DA:488,0
+DA:489,0
+DA:490,0
+DA:491,0
+DA:492,0
+DA:493,0
+DA:494,0
+DA:495,0
+DA:496,0
+DA:497,0
+DA:498,0
+DA:499,0
+DA:500,0
+DA:502,0
+DA:503,0
+DA:504,0
+DA:505,0
+DA:506,0
+DA:507,0
+DA:508,0
+DA:510,0
+DA:511,0
+DA:512,0
+DA:513,0
+DA:514,0
+DA:515,0
+DA:516,0
+DA:517,0
+DA:518,0
+DA:519,0
+DA:520,0
+DA:521,0
+DA:523,0
+DA:524,0
+DA:525,0
+DA:526,0
+DA:527,0
+DA:528,0
+DA:529,0
+DA:530,0
+DA:531,0
+DA:532,0
+DA:534,0
+LF:507
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Migrations/DatabaseContextModelSnapshot.cs
+FN:13,System.Void Infrastructure.Persistence.Migrations.DatabaseContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+FNDA:0,System.Void Infrastructure.Persistence.Migrations.DatabaseContextModelSnapshot::BuildModel(Microsoft.EntityFrameworkCore.ModelBuilder)
+DA:14,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:99,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+DA:106,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:111,0
+DA:113,0
+DA:114,0
+DA:115,0
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:121,0
+DA:122,0
+DA:123,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:128,0
+DA:129,0
+DA:130,0
+DA:131,0
+DA:132,0
+DA:133,0
+DA:134,0
+DA:135,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:140,0
+DA:141,0
+DA:142,0
+DA:143,0
+DA:144,0
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:150,0
+DA:151,0
+DA:152,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:157,0
+DA:158,0
+DA:159,0
+DA:160,0
+DA:161,0
+DA:162,0
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:169,0
+DA:170,0
+DA:171,0
+DA:172,0
+DA:173,0
+DA:174,0
+DA:175,0
+DA:176,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:182,0
+DA:183,0
+DA:184,0
+DA:185,0
+DA:186,0
+DA:187,0
+DA:188,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:198,0
+DA:199,0
+DA:200,0
+DA:201,0
+DA:202,0
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+DA:207,0
+DA:208,0
+DA:209,0
+DA:210,0
+DA:211,0
+DA:212,0
+DA:213,0
+DA:214,0
+DA:215,0
+DA:216,0
+DA:217,0
+DA:218,0
+DA:219,0
+DA:220,0
+DA:221,0
+DA:222,0
+DA:223,0
+DA:224,0
+DA:225,0
+DA:226,0
+DA:227,0
+DA:228,0
+DA:229,0
+DA:230,0
+DA:231,0
+DA:232,0
+DA:233,0
+DA:234,0
+DA:235,0
+DA:236,0
+DA:237,0
+DA:238,0
+DA:239,0
+DA:240,0
+DA:241,0
+DA:242,0
+DA:243,0
+DA:244,0
+DA:245,0
+DA:246,0
+DA:247,0
+DA:248,0
+DA:249,0
+DA:250,0
+DA:251,0
+DA:252,0
+DA:253,0
+DA:254,0
+DA:255,0
+DA:256,0
+DA:257,0
+DA:258,0
+DA:259,0
+DA:260,0
+DA:261,0
+DA:262,0
+DA:263,0
+DA:264,0
+DA:265,0
+DA:266,0
+DA:267,0
+DA:268,0
+DA:269,0
+DA:270,0
+DA:271,0
+DA:272,0
+DA:273,0
+DA:274,0
+DA:275,0
+DA:276,0
+DA:277,0
+DA:278,0
+DA:279,0
+DA:280,0
+DA:281,0
+DA:282,0
+DA:283,0
+DA:284,0
+DA:285,0
+DA:286,0
+DA:287,0
+DA:288,0
+DA:289,0
+DA:290,0
+DA:291,0
+DA:292,0
+DA:293,0
+DA:294,0
+DA:295,0
+DA:296,0
+DA:297,0
+DA:298,0
+DA:299,0
+DA:300,0
+DA:301,0
+DA:302,0
+DA:303,0
+DA:304,0
+DA:305,0
+DA:306,0
+DA:307,0
+DA:308,0
+DA:309,0
+DA:310,0
+DA:311,0
+DA:312,0
+DA:313,0
+DA:314,0
+DA:315,0
+DA:316,0
+DA:317,0
+DA:318,0
+DA:319,0
+DA:320,0
+DA:321,0
+DA:322,0
+DA:323,0
+DA:324,0
+DA:325,0
+DA:326,0
+DA:327,0
+DA:328,0
+DA:329,0
+DA:330,0
+DA:331,0
+DA:332,0
+DA:333,0
+DA:334,0
+DA:335,0
+DA:336,0
+DA:337,0
+DA:338,0
+DA:339,0
+DA:340,0
+DA:341,0
+DA:342,0
+DA:343,0
+DA:344,0
+DA:345,0
+DA:346,0
+DA:347,0
+DA:348,0
+DA:349,0
+DA:350,0
+DA:351,0
+DA:352,0
+DA:353,0
+DA:354,0
+DA:355,0
+DA:356,0
+DA:357,0
+DA:358,0
+DA:359,0
+DA:360,0
+DA:361,0
+DA:362,0
+DA:363,0
+DA:364,0
+DA:365,0
+DA:366,0
+DA:367,0
+DA:368,0
+DA:369,0
+DA:370,0
+DA:371,0
+DA:372,0
+DA:373,0
+DA:374,0
+DA:375,0
+DA:376,0
+DA:377,0
+DA:378,0
+DA:379,0
+DA:380,0
+DA:381,0
+DA:382,0
+DA:383,0
+DA:384,0
+DA:385,0
+DA:386,0
+DA:387,0
+DA:388,0
+DA:389,0
+DA:390,0
+DA:391,0
+DA:392,0
+DA:393,0
+DA:394,0
+DA:395,0
+DA:396,0
+DA:397,0
+DA:398,0
+DA:399,0
+DA:400,0
+DA:401,0
+DA:402,0
+DA:404,0
+DA:405,0
+DA:406,0
+DA:407,0
+DA:408,0
+DA:409,0
+DA:410,0
+DA:411,0
+DA:412,0
+DA:413,0
+DA:414,0
+DA:415,0
+DA:416,0
+DA:417,0
+DA:418,0
+DA:419,0
+DA:420,0
+DA:421,0
+DA:422,0
+DA:423,0
+DA:424,0
+DA:425,0
+DA:426,0
+DA:428,0
+DA:429,0
+DA:430,0
+DA:431,0
+DA:432,0
+DA:433,0
+DA:434,0
+DA:435,0
+DA:436,0
+DA:437,0
+DA:438,0
+DA:439,0
+DA:440,0
+DA:441,0
+DA:442,0
+DA:443,0
+DA:444,0
+DA:445,0
+DA:446,0
+DA:447,0
+DA:448,0
+DA:449,0
+DA:450,0
+DA:452,0
+DA:453,0
+DA:454,0
+DA:455,0
+DA:456,0
+DA:457,0
+DA:458,0
+DA:459,0
+DA:460,0
+DA:461,0
+DA:462,0
+DA:463,0
+DA:464,0
+DA:465,0
+DA:466,0
+DA:467,0
+DA:468,0
+DA:469,0
+DA:470,0
+DA:471,0
+DA:472,0
+DA:473,0
+DA:474,0
+DA:475,0
+DA:476,0
+DA:477,0
+DA:478,0
+DA:479,0
+DA:480,0
+DA:481,0
+DA:482,0
+DA:483,0
+DA:484,0
+DA:485,0
+DA:486,0
+DA:487,0
+DA:488,0
+DA:489,0
+DA:490,0
+DA:491,0
+DA:492,0
+DA:493,0
+DA:494,0
+DA:495,0
+DA:496,0
+DA:497,0
+DA:498,0
+DA:500,0
+DA:501,0
+DA:502,0
+DA:503,0
+DA:504,0
+DA:505,0
+DA:506,0
+DA:508,0
+DA:509,0
+DA:510,0
+DA:511,0
+DA:512,0
+DA:513,0
+DA:514,0
+DA:515,0
+DA:516,0
+DA:517,0
+DA:518,0
+DA:519,0
+DA:521,0
+DA:522,0
+DA:523,0
+DA:524,0
+DA:525,0
+DA:526,0
+DA:527,0
+DA:528,0
+DA:529,0
+DA:530,0
+DA:532,0
+LF:507
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/ChatAppUserEntity.cs
+FN:24,System.Guid Infrastructure.Persistence.Entities.ChatAppUserEntity::get_Id()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.ChatAppUserEntity::get_Id()
+DA:25,0
+FN:25,System.String Infrastructure.Persistence.Entities.ChatAppUserEntity::get_WorkspaceId()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ChatAppUserEntity::get_WorkspaceId()
+DA:26,0
+FN:26,System.String Infrastructure.Persistence.Entities.ChatAppUserEntity::get_WorkspaceMemberId()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ChatAppUserEntity::get_WorkspaceMemberId()
+DA:27,0
+FN:28,Infrastructure.Persistence.Entities.UserEntity Infrastructure.Persistence.Entities.ChatAppUserEntity::get_User()
+FNDA:0,Infrastructure.Persistence.Entities.UserEntity Infrastructure.Persistence.Entities.ChatAppUserEntity::get_User()
+DA:29,0
+FN:29,System.Guid Infrastructure.Persistence.Entities.ChatAppUserEntity::get_UserId()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.ChatAppUserEntity::get_UserId()
+DA:30,0
+FN:30,System.DateTimeOffset Infrastructure.Persistence.Entities.ChatAppUserEntity::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ChatAppUserEntity::get_CreatedAt()
+DA:31,0
+FN:31,System.DateTimeOffset Infrastructure.Persistence.Entities.ChatAppUserEntity::get_UpdatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ChatAppUserEntity::get_UpdatedAt()
+DA:32,0
+FN:17,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity::.ctor()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity::.ctor()
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+FN:34,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<CreateAsync>d__30::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<CreateAsync>d__30::MoveNext()
+DA:35,0
+DA:36,0
+DA:37,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+BRDA:39,116,0,0
+BRDA:39,116,1,0
+FN:44,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<DeleteAsync>d__31::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<DeleteAsync>d__31::MoveNext()
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+FN:52,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<FindAsync>d__32::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<FindAsync>d__32::MoveNext()
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+FN:58,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<FindAsync>d__33::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<FindAsync>d__33::MoveNext()
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+FN:64,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<UpdateAsync>d__34::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<UpdateAsync>d__34::MoveNext()
+DA:65,0
+DA:66,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+FN:73,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<GetDeveloperTechnologiesAsync>d__35::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ChatAppUserEntity/<GetDeveloperTechnologiesAsync>d__35::MoveNext()
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:86,0
+DA:87,0
+DA:88,0
+LF:54
+LH:0
+BRF:2
+BRH:0
+FNF:14
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/CommunicationPlatformTypeEntity.cs
+FN:20,System.Guid Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::get_Id()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::get_Id()
+DA:21,0
+FN:21,System.String Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::get_Name()
+FNDA:0,System.String Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::get_Name()
+DA:22,0
+FN:22,System.DateTimeOffset Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::get_CreatedAt()
+DA:23,0
+FN:23,System.DateTimeOffset Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::get_UpdatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::get_UpdatedAt()
+DA:24,0
+FN:13,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::.ctor()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity::.ctor()
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+FN:26,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<CreateAsync>d__18::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<CreateAsync>d__18::MoveNext()
+DA:27,0
+DA:28,0
+DA:29,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+BRDA:31,116,0,0
+BRDA:31,116,1,0
+FN:36,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<DeleteAsync>d__19::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<DeleteAsync>d__19::MoveNext()
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+FN:44,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<FindAsync>d__20::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<FindAsync>d__20::MoveNext()
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+FN:50,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<FindAsync>d__21::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<FindAsync>d__21::MoveNext()
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+FN:56,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<UpdateAsync>d__22::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.CommunicationPlatformTypeEntity/<UpdateAsync>d__22::MoveNext()
+DA:57,0
+DA:58,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+LF:37
+LH:0
+BRF:2
+BRH:0
+FNF:10
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/DeveloperTechnologies.cs
+FN:6,System.String Infrastructure.Persistence.Entities.DeveloperTechnologies::get_WorkspaceMemberId()
+FNDA:0,System.String Infrastructure.Persistence.Entities.DeveloperTechnologies::get_WorkspaceMemberId()
+DA:7,0
+FN:7,System.String Infrastructure.Persistence.Entities.DeveloperTechnologies::get_Name()
+FNDA:0,System.String Infrastructure.Persistence.Entities.DeveloperTechnologies::get_Name()
+DA:8,0
+FN:8,System.DateTimeOffset Infrastructure.Persistence.Entities.DeveloperTechnologies::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.DeveloperTechnologies::get_CreatedAt()
+DA:9,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/ProjectEntity.cs
+FN:22,System.Guid Infrastructure.Persistence.Entities.ProjectEntity::get_Id()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.ProjectEntity::get_Id()
+DA:23,0
+FN:23,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_Name()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_Name()
+DA:24,0
+FN:24,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_Description()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_Description()
+DA:25,0
+FN:25,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectEntity::get_LaunchDate()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectEntity::get_LaunchDate()
+DA:26,0
+FN:26,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_ProjectType()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_ProjectType()
+DA:27,0
+FN:27,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_RepositoryUrl()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_RepositoryUrl()
+DA:28,0
+FN:28,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_CommunicationPlatformUrl()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_CommunicationPlatformUrl()
+DA:29,0
+FN:29,System.Boolean Infrastructure.Persistence.Entities.ProjectEntity::get_LookingForMembers()
+FNDA:0,System.Boolean Infrastructure.Persistence.Entities.ProjectEntity::get_LookingForMembers()
+DA:30,0
+FN:30,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_CommunicationPlatform()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectEntity::get_CommunicationPlatform()
+DA:31,0
+FN:31,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.ProjectUserEntity> Infrastructure.Persistence.Entities.ProjectEntity::get_ProjectUsers()
+FNDA:0,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.ProjectUserEntity> Infrastructure.Persistence.Entities.ProjectEntity::get_ProjectUsers()
+DA:32,0
+FN:32,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.TechnologyEntity> Infrastructure.Persistence.Entities.ProjectEntity::get_ProjectTechnologies()
+FNDA:0,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.TechnologyEntity> Infrastructure.Persistence.Entities.ProjectEntity::get_ProjectTechnologies()
+DA:33,0
+FN:33,System.Boolean Infrastructure.Persistence.Entities.ProjectEntity::get_Searchable()
+FNDA:0,System.Boolean Infrastructure.Persistence.Entities.ProjectEntity::get_Searchable()
+DA:34,0
+FN:34,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectEntity::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectEntity::get_CreatedAt()
+DA:35,0
+FN:35,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectEntity::get_UpdatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectEntity::get_UpdatedAt()
+DA:36,0
+FN:15,System.Void Infrastructure.Persistence.Entities.ProjectEntity::.ctor()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectEntity::.ctor()
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+FN:38,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<CreateAsync>d__58::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<CreateAsync>d__58::MoveNext()
+DA:39,0
+DA:40,0
+DA:41,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+BRDA:43,116,0,0
+BRDA:43,116,1,0
+FN:48,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<DeleteAsync>d__59::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<DeleteAsync>d__59::MoveNext()
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+FN:56,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<FindAsync>d__60::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<FindAsync>d__60::MoveNext()
+DA:57,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+FN:67,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<FindAllAsync>d__61::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<FindAllAsync>d__61::MoveNext()
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+FN:77,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<FindAsync>d__62::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<FindAsync>d__62::MoveNext()
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+FN:87,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<UpdateAsync>d__63::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectEntity/<UpdateAsync>d__63::MoveNext()
+DA:88,0
+DA:89,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+LF:64
+LH:0
+BRF:2
+BRH:0
+FNF:21
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/ProjectTechnologies.cs
+FN:5,System.Guid Infrastructure.Persistence.Entities.ProjectTechnologies::get_Id()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.ProjectTechnologies::get_Id()
+DA:6,0
+FN:6,System.String Infrastructure.Persistence.Entities.ProjectTechnologies::get_ProjectName()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectTechnologies::get_ProjectName()
+DA:7,0
+FN:7,System.String Infrastructure.Persistence.Entities.ProjectTechnologies::get_ProjectDescription()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectTechnologies::get_ProjectDescription()
+DA:8,0
+FN:8,System.String Infrastructure.Persistence.Entities.ProjectTechnologies::get_ProjectWorkspaceLink()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectTechnologies::get_ProjectWorkspaceLink()
+DA:9,0
+FN:9,System.String Infrastructure.Persistence.Entities.ProjectTechnologies::get_TechnologyName()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectTechnologies::get_TechnologyName()
+DA:10,0
+FN:10,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectTechnologies::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectTechnologies::get_CreatedAt()
+DA:11,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/ProjectTypeEntity.cs
+FN:20,System.Guid Infrastructure.Persistence.Entities.ProjectTypeEntity::get_Id()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.ProjectTypeEntity::get_Id()
+DA:21,0
+FN:21,System.String Infrastructure.Persistence.Entities.ProjectTypeEntity::get_Type()
+FNDA:0,System.String Infrastructure.Persistence.Entities.ProjectTypeEntity::get_Type()
+DA:22,0
+FN:22,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectTypeEntity::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectTypeEntity::get_CreatedAt()
+DA:23,0
+FN:23,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectTypeEntity::get_UpdatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectTypeEntity::get_UpdatedAt()
+DA:24,0
+FN:13,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity::.ctor()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity::.ctor()
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+FN:26,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<CreateAsync>d__18::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<CreateAsync>d__18::MoveNext()
+DA:27,0
+DA:28,0
+DA:29,0
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+BRDA:31,116,0,0
+BRDA:31,116,1,0
+FN:36,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<DeleteAsync>d__19::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<DeleteAsync>d__19::MoveNext()
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+FN:44,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<FindAsync>d__20::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<FindAsync>d__20::MoveNext()
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+FN:50,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<FindAsync>d__21::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<FindAsync>d__21::MoveNext()
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+FN:56,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<UpdateAsync>d__22::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectTypeEntity/<UpdateAsync>d__22::MoveNext()
+DA:57,0
+DA:58,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+LF:37
+LH:0
+BRF:2
+BRH:0
+FNF:10
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/ProjectUserEntity.cs
+FN:21,System.Guid Infrastructure.Persistence.Entities.ProjectUserEntity::get_Id()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.ProjectUserEntity::get_Id()
+DA:22,0
+FN:23,Infrastructure.Persistence.Entities.ProjectEntity Infrastructure.Persistence.Entities.ProjectUserEntity::get_Project()
+FNDA:0,Infrastructure.Persistence.Entities.ProjectEntity Infrastructure.Persistence.Entities.ProjectUserEntity::get_Project()
+DA:24,0
+FN:24,System.Guid Infrastructure.Persistence.Entities.ProjectUserEntity::get_ProjectId()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.ProjectUserEntity::get_ProjectId()
+DA:25,0
+FN:26,Infrastructure.Persistence.Entities.UserEntity Infrastructure.Persistence.Entities.ProjectUserEntity::get_User()
+FNDA:0,Infrastructure.Persistence.Entities.UserEntity Infrastructure.Persistence.Entities.ProjectUserEntity::get_User()
+DA:27,0
+FN:27,System.Guid Infrastructure.Persistence.Entities.ProjectUserEntity::get_UserId()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.ProjectUserEntity::get_UserId()
+DA:28,0
+FN:28,System.Boolean Infrastructure.Persistence.Entities.ProjectUserEntity::get_IsOwner()
+FNDA:0,System.Boolean Infrastructure.Persistence.Entities.ProjectUserEntity::get_IsOwner()
+DA:29,0
+FN:29,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectUserEntity::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectUserEntity::get_CreatedAt()
+DA:30,0
+FN:30,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectUserEntity::get_UpdatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.ProjectUserEntity::get_UpdatedAt()
+DA:31,0
+FN:14,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity::.ctor()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity::.ctor()
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+FN:33,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<CreateAsync>d__34::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<CreateAsync>d__34::MoveNext()
+DA:34,0
+DA:35,0
+DA:36,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+BRDA:38,116,0,0
+BRDA:38,116,1,0
+FN:43,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<DeleteAsync>d__35::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<DeleteAsync>d__35::MoveNext()
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+FN:51,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<FindAsync>d__36::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<FindAsync>d__36::MoveNext()
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+FN:59,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<FindAsync>d__37::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<FindAsync>d__37::MoveNext()
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+FN:67,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<UpdateAsync>d__38::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.ProjectUserEntity/<UpdateAsync>d__38::MoveNext()
+DA:68,0
+DA:69,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+LF:45
+LH:0
+BRF:2
+BRH:0
+FNF:14
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/TechnologyEntity.cs
+FN:25,System.Guid Infrastructure.Persistence.Entities.TechnologyEntity::get_Id()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.TechnologyEntity::get_Id()
+DA:26,0
+FN:26,System.String Infrastructure.Persistence.Entities.TechnologyEntity::get_Name()
+FNDA:0,System.String Infrastructure.Persistence.Entities.TechnologyEntity::get_Name()
+DA:27,0
+FN:28,Infrastructure.Persistence.Entities.ProjectEntity Infrastructure.Persistence.Entities.TechnologyEntity::get_Project()
+FNDA:0,Infrastructure.Persistence.Entities.ProjectEntity Infrastructure.Persistence.Entities.TechnologyEntity::get_Project()
+DA:29,0
+FN:29,System.Nullable`1<System.Guid> Infrastructure.Persistence.Entities.TechnologyEntity::get_ProjectId()
+FNDA:0,System.Nullable`1<System.Guid> Infrastructure.Persistence.Entities.TechnologyEntity::get_ProjectId()
+DA:30,0
+FN:31,Infrastructure.Persistence.Entities.UserEntity Infrastructure.Persistence.Entities.TechnologyEntity::get_User()
+FNDA:0,Infrastructure.Persistence.Entities.UserEntity Infrastructure.Persistence.Entities.TechnologyEntity::get_User()
+DA:32,0
+FN:32,System.Nullable`1<System.Guid> Infrastructure.Persistence.Entities.TechnologyEntity::get_UserId()
+FNDA:0,System.Nullable`1<System.Guid> Infrastructure.Persistence.Entities.TechnologyEntity::get_UserId()
+DA:33,0
+FN:33,System.DateTimeOffset Infrastructure.Persistence.Entities.TechnologyEntity::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.TechnologyEntity::get_CreatedAt()
+DA:34,0
+FN:34,System.DateTimeOffset Infrastructure.Persistence.Entities.TechnologyEntity::get_UpdatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.TechnologyEntity::get_UpdatedAt()
+DA:35,0
+FN:15,System.Void Infrastructure.Persistence.Entities.TechnologyEntity::.ctor()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.TechnologyEntity::.ctor()
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:22,0
+DA:23,0
+DA:24,0
+FN:37,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<CreateAsync>d__34::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<CreateAsync>d__34::MoveNext()
+DA:38,0
+DA:39,0
+DA:40,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+BRDA:42,116,0,0
+BRDA:42,116,1,0
+FN:47,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<DeleteAsync>d__35::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<DeleteAsync>d__35::MoveNext()
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+FN:55,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<DeleteAsync>d__36::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<DeleteAsync>d__36::MoveNext()
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+FN:61,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<FindAsync>d__37::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<FindAsync>d__37::MoveNext()
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+FN:67,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<FindAsync>d__38::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<FindAsync>d__38::MoveNext()
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+FN:73,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<UpdateAsync>d__39::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<UpdateAsync>d__39::MoveNext()
+DA:74,0
+DA:75,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+FN:82,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<GetProjectTechnologiesAsync>d__40::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.TechnologyEntity/<GetProjectTechnologiesAsync>d__40::MoveNext()
+DA:83,0
+DA:84,0
+DA:85,0
+DA:86,0
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:96,0
+DA:98,0
+DA:99,0
+DA:100,0
+LF:64
+LH:0
+BRF:2
+BRH:0
+FNF:16
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Persistence/Entities/UserEntity.cs
+FN:22,System.Guid Infrastructure.Persistence.Entities.UserEntity::get_Id()
+FNDA:0,System.Guid Infrastructure.Persistence.Entities.UserEntity::get_Id()
+DA:23,0
+FN:23,System.String Infrastructure.Persistence.Entities.UserEntity::get_FullName()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_FullName()
+DA:24,0
+FN:24,System.String Infrastructure.Persistence.Entities.UserEntity::get_Username()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_Username()
+DA:25,0
+FN:25,System.String Infrastructure.Persistence.Entities.UserEntity::get_Email()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_Email()
+DA:26,0
+FN:26,System.String Infrastructure.Persistence.Entities.UserEntity::get_Bio()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_Bio()
+DA:27,0
+FN:27,System.String Infrastructure.Persistence.Entities.UserEntity::get_HashedPassword()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_HashedPassword()
+DA:28,0
+FN:28,System.String Infrastructure.Persistence.Entities.UserEntity::get_Timezone()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_Timezone()
+DA:29,0
+FN:29,System.String Infrastructure.Persistence.Entities.UserEntity::get_Locale()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_Locale()
+DA:30,0
+FN:30,System.Boolean Infrastructure.Persistence.Entities.UserEntity::get_LookingForProject()
+FNDA:0,System.Boolean Infrastructure.Persistence.Entities.UserEntity::get_LookingForProject()
+DA:31,0
+FN:31,System.String Infrastructure.Persistence.Entities.UserEntity::get_ProfilePictureUrl()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_ProfilePictureUrl()
+DA:32,0
+FN:32,System.String Infrastructure.Persistence.Entities.UserEntity::get_GitHubUsername()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_GitHubUsername()
+DA:33,0
+FN:33,System.String Infrastructure.Persistence.Entities.UserEntity::get_ResetPasswordToken()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_ResetPasswordToken()
+DA:34,0
+FN:34,System.DateTimeOffset Infrastructure.Persistence.Entities.UserEntity::get_ResetPasswordTokenExpiresAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.UserEntity::get_ResetPasswordTokenExpiresAt()
+DA:35,0
+FN:35,System.String Infrastructure.Persistence.Entities.UserEntity::get_MagicLoginToken()
+FNDA:0,System.String Infrastructure.Persistence.Entities.UserEntity::get_MagicLoginToken()
+DA:36,0
+FN:36,System.DateTimeOffset Infrastructure.Persistence.Entities.UserEntity::get_MagicLoginTokenExpiresAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.UserEntity::get_MagicLoginTokenExpiresAt()
+DA:37,0
+FN:37,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.ProjectUserEntity> Infrastructure.Persistence.Entities.UserEntity::get_ProjectUsers()
+FNDA:0,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.ProjectUserEntity> Infrastructure.Persistence.Entities.UserEntity::get_ProjectUsers()
+DA:38,0
+FN:38,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.TechnologyEntity> Infrastructure.Persistence.Entities.UserEntity::get_UserTechnologies()
+FNDA:0,System.Collections.Generic.List`1<Infrastructure.Persistence.Entities.TechnologyEntity> Infrastructure.Persistence.Entities.UserEntity::get_UserTechnologies()
+DA:39,0
+FN:39,System.DateTimeOffset Infrastructure.Persistence.Entities.UserEntity::get_CreatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.UserEntity::get_CreatedAt()
+DA:40,0
+FN:40,System.DateTimeOffset Infrastructure.Persistence.Entities.UserEntity::get_UpdatedAt()
+FNDA:0,System.DateTimeOffset Infrastructure.Persistence.Entities.UserEntity::get_UpdatedAt()
+DA:41,0
+FN:15,System.Void Infrastructure.Persistence.Entities.UserEntity::.ctor()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.UserEntity::.ctor()
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+FN:43,System.Void Infrastructure.Persistence.Entities.UserEntity/<CreateAsync>d__78::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.UserEntity/<CreateAsync>d__78::MoveNext()
+DA:44,0
+DA:45,0
+DA:46,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+BRDA:48,116,0,0
+BRDA:48,116,1,0
+FN:53,System.Void Infrastructure.Persistence.Entities.UserEntity/<DeleteAsync>d__79::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.UserEntity/<DeleteAsync>d__79::MoveNext()
+DA:54,0
+DA:55,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:59,0
+FN:61,System.Void Infrastructure.Persistence.Entities.UserEntity/<FindAsync>d__80::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.UserEntity/<FindAsync>d__80::MoveNext()
+DA:62,0
+DA:63,0
+DA:64,0
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+FN:70,System.Void Infrastructure.Persistence.Entities.UserEntity/<FindAsync>d__81::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.UserEntity/<FindAsync>d__81::MoveNext()
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+FN:81,System.Void Infrastructure.Persistence.Entities.UserEntity/<FindLastUnicornRecord>d__82::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.UserEntity/<FindLastUnicornRecord>d__82::MoveNext()
+DA:82,0
+DA:83,0
+DA:84,0
+DA:85,0
+FN:87,System.Void Infrastructure.Persistence.Entities.UserEntity/<UpdateAsync>d__83::MoveNext()
+FNDA:0,System.Void Infrastructure.Persistence.Entities.UserEntity/<UpdateAsync>d__83::MoveNext()
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+LF:62
+LH:0
+BRF:2
+BRH:0
+FNF:26
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Infrastructure/Messaging/MessageQueue.cs
+FN:19,System.Void Infrastructure.Messaging.MessageQueue::.ctor(System.String,System.String,Microsoft.Extensions.Logging.ILogger`1<Infrastructure.Messaging.MessageQueue>)
+FNDA:0,System.Void Infrastructure.Messaging.MessageQueue::.ctor(System.String,System.String,Microsoft.Extensions.Logging.ILogger`1<Infrastructure.Messaging.MessageQueue>)
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:26,0
+DA:27,0
+DA:28,0
+FN:39,System.Void Infrastructure.Messaging.MessageQueue/<SendMessageAsync>d__6`1::MoveNext()
+FNDA:0,System.Void Infrastructure.Messaging.MessageQueue/<SendMessageAsync>d__6`1::MoveNext()
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+BRDA:42,43,0,0
+BRDA:42,43,1,0
+BRDA:50,195,0,0
+BRDA:50,195,1,0
+FN:66,System.Void Infrastructure.Messaging.MessageQueue/<SendMessagesAsync>d__7`1::MoveNext()
+FNDA:0,System.Void Infrastructure.Messaging.MessageQueue/<SendMessagesAsync>d__7`1::MoveNext()
+DA:67,0
+DA:68,0
+DA:69,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:75,0
+DA:76,0
+DA:77,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:82,0
+DA:83,0
+DA:85,0
+DA:86,0
+DA:90,0
+DA:91,0
+DA:92,0
+DA:93,0
+DA:94,0
+DA:95,0
+DA:97,0
+DA:98,0
+DA:100,0
+DA:101,0
+DA:102,0
+DA:103,0
+DA:104,0
+DA:105,0
+BRDA:68,50,0,0
+BRDA:68,50,1,0
+BRDA:74,669,1,0
+BRDA:82,297,0,0
+BRDA:82,297,1,0
+BRDA:85,380,0,0
+BRDA:85,380,1,0
+BRDA:74,669,0,0
+LF:56
+LH:0
+BRF:12
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Services/DiscordService.cs
+FN:12,System.Void Common.Services.DiscordService::.ctor()
+FNDA:0,System.Void Common.Services.DiscordService::.ctor()
+DA:13,0
+DA:14,0
+DA:15,0
+DA:17,0
+DA:18,0
+DA:19,0
+FN:21,System.Void Common.Services.DiscordService/<GetInviteStatus>d__4::MoveNext()
+FNDA:0,System.Void Common.Services.DiscordService/<GetInviteStatus>d__4::MoveNext()
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:33,0
+DA:34,0
+BRDA:28,301,0,0
+BRDA:28,301,1,0
+LF:18
+LH:0
+BRF:2
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Services/PubService.cs
+FN:8,System.Void Common.Services.PubService::.ctor(System.String,System.String)
+FNDA:0,System.Void Common.Services.PubService::.ctor(System.String,System.String)
+DA:9,0
+DA:11,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+FN:19,System.Void Common.Services.PubService/<GetProjects>d__4::MoveNext()
+FNDA:0,System.Void Common.Services.PubService/<GetProjects>d__4::MoveNext()
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+FN:25,System.Void Common.Services.PubService/<UpdateProject>d__5::MoveNext()
+FNDA:0,System.Void Common.Services.PubService/<UpdateProject>d__5::MoveNext()
+DA:26,0
+DA:27,0
+DA:28,0
+DA:29,0
+LF:15
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Services/SlackService.cs
+FN:10,System.Void Common.Services.SlackService::.ctor()
+FNDA:0,System.Void Common.Services.SlackService::.ctor()
+DA:11,0
+DA:12,0
+DA:13,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+FN:21,System.Void Common.Services.SlackService/<GetSlackUserInfo>d__5::MoveNext()
+FNDA:0,System.Void Common.Services.SlackService/<GetSlackUserInfo>d__5::MoveNext()
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+FN:27,System.Void Common.Services.SlackService/<ChatPostMessage>d__6::MoveNext()
+FNDA:0,System.Void Common.Services.SlackService/<ChatPostMessage>d__6::MoveNext()
+DA:28,0
+DA:29,0
+DA:30,0
+DA:31,0
+FN:33,System.Void Common.Services.SlackService/<ChatRetrieveMessage>d__7::MoveNext()
+FNDA:0,System.Void Common.Services.SlackService/<ChatRetrieveMessage>d__7::MoveNext()
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+FN:39,System.Void Common.Services.SlackService/<GetInviteStatus>d__8::MoveNext()
+FNDA:0,System.Void Common.Services.SlackService/<GetInviteStatus>d__8::MoveNext()
+DA:40,0
+DA:41,0
+DA:43,0
+DA:44,0
+DA:45,0
+DA:46,0
+BRDA:41,33,0,0
+BRDA:41,33,1,0
+LF:25
+LH:0
+BRF:2
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Services/WorkspaceAppService.cs
+FN:44,System.String Common.Services.WorkspaceAppService::ResolveBaseUri(System.String)
+FNDA:0,System.String Common.Services.WorkspaceAppService::ResolveBaseUri(System.String)
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+FN:17,System.Void Common.Services.WorkspaceAppService::.ctor(System.Collections.Generic.Dictionary`2<System.String,System.String>)
+FNDA:0,System.Void Common.Services.WorkspaceAppService::.ctor(System.Collections.Generic.Dictionary`2<System.String,System.String>)
+DA:18,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+FN:31,System.Void Common.Services.WorkspaceAppService/<GetInstallUrl>d__3::MoveNext()
+FNDA:0,System.Void Common.Services.WorkspaceAppService/<GetInstallUrl>d__3::MoveNext()
+DA:32,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+LF:15
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/POCOs/ApiKey.cs
+FN:13,System.Int32 Common.POCOs.ApiKey::get_Id()
+FNDA:0,System.Int32 Common.POCOs.ApiKey::get_Id()
+DA:14,0
+FN:14,System.String Common.POCOs.ApiKey::get_Name()
+FNDA:0,System.String Common.POCOs.ApiKey::get_Name()
+DA:15,0
+FN:15,System.String Common.POCOs.ApiKey::get_Key()
+FNDA:0,System.String Common.POCOs.ApiKey::get_Key()
+DA:16,0
+FN:6,System.Void Common.POCOs.ApiKey::.ctor(System.Int32,System.String,System.String)
+FNDA:0,System.Void Common.POCOs.ApiKey::.ctor(System.Int32,System.String,System.String)
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+LF:9
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Models/User.cs
+FN:22,System.Guid Common.Models.User::get_Id()
+FNDA:0,System.Guid Common.Models.User::get_Id()
+DA:23,0
+FN:23,System.String Common.Models.User::get_FullName()
+FNDA:0,System.String Common.Models.User::get_FullName()
+DA:24,0
+FN:24,System.String Common.Models.User::get_Username()
+FNDA:0,System.String Common.Models.User::get_Username()
+DA:25,0
+FN:25,System.String Common.Models.User::get_Email()
+FNDA:0,System.String Common.Models.User::get_Email()
+DA:26,0
+FN:26,System.String Common.Models.User::get_Bio()
+FNDA:0,System.String Common.Models.User::get_Bio()
+DA:27,0
+FN:27,System.String Common.Models.User::get_Timezone()
+FNDA:0,System.String Common.Models.User::get_Timezone()
+DA:28,0
+FN:28,System.String Common.Models.User::get_Locale()
+FNDA:0,System.String Common.Models.User::get_Locale()
+DA:29,0
+FN:29,System.Boolean Common.Models.User::get_LookingForProject()
+FNDA:0,System.Boolean Common.Models.User::get_LookingForProject()
+DA:30,0
+FN:30,System.String Common.Models.User::get_GitHubUsername()
+FNDA:0,System.String Common.Models.User::get_GitHubUsername()
+DA:31,0
+FN:31,System.String Common.Models.User::get_ProfilePictureUrl()
+FNDA:0,System.String Common.Models.User::get_ProfilePictureUrl()
+DA:32,0
+FN:34,System.Boolean Common.Models.User::ValidUsernameCharacters(System.String)
+FNDA:0,System.Boolean Common.Models.User::ValidUsernameCharacters(System.String)
+DA:35,0
+DA:36,0
+DA:37,0
+FN:39,System.Boolean Common.Models.User::ValidUsernameMaxLength(System.String)
+FNDA:0,System.Boolean Common.Models.User::ValidUsernameMaxLength(System.String)
+DA:40,0
+DA:41,0
+DA:42,0
+FN:44,System.Boolean Common.Models.User::ValidUsernameMinLength(System.String)
+FNDA:0,System.Boolean Common.Models.User::ValidUsernameMinLength(System.String)
+DA:45,0
+DA:46,0
+DA:47,0
+FN:7,System.Void Common.Models.User::.ctor()
+FNDA:0,System.Void Common.Models.User::.ctor()
+DA:8,0
+DA:9,0
+DA:10,0
+FN:11,System.Void Common.Models.User::.ctor(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String)
+FNDA:0,System.Void Common.Models.User::.ctor(System.String,System.String,System.String,System.String,System.Boolean,System.String,System.String)
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+LF:32
+LH:0
+BRF:0
+BRH:0
+FNF:15
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Http/Http.cs
+FN:174,System.Net.Http.HttpRequestMessage Common.Http.Http::BuildRequestMessage(System.Net.Http.HttpMethod,System.String)
+FNDA:0,System.Net.Http.HttpRequestMessage Common.Http.Http::BuildRequestMessage(System.Net.Http.HttpMethod,System.String)
+DA:175,0
+DA:177,0
+DA:178,0
+DA:179,0
+DA:180,0
+DA:181,0
+DA:183,0
+DA:184,0
+FN:186,System.Net.Http.HttpRequestMessage Common.Http.Http::BuildRequestMessage(System.Net.Http.HttpMethod,System.String,System.Object)
+FNDA:0,System.Net.Http.HttpRequestMessage Common.Http.Http::BuildRequestMessage(System.Net.Http.HttpMethod,System.String,System.Object)
+DA:187,0
+DA:189,0
+DA:190,0
+DA:191,0
+DA:192,0
+DA:193,0
+DA:194,0
+DA:195,0
+DA:196,0
+DA:197,0
+DA:199,0
+DA:200,0
+FN:11,System.Void Common.Http.Http::.cctor()
+FNDA:0,System.Void Common.Http.Http::.cctor()
+DA:12,0
+FN:14,System.Void Common.Http.Http/<MakeRequestAsync>d__1`1::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<MakeRequestAsync>d__1`1::MoveNext()
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+FN:20,System.Void Common.Http.Http/<MakeRequestForHtmlAsync>d__2::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<MakeRequestForHtmlAsync>d__2::MoveNext()
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+FN:26,System.Void Common.Http.Http/<MakeRequestAsync>d__3::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<MakeRequestAsync>d__3::MoveNext()
+DA:27,0
+DA:28,0
+DA:29,0
+DA:30,0
+FN:32,System.Void Common.Http.Http/<Get>d__4::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<Get>d__4::MoveNext()
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:37,0
+DA:39,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:44,0
+DA:46,0
+DA:47,0
+DA:48,0
+BRDA:34,29,0,0
+BRDA:34,29,1,0
+BRDA:41,173,1,0
+BRDA:41,173,0,0
+FN:51,System.Void Common.Http.Http/<GetHtml>d__5::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<GetHtml>d__5::MoveNext()
+DA:52,0
+DA:53,0
+DA:54,0
+DA:55,0
+DA:56,0
+DA:58,0
+DA:60,0
+DA:61,0
+DA:62,0
+DA:63,0
+DA:65,0
+DA:66,0
+DA:67,0
+BRDA:53,29,0,0
+BRDA:53,29,1,0
+BRDA:60,173,1,0
+BRDA:60,173,0,0
+FN:69,System.Void Common.Http.Http/<Get>d__6`1::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<Get>d__6`1::MoveNext()
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:76,0
+DA:78,0
+DA:79,0
+DA:80,0
+DA:81,0
+DA:83,0
+DA:84,0
+BRDA:71,29,0,0
+BRDA:71,29,1,0
+BRDA:78,173,1,0
+BRDA:78,173,0,0
+FN:86,System.Void Common.Http.Http/<Put>d__7`1::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<Put>d__7`1::MoveNext()
+DA:87,0
+DA:88,0
+DA:89,0
+DA:90,0
+DA:91,0
+DA:93,0
+DA:95,0
+DA:96,0
+DA:97,0
+DA:98,0
+DA:100,0
+DA:101,0
+BRDA:88,29,0,0
+BRDA:88,29,1,0
+BRDA:95,173,1,0
+BRDA:95,173,0,0
+FN:103,System.Void Common.Http.Http/<Put>d__8`1::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<Put>d__8`1::MoveNext()
+DA:104,0
+DA:105,0
+DA:107,0
+DA:108,0
+DA:109,0
+DA:110,0
+DA:112,0
+DA:113,0
+BRDA:107,153,1,0
+BRDA:107,153,0,0
+FN:115,System.Void Common.Http.Http/<Post>d__9`1::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<Post>d__9`1::MoveNext()
+DA:116,0
+DA:117,0
+DA:118,0
+DA:119,0
+DA:120,0
+DA:122,0
+DA:124,0
+DA:125,0
+DA:126,0
+DA:127,0
+DA:129,0
+DA:130,0
+BRDA:117,29,0,0
+BRDA:117,29,1,0
+BRDA:124,173,1,0
+BRDA:124,173,0,0
+FN:132,System.Void Common.Http.Http/<Post>d__10`1::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<Post>d__10`1::MoveNext()
+DA:133,0
+DA:134,0
+DA:136,0
+DA:137,0
+DA:138,0
+DA:139,0
+DA:141,0
+DA:142,0
+BRDA:136,153,1,0
+BRDA:136,153,0,0
+FN:144,System.Void Common.Http.Http/<Post>d__11::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<Post>d__11::MoveNext()
+DA:145,0
+DA:146,0
+DA:147,0
+DA:148,0
+DA:149,0
+DA:151,0
+DA:153,0
+DA:154,0
+DA:155,0
+DA:156,0
+DA:158,0
+DA:159,0
+DA:160,0
+BRDA:146,29,0,0
+BRDA:146,29,1,0
+BRDA:153,173,1,0
+BRDA:153,173,0,0
+FN:162,System.Void Common.Http.Http/<Post>d__12::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<Post>d__12::MoveNext()
+DA:163,0
+DA:164,0
+DA:165,0
+DA:166,0
+DA:167,0
+DA:168,0
+DA:170,0
+DA:171,0
+DA:172,0
+BRDA:165,153,1,0
+BRDA:165,153,0,0
+FN:202,System.Void Common.Http.Http/<ParseResponse>d__15`1::MoveNext()
+FNDA:0,System.Void Common.Http.Http/<ParseResponse>d__15`1::MoveNext()
+DA:203,0
+DA:204,0
+DA:205,0
+DA:206,0
+LF:137
+LH:0
+BRF:30
+BRH:0
+FNF:16
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Exceptions/ExceptionsMessage.cs
+FN:5,System.String Common.Exceptions.ExceptionMessage::get_ApplicationMissingStartupVariables()
+FNDA:0,System.String Common.Exceptions.ExceptionMessage::get_ApplicationMissingStartupVariables()
+DA:6,0
+FN:8,System.String Common.Exceptions.ExceptionMessage::get_SlackServiceBadRequestScopeMissing()
+FNDA:0,System.String Common.Exceptions.ExceptionMessage::get_SlackServiceBadRequestScopeMissing()
+DA:9,0
+FN:9,System.String Common.Exceptions.ExceptionMessage::get_SlackServiceBadRequestError()
+FNDA:0,System.String Common.Exceptions.ExceptionMessage::get_SlackServiceBadRequestError()
+DA:10,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Exceptions/ServiceException.cs
+FN:6,System.Void Common.Exceptions.ServiceException::.ctor()
+FNDA:0,System.Void Common.Exceptions.ServiceException::.ctor()
+DA:7,0
+FN:7,System.Void Common.Exceptions.ServiceException::.ctor(System.String)
+FNDA:0,System.Void Common.Exceptions.ServiceException::.ctor(System.String)
+DA:8,0
+FN:8,System.Void Common.Exceptions.ServiceException::.ctor(System.String,System.Exception)
+FNDA:0,System.Void Common.Exceptions.ServiceException::.ctor(System.String,System.Exception)
+DA:9,0
+FN:13,System.Void Common.Exceptions.ServiceException::.ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+FNDA:0,System.Void Common.Exceptions.ServiceException::.ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+DA:14,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/Exceptions/StartupException.cs
+FN:6,System.Void Common.Exceptions.StartupException::.ctor()
+FNDA:0,System.Void Common.Exceptions.StartupException::.ctor()
+DA:7,0
+FN:7,System.Void Common.Exceptions.StartupException::.ctor(System.String)
+FNDA:0,System.Void Common.Exceptions.StartupException::.ctor(System.String)
+DA:8,0
+FN:8,System.Void Common.Exceptions.StartupException::.ctor(System.String,System.Exception)
+FNDA:0,System.Void Common.Exceptions.StartupException::.ctor(System.String,System.Exception)
+DA:9,0
+FN:13,System.Void Common.Exceptions.StartupException::.ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+FNDA:0,System.Void Common.Exceptions.StartupException::.ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)
+DA:14,0
+LF:4
+LH:0
+BRF:0
+BRH:0
+FNF:4
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ChangePasswordDto.cs
+FN:4,System.String Common.DTOs.ChangePasswordDto::get_OldPassword()
+FNDA:0,System.String Common.DTOs.ChangePasswordDto::get_OldPassword()
+DA:5,0
+FN:5,System.String Common.DTOs.ChangePasswordDto::get_NewPassword()
+FNDA:0,System.String Common.DTOs.ChangePasswordDto::get_NewPassword()
+DA:6,0
+FN:6,System.String Common.DTOs.ChangePasswordDto::get_ConfirmedNewPassword()
+FNDA:0,System.String Common.DTOs.ChangePasswordDto::get_ConfirmedNewPassword()
+DA:7,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ErrorDto.cs
+FN:14,System.String Common.DTOs.ErrorDto::get_Message()
+FNDA:0,System.String Common.DTOs.ErrorDto::get_Message()
+DA:15,0
+FN:4,System.Void Common.DTOs.ErrorDto::.ctor()
+FNDA:0,System.Void Common.DTOs.ErrorDto::.ctor()
+DA:5,0
+DA:6,0
+DA:7,0
+FN:8,System.Void Common.DTOs.ErrorDto::.ctor(System.String)
+FNDA:0,System.Void Common.DTOs.ErrorDto::.ctor(System.String)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+LF:8
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/FeedbackDto.cs
+FN:4,System.String Common.DTOs.FeedbackDto::get_Content()
+FNDA:0,System.String Common.DTOs.FeedbackDto::get_Content()
+DA:5,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/JsonWebTokenDto.cs
+FN:4,System.String Common.DTOs.JsonWebTokenDto::get_Token()
+FNDA:0,System.String Common.DTOs.JsonWebTokenDto::get_Token()
+DA:5,0
+FN:6,System.Void Common.DTOs.JsonWebTokenDto::.ctor(System.String)
+FNDA:0,System.Void Common.DTOs.JsonWebTokenDto::.ctor(System.String)
+DA:7,0
+DA:8,0
+DA:9,0
+DA:10,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/JwtUserClaimsDto.cs
+FN:9,System.String Common.DTOs.JwtUserClaimsDto::get_Id()
+FNDA:0,System.String Common.DTOs.JwtUserClaimsDto::get_Id()
+DA:10,0
+FN:4,System.Void Common.DTOs.JwtUserClaimsDto::.ctor(System.String)
+FNDA:0,System.Void Common.DTOs.JwtUserClaimsDto::.ctor(System.String)
+DA:5,0
+DA:6,0
+DA:7,0
+DA:8,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/LoginDto.cs
+FN:7,System.String Common.DTOs.LoginDto::get_Email()
+FNDA:0,System.String Common.DTOs.LoginDto::get_Email()
+DA:8,0
+FN:9,System.String Common.DTOs.LoginDto::get_Password()
+FNDA:0,System.String Common.DTOs.LoginDto::get_Password()
+DA:10,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/NotificationDto.cs
+FN:22,System.String Common.DTOs.NotificationDto::get_Content()
+FNDA:0,System.String Common.DTOs.NotificationDto::get_Content()
+DA:23,0
+FN:23,System.Nullable`1<System.Guid> Common.DTOs.NotificationDto::get_NotificantId()
+FNDA:0,System.Nullable`1<System.Guid> Common.DTOs.NotificationDto::get_NotificantId()
+DA:24,0
+FN:24,System.Object Common.DTOs.NotificationDto::get_NotificationObject()
+FNDA:0,System.Object Common.DTOs.NotificationDto::get_NotificationObject()
+DA:25,0
+FN:7,System.Void Common.DTOs.NotificationDto::.ctor(System.String)
+FNDA:0,System.Void Common.DTOs.NotificationDto::.ctor(System.String)
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+FN:17,System.Void Common.DTOs.NotificationDto::.ctor(System.Nullable`1<System.Guid>)
+FNDA:0,System.Void Common.DTOs.NotificationDto::.ctor(System.Nullable`1<System.Guid>)
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+LF:11
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/PrivilegedMembersDto.cs
+FN:6,System.Collections.Generic.List`1<System.String> Common.DTOs.PrivilegedMembersDto::get_Members()
+FNDA:0,System.Collections.Generic.List`1<System.String> Common.DTOs.PrivilegedMembersDto::get_Members()
+DA:7,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ProjectDto.cs
+FN:7,System.Guid Common.DTOs.ProjectDto::get_Id()
+FNDA:0,System.Guid Common.DTOs.ProjectDto::get_Id()
+DA:8,0
+FN:8,System.String Common.DTOs.ProjectDto::get_Name()
+FNDA:0,System.String Common.DTOs.ProjectDto::get_Name()
+DA:9,0
+FN:9,System.String Common.DTOs.ProjectDto::get_Description()
+FNDA:0,System.String Common.DTOs.ProjectDto::get_Description()
+DA:10,0
+FN:10,System.DateTimeOffset Common.DTOs.ProjectDto::get_LaunchDate()
+FNDA:0,System.DateTimeOffset Common.DTOs.ProjectDto::get_LaunchDate()
+DA:11,0
+FN:11,System.String Common.DTOs.ProjectDto::get_ProjectType()
+FNDA:0,System.String Common.DTOs.ProjectDto::get_ProjectType()
+DA:12,0
+FN:12,System.String Common.DTOs.ProjectDto::get_RepositoryUrl()
+FNDA:0,System.String Common.DTOs.ProjectDto::get_RepositoryUrl()
+DA:13,0
+FN:13,System.String Common.DTOs.ProjectDto::get_CommunicationPlatformUrl()
+FNDA:0,System.String Common.DTOs.ProjectDto::get_CommunicationPlatformUrl()
+DA:14,0
+FN:14,System.Boolean Common.DTOs.ProjectDto::get_LookingForMembers()
+FNDA:0,System.Boolean Common.DTOs.ProjectDto::get_LookingForMembers()
+DA:15,0
+FN:15,System.String Common.DTOs.ProjectDto::get_CommunicationPlatform()
+FNDA:0,System.String Common.DTOs.ProjectDto::get_CommunicationPlatform()
+DA:16,0
+FN:16,System.Boolean Common.DTOs.ProjectDto::get_Searchable()
+FNDA:0,System.Boolean Common.DTOs.ProjectDto::get_Searchable()
+DA:17,0
+FN:17,System.Collections.Generic.List`1<Common.DTOs.ProjectTechnologyDto> Common.DTOs.ProjectDto::get_ProjectTechnologies()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.ProjectTechnologyDto> Common.DTOs.ProjectDto::get_ProjectTechnologies()
+DA:18,0
+FN:18,System.Collections.Generic.List`1<Common.DTOs.ProjectUserDto> Common.DTOs.ProjectDto::get_ProjectUsers()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.ProjectUserDto> Common.DTOs.ProjectDto::get_ProjectUsers()
+DA:19,0
+LF:12
+LH:0
+BRF:0
+BRH:0
+FNF:12
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ProjectTypeDto.cs
+FN:6,System.Guid Common.DTOs.ProjectTypeDto::get_Id()
+FNDA:0,System.Guid Common.DTOs.ProjectTypeDto::get_Id()
+DA:7,0
+FN:7,System.String Common.DTOs.ProjectTypeDto::get_Type()
+FNDA:0,System.String Common.DTOs.ProjectTypeDto::get_Type()
+DA:8,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ProjectUserDto.cs
+FN:6,System.Guid Common.DTOs.ProjectUserDto::get_Id()
+FNDA:0,System.Guid Common.DTOs.ProjectUserDto::get_Id()
+DA:7,0
+FN:7,System.Guid Common.DTOs.ProjectUserDto::get_ProjectId()
+FNDA:0,System.Guid Common.DTOs.ProjectUserDto::get_ProjectId()
+DA:8,0
+FN:8,System.Guid Common.DTOs.ProjectUserDto::get_UserId()
+FNDA:0,System.Guid Common.DTOs.ProjectUserDto::get_UserId()
+DA:9,0
+FN:9,System.String Common.DTOs.ProjectUserDto::get_Username()
+FNDA:0,System.String Common.DTOs.ProjectUserDto::get_Username()
+DA:10,0
+FN:10,System.Boolean Common.DTOs.ProjectUserDto::get_IsOwner()
+FNDA:0,System.Boolean Common.DTOs.ProjectUserDto::get_IsOwner()
+DA:11,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/RegistrationDto.cs
+FN:5,System.String Common.DTOs.RegistrationDto::get_Username()
+FNDA:0,System.String Common.DTOs.RegistrationDto::get_Username()
+DA:6,0
+FN:6,System.String Common.DTOs.RegistrationDto::get_Email()
+FNDA:0,System.String Common.DTOs.RegistrationDto::get_Email()
+DA:7,0
+FN:7,System.String Common.DTOs.RegistrationDto::get_Password()
+FNDA:0,System.String Common.DTOs.RegistrationDto::get_Password()
+DA:8,0
+FN:8,System.String Common.DTOs.RegistrationDto::get_PasswordConfirmation()
+FNDA:0,System.String Common.DTOs.RegistrationDto::get_PasswordConfirmation()
+DA:9,0
+FN:9,System.String Common.DTOs.RegistrationDto::get_Locale()
+FNDA:0,System.String Common.DTOs.RegistrationDto::get_Locale()
+DA:10,0
+FN:10,System.String Common.DTOs.RegistrationDto::get_Timezone()
+FNDA:0,System.String Common.DTOs.RegistrationDto::get_Timezone()
+DA:11,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ResetPasswordDto.cs
+FN:4,System.String Common.DTOs.ResetPasswordDto::get_NewPassword()
+FNDA:0,System.String Common.DTOs.ResetPasswordDto::get_NewPassword()
+DA:5,0
+FN:5,System.String Common.DTOs.ResetPasswordDto::get_ConfirmNewPassword()
+FNDA:0,System.String Common.DTOs.ResetPasswordDto::get_ConfirmNewPassword()
+DA:6,0
+FN:6,System.String Common.DTOs.ResetPasswordDto::get_ValidationToken()
+FNDA:0,System.String Common.DTOs.ResetPasswordDto::get_ValidationToken()
+DA:7,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ResetPasswordRequestDto.cs
+FN:4,System.String Common.DTOs.ResetPasswordRequestDto::get_Email()
+FNDA:0,System.String Common.DTOs.ResetPasswordRequestDto::get_Email()
+DA:5,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ResponseDto.cs
+FN:8,System.Boolean Common.DTOs.ResponseDto`1::get_Ok()
+FNDA:0,System.Boolean Common.DTOs.ResponseDto`1::get_Ok()
+DA:9,0
+FN:9,T Common.DTOs.ResponseDto`1::get_Data()
+FNDA:0,T Common.DTOs.ResponseDto`1::get_Data()
+DA:10,0
+FN:4,System.Void Common.DTOs.ResponseDto`1::.ctor(System.Boolean)
+FNDA:0,System.Void Common.DTOs.ResponseDto`1::.ctor(System.Boolean)
+DA:5,0
+DA:6,0
+DA:7,0
+DA:8,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/TechnologyDto.cs
+FN:5,System.Guid Common.DTOs.ProjectTechnologyDto::get_Id()
+FNDA:0,System.Guid Common.DTOs.ProjectTechnologyDto::get_Id()
+DA:6,0
+FN:6,System.String Common.DTOs.ProjectTechnologyDto::get_Name()
+FNDA:0,System.String Common.DTOs.ProjectTechnologyDto::get_Name()
+DA:7,0
+FN:7,System.Nullable`1<System.Guid> Common.DTOs.ProjectTechnologyDto::get_ProjectId()
+FNDA:0,System.Nullable`1<System.Guid> Common.DTOs.ProjectTechnologyDto::get_ProjectId()
+DA:8,0
+FN:12,System.Guid Common.DTOs.UserTechnologyDto::get_Id()
+FNDA:0,System.Guid Common.DTOs.UserTechnologyDto::get_Id()
+DA:13,0
+FN:13,System.String Common.DTOs.UserTechnologyDto::get_Name()
+FNDA:0,System.String Common.DTOs.UserTechnologyDto::get_Name()
+DA:14,0
+FN:14,System.Nullable`1<System.Guid> Common.DTOs.UserTechnologyDto::get_UserId()
+FNDA:0,System.Nullable`1<System.Guid> Common.DTOs.UserTechnologyDto::get_UserId()
+DA:15,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/UserDto.cs
+FN:7,System.Guid Common.DTOs.UserDto::get_Id()
+FNDA:0,System.Guid Common.DTOs.UserDto::get_Id()
+DA:8,0
+FN:8,System.String Common.DTOs.UserDto::get_Username()
+FNDA:0,System.String Common.DTOs.UserDto::get_Username()
+DA:9,0
+FN:9,System.String Common.DTOs.UserDto::get_Email()
+FNDA:0,System.String Common.DTOs.UserDto::get_Email()
+DA:10,0
+FN:10,System.String Common.DTOs.UserDto::get_Bio()
+FNDA:0,System.String Common.DTOs.UserDto::get_Bio()
+DA:11,0
+FN:11,System.String Common.DTOs.UserDto::get_ProfilePictureUrl()
+FNDA:0,System.String Common.DTOs.UserDto::get_ProfilePictureUrl()
+DA:12,0
+FN:12,System.Boolean Common.DTOs.UserDto::get_LookingForProject()
+FNDA:0,System.Boolean Common.DTOs.UserDto::get_LookingForProject()
+DA:13,0
+FN:13,System.String Common.DTOs.UserDto::get_GitHubUsername()
+FNDA:0,System.String Common.DTOs.UserDto::get_GitHubUsername()
+DA:14,0
+FN:14,System.Collections.Generic.List`1<Common.DTOs.UserTechnologyDto> Common.DTOs.UserDto::get_Technologies()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.UserTechnologyDto> Common.DTOs.UserDto::get_Technologies()
+DA:15,0
+FN:15,System.Collections.Generic.List`1<Common.DTOs.ProjectUserDto> Common.DTOs.UserDto::get_ProjectUsers()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.ProjectUserDto> Common.DTOs.UserDto::get_ProjectUsers()
+DA:16,0
+LF:9
+LH:0
+BRF:0
+BRH:0
+FNF:9
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/UsernameDto.cs
+FN:5,System.String Common.DTOs.UsernameDto::get_Username()
+FNDA:0,System.String Common.DTOs.UsernameDto::get_Username()
+DA:6,0
+LF:1
+LH:0
+BRF:0
+BRH:0
+FNF:1
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/ValidationDto.cs
+FN:4,System.Void Common.DTOs.ValidationDto::.ctor()
+FNDA:0,System.Void Common.DTOs.ValidationDto::.ctor()
+DA:5,0
+DA:6,0
+DA:7,0
+FN:8,System.Void Common.DTOs.ValidationDto::.ctor(System.Boolean)
+FNDA:0,System.Void Common.DTOs.ValidationDto::.ctor(System.Boolean)
+DA:9,0
+DA:10,0
+DA:11,0
+DA:12,0
+FN:13,System.Void Common.DTOs.ValidationDto::.ctor(System.Boolean,System.String)
+FNDA:0,System.Void Common.DTOs.ValidationDto::.ctor(System.Boolean,System.String)
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+LF:12
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/WorkspaceAppDTOs/InfoDto.cs
+FN:4,System.String Common.DTOs.WorkspaceAppDTOs.InfoDto::get_InstallUrl()
+FNDA:0,System.String Common.DTOs.WorkspaceAppDTOs.InfoDto::get_InstallUrl()
+DA:5,0
+FN:5,System.String Common.DTOs.WorkspaceAppDTOs.InfoDto::get_Name()
+FNDA:0,System.String Common.DTOs.WorkspaceAppDTOs.InfoDto::get_Name()
+DA:6,0
+FN:6,System.String Common.DTOs.WorkspaceAppDTOs.InfoDto::get_Version()
+FNDA:0,System.String Common.DTOs.WorkspaceAppDTOs.InfoDto::get_Version()
+DA:7,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/WorkspaceAppDTOs/InviteDto.cs
+FN:12,System.Boolean Common.DTOs.WorkspaceAppDTOs.InviteDto::get_Valid()
+FNDA:0,System.Boolean Common.DTOs.WorkspaceAppDTOs.InviteDto::get_Valid()
+DA:13,0
+FN:7,System.Void Common.DTOs.WorkspaceAppDTOs.InviteDto::.ctor(System.Boolean)
+FNDA:0,System.Void Common.DTOs.WorkspaceAppDTOs.InviteDto::.ctor(System.Boolean)
+DA:8,0
+DA:9,0
+DA:10,0
+DA:11,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/EventType.cs
+FN:8,System.String Common.DTOs.SlackAppDTOs.EventType::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.EventType::get_Type()
+DA:9,0
+FN:10,System.String Common.DTOs.SlackAppDTOs.EventType::get_SubType()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.EventType::get_SubType()
+DA:11,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/ItemDto.cs
+FN:7,System.String Common.DTOs.SlackAppDTOs.Item::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Item::get_Type()
+DA:8,0
+FN:10,System.String Common.DTOs.SlackAppDTOs.Item::get_Channel()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Item::get_Channel()
+DA:11,0
+FN:13,System.String Common.DTOs.SlackAppDTOs.Item::get_Ts()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Item::get_Ts()
+DA:14,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/MessageChannelsEventDto.cs
+FN:7,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_Type()
+DA:8,0
+FN:10,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_Channel()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_Channel()
+DA:11,0
+FN:13,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_User()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_User()
+DA:14,0
+FN:16,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_Text()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_Text()
+DA:17,0
+FN:19,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_Ts()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_Ts()
+DA:20,0
+FN:22,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_EventTs()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_EventTs()
+DA:23,0
+FN:25,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_ChannelType()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageChannelsEventDto::get_ChannelType()
+DA:26,0
+LF:7
+LH:0
+BRF:0
+BRH:0
+FNF:7
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/ReactionEventDto.cs
+FN:7,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_Type()
+DA:8,0
+FN:10,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_User()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_User()
+DA:11,0
+FN:13,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_Reaction()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_Reaction()
+DA:14,0
+FN:16,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_ItemUser()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_ItemUser()
+DA:17,0
+FN:19,Common.DTOs.SlackAppDTOs.Item Common.DTOs.SlackAppDTOs.ReactionEventDto::get_Item()
+FNDA:0,Common.DTOs.SlackAppDTOs.Item Common.DTOs.SlackAppDTOs.ReactionEventDto::get_Item()
+DA:20,0
+FN:22,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_EventTs()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.ReactionEventDto::get_EventTs()
+DA:23,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/SlackChatMessageDto.cs
+FN:8,System.Boolean Common.DTOs.SlackAppDTOs.SlackChatMessageDto::get_Ok()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackChatMessageDto::get_Ok()
+DA:9,0
+FN:10,System.String Common.DTOs.SlackAppDTOs.SlackChatMessageDto::get_Channel()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackChatMessageDto::get_Channel()
+DA:11,0
+FN:12,System.String Common.DTOs.SlackAppDTOs.SlackChatMessageDto::get_Ts()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackChatMessageDto::get_Ts()
+DA:13,0
+FN:14,Common.DTOs.SlackAppDTOs.Message Common.DTOs.SlackAppDTOs.SlackChatMessageDto::get_Message()
+FNDA:0,Common.DTOs.SlackAppDTOs.Message Common.DTOs.SlackAppDTOs.SlackChatMessageDto::get_Message()
+DA:15,0
+FN:20,System.String Common.DTOs.SlackAppDTOs.Message::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Message::get_Type()
+DA:21,0
+FN:22,System.String Common.DTOs.SlackAppDTOs.Message::get_Subtype()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Message::get_Subtype()
+DA:23,0
+FN:24,System.String Common.DTOs.SlackAppDTOs.Message::get_Text()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Message::get_Text()
+DA:25,0
+FN:26,System.String Common.DTOs.SlackAppDTOs.Message::get_Ts()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Message::get_Ts()
+DA:27,0
+FN:28,System.String Common.DTOs.SlackAppDTOs.Message::get_Username()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Message::get_Username()
+DA:29,0
+FN:30,System.String Common.DTOs.SlackAppDTOs.Message::get_BotId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Message::get_BotId()
+DA:31,0
+LF:10
+LH:0
+BRF:0
+BRH:0
+FNF:10
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/SlackCommandDto.cs
+FN:7,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_team_id()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_team_id()
+DA:8,0
+FN:9,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_team_domain()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_team_domain()
+DA:10,0
+FN:11,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_enterprise_id()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_enterprise_id()
+DA:12,0
+FN:13,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_enterprise_name()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_enterprise_name()
+DA:14,0
+FN:15,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_channel_id()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_channel_id()
+DA:16,0
+FN:17,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_channel_name()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_channel_name()
+DA:18,0
+FN:19,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_user_id()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_user_id()
+DA:20,0
+FN:21,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_user_name()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_user_name()
+DA:22,0
+FN:23,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_command()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_command()
+DA:24,0
+FN:25,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_text()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_text()
+DA:26,0
+FN:27,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_response_url()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_response_url()
+DA:28,0
+FN:29,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_trigger_id()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandDto::get_trigger_id()
+DA:30,0
+LF:12
+LH:0
+BRF:0
+BRH:0
+FNF:12
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/SlackCommandResponseDto.cs
+FN:7,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_TeamId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_TeamId()
+DA:8,0
+FN:9,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_TeamDomain()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_TeamDomain()
+DA:10,0
+FN:11,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_EnterpriseId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_EnterpriseId()
+DA:12,0
+FN:13,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_EnterpriseName()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_EnterpriseName()
+DA:14,0
+FN:15,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_ChannelId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_ChannelId()
+DA:16,0
+FN:17,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_ChannelName()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_ChannelName()
+DA:18,0
+FN:19,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_UserId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_UserId()
+DA:20,0
+FN:21,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_UserName()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_UserName()
+DA:22,0
+FN:23,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_Command()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_Command()
+DA:24,0
+FN:25,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_Text()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_Text()
+DA:26,0
+FN:27,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_ResponseUrl()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_ResponseUrl()
+DA:28,0
+FN:29,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_TriggerId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackCommandResponseDto::get_TriggerId()
+DA:30,0
+LF:12
+LH:0
+BRF:0
+BRH:0
+FNF:12
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/SlackEventDto.cs
+FN:9,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_Token()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_Token()
+DA:10,0
+FN:11,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_Challenge()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_Challenge()
+DA:12,0
+FN:13,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_TeamId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_TeamId()
+DA:14,0
+FN:15,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_ApiAppId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_ApiAppId()
+DA:16,0
+FN:17,Newtonsoft.Json.Linq.JRaw Common.DTOs.SlackAppDTOs.SlackEventDto::get_EventRaw()
+FNDA:0,Newtonsoft.Json.Linq.JRaw Common.DTOs.SlackAppDTOs.SlackEventDto::get_EventRaw()
+DA:18,0
+FN:19,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_Type()
+DA:20,0
+FN:21,System.Collections.Generic.List`1<System.String> Common.DTOs.SlackAppDTOs.SlackEventDto::get_AuthedUsers()
+FNDA:0,System.Collections.Generic.List`1<System.String> Common.DTOs.SlackAppDTOs.SlackEventDto::get_AuthedUsers()
+DA:22,0
+FN:23,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_EventId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventDto::get_EventId()
+DA:24,0
+FN:25,System.Int32 Common.DTOs.SlackAppDTOs.SlackEventDto::get_EventTime()
+FNDA:0,System.Int32 Common.DTOs.SlackAppDTOs.SlackEventDto::get_EventTime()
+DA:26,0
+FN:30,System.String Common.DTOs.SlackAppDTOs.UrlVerificationResponseDto::get_challenge()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.UrlVerificationResponseDto::get_challenge()
+DA:31,0
+LF:10
+LH:0
+BRF:0
+BRH:0
+FNF:10
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/SlackEventFullDto.cs
+FN:8,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_Token()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_Token()
+DA:9,0
+FN:10,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_Challenge()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_Challenge()
+DA:11,0
+FN:12,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_TeamId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_TeamId()
+DA:13,0
+FN:14,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_ApiAppId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_ApiAppId()
+DA:15,0
+FN:16,EventType Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_Event()
+FNDA:0,EventType Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_Event()
+DA:17,0
+FN:18,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_Type()
+DA:19,0
+FN:20,System.Collections.Generic.List`1<System.String> Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_AuthedUsers()
+FNDA:0,System.Collections.Generic.List`1<System.String> Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_AuthedUsers()
+DA:21,0
+FN:22,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_EventId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_EventId()
+DA:23,0
+FN:24,System.Int32 Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_EventTime()
+FNDA:0,System.Int32 Common.DTOs.SlackAppDTOs.SlackEventFullDto`1::get_EventTime()
+DA:25,0
+LF:9
+LH:0
+BRF:0
+BRH:0
+FNF:9
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/SlackMessageDto.cs
+FN:9,System.Boolean Common.DTOs.SlackAppDTOs.SlackMessageDto::get_Ok()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackMessageDto::get_Ok()
+DA:10,0
+FN:12,System.String Common.DTOs.SlackAppDTOs.SlackMessageDto::get_Latest()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackMessageDto::get_Latest()
+DA:13,0
+FN:15,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.MessageDetailsDto> Common.DTOs.SlackAppDTOs.SlackMessageDto::get_Messages()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.MessageDetailsDto> Common.DTOs.SlackAppDTOs.SlackMessageDto::get_Messages()
+DA:16,0
+FN:18,System.Boolean Common.DTOs.SlackAppDTOs.SlackMessageDto::get_HasMore()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackMessageDto::get_HasMore()
+DA:19,0
+FN:21,System.Int64 Common.DTOs.SlackAppDTOs.SlackMessageDto::get_PinCount()
+FNDA:0,System.Int64 Common.DTOs.SlackAppDTOs.SlackMessageDto::get_PinCount()
+DA:22,0
+FN:24,System.Object Common.DTOs.SlackAppDTOs.SlackMessageDto::get_ChannelActionsTs()
+FNDA:0,System.Object Common.DTOs.SlackAppDTOs.SlackMessageDto::get_ChannelActionsTs()
+DA:25,0
+FN:27,System.Int64 Common.DTOs.SlackAppDTOs.SlackMessageDto::get_ChannelActionsCount()
+FNDA:0,System.Int64 Common.DTOs.SlackAppDTOs.SlackMessageDto::get_ChannelActionsCount()
+DA:28,0
+FN:30,Common.DTOs.SlackAppDTOs.ResponseMetadata Common.DTOs.SlackAppDTOs.SlackMessageDto::get_ResponseMetadata()
+FNDA:0,Common.DTOs.SlackAppDTOs.ResponseMetadata Common.DTOs.SlackAppDTOs.SlackMessageDto::get_ResponseMetadata()
+DA:31,0
+FN:36,System.Guid Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_ClientMsgId()
+FNDA:0,System.Guid Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_ClientMsgId()
+DA:37,0
+FN:39,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Type()
+DA:40,0
+FN:42,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Text()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Text()
+DA:43,0
+FN:45,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_User()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_User()
+DA:46,0
+FN:48,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Ts()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Ts()
+DA:49,0
+FN:51,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Team()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Team()
+DA:52,0
+FN:54,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.Block> Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Blocks()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.Block> Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Blocks()
+DA:55,0
+FN:57,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.Reaction> Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Reactions()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.Reaction> Common.DTOs.SlackAppDTOs.MessageDetailsDto::get_Reactions()
+DA:58,0
+FN:63,System.String Common.DTOs.SlackAppDTOs.Block::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Block::get_Type()
+DA:64,0
+FN:66,System.String Common.DTOs.SlackAppDTOs.Block::get_BlockId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Block::get_BlockId()
+DA:67,0
+FN:69,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.BlockElement> Common.DTOs.SlackAppDTOs.Block::get_Elements()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.BlockElement> Common.DTOs.SlackAppDTOs.Block::get_Elements()
+DA:70,0
+FN:75,System.String Common.DTOs.SlackAppDTOs.BlockElement::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.BlockElement::get_Type()
+DA:76,0
+FN:78,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.ElementElementClass> Common.DTOs.SlackAppDTOs.BlockElement::get_Elements()
+FNDA:0,System.Collections.Generic.List`1<Common.DTOs.SlackAppDTOs.ElementElementClass> Common.DTOs.SlackAppDTOs.BlockElement::get_Elements()
+DA:79,0
+FN:84,System.String Common.DTOs.SlackAppDTOs.ElementElementClass::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.ElementElementClass::get_Type()
+DA:85,0
+FN:87,System.String Common.DTOs.SlackAppDTOs.ElementElementClass::get_Text()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.ElementElementClass::get_Text()
+DA:88,0
+FN:93,System.String Common.DTOs.SlackAppDTOs.Reaction::get_Name()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.Reaction::get_Name()
+DA:94,0
+FN:96,System.Collections.Generic.List`1<System.String> Common.DTOs.SlackAppDTOs.Reaction::get_Users()
+FNDA:0,System.Collections.Generic.List`1<System.String> Common.DTOs.SlackAppDTOs.Reaction::get_Users()
+DA:97,0
+FN:99,System.Int64 Common.DTOs.SlackAppDTOs.Reaction::get_Count()
+FNDA:0,System.Int64 Common.DTOs.SlackAppDTOs.Reaction::get_Count()
+DA:100,0
+FN:105,System.String Common.DTOs.SlackAppDTOs.ResponseMetadata::get_NextCursor()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.ResponseMetadata::get_NextCursor()
+DA:106,0
+LF:27
+LH:0
+BRF:0
+BRH:0
+FNF:27
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/SlackUserDto.cs
+FN:7,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_SlackId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_SlackId()
+DA:8,0
+FN:9,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_SlackTeamId()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_SlackTeamId()
+DA:10,0
+FN:11,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_Name()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_Name()
+DA:12,0
+FN:13,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_SlackDeleted()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_SlackDeleted()
+DA:14,0
+FN:15,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_Color()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_Color()
+DA:16,0
+FN:17,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_DisplayName()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_DisplayName()
+DA:18,0
+FN:19,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_Timezone()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_Timezone()
+DA:20,0
+FN:21,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_TimezoneLabel()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_TimezoneLabel()
+DA:22,0
+FN:23,System.Int32 Common.DTOs.SlackAppDTOs.SlackUserDto::get_TimezoneLabelOffset()
+FNDA:0,System.Int32 Common.DTOs.SlackAppDTOs.SlackUserDto::get_TimezoneLabelOffset()
+DA:24,0
+FN:25,Common.DTOs.SlackAppDTOs.SlackProfileDto Common.DTOs.SlackAppDTOs.SlackUserDto::get_Profile()
+FNDA:0,Common.DTOs.SlackAppDTOs.SlackProfileDto Common.DTOs.SlackAppDTOs.SlackUserDto::get_Profile()
+DA:26,0
+FN:27,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsAdmin()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsAdmin()
+DA:28,0
+FN:29,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsOwner()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsOwner()
+DA:30,0
+FN:31,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsPrimaryOwner()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsPrimaryOwner()
+DA:32,0
+FN:33,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsRestricted()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsRestricted()
+DA:34,0
+FN:35,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsUltraRestricted()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsUltraRestricted()
+DA:36,0
+FN:37,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsBot()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsBot()
+DA:38,0
+FN:39,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsStranger()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsStranger()
+DA:40,0
+FN:41,System.Int32 Common.DTOs.SlackAppDTOs.SlackUserDto::get_Updated()
+FNDA:0,System.Int32 Common.DTOs.SlackAppDTOs.SlackUserDto::get_Updated()
+DA:42,0
+FN:43,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsAppUser()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_IsAppUser()
+DA:44,0
+FN:45,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_Has2fa()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserDto::get_Has2fa()
+DA:46,0
+FN:47,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_Locale()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackUserDto::get_Locale()
+DA:48,0
+FN:53,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_AvatarHash()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_AvatarHash()
+DA:54,0
+FN:55,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_StatusText()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_StatusText()
+DA:56,0
+FN:57,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_StatusEmoji()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_StatusEmoji()
+DA:58,0
+FN:59,System.Int32 Common.DTOs.SlackAppDTOs.SlackProfileDto::get_StatusExpiration()
+FNDA:0,System.Int32 Common.DTOs.SlackAppDTOs.SlackProfileDto::get_StatusExpiration()
+DA:60,0
+FN:61,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_RealName()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_RealName()
+DA:62,0
+FN:63,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_DisplayName()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_DisplayName()
+DA:64,0
+FN:65,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_RealNameNormalized()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_RealNameNormalized()
+DA:66,0
+FN:67,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_DisplayNameNormalized()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_DisplayNameNormalized()
+DA:68,0
+FN:69,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Email()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Email()
+DA:70,0
+FN:71,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_ImageOriginal()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_ImageOriginal()
+DA:72,0
+FN:73,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image24()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image24()
+DA:74,0
+FN:75,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image32()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image32()
+DA:76,0
+FN:77,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image48()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image48()
+DA:78,0
+FN:79,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image72()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image72()
+DA:80,0
+FN:81,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image192()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image192()
+DA:82,0
+FN:83,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image512()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Image512()
+DA:84,0
+FN:85,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Team()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.SlackProfileDto::get_Team()
+DA:86,0
+LF:38
+LH:0
+BRF:0
+BRH:0
+FNF:38
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/SlackUserInfoDto.cs
+FN:7,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserInfoDto::get_Ok()
+FNDA:0,System.Boolean Common.DTOs.SlackAppDTOs.SlackUserInfoDto::get_Ok()
+DA:8,0
+FN:9,Common.DTOs.SlackAppDTOs.SlackUserDto Common.DTOs.SlackAppDTOs.SlackUserInfoDto::get_User()
+FNDA:0,Common.DTOs.SlackAppDTOs.SlackUserDto Common.DTOs.SlackAppDTOs.SlackUserInfoDto::get_User()
+DA:10,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/SlackAppDtos/TeamJoinEventDto.cs
+FN:7,System.String Common.DTOs.SlackAppDTOs.TeamJoinEventDto::get_Type()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.TeamJoinEventDto::get_Type()
+DA:8,0
+FN:9,System.String Common.DTOs.SlackAppDTOs.TeamJoinEventDto::get_EventTs()
+FNDA:0,System.String Common.DTOs.SlackAppDTOs.TeamJoinEventDto::get_EventTs()
+DA:10,0
+FN:11,Common.DTOs.SlackAppDTOs.SlackUserDto Common.DTOs.SlackAppDTOs.TeamJoinEventDto::get_User()
+FNDA:0,Common.DTOs.SlackAppDTOs.SlackUserDto Common.DTOs.SlackAppDTOs.TeamJoinEventDto::get_User()
+DA:12,0
+LF:3
+LH:0
+BRF:0
+BRH:0
+FNF:3
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/MailDTOs/MailConfigDto.cs
+FN:20,System.String Common.DTOs.MailDTOs.MailConfigDto::get_Name()
+FNDA:0,System.String Common.DTOs.MailDTOs.MailConfigDto::get_Name()
+DA:21,0
+FN:21,Common.DTOs.MailDTOs.MailType Common.DTOs.MailDTOs.MailConfigDto::get_Type()
+FNDA:0,Common.DTOs.MailDTOs.MailType Common.DTOs.MailDTOs.MailConfigDto::get_Type()
+DA:22,0
+FN:22,System.String Common.DTOs.MailDTOs.MailConfigDto::get_TemplateId()
+FNDA:0,System.String Common.DTOs.MailDTOs.MailConfigDto::get_TemplateId()
+DA:23,0
+FN:23,System.Int32 Common.DTOs.MailDTOs.MailConfigDto::get_IntervalSeconds()
+FNDA:0,System.Int32 Common.DTOs.MailDTOs.MailConfigDto::get_IntervalSeconds()
+DA:24,0
+FN:24,System.Nullable`1<System.DateTimeOffset> Common.DTOs.MailDTOs.MailConfigDto::get_LastSend()
+FNDA:0,System.Nullable`1<System.DateTimeOffset> Common.DTOs.MailDTOs.MailConfigDto::get_LastSend()
+DA:25,0
+FN:25,System.Nullable`1<System.DateTimeOffset> Common.DTOs.MailDTOs.MailConfigDto::get_NextSend()
+FNDA:0,System.Nullable`1<System.DateTimeOffset> Common.DTOs.MailDTOs.MailConfigDto::get_NextSend()
+DA:26,0
+FN:6,System.Void Common.DTOs.MailDTOs.MailConfigDto::.ctor()
+FNDA:0,System.Void Common.DTOs.MailDTOs.MailConfigDto::.ctor()
+DA:7,0
+DA:8,0
+DA:10,0
+FN:10,System.Void Common.DTOs.MailDTOs.MailConfigDto::.ctor(System.String,Common.DTOs.MailDTOs.MailType,System.String,System.Int32,System.Nullable`1<System.DateTimeOffset>,System.Nullable`1<System.DateTimeOffset>)
+FNDA:0,System.Void Common.DTOs.MailDTOs.MailConfigDto::.ctor(System.String,Common.DTOs.MailDTOs.MailType,System.String,System.Int32,System.Nullable`1<System.DateTimeOffset>,System.Nullable`1<System.DateTimeOffset>)
+DA:11,0
+DA:12,0
+DA:13,0
+DA:14,0
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:19,0
+LF:18
+LH:0
+BRF:0
+BRH:0
+FNF:8
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/GitHubDTOs/AccessTokenDto.cs
+FN:7,System.String Common.DTOs.GitHubDTOs.AccessTokenDto::get_Token()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.AccessTokenDto::get_Token()
+DA:8,0
+FN:9,System.String Common.DTOs.GitHubDTOs.AccessTokenDto::get_ExpiresAt()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.AccessTokenDto::get_ExpiresAt()
+DA:10,0
+LF:2
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/GitHubDTOs/OrganizationDto.cs
+FN:8,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_Login()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_Login()
+DA:9,0
+FN:10,System.Int32 Common.DTOs.GitHubDTOs.OrganizationDto::get_Id()
+FNDA:0,System.Int32 Common.DTOs.GitHubDTOs.OrganizationDto::get_Id()
+DA:11,0
+FN:12,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_NodeId()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_NodeId()
+DA:13,0
+FN:14,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_Url()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_Url()
+DA:15,0
+FN:16,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_ReposUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_ReposUrl()
+DA:17,0
+FN:18,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_EventsUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_EventsUrl()
+DA:19,0
+FN:20,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_HooksUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_HooksUrl()
+DA:21,0
+FN:22,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_IssuesUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_IssuesUrl()
+DA:23,0
+FN:24,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_MembersUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_MembersUrl()
+DA:25,0
+FN:26,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_PublicMembersUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_PublicMembersUrl()
+DA:27,0
+FN:28,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_AvatarUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_AvatarUrl()
+DA:29,0
+FN:30,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_Description()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationDto::get_Description()
+DA:31,0
+LF:12
+LH:0
+BRF:0
+BRH:0
+FNF:12
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/GitHubDTOs/OrganizationMembershipDto.cs
+FN:8,System.String Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_Url()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_Url()
+DA:9,0
+FN:10,System.String Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_State()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_State()
+DA:11,0
+FN:12,System.String Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_Role()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_Role()
+DA:13,0
+FN:14,System.String Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_OrganizationUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_OrganizationUrl()
+DA:15,0
+FN:16,Common.DTOs.GitHubDTOs.OrganizationDto Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_Organization()
+FNDA:0,Common.DTOs.GitHubDTOs.OrganizationDto Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_Organization()
+DA:17,0
+FN:18,Common.DTOs.GitHubDTOs.UserDto Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_User()
+FNDA:0,Common.DTOs.GitHubDTOs.UserDto Common.DTOs.GitHubDTOs.OrganizationMembershipDto::get_User()
+DA:19,0
+LF:6
+LH:0
+BRF:0
+BRH:0
+FNF:6
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/GitHubDTOs/UserDto.cs
+FN:8,System.String Common.DTOs.GitHubDTOs.UserDto::get_Login()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_Login()
+DA:9,0
+FN:10,System.Int32 Common.DTOs.GitHubDTOs.UserDto::get_Id()
+FNDA:0,System.Int32 Common.DTOs.GitHubDTOs.UserDto::get_Id()
+DA:11,0
+FN:12,System.String Common.DTOs.GitHubDTOs.UserDto::get_NodeId()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_NodeId()
+DA:13,0
+FN:14,System.String Common.DTOs.GitHubDTOs.UserDto::get_AvatarUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_AvatarUrl()
+DA:15,0
+FN:16,System.String Common.DTOs.GitHubDTOs.UserDto::get_GravatarId()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_GravatarId()
+DA:17,0
+FN:18,System.String Common.DTOs.GitHubDTOs.UserDto::get_Url()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_Url()
+DA:19,0
+FN:20,System.String Common.DTOs.GitHubDTOs.UserDto::get_HtmlUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_HtmlUrl()
+DA:21,0
+FN:22,System.String Common.DTOs.GitHubDTOs.UserDto::get_FollowersUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_FollowersUrl()
+DA:23,0
+FN:24,System.String Common.DTOs.GitHubDTOs.UserDto::get_FollowingUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_FollowingUrl()
+DA:25,0
+FN:26,System.String Common.DTOs.GitHubDTOs.UserDto::get_GistsUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_GistsUrl()
+DA:27,0
+FN:28,System.String Common.DTOs.GitHubDTOs.UserDto::get_StarredUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_StarredUrl()
+DA:29,0
+FN:30,System.String Common.DTOs.GitHubDTOs.UserDto::get_SubscriptionsUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_SubscriptionsUrl()
+DA:31,0
+FN:32,System.String Common.DTOs.GitHubDTOs.UserDto::get_OrganizationsUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_OrganizationsUrl()
+DA:33,0
+FN:34,System.String Common.DTOs.GitHubDTOs.UserDto::get_ReposUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_ReposUrl()
+DA:35,0
+FN:36,System.String Common.DTOs.GitHubDTOs.UserDto::get_EventsUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_EventsUrl()
+DA:37,0
+FN:38,System.String Common.DTOs.GitHubDTOs.UserDto::get_ReceivedEventsUrl()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_ReceivedEventsUrl()
+DA:39,0
+FN:40,System.String Common.DTOs.GitHubDTOs.UserDto::get_Type()
+FNDA:0,System.String Common.DTOs.GitHubDTOs.UserDto::get_Type()
+DA:41,0
+FN:42,System.Boolean Common.DTOs.GitHubDTOs.UserDto::get_SiteAdmin()
+FNDA:0,System.Boolean Common.DTOs.GitHubDTOs.UserDto::get_SiteAdmin()
+DA:43,0
+LF:18
+LH:0
+BRF:0
+BRH:0
+FNF:18
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/DTOs/DiscordDTOs/InviteDto.cs
+FN:8,System.String Common.DTOs.DiscordDTOs.InviteDto::get_Code()
+FNDA:0,System.String Common.DTOs.DiscordDTOs.InviteDto::get_Code()
+DA:9,0
+FN:10,Common.DTOs.DiscordDTOs.Guild Common.DTOs.DiscordDTOs.InviteDto::get_Guild()
+FNDA:0,Common.DTOs.DiscordDTOs.Guild Common.DTOs.DiscordDTOs.InviteDto::get_Guild()
+DA:11,0
+FN:12,Common.DTOs.DiscordDTOs.Channel Common.DTOs.DiscordDTOs.InviteDto::get_Channel()
+FNDA:0,Common.DTOs.DiscordDTOs.Channel Common.DTOs.DiscordDTOs.InviteDto::get_Channel()
+DA:13,0
+FN:14,Common.DTOs.DiscordDTOs.Inviter Common.DTOs.DiscordDTOs.InviteDto::get_Inviter()
+FNDA:0,Common.DTOs.DiscordDTOs.Inviter Common.DTOs.DiscordDTOs.InviteDto::get_Inviter()
+DA:15,0
+FN:16,Common.DTOs.DiscordDTOs.Inviter Common.DTOs.DiscordDTOs.InviteDto::get_TargetUser()
+FNDA:0,Common.DTOs.DiscordDTOs.Inviter Common.DTOs.DiscordDTOs.InviteDto::get_TargetUser()
+DA:17,0
+FN:18,System.Int64 Common.DTOs.DiscordDTOs.InviteDto::get_TargetUserType()
+FNDA:0,System.Int64 Common.DTOs.DiscordDTOs.InviteDto::get_TargetUserType()
+DA:19,0
+FN:24,System.String Common.DTOs.DiscordDTOs.Channel::get_Id()
+FNDA:0,System.String Common.DTOs.DiscordDTOs.Channel::get_Id()
+DA:25,0
+FN:26,System.String Common.DTOs.DiscordDTOs.Channel::get_Name()
+FNDA:0,System.String Common.DTOs.DiscordDTOs.Channel::get_Name()
+DA:27,0
+FN:28,System.Int64 Common.DTOs.DiscordDTOs.Channel::get_Type()
+FNDA:0,System.Int64 Common.DTOs.DiscordDTOs.Channel::get_Type()
+DA:29,0
+FN:34,System.String Common.DTOs.DiscordDTOs.Guild::get_Id()
+FNDA:0,System.String Common.DTOs.DiscordDTOs.Guild::get_Id()
+DA:35,0
+FN:36,System.String Common.DTOs.DiscordDTOs.Guild::get_Name()
+FNDA:0,System.String Common.DTOs.DiscordDTOs.Guild::get_Name()
+DA:37,0
+FN:38,System.Object Common.DTOs.DiscordDTOs.Guild::get_Splash()
+FNDA:0,System.Object Common.DTOs.DiscordDTOs.Guild::get_Splash()
+DA:39,0
+FN:40,System.Object Common.DTOs.DiscordDTOs.Guild::get_Icon()
+FNDA:0,System.Object Common.DTOs.DiscordDTOs.Guild::get_Icon()
+DA:41,0
+FN:46,System.String Common.DTOs.DiscordDTOs.Inviter::get_Id()
+FNDA:0,System.String Common.DTOs.DiscordDTOs.Inviter::get_Id()
+DA:47,0
+FN:48,System.String Common.DTOs.DiscordDTOs.Inviter::get_Username()
+FNDA:0,System.String Common.DTOs.DiscordDTOs.Inviter::get_Username()
+DA:49,0
+FN:50,System.String Common.DTOs.DiscordDTOs.Inviter::get_Avatar()
+FNDA:0,System.String Common.DTOs.DiscordDTOs.Inviter::get_Avatar()
+DA:51,0
+FN:52,System.Int64 Common.DTOs.DiscordDTOs.Inviter::get_Discriminator()
+FNDA:0,System.Int64 Common.DTOs.DiscordDTOs.Inviter::get_Discriminator()
+DA:53,0
+LF:17
+LH:0
+BRF:0
+BRH:0
+FNF:17
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/AppSettings/AppSettings.cs
+FN:10,System.String Common.AppSettings.AppSettings::get_ApiV1()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_ApiV1()
+DA:11,0
+FN:11,System.String Common.AppSettings.AppSettings::get_ApiName()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_ApiName()
+DA:12,0
+FN:12,System.String Common.AppSettings.AppSettings::get_Env()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_Env()
+DA:13,0
+FN:13,System.String Common.AppSettings.AppSettings::get_JwtAudience()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_JwtAudience()
+DA:14,0
+FN:14,System.String Common.AppSettings.AppSettings::get_JwtIssuer()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_JwtIssuer()
+DA:15,0
+FN:15,System.String Common.AppSettings.AppSettings::get_JwtSecretKey()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_JwtSecretKey()
+DA:16,0
+FN:16,System.String Common.AppSettings.AppSettings::get_ConnectionString()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_ConnectionString()
+DA:17,0
+FN:17,Common.Contracts.IEmailConfiguration Common.AppSettings.AppSettings::get_EmailConfiguration()
+FNDA:0,Common.Contracts.IEmailConfiguration Common.AppSettings.AppSettings::get_EmailConfiguration()
+DA:18,0
+FN:18,System.String Common.AppSettings.AppSettings::get_FeedbackRecipients()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_FeedbackRecipients()
+DA:19,0
+FN:19,System.String Common.AppSettings.AppSettings::get_ApiKey()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_ApiKey()
+DA:20,0
+FN:20,System.String Common.AppSettings.AppSettings::get_PubSlackAppQueueName()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_PubSlackAppQueueName()
+DA:21,0
+FN:23,System.String Common.AppSettings.AppSettings::get_MainUrl()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_MainUrl()
+DA:24,0
+FN:24,System.String Common.AppSettings.AppSettings::get_SlackSigningSecret()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_SlackSigningSecret()
+DA:25,0
+FN:25,System.String Common.AppSettings.AppSettings::get_IntroductionChannelId()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_IntroductionChannelId()
+DA:26,0
+FN:26,System.String Common.AppSettings.AppSettings::get_PrivateIntroChannelId()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_PrivateIntroChannelId()
+DA:27,0
+FN:27,System.String Common.AppSettings.AppSettings::get_PrivateRegistrationChannelId()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_PrivateRegistrationChannelId()
+DA:28,0
+FN:28,System.String Common.AppSettings.AppSettings::get_PrivateProjectsChannelId()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_PrivateProjectsChannelId()
+DA:29,0
+FN:29,System.String Common.AppSettings.AppSettings::get_PrivateFeedbackChannelId()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_PrivateFeedbackChannelId()
+DA:30,0
+FN:30,System.String Common.AppSettings.AppSettings::get_ProjectIdeasChannelId()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_ProjectIdeasChannelId()
+DA:31,0
+FN:32,System.String Common.AppSettings.AppSettings::get_SlackAuthToken()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_SlackAuthToken()
+DA:33,0
+FN:33,System.String Common.AppSettings.AppSettings::get_GitHubOrganization()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_GitHubOrganization()
+DA:34,0
+FN:34,System.String Common.AppSettings.AppSettings::get_GitHubAppId()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_GitHubAppId()
+DA:35,0
+FN:35,System.String Common.AppSettings.AppSettings::get_GitHubAppInstallationId()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_GitHubAppInstallationId()
+DA:36,0
+FN:36,System.String Common.AppSettings.AppSettings::get_GitHubAppPrivateRSAKey()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_GitHubAppPrivateRSAKey()
+DA:37,0
+FN:37,System.String Common.AppSettings.AppSettings::get_GitHubInstallationAccessToken()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_GitHubInstallationAccessToken()
+DA:38,0
+FN:38,System.String Common.AppSettings.AppSettings::get_PrivilegedMembers()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_PrivilegedMembers()
+DA:39,0
+FN:41,System.String Common.AppSettings.AppSettings::get_SendGridTemplatesApiKey()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_SendGridTemplatesApiKey()
+DA:42,0
+FN:42,System.String Common.AppSettings.AppSettings::get_ServiceBusConnectionString()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_ServiceBusConnectionString()
+DA:43,0
+FN:43,System.String Common.AppSettings.AppSettings::get_ServiceBusQueueName()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_ServiceBusQueueName()
+DA:44,0
+FN:44,System.String Common.AppSettings.AppSettings::get_TableStorageConnectionString()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_TableStorageConnectionString()
+DA:45,0
+FN:45,System.String Common.AppSettings.AppSettings::get_StorageTableName()
+FNDA:0,System.String Common.AppSettings.AppSettings::get_StorageTableName()
+DA:46,0
+LF:31
+LH:0
+BRF:0
+BRH:0
+FNF:31
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/Common/AppSettings/Settings.cs
+FN:8,System.String Common.AppSettings.Settings::get_ApiV1()
+FNDA:0,System.String Common.AppSettings.Settings::get_ApiV1()
+DA:9,0
+FN:9,System.String Common.AppSettings.Settings::get_ApiName()
+FNDA:0,System.String Common.AppSettings.Settings::get_ApiName()
+DA:10,0
+FN:10,System.String Common.AppSettings.Settings::get_Env()
+FNDA:0,System.String Common.AppSettings.Settings::get_Env()
+DA:11,0
+FN:11,System.String Common.AppSettings.Settings::get_JwtAudience()
+FNDA:0,System.String Common.AppSettings.Settings::get_JwtAudience()
+DA:12,0
+FN:12,System.String Common.AppSettings.Settings::get_JwtIssuer()
+FNDA:0,System.String Common.AppSettings.Settings::get_JwtIssuer()
+DA:13,0
+FN:13,System.String Common.AppSettings.Settings::get_JwtSecretKey()
+FNDA:0,System.String Common.AppSettings.Settings::get_JwtSecretKey()
+DA:14,0
+FN:14,System.String Common.AppSettings.Settings::get_ConnectionString()
+FNDA:0,System.String Common.AppSettings.Settings::get_ConnectionString()
+DA:15,0
+FN:15,Common.Contracts.IEmailConfiguration Common.AppSettings.Settings::get_EmailConfiguration()
+FNDA:0,Common.Contracts.IEmailConfiguration Common.AppSettings.Settings::get_EmailConfiguration()
+DA:16,0
+FN:16,System.String Common.AppSettings.Settings::get_FeedbackRecipients()
+FNDA:0,System.String Common.AppSettings.Settings::get_FeedbackRecipients()
+DA:17,0
+FN:17,System.String Common.AppSettings.Settings::get_ApiKey()
+FNDA:0,System.String Common.AppSettings.Settings::get_ApiKey()
+DA:18,0
+FN:18,System.String Common.AppSettings.Settings::get_PubSlackAppQueueName()
+FNDA:0,System.String Common.AppSettings.Settings::get_PubSlackAppQueueName()
+DA:19,0
+FN:21,System.String Common.AppSettings.Settings::get_MainUrl()
+FNDA:0,System.String Common.AppSettings.Settings::get_MainUrl()
+DA:22,0
+FN:22,System.String Common.AppSettings.Settings::get_SlackSigningSecret()
+FNDA:0,System.String Common.AppSettings.Settings::get_SlackSigningSecret()
+DA:23,0
+FN:23,System.String Common.AppSettings.Settings::get_IntroductionChannelId()
+FNDA:0,System.String Common.AppSettings.Settings::get_IntroductionChannelId()
+DA:24,0
+FN:24,System.String Common.AppSettings.Settings::get_PrivateIntroChannelId()
+FNDA:0,System.String Common.AppSettings.Settings::get_PrivateIntroChannelId()
+DA:25,0
+FN:25,System.String Common.AppSettings.Settings::get_PrivateRegistrationChannelId()
+FNDA:0,System.String Common.AppSettings.Settings::get_PrivateRegistrationChannelId()
+DA:26,0
+FN:26,System.String Common.AppSettings.Settings::get_PrivateProjectsChannelId()
+FNDA:0,System.String Common.AppSettings.Settings::get_PrivateProjectsChannelId()
+DA:27,0
+FN:27,System.String Common.AppSettings.Settings::get_PrivateFeedbackChannelId()
+FNDA:0,System.String Common.AppSettings.Settings::get_PrivateFeedbackChannelId()
+DA:28,0
+FN:28,System.String Common.AppSettings.Settings::get_ProjectIdeasChannelId()
+FNDA:0,System.String Common.AppSettings.Settings::get_ProjectIdeasChannelId()
+DA:29,0
+FN:29,System.String Common.AppSettings.Settings::get_SlackAuthToken()
+FNDA:0,System.String Common.AppSettings.Settings::get_SlackAuthToken()
+DA:30,0
+FN:30,System.String Common.AppSettings.Settings::get_GitHubOrganization()
+FNDA:0,System.String Common.AppSettings.Settings::get_GitHubOrganization()
+DA:31,0
+FN:31,System.String Common.AppSettings.Settings::get_GitHubAppId()
+FNDA:0,System.String Common.AppSettings.Settings::get_GitHubAppId()
+DA:32,0
+FN:32,System.String Common.AppSettings.Settings::get_GitHubAppInstallationId()
+FNDA:0,System.String Common.AppSettings.Settings::get_GitHubAppInstallationId()
+DA:33,0
+FN:33,System.String Common.AppSettings.Settings::get_GitHubAppPrivateRSAKey()
+FNDA:0,System.String Common.AppSettings.Settings::get_GitHubAppPrivateRSAKey()
+DA:34,0
+FN:34,System.String Common.AppSettings.Settings::get_GitHubInstallationAccessToken()
+FNDA:0,System.String Common.AppSettings.Settings::get_GitHubInstallationAccessToken()
+DA:35,0
+FN:35,System.String Common.AppSettings.Settings::get_PrivilegedMembers()
+FNDA:0,System.String Common.AppSettings.Settings::get_PrivilegedMembers()
+DA:36,0
+FN:38,System.String Common.AppSettings.Settings::get_SendGridTemplatesApiKey()
+FNDA:0,System.String Common.AppSettings.Settings::get_SendGridTemplatesApiKey()
+DA:39,0
+FN:39,System.String Common.AppSettings.Settings::get_ServiceBusConnectionString()
+FNDA:0,System.String Common.AppSettings.Settings::get_ServiceBusConnectionString()
+DA:40,0
+FN:40,System.String Common.AppSettings.Settings::get_ServiceBusQueueName()
+FNDA:0,System.String Common.AppSettings.Settings::get_ServiceBusQueueName()
+DA:41,0
+FN:41,System.String Common.AppSettings.Settings::get_TableStorageConnectionString()
+FNDA:0,System.String Common.AppSettings.Settings::get_TableStorageConnectionString()
+DA:42,0
+FN:42,System.String Common.AppSettings.Settings::get_StorageTableName()
+FNDA:0,System.String Common.AppSettings.Settings::get_StorageTableName()
+DA:43,0
+FN:43,System.String Common.AppSettings.Settings::get_MailTrackingTableName()
+FNDA:0,System.String Common.AppSettings.Settings::get_MailTrackingTableName()
+DA:44,0
+FN:46,System.String Common.AppSettings.Settings::get_PubApiEndpoint()
+FNDA:0,System.String Common.AppSettings.Settings::get_PubApiEndpoint()
+DA:47,0
+LF:33
+LH:0
+BRF:0
+BRH:0
+FNF:33
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/SlackApp/Program.cs
+FN:15,System.Void SlackApp.Program::Main(System.String[])
+FNDA:0,System.Void SlackApp.Program::Main(System.String[])
+DA:16,0
+DA:17,0
+DA:18,0
+FN:20,Microsoft.AspNetCore.Hosting.IWebHostBuilder SlackApp.Program::CreateWebHostBuilder(System.String[])
+FNDA:0,Microsoft.AspNetCore.Hosting.IWebHostBuilder SlackApp.Program::CreateWebHostBuilder(System.String[])
+DA:21,0
+DA:22,0
+LF:5
+LH:0
+BRF:0
+BRH:0
+FNF:2
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/SlackApp/Startup.cs
+FN:26,Microsoft.Extensions.Configuration.IConfiguration SlackApp.Startup::get_Configuration()
+FNDA:0,Microsoft.Extensions.Configuration.IConfiguration SlackApp.Startup::get_Configuration()
+DA:27,0
+FN:30,System.Void SlackApp.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+FNDA:0,System.Void SlackApp.Startup::ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)
+DA:31,0
+DA:32,0
+DA:33,0
+DA:34,0
+FN:37,System.Void SlackApp.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+FNDA:0,System.Void SlackApp.Startup::Configure(Microsoft.AspNetCore.Builder.IApplicationBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:43,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:50,0
+DA:51,0
+DA:53,0
+DA:54,0
+DA:56,0
+DA:58,0
+DA:59,0
+DA:60,0
+DA:61,0
+DA:62,0
+BRDA:45,47,0,0
+BRDA:45,47,1,0
+FN:64,System.Void SlackApp.Startup::InitializeSettings()
+FNDA:0,System.Void SlackApp.Startup::InitializeSettings()
+DA:65,0
+DA:66,0
+DA:67,0
+DA:68,0
+DA:70,0
+DA:71,0
+DA:72,0
+DA:73,0
+DA:74,0
+DA:77,0
+DA:79,0
+BRDA:70,72,0,0
+BRDA:70,79,0,0
+BRDA:70,72,1,0
+BRDA:70,79,1,0
+BRDA:70,94,0,0
+BRDA:70,94,1,0
+FN:18,System.Void SlackApp.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger`1<SlackApp.Startup>,Microsoft.Extensions.Logging.ILogger`1<Infrastructure.Messaging.MessageQueue>)
+FNDA:0,System.Void SlackApp.Startup::.ctor(Microsoft.Extensions.Configuration.IConfiguration,Microsoft.Extensions.Logging.ILogger`1<SlackApp.Startup>,Microsoft.Extensions.Logging.ILogger`1<Infrastructure.Messaging.MessageQueue>)
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+DA:23,0
+DA:24,0
+DA:25,0
+LF:43
+LH:0
+BRF:8
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/SlackApp/Helpers/SlackRequestValidator.cs
+FN:65,System.String SlackApp.Helpers.SlackRequestValidator::ComputeSha256Hash(System.String,System.String)
+FNDA:0,System.String SlackApp.Helpers.SlackRequestValidator::ComputeSha256Hash(System.String,System.String)
+DA:66,0
+DA:67,0
+DA:68,0
+DA:69,0
+DA:72,0
+DA:73,0
+DA:75,0
+DA:76,0
+DA:77,0
+FN:14,System.Void SlackApp.Helpers.SlackRequestValidator::.ctor()
+FNDA:0,System.Void SlackApp.Helpers.SlackRequestValidator::.ctor()
+DA:15,0
+DA:16,0
+DA:17,0
+DA:18,0
+DA:20,0
+DA:21,0
+DA:23,0
+FN:28,System.Void SlackApp.Helpers.SlackRequestValidator::.ctor(System.String)
+FNDA:0,System.Void SlackApp.Helpers.SlackRequestValidator::.ctor(System.String)
+DA:29,0
+DA:30,0
+DA:31,0
+DA:32,0
+FN:42,System.String SlackApp.Helpers.SlackRequestValidator/<>c::<IsValid>b__6_0(System.Text.RegularExpressions.Match)
+FNDA:0,System.String SlackApp.Helpers.SlackRequestValidator/<>c::<IsValid>b__6_0(System.Text.RegularExpressions.Match)
+DA:43,0
+FN:34,System.Void SlackApp.Helpers.SlackRequestValidator/<IsValid>d__6::MoveNext()
+FNDA:0,System.Void SlackApp.Helpers.SlackRequestValidator/<IsValid>d__6::MoveNext()
+DA:35,0
+DA:36,0
+DA:37,0
+DA:38,0
+DA:39,0
+DA:40,0
+DA:41,0
+DA:42,0
+DA:44,0
+DA:45,0
+DA:46,0
+DA:47,0
+DA:48,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:54,0
+DA:56,0
+DA:57,0
+DA:58,0
+DA:60,0
+DA:62,0
+DA:63,0
+BRDA:38,54,0,0
+BRDA:40,295,1,0
+BRDA:40,295,0,0
+BRDA:38,54,1,0
+LF:45
+LH:0
+BRF:4
+BRH:0
+FNF:5
+FNH:0
+end_of_record
+SF:/Users/roymoran/docs/src/projectunicorn/pub-api/src/Pub/SlackApp/Controllers/SlackController.cs
+FN:17,System.Void SlackApp.Controllers.SlackController::.ctor(Common.Contracts.IMessageQueue)
+FNDA:0,System.Void SlackApp.Controllers.SlackController::.ctor(Common.Contracts.IMessageQueue)
+DA:18,0
+DA:19,0
+DA:20,0
+DA:21,0
+DA:22,0
+FN:26,System.Void SlackApp.Controllers.SlackController/<RecieveEvent>d__3::MoveNext()
+FNDA:0,System.Void SlackApp.Controllers.SlackController/<RecieveEvent>d__3::MoveNext()
+DA:27,0
+DA:29,0
+DA:30,0
+DA:31,0
+DA:33,0
+DA:34,0
+DA:35,0
+DA:36,0
+DA:39,0
+DA:40,0
+DA:43,0
+DA:44,0
+BRDA:29,157,0,0
+BRDA:33,200,0,0
+BRDA:33,200,1,0
+BRDA:29,157,1,0
+FN:48,System.Void SlackApp.Controllers.SlackController/<RecieveCommand>d__4::MoveNext()
+FNDA:0,System.Void SlackApp.Controllers.SlackController/<RecieveCommand>d__4::MoveNext()
+DA:49,0
+DA:50,0
+DA:51,0
+DA:52,0
+DA:53,0
+DA:55,0
+DA:56,0
+BRDA:50,157,0,0
+BRDA:50,157,1,0
+LF:24
+LH:0
+BRF:6
+BRH:0
+FNF:3
+FNH:0
+end_of_record

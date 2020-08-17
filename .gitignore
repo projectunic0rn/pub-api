@@ -355,9 +355,6 @@ healthchecksdb
 # Backup folder for Package Reference Convert tool in Visual Studio 2017
 MigrationBackup/
 
-# .vscode launch/taskss directory
-.vscode 
-
 # End of https://www.gitignore.io/api/visualstudio
 coverage*
 
