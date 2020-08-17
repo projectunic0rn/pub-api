@@ -32,7 +32,7 @@ jobs:
     displayName: 'dotnet build $(buildConfiguration)'
   
   # Run test projects and generate code coverage
-  - script: dotnet test src/Pub/ --settings src/Pub/coverlet.runsettings.xml
+  - script: dotnet test src/Pub /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info
     displayName: 'dotnet test'
 
   # Upload code coverage report
@@ -50,7 +50,7 @@ jobs:
       command: login
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
   
-  - script: docker build -t roymoran/pub-api -f ci/Dockerfile src/Pub
+  - script: docker build -t roymoran/pub-api -f ci/api.Dockerfile src/Pub
     displayName: 'build docker api image'
     condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/master'))
     
