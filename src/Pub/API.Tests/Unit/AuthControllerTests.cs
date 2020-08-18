@@ -114,6 +114,7 @@ namespace API.Tests.Unit
             var result = await authController.Login(loginDto);
             var response = (OkObjectResult)result;
             var objectResult = (ResponseDto<JsonWebTokenDto>)response.Value;
+
             // Assert
             Assert.Equal(jsonWebToken.Token, objectResult.Data.Token);
         }
@@ -136,6 +137,72 @@ namespace API.Tests.Unit
 
             // Act
             var result = await authController.Login(loginDto);
+            var response = (BadRequestObjectResult)result;
+            var objectResult = (ResponseDto<ErrorDto>)response.Value;
+
+            // Assert
+            Assert.Equal(exceptionMessage, objectResult.Data.Message);
+        }
+
+        [Fact]
+        public async Task ResetPasswordRequest_CallWithMockedIAuthentication_ReturnsOkObjectResult()
+        {
+            // Arrange
+            var mock = new Mock<IAuthentication>();
+            var resetPasswordRequestDto = new ResetPasswordRequestDto() {
+                Email = "roy@email.com",
+            };
+
+            mock.Setup(auth => auth.ResetPasswordRequest(resetPasswordRequestDto)).Returns(Task.Delay(0));
+            var authController = new AuthController(mock.Object);
+
+            // Act
+            var result = await authController.ResetPasswordRequest(resetPasswordRequestDto);
+
+            // Assert
+            Assert.IsType<OkResult>(result);
+        }
+
+        [Fact]
+        public async Task ResetPassword_CallWithMockedIAuthentication_ReturnsOkObjectResult()
+        {
+            // Arrange
+            var mock = new Mock<IAuthentication>();
+            var resetPasswordDto = new ResetPasswordDto() {
+                NewPassword = "password",
+                ConfirmNewPassword = "password",
+                ValidationToken = "token",
+            };
+
+            mock.Setup(auth => auth.ResetPassword(resetPasswordDto)).Returns(Task.Delay(0));
+            var authController = new AuthController(mock.Object);
+
+            // Act
+            var result = await authController.ResetPassword(resetPasswordDto);
+
+            // Assert
+            Assert.IsType<OkResult>(result);
+        }
+
+        [Fact]
+        public async Task ResetPassword_CallWithMockedIAuthentication_ThrowsAndCatchesAuthenticationException()
+        {
+            // Arrange
+            var mock = new Mock<IAuthentication>();
+            var resetPasswordDto = new ResetPasswordDto() {
+                NewPassword = "password",
+                ConfirmNewPassword = "password",
+                ValidationToken = "token",
+            };
+
+            string exceptionMessage = "ExceptionThrown";
+            var ex = new AuthenticationException(exceptionMessage);
+
+            mock.Setup(auth => auth.ResetPassword(resetPasswordDto)).ThrowsAsync(ex);
+            var authController = new AuthController(mock.Object);
+
+            // Act
+            var result = await authController.ResetPassword(resetPasswordDto);
             var response = (BadRequestObjectResult)result;
             var objectResult = (ResponseDto<ErrorDto>)response.Value;
 
