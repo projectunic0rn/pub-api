@@ -95,5 +95,52 @@ namespace API.Tests.Unit
             // Assert
             Assert.Equal(exceptionMessage, objectResult.Data.Message);
         }
+
+        [Fact]
+        public async Task Login_CallWithMockedIAuthentication_ReturnsOkObjectResult()
+        {
+            // Arrange
+            var mock = new Mock<IAuthentication>();
+            var loginDto = new LoginDto() {
+                Email = "roy@email.com",
+                Password = "password",
+            };
+
+            var jsonWebToken = new JsonWebTokenDto("expected_token");
+            mock.Setup(auth => auth.LoginUserAsync(loginDto)).ReturnsAsync(jsonWebToken);
+            var authController = new AuthController(mock.Object);
+
+            // Act
+            var result = await authController.Login(loginDto);
+            var response = (OkObjectResult)result;
+            var objectResult = (ResponseDto<JsonWebTokenDto>)response.Value;
+            // Assert
+            Assert.Equal(jsonWebToken.Token, objectResult.Data.Token);
+        }
+
+        [Fact]
+        public async Task Login_CallWithMockedIAuthentication_ThrowsAndCatchesAuthenticationException()
+        {
+            // Arrange
+            var mock = new Mock<IAuthentication>();
+            var loginDto = new LoginDto() {
+                Email = "roy@email.com",
+                Password = "password",
+            };
+
+            string exceptionMessage = "ExceptionThrown";
+            var ex = new AuthenticationException(exceptionMessage);
+
+            mock.Setup(auth => auth.LoginUserAsync(loginDto)).ThrowsAsync(ex);
+            var authController = new AuthController(mock.Object);
+
+            // Act
+            var result = await authController.Login(loginDto);
+            var response = (BadRequestObjectResult)result;
+            var objectResult = (ResponseDto<ErrorDto>)response.Value;
+
+            // Assert
+            Assert.Equal(exceptionMessage, objectResult.Data.Message);
+        }
     }
 }
