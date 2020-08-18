@@ -24,7 +24,7 @@
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "test and coverage",
+            "label": "test with coverage",
             "command": "dotnet",
             "type": "process",
             "args": [
@@ -34,6 +34,28 @@
                 "/p:CoverletOutputFormat=lcov",
                 "/p:CoverletOutput=./lcov.info"
             ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "watch and run API tests",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "watch",
+                "${workspaceFolder}/src/Pub/API.Tests/API.Tests.csproj",
+                "test",
+                "/p:CollectCoverage=true",
+                "/p:CoverletOutputFormat=lcov",
+                "/p:CoverletOutput=./lcov.info"
+            ],
+            "group": {
+                "kind": "test",
+                "isDefault": true
+            },
             "problemMatcher": "$msCompile"
         },
     ]
