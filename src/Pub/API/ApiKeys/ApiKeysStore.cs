@@ -11,11 +11,11 @@ namespace API.ApiKeys
     {
         private readonly IDictionary<string, ApiKey> _apiKeys;
 
-        public ApiKeysStore(string apiKey)
+        public ApiKeysStore(string internalApiKey)
         {
             var existingApiKeys = new List<ApiKey>
             {
-                new ApiKey(1, "Internal", apiKey),
+                new ApiKey(1, "Internal", internalApiKey),
             };
 
             _apiKeys = existingApiKeys.ToDictionary(x => x.Key, x => x);
@@ -23,6 +23,11 @@ namespace API.ApiKeys
 
         public Task<ApiKey> Execute(string providedApiKey)
         {
+            if (providedApiKey == null)
+            {
+                throw new ArgumentNullException(providedApiKey);
+            }
+
             _apiKeys.TryGetValue(providedApiKey, out var key);
             return Task.FromResult(key);
         }

@@ -5,15 +5,12 @@ using System.Text.Encodings.Web;
 using System.Threading.Tasks;
 using Common.Contracts;
 using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Newtonsoft.Json;
 
 namespace API.AuthScheme
 {
-    public class ApiKeyAuthenticationHandler: AuthenticationHandler<ApiKeyAuthenticationOptions>
+    public class ApiKeyAuthenticationHandler : AuthenticationHandler<ApiKeyAuthenticationOptions>
     {
         private readonly IFetchApiKey _fetchApiKey;
         private const string ApiKeyHeaderName = "X-Api-Key";
