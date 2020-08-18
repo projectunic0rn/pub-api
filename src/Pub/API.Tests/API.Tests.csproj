@@ -20,4 +20,9 @@
     <Folder Include="Integration\" />
     <Folder Include="Unit\" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\API\API.csproj" />
+    <ProjectReference Include="..\Common\Common.csproj" />
+  </ItemGroup>
 </Project>
