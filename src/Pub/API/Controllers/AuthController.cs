@@ -74,7 +74,6 @@ namespace API.Controllers
                 errorResponse.Data = new ErrorDto(ExceptionMessage.UniquenessConstraintViolation);
                 return BadRequest(errorResponse);
             }
-
         }
 
         // POST api/[controller]/change-password
@@ -130,7 +129,6 @@ namespace API.Controllers
                 errorResponse.Data = new ErrorDto(ex.Message);
                 return BadRequest(errorResponse);
             }
-
         }
     }
 }
