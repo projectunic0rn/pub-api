@@ -30,7 +30,7 @@ namespace API.Controllers
         #if !DEBUG
         [Authorize]
         #endif
-        public async Task<ActionResult<UserDto>> GetUser(Guid id)
+        public async Task<IActionResult> GetUser(Guid id)
         {
             ResponseDto<UserDto> okResponse = new ResponseDto<UserDto>(true)
             {
@@ -45,7 +45,7 @@ namespace API.Controllers
         #if !DEBUG
         [Authorize]
         #endif
-        public async Task<ActionResult<UserDto>> UpdateUser([FromBody]UserDto user)
+        public async Task<IActionResult> UpdateUser([FromBody]UserDto user)
         {
             ResponseDto<UserDto> okResponse = new ResponseDto<UserDto>(true)
             {
