@@ -55,7 +55,7 @@ namespace API.Controllers
         #if !DEBUG
         [Authorize]
         #endif
-        public async Task<ActionResult<ProjectDto>> CreateProject([FromBody] ProjectDto project)
+        public async Task<IActionResult> CreateProject([FromBody] ProjectDto project)
         {
             ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true);
             ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
@@ -81,7 +81,7 @@ namespace API.Controllers
         #if !DEBUG
         [Authorize]
         #endif
-        public async Task<ActionResult<ProjectDto>> UpdateProject([FromBody] ProjectDto project)
+        public async Task<IActionResult> UpdateProject([FromBody] ProjectDto project)
         {
             ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true);
             ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
