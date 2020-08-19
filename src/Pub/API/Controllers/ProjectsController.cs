@@ -27,7 +27,7 @@ namespace API.Controllers
         // GET api/[controller]
         [HttpGet]
         [ProducesResponseType(200, Type = typeof(ResponseDto<List<ProjectDto>>))]
-        public async Task<ActionResult<List<ProjectDto>>> GetProjects(bool searchableOnly = true)
+        public async Task<IActionResult> GetProjects(bool searchableOnly = true)
         {
             ResponseDto<List<ProjectDto>> okResponse = new ResponseDto<List<ProjectDto>>(true)
             {
@@ -39,7 +39,7 @@ namespace API.Controllers
         // GET api/[controller]/{id}
         [HttpGet("{id}")]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectDto>))]
-        public async Task<ActionResult<ProjectDto>> GetProject(Guid id)
+        public async Task<IActionResult> GetProject(Guid id)
         {
             ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true)
             {

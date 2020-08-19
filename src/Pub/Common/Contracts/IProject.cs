@@ -7,7 +7,7 @@ namespace Common.Contracts
 {
     public interface IProject
     {
-        Task<List<ProjectDto>> GetProjectsAsync(bool searchableOnly);
+        Task<List<ProjectDto>> GetProjectsAsync(bool searchableOnly = true);
         Task<ProjectDto> GetProjectAsync(Guid id);
         Task<ProjectDto> CreateProjectAsync(ProjectDto project);
         Task<ProjectDto> UpdateProjectAsync(ProjectDto project);
