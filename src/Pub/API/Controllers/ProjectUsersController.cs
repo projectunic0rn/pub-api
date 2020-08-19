@@ -30,7 +30,7 @@ namespace API.Controllers
         [HttpPost]
         [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectUserDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
-        public async Task<ActionResult<ProjectDto>> CreateProjectUser([FromBody] ProjectUserDto project)
+        public async Task<IActionResult> CreateProjectUser([FromBody] ProjectUserDto project)
         {
             ResponseDto<ProjectUserDto> okResponse = new ResponseDto<ProjectUserDto>(true);
             ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
