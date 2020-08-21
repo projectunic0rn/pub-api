@@ -44,12 +44,14 @@ namespace Domain.Models
 
         public async Task<List<ProjectDto>> GetProjectsAsync(bool searchableOnly)
         {
-            if(searchableOnly) {
+            if (searchableOnly)
+            {
                 List<ProjectEntity> projects = await _projectStorage.FindAsync();
                 List<ProjectDto> projectDtos = _mapper.Map<List<ProjectDto>>(projects);
                 return projectDtos;
             }
-            else {
+            else
+            {
                 List<ProjectEntity> projects = await _projectStorage.FindAllAsync();
                 List<ProjectDto> projectDtos = _mapper.Map<List<ProjectDto>>(projects);
                 return projectDtos;
@@ -77,7 +79,11 @@ namespace Domain.Models
                 NotificationObject = project
             };
 
-            await _notifier.SendProjectPostedNotificationAsync(notificationDto);
+            if (project.CommunicationPlatform != "other")
+            {
+                await _notifier.SendProjectPostedNotificationAsync(notificationDto);
+            }
+
             ProjectDto mappedProject = _mapper.Map<ProjectDto>(createdProject);
             await _messageQueue.SendMessageAsync(mappedProject, "projectpost", queueName: _pubSlackAppQueueName);
             return mappedProject;
@@ -95,7 +101,7 @@ namespace Domain.Models
         {
             await _projectStorage.DeleteAsync(id);
         }
-        
+
         private async Task ValidateProject(ProjectDto project)
         {
             await ValidateCommunicationPlatformType(project);
@@ -108,11 +114,11 @@ namespace Domain.Models
             var message = ExceptionMessage.InvalidCommunicationPlatform;
             if (!communicationPlatformTypeValid)
             {
-                foreach(CommunicationPlatformTypeEntity communicationPlatform in communicationPlatformTypes)
+                foreach (CommunicationPlatformTypeEntity communicationPlatform in communicationPlatformTypes)
                 {
                     message += communicationPlatform.Name + " ";
                 }
-                
+
                 throw new ProjectException(message);
             }
         }
