@@ -14,6 +14,7 @@ namespace Domain.Helpers
         private readonly IMapper _mapper;
         private readonly IStorage<UserEntity> _userStorage;
         private readonly IStorage<ProjectTypeEntity> _projectTypesStorage;
+        private readonly IStorage<CommunicationPlatformTypeEntity> _communicationPlatformTypesStorage;
         private User _user;
 
         public Utilities()
@@ -21,6 +22,7 @@ namespace Domain.Helpers
             _user = new User();
             _userStorage = new UserEntity();
             _projectTypesStorage = new ProjectTypeEntity();
+            _communicationPlatformTypesStorage = new CommunicationPlatformTypeEntity();
             _mapper = new InitializeMapper().GetMapper;
         }
 
@@ -76,6 +78,13 @@ namespace Domain.Helpers
             var projectTypes = await _projectTypesStorage.FindAsync();
             var projectTypesDto = _mapper.Map<List<ProjectTypeDto>>(projectTypes);
             return projectTypesDto;
+        }
+
+        public async Task<List<CommunicationPlatformTypeDto>> GetCommunicationPlatformTypesAsync()
+        {
+            var communicationPlatformTypes = await _communicationPlatformTypesStorage.FindAsync();
+            var communicationPlatformTypesDto = _mapper.Map<List<CommunicationPlatformTypeDto>>(communicationPlatformTypes);
+            return communicationPlatformTypesDto;
         }
     }
 }

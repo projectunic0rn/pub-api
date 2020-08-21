@@ -85,8 +85,8 @@ namespace Infrastructure.Persistence
         {
             List<CommunicationPlatformTypeEntity> communicationPlatformTypes = new List<CommunicationPlatformTypeEntity>()
             {
-                new CommunicationPlatformTypeEntity { Id = new Guid("7d73c8aa-055c-4702-b825-0e8fb4e77ac0"), CreatedAt = DateTimeOffset.UtcNow, UpdatedAt = DateTimeOffset.UtcNow, Name = "slack" },
-                new CommunicationPlatformTypeEntity { Id = new Guid("7d73c8aa-055c-4702-b825-0e8fb4e77ac1"), CreatedAt = DateTimeOffset.UtcNow, UpdatedAt = DateTimeOffset.UtcNow, Name = "discord" },
+                new CommunicationPlatformTypeEntity { Id = new Guid("7d73c8aa-055c-4702-b825-0e8fb4e77ac0"), CreatedAt = DateTimeOffset.UtcNow, UpdatedAt = DateTimeOffset.UtcNow, Name = "slack", LogoUrl = "https://i.imgur.com/y3e8lL6.png" },
+                new CommunicationPlatformTypeEntity { Id = new Guid("7d73c8aa-055c-4702-b825-0e8fb4e77ac1"), CreatedAt = DateTimeOffset.UtcNow, UpdatedAt = DateTimeOffset.UtcNow, Name = "discord", LogoUrl = "https://i.imgur.com/BoARUGM.png" },
             };
 
             return communicationPlatformTypes;

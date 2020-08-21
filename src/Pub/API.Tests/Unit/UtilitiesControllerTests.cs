@@ -80,5 +80,27 @@ namespace API.Tests.Unit
             Assert.IsType<OkObjectResult>(result);
             Assert.IsType<ResponseDto<NotificationDto>>(response.Value);
         }
+
+        [Fact]
+        public async Task GetCommunicationPlatformTypes_CallWithMockedIUtilities_ReturnOkObjectResult()
+        {
+            // Arrange
+            var utilitiesMock = new Mock<IUtilities>();
+            var notifierMock = new Mock<INotifier>();
+            var communicationPlatformTypesDto = new List<CommunicationPlatformTypeDto>() {
+                new CommunicationPlatformTypeDto() { Name = "slack", LogoUrl = "https://i.imgur.com/y3e8lL6.png"},
+            };
+
+            utilitiesMock.Setup(u => u.GetCommunicationPlatformTypesAsync()).ReturnsAsync(communicationPlatformTypesDto);
+            var controller = new UtilitiesController(utilitiesMock.Object, notifierMock.Object);
+
+            // Act
+            var result = await controller.GetCommunicationPlatformTypes();
+            var response = (OkObjectResult)result;
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+            Assert.IsType<ResponseDto<List<CommunicationPlatformTypeDto>>>(response.Value);
+        }
     }
 }
