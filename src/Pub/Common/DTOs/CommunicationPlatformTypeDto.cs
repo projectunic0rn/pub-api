@@ -1,6 +1,6 @@
 namespace Common.DTOs
 {
-    public class CommunicationPlatformDto
+    public class CommunicationPlatformTypeDto
     {   
         public string Name {get;set;}
         public string LogoUrl {get;set;}

@@ -80,10 +80,10 @@ namespace Domain.Helpers
             return projectTypesDto;
         }
 
-        public async Task<List<CommunicationPlatformDto>> GetCommunicationPlatformTypesAsync()
+        public async Task<List<CommunicationPlatformTypeDto>> GetCommunicationPlatformTypesAsync()
         {
             var communicationPlatformTypes = await _communicationPlatformTypesStorage.FindAsync();
-            var communicationPlatformTypesDto = _mapper.Map<List<CommunicationPlatformDto>>(communicationPlatformTypes);
+            var communicationPlatformTypesDto = _mapper.Map<List<CommunicationPlatformTypeDto>>(communicationPlatformTypes);
             return communicationPlatformTypesDto;
         }
     }

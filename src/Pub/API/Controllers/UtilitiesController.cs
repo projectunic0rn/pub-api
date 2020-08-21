@@ -45,10 +45,10 @@ namespace API.Controllers
         }
 
         [HttpGet("workspaces")]
-        [ProducesResponseType(200, Type = typeof(ResponseDto<List<CommunicationPlatformDto>>))]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<List<CommunicationPlatformTypeDto>>))]
         public async Task<IActionResult> GetCommunicationPlatformTypes()
         {
-            ResponseDto<List<CommunicationPlatformDto>> okResponse = new ResponseDto<List<CommunicationPlatformDto>>(true);
+            ResponseDto<List<CommunicationPlatformTypeDto>> okResponse = new ResponseDto<List<CommunicationPlatformTypeDto>>(true);
             var communicationPlatformTypes = await _utilities.GetCommunicationPlatformTypesAsync();
             okResponse.Data = communicationPlatformTypes;
             return Ok(okResponse);
