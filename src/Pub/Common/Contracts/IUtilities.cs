@@ -8,5 +8,6 @@ namespace Common.Contracts
     {
         Task<ValidationDto> ValidateUsernameAsync(string username);
         Task<List<ProjectTypeDto>> GetProjectTypesAsync();
+        Task<List<CommunicationPlatformDto>> GetCommunicationPlatformTypesAsync();
     }
 }
