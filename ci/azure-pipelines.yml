@@ -32,7 +32,7 @@ jobs:
     displayName: 'dotnet build $(buildConfiguration)'
   
   # Run test projects and generate code coverage
-  - script: dotnet test src/Pub /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info
+  - script: dotnet test src/Pub /p:CollectCoverage=true /p:CoverletOutputFormat=lcov /p:CoverletOutput=./lcov.info /p:ExcludeByFile=\"**/src/Pub/Infrastructure/Persistence/Migrations/*cs\"
     displayName: 'dotnet test'
 
   # Upload code coverage report
