@@ -98,18 +98,7 @@ namespace Domain.Models
         
         private async Task ValidateProject(ProjectDto project)
         {
-            await ValidateProjectType(project);
             await ValidateCommunicationPlatformType(project);
-        }
-        
-        private async Task ValidateProjectType(ProjectDto project)
-        {
-            List<ProjectTypeEntity> projectTypes = await _projectTypeStorage.FindAsync();
-            bool projectTypeValid = projectTypes.Exists(pt => pt.Type == project.ProjectType);
-            if (!projectTypeValid) 
-            { 
-                throw new ProjectException(ExceptionMessage.InvalidProjectType); 
-            }
         }
 
         private async Task ValidateCommunicationPlatformType(ProjectDto project)
