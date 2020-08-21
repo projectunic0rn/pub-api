@@ -13,28 +13,6 @@ namespace API.Tests.Unit
     public class UtilitiesControllerTests
     {
         [Fact]
-        public async Task GetProjectTypes_CallWithMockedIUtilities_ReturnOkObjectResult()
-        {
-            // Arrange
-            var utilitiesMock = new Mock<IUtilities>();
-            var notifierMock = new Mock<INotifier>();
-            var projectTypes = new List<ProjectTypeDto>() {
-                new ProjectTypeDto() { Id = Guid.NewGuid(), Type = "Project Type"},
-            };
-
-            utilitiesMock.Setup(u => u.GetProjectTypesAsync()).ReturnsAsync(projectTypes);
-            var controller = new UtilitiesController(utilitiesMock.Object, notifierMock.Object);
-
-            // Act
-            var result = await controller.GetProjectTypes();
-            var response = (OkObjectResult)result;
-
-            // Assert
-            Assert.IsType<OkObjectResult>(result);
-            Assert.IsType<ResponseDto<List<ProjectTypeDto>>>(response.Value);
-        }
-
-        [Fact]
         public async Task ValidateUsername_CallWithMockedIUtilities_ReturnOkObjectResult()
         {
             // Arrange

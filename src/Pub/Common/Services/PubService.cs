@@ -24,7 +24,7 @@ namespace Common.Services
 
         public async Task<ResponseDto<List<CommunicationPlatformTypeDto>>> GetWorkspaces()
         {
-            ResponseDto<List<CommunicationPlatformTypeDto>> response = await _http.Get<ResponseDto<List<CommunicationPlatformTypeDto>>>($"{_baseUri}/utilities/workspaces", headers);
+            ResponseDto<List<CommunicationPlatformTypeDto>> response = await _http.Get<ResponseDto<List<CommunicationPlatformTypeDto>>>($"{_baseUri}/util/workspaces", headers);
             return response;
         }
 
