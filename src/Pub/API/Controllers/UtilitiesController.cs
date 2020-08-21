@@ -34,16 +34,6 @@ namespace API.Controllers
             return Ok(okResponse);
         }
 
-        [HttpGet("projecttypes")]
-        [ProducesResponseType(200, Type = typeof(ResponseDto<List<ProjectTypeDto>>))]
-        public async Task<IActionResult> GetProjectTypes()
-        {
-            ResponseDto<List<ProjectTypeDto>> okResponse = new ResponseDto<List<ProjectTypeDto>>(true);
-            var projectTypes = await _utilities.GetProjectTypesAsync();
-            okResponse.Data = projectTypes;
-            return Ok(okResponse);
-        }
-
         [HttpGet("workspaces")]
         [ProducesResponseType(200, Type = typeof(ResponseDto<List<CommunicationPlatformTypeDto>>))]
         public async Task<IActionResult> GetCommunicationPlatformTypes()
