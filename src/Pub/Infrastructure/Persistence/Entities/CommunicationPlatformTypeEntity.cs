@@ -20,6 +20,7 @@ namespace Infrastructure.Persistence.Entities
 
         public Guid Id { get; set; }
         public string Name { get; set; }
+        public string LogoUrl { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
 
