@@ -22,6 +22,12 @@ namespace Common.Services
             return response;
         }
 
+        public async Task<ResponseDto<List<CommunicationPlatformTypeDto>>> GetWorkspaces()
+        {
+            ResponseDto<List<CommunicationPlatformTypeDto>> response = await _http.Get<ResponseDto<List<CommunicationPlatformTypeDto>>>($"{_baseUri}/utilities/workspaces", headers);
+            return response;
+        }
+
         public async Task<ProjectDto> UpdateProject(ProjectDto project)
         {
             var response = await _http.Put<ProjectDto>($"{_baseUri}/projects", headers, project);
