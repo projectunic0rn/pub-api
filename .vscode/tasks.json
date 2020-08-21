@@ -32,7 +32,8 @@
                 "${workspaceFolder}/src/Pub/Pub.sln",
                 "/p:CollectCoverage=true",
                 "/p:CoverletOutputFormat=lcov",
-                "/p:CoverletOutput=./lcov.info"
+                "/p:CoverletOutput=./lcov.info",
+                "/p:ExcludeByFile=\"**/src/Pub/Infrastructure/Persistence/Migrations/*cs\"",
             ],
             "group": {
                 "kind": "test",
