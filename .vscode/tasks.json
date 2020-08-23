@@ -47,11 +47,13 @@
             "type": "process",
             "args": [
                 "watch",
+                "--project",
                 "${workspaceFolder}/src/Pub/API.Tests/API.Tests.csproj",
                 "test",
                 "/p:CollectCoverage=true",
                 "/p:CoverletOutputFormat=lcov",
-                "/p:CoverletOutput=./lcov.info"
+                "/p:CoverletOutput=./lcov.info",
+                "/p:ExcludeByFile=\"**/src/Pub/Infrastructure/Persistence/Migrations/*cs\"",
             ],
             "group": {
                 "kind": "test",
