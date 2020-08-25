@@ -42,7 +42,7 @@ namespace API.Tests.Unit
             // Arrange
             var mock = new Mock<IProject>();
             var projectGuid = Guid.NewGuid();
-            var project = new ProjectDto(){
+            var project = new DetailedProjectDto(){
                  Id = projectGuid, 
                  Name = "Project"
             };
@@ -53,11 +53,11 @@ namespace API.Tests.Unit
             // Act
             var result = await projectsController.GetProject(projectGuid);
             var response = (OkObjectResult)result;
-            var objectResult = (ResponseDto<ProjectDto>)response.Value;
+            var objectResult = (ResponseDto<DetailedProjectDto>)response.Value;
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
-            Assert.IsType<ResponseDto<ProjectDto>>(response.Value);
+            Assert.IsType<ResponseDto<DetailedProjectDto>>(response.Value);
             Assert.Equal(objectResult.Data.Id, projectGuid);
         }
 

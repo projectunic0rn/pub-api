@@ -38,10 +38,10 @@ namespace API.Controllers
 
         // GET api/[controller]/{id}
         [HttpGet("{id}")]
-        [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectDto>))]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<DetailedProjectDto>))]
         public async Task<IActionResult> GetProject(Guid id)
         {
-            ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true)
+            ResponseDto<DetailedProjectDto> okResponse = new ResponseDto<DetailedProjectDto>(true)
             {
                 Data = await _project.GetProjectAsync(id)
             };

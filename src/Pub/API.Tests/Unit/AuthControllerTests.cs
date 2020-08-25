@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using Xunit;
 using Common.Contracts;
@@ -208,6 +209,27 @@ namespace API.Tests.Unit
 
             // Assert
             Assert.Equal(exceptionMessage, objectResult.Data.Message);
+        }
+
+        [Fact(Skip="need to mock IIdentity")]
+        public async Task ChangePassword_CallWithMockedIAuthentication_ReturnsOkObjectResult()
+        {
+            // Arrange 
+            var mock = new Mock<IAuthentication>();
+            var changePasswordDto = new ChangePasswordDto() {
+                OldPassword = "password",
+                NewPassword = "password",
+                ConfirmedNewPassword = "password",
+            };
+
+            mock.Setup(auth => auth.ChangePassword(Guid.NewGuid().ToString() , changePasswordDto)).Returns(Task.Delay(0));
+            var authController = new AuthController(mock.Object);
+
+            // Act
+            var result = await authController.ChangePassword(changePasswordDto);
+
+            // Assert
+            Assert.IsType<OkResult>(result);
         }
     }
 }

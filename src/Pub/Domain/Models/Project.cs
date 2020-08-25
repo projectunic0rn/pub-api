@@ -58,11 +58,11 @@ namespace Domain.Models
             }
         }
 
-        public async Task<ProjectDto> GetProjectAsync(Guid id)
+        public async Task<DetailedProjectDto> GetProjectAsync(Guid id)
         {
             ProjectEntity project = await _projectStorage.FindAsync(m => m.Id == id);
-            ProjectDto projectDto = _mapper.Map<ProjectDto>(project);
-            return projectDto;
+            DetailedProjectDto detailedProjectDto = _mapper.Map<DetailedProjectDto>(project);
+            return detailedProjectDto;
         }
 
         public async Task<ProjectDto> CreateProjectAsync(ProjectDto project)
