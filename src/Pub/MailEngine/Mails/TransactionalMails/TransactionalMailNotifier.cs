@@ -91,7 +91,7 @@ namespace MailEngine.Mails.ScheduledMails
         {
             _logger.LogInformation($"Sending initial feedback notification...");
             EmailMessage emailMessage = await _transactionalMailHelper.PrepareInitialFeedbackRequestMail(notification);
-            await _messageQueue.SendMessageAsync(emailMessage, enqueueTime: DateTime.UtcNow.AddDays(7));
+            await _messageQueue.SendMessageAsync(emailMessage, enqueueTime: DateTime.UtcNow.AddDays(2));
             return;
         }
     }
