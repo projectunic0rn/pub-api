@@ -6,20 +6,22 @@ using Common.DTOs;
 using API.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
-using Domain.Exceptions;
+using System.Collections.Generic;
 
 namespace API.Tests.Unit
 {
     public class UsersControllerTests
     {
         [Fact]
-        public async Task CreateUser_CallWithMockedIProjectUser_ReturnOkObjectResult() {
+        public async Task CreateUser_CallWithMockedIProjectUser_ReturnOkObjectResult()
+        {
             // Arrange
             var mock = new Mock<IUser>();
             var id = Guid.NewGuid();
             var userId = Guid.NewGuid();
             var projectId = Guid.NewGuid();
-            var user = new UserDto() {
+            var user = new UserDto()
+            {
                 Id = id,
                 Username = "roy",
                 Email = "roy@email.com",
@@ -38,13 +40,15 @@ namespace API.Tests.Unit
         }
 
         [Fact]
-        public async Task UpdateUser_CallWithMockedIProjectUser_ReturnOkObjectResult() {
+        public async Task UpdateUser_CallWithMockedIProjectUser_ReturnOkObjectResult()
+        {
             // Arrange
             var mock = new Mock<IUser>();
             var id = Guid.NewGuid();
             var userId = Guid.NewGuid();
             var projectId = Guid.NewGuid();
-            var user = new UserDto() {
+            var user = new UserDto()
+            {
                 Id = id,
                 Username = "roy",
                 Email = "roy@email.com",
@@ -60,6 +64,36 @@ namespace API.Tests.Unit
             // Assert
             Assert.IsType<OkObjectResult>(result);
             Assert.IsType<ResponseDto<UserDto>>(response.Value);
+        }
+
+        [Fact]
+        public async Task GetRecentDevs_CallWithMockedIProjectUser_ReturnOkObjectResult()
+        {
+            // Arrange
+            var mock = new Mock<IUser>();
+            var recentDevs = new List<RecentDevsDto>() {
+                new RecentDevsDto() {
+                    Id = Guid.NewGuid(),
+                    Bio = "hi",
+                    CreatedAt = DateTimeOffset.UtcNow,
+                },
+                new RecentDevsDto() {
+                    Id = Guid.NewGuid(),
+                    Bio = "hi",
+                    CreatedAt = DateTimeOffset.UtcNow,
+                }
+            };
+
+            mock.Setup(u => u.GetRecentDevsAsync()).ReturnsAsync(recentDevs);
+            var controller = new UsersController(mock.Object);
+
+            // Act
+            var result = await controller.GetRecentDevs();
+            var response = (OkObjectResult)result;
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+            Assert.IsType<ResponseDto<List<RecentDevsDto>>>(response.Value);
         }
     }
 }
