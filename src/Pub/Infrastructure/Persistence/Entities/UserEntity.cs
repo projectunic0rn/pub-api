@@ -76,6 +76,16 @@ namespace Infrastructure.Persistence.Entities
             return item;
         }
 
+        public async Task<List<UserEntity>> FindAllAsync(Expression<Func<UserEntity, bool>> predicate)
+        {
+            List<UserEntity> items = await _context.Users
+                .Where(predicate)
+                .OrderByDescending(u=> u.CreatedAt)
+                .Take(20)
+                .ToListAsync();
+            return items;
+        }
+
         // used to assign generated username 
         // with incrementing value
         public async Task<UserEntity> FindLastUnicornRecord()

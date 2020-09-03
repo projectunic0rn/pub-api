@@ -41,6 +41,11 @@ namespace Infrastructure.Persistence.Entities
             await _context.SaveChangesAsync();
         }
 
+        public Task<List<ProjectTypeEntity>> FindAllAsync(Expression<Func<ProjectTypeEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<ProjectTypeEntity>> FindAsync()
         {
             List<ProjectTypeEntity> items = await _context.ProjectTypes.ToListAsync();

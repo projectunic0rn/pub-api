@@ -93,5 +93,10 @@ namespace Infrastructure.Persistence.Entities
             await _context.SaveChangesAsync();
             return item;
         }
+
+        public Task<List<ProjectEntity>> FindAllAsync(Expression<Func<ProjectEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

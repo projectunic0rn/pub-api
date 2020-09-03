@@ -86,5 +86,10 @@ namespace Infrastructure.Persistence.Entities
             var entities = await query.ToListAsync();
             return entities;
         }
+
+        public Task<List<ChatAppUserEntity>> FindAllAsync(Expression<Func<ChatAppUserEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
