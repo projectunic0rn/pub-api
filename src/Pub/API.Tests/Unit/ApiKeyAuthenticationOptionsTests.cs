@@ -21,6 +21,7 @@ namespace API.Tests.Unit
             Assert.Equal("APIKey", scheme);
         }
 
+        [Fact]
         public void AuthenticationTypeProperty_VersionPropertyIsPresent_ReturnPass() {
             // Arrange
             var apiKeyAuthenticationOptions = new ApiKeyAuthenticationOptions();

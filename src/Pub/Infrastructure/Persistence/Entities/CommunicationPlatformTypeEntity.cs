@@ -42,6 +42,11 @@ namespace Infrastructure.Persistence.Entities
             await _context.SaveChangesAsync();
         }
 
+        public Task<List<CommunicationPlatformTypeEntity>> FindAllAsync(Expression<Func<CommunicationPlatformTypeEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<List<CommunicationPlatformTypeEntity>> FindAsync()
         {
             List<CommunicationPlatformTypeEntity> items = await _context.CommunicationPlatforms.ToListAsync();

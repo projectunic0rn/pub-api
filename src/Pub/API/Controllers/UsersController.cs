@@ -39,6 +39,18 @@ namespace API.Controllers
             return Ok(okResponse);
         }
 
+        // GET api/[controller]/recent
+        [HttpGet("recent")]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<List<RecentDevsDto>>))]
+        public async Task<IActionResult> GetRecentDevs()
+        {
+            ResponseDto<List<RecentDevsDto>> okResponse = new ResponseDto<List<RecentDevsDto>>(true)
+            {
+                Data = await _user.GetRecentDevsAsync()
+            };
+            return Ok(okResponse);
+        }
+
         // PUT api/[controller]
         [HttpPut]
         [ProducesResponseType(200, Type = typeof(ResponseDto<UserDto>))]
