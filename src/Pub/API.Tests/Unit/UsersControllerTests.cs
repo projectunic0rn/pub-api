@@ -71,13 +71,13 @@ namespace API.Tests.Unit
         {
             // Arrange
             var mock = new Mock<IUser>();
-            var recentDevs = new List<RecentDevsDto>() {
-                new RecentDevsDto() {
+            var recentDevs = new List<RecentDevDto>() {
+                new RecentDevDto() {
                     Id = Guid.NewGuid(),
                     Bio = "hi",
                     CreatedAt = DateTimeOffset.UtcNow,
                 },
-                new RecentDevsDto() {
+                new RecentDevDto() {
                     Id = Guid.NewGuid(),
                     Bio = "hi",
                     CreatedAt = DateTimeOffset.UtcNow,
@@ -93,7 +93,7 @@ namespace API.Tests.Unit
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
-            Assert.IsType<ResponseDto<List<RecentDevsDto>>>(response.Value);
+            Assert.IsType<ResponseDto<List<RecentDevDto>>>(response.Value);
         }
     }
 }
