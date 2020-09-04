@@ -24,10 +24,10 @@ namespace Domain.Models
 
         }
 
-        public async Task<List<RecentDevsDto>> GetRecentDevsAsync()
+        public async Task<List<RecentDevDto>> GetRecentDevsAsync()
         {
             List<UserEntity> users = await _userStorage.FindAllAsync(u => u.LookingForProject && !string.IsNullOrEmpty(u.Bio));
-            List<RecentDevsDto> recentDevsDto = _mapper.Map<List<RecentDevsDto>>(users);
+            List<RecentDevDto> recentDevsDto = _mapper.Map<List<RecentDevDto>>(users);
             return recentDevsDto;
         }
 

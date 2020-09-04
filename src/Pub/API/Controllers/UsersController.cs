@@ -41,10 +41,10 @@ namespace API.Controllers
 
         // GET api/[controller]/recent
         [HttpGet("recent")]
-        [ProducesResponseType(200, Type = typeof(ResponseDto<List<RecentDevsDto>>))]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<List<RecentDevDto>>))]
         public async Task<IActionResult> GetRecentDevs()
         {
-            ResponseDto<List<RecentDevsDto>> okResponse = new ResponseDto<List<RecentDevsDto>>(true)
+            ResponseDto<List<RecentDevDto>> okResponse = new ResponseDto<List<RecentDevDto>>(true)
             {
                 Data = await _user.GetRecentDevsAsync()
             };
