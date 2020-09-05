@@ -6,6 +6,6 @@ namespace Common.DTOs
     {
         public Guid Id { get; set; }
         public string Bio { get; set; }
-        public DateTimeOffset UpdateAt { get; set; }
+        public DateTimeOffset UpdatedAt { get; set; }
     }
 }
