@@ -75,12 +75,12 @@ namespace API.Tests.Unit
                 new RecentDevDto() {
                     Id = Guid.NewGuid(),
                     Bio = "hi",
-                    UpdateAt = DateTimeOffset.UtcNow,
+                    UpdatedAt = DateTimeOffset.UtcNow,
                 },
                 new RecentDevDto() {
                     Id = Guid.NewGuid(),
                     Bio = "hi",
-                    UpdateAt = DateTimeOffset.UtcNow,
+                    UpdatedAt = DateTimeOffset.UtcNow,
                 }
             };
 
