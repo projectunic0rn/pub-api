@@ -80,7 +80,7 @@ namespace Infrastructure.Persistence.Entities
         {
             List<UserEntity> items = await _context.Users
                 .Where(predicate)
-                .OrderByDescending(u=> u.CreatedAt)
+                .OrderByDescending(u=> u.UpdatedAt)
                 .Take(20)
                 .ToListAsync();
             return items;
