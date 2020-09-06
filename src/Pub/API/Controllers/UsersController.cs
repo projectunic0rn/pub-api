@@ -36,7 +36,7 @@ namespace API.Controllers
             return Ok(okResponse);
         }
 
-        // GET api/[controller]/{id}
+        // GET api/[controller]/contact/{id}
         [HttpGet("contact/{id}")]
         [ProducesResponseType(200, Type = typeof(ResponseDto<UserContactDto>))]
         #if !DEBUG
