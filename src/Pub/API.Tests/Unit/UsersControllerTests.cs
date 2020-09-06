@@ -13,18 +13,15 @@ namespace API.Tests.Unit
     public class UsersControllerTests
     {
         [Fact]
-        public async Task CreateUser_CallWithMockedIProjectUser_ReturnOkObjectResult()
+        public async Task GetUser_CallWithMockedIProjectUser_ReturnOkObjectResult()
         {
             // Arrange
             var mock = new Mock<IUser>();
             var id = Guid.NewGuid();
-            var userId = Guid.NewGuid();
-            var projectId = Guid.NewGuid();
-            var user = new UserDto()
+            var user = new UserProfileDto()
             {
                 Id = id,
                 Username = "roy",
-                Email = "roy@email.com",
             };
 
             mock.Setup(u => u.GetUserAsync(id)).ReturnsAsync(user);
@@ -36,7 +33,30 @@ namespace API.Tests.Unit
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
-            Assert.IsType<ResponseDto<UserDto>>(response.Value);
+            Assert.IsType<ResponseDto<UserProfileDto>>(response.Value);
+        }
+
+        [Fact]
+        public async Task GetUserContct_CallWithMockedIProjectUser_ReturnOkObjectResult()
+        {
+            // Arrange
+            var mock = new Mock<IUser>();
+            var id = Guid.NewGuid();
+            var userContact = new UserContactDto()
+            {
+                Email = "roy@email.com",
+            };
+
+            mock.Setup(u => u.GetUserContactAsync(id)).ReturnsAsync(userContact);
+            var controller = new UsersController(mock.Object);
+
+            // Act
+            var result = await controller.GetUserContact(id);
+            var response = (OkObjectResult)result;
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+            Assert.IsType<ResponseDto<UserContactDto>>(response.Value);
         }
 
         [Fact]

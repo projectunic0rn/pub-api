@@ -11,6 +11,7 @@ namespace Domain.MappingConfig
         {
             CreateMap<User, UserEntity>().ReverseMap();
             CreateMap<UserDto, UserEntity>().ReverseMap().ForMember(dest => dest.Technologies, opt => opt.MapFrom(src => src.UserTechnologies));
+            CreateMap<UserProfileDto, UserEntity>().ReverseMap().ForMember(dest => dest.Technologies, opt => opt.MapFrom(src => src.UserTechnologies));
             CreateMap<RecentDevDto, UserEntity>().ReverseMap();
             CreateMap<UserTechnologyDto, TechnologyEntity>().ReverseMap();
             CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
