@@ -26,15 +26,27 @@ namespace API.Controllers
 
         // GET api/[controller]/{id}
         [HttpGet("{id}")]
-        [ProducesResponseType(200, Type = typeof(ResponseDto<UserDto>))]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<UserProfileDto>))]
+        public async Task<IActionResult> GetUser(Guid id)
+        {
+            ResponseDto<UserProfileDto> okResponse = new ResponseDto<UserProfileDto>(true)
+            {
+                Data = await _user.GetUserAsync(id)
+            };
+            return Ok(okResponse);
+        }
+
+        // GET api/[controller]/{id}
+        [HttpGet("contact/{id}")]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<UserContactDto>))]
         #if !DEBUG
         [Authorize]
         #endif
-        public async Task<IActionResult> GetUser(Guid id)
+        public async Task<IActionResult> GetUserContact(Guid id)
         {
-            ResponseDto<UserDto> okResponse = new ResponseDto<UserDto>(true)
+            ResponseDto<UserContactDto> okResponse = new ResponseDto<UserContactDto>(true)
             {
-                Data = await _user.GetUserAsync(id)
+                Data = await _user.GetUserContactAsync(id)
             };
             return Ok(okResponse);
         }

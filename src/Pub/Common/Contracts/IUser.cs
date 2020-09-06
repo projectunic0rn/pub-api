@@ -7,8 +7,9 @@ namespace Common.Contracts
 {
     public interface IUser
     {
-        Task<UserDto> GetUserAsync(Guid id);
+        Task<UserProfileDto> GetUserAsync(Guid id);
         Task<List<RecentDevDto>> GetRecentDevsAsync();
         Task<UserDto> UpdateUserAsync(UserDto user);
+        Task<UserContactDto> GetUserContactAsync(Guid id);
     }
 }

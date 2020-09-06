@@ -31,11 +31,18 @@ namespace Domain.Models
             return recentDevsDto;
         }
 
-        public async Task<UserDto> GetUserAsync(Guid id)
+        public async Task<UserProfileDto> GetUserAsync(Guid id)
         {
             UserEntity user = await _userStorage.FindAsync(u => u.Id == id);
-            UserDto userDto = _mapper.Map<UserDto>(user);
+            UserProfileDto userDto = _mapper.Map<UserProfileDto>(user);
             return userDto;
+        }
+
+        public async Task<UserContactDto> GetUserContactAsync(Guid id)
+        {
+            UserEntity user = await _userStorage.FindAsync(u => u.Id == id);
+            UserContactDto userContactDto = _mapper.Map<UserContactDto>(user);
+            return userContactDto;
         }
 
         public async Task<UserDto> UpdateUserAsync(UserDto user)
