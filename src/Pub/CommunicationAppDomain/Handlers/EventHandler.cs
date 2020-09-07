@@ -192,7 +192,7 @@ namespace CommunicationAppDomain.Handlers
                 message = $"{message}{techList}{memberList}\n";
             }
 
-            await _slackService.ChatPostMessage(workspaceMemberId, message, true);
+            await _slackService.ChatPostMessage(workspaceMemberId, message, true, false);
             return;
         }
 
