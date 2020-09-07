@@ -185,7 +185,7 @@ namespace CommunicationAppDomain.Handlers
                 foreach(var memberId in recommendation.Value)
                 {
                     var tech = technologies.Find(t => t.WorkspaceMemberId == memberId);
-                    memberList = $"{memberList}\n<@{memberId}>,  <{_mainUrl}/profile/{tech.UserId}|profile>";
+                    memberList = $"{memberList}\n<@{memberId}>,  <{_mainUrl}/profile/{tech.UserId}|contact>";
                 }
 
                 string techList = $"\n{recommendation.Key}\n";
