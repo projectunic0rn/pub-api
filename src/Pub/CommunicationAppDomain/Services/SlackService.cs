@@ -10,12 +10,13 @@ namespace CommunicationAppDomain.Services
     {
         private readonly Http _http = new Http();
         private readonly string _baseUri = "https://slack.com/api";
-        private readonly Dictionary<string, string> headers = new Dictionary<string, string>();
+        private readonly Dictionary<string, string> headers;
         private readonly string _slackAuthToken;
 
         public SlackService()
         {
             _slackAuthToken = AppSettings.SlackAuthToken;
+            headers = new Dictionary<string, string>() { { "Authorization", $"Bearer {_slackAuthToken}" } };
         }
 
         public async Task<SlackUserInfoDto> GetSlackUserInfo(string slackId)
@@ -26,7 +27,7 @@ namespace CommunicationAppDomain.Services
 
         public async Task<SlackChatMessageDto> ChatPostMessage(string channelId, string text, bool asUser = false, bool unfurlLinks = true)
         {
-            var chatMessageDto = await _http.Post<SlackChatMessageDto>($"{_baseUri}/chat.postMessage?token={_slackAuthToken}&channel={channelId}&text={text}&as_user={asUser}&unfurl_links={unfurlLinks}", headers);
+            var chatMessageDto = await _http.Post<SlackChatMessageDto>($"{_baseUri}/chat.postMessage", headers, new { channel=channelId, text=text, as_user = asUser, unfurl_links = unfurlLinks });
             return chatMessageDto;
         }
 

@@ -201,8 +201,18 @@ namespace Common.Http
 
         private async Task<T> ParseResponse<T>(HttpResponseMessage result)
         {
-            var responseJson = await result.Content.ReadAsStringAsync();
-            return JsonConvert.DeserializeObject<T>(responseJson);
+            var resquestUri = result.RequestMessage.RequestUri.GetLeftPart(UriPartial.Path);
+            var responseJson = string.Empty;
+            try
+            {
+                responseJson = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<T>(responseJson);
+            }
+            catch (Exception parseException)
+            {
+                var ex = new Exception($"{resquestUri}\n{responseJson}", parseException);
+                throw ex;
+            }
         }
     }
 }
