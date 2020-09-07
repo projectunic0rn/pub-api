@@ -78,6 +78,7 @@ namespace Infrastructure.Persistence.Entities
                 where technologyNames.Contains(t.Name)
             select new DeveloperTechnologies
             {
+                UserId = c.UserId,
                 CreatedAt = t.CreatedAt,
                 Name = t.Name,
                 WorkspaceMemberId = c.WorkspaceMemberId
