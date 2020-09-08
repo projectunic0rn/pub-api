@@ -27,7 +27,7 @@ namespace CommunicationAppDomain.ChatMessages
 
         public static string DeveloperRecommendationsBasedOnSkillsMessage(string slackId)
         {
-            string message = $"<@{slackId}>, here's a few devs you can DM based on tech you mentioned. They all joined for similar reasons so don't hesitate to reach out to them and ask if they'd like to collaborate with you. If you don't hear back from them right away you also find their contact email on their profile. Use `/magic-login-link` to sign in and view the email.\n";
+            string message = $"<@{slackId}>, here's a few devs you can DM based on tech you mentioned. They all joined for similar reasons so don't hesitate to reach out to them and ask if they'd like to collaborate with you. If you don't hear back from them right away you can find their contact email on their profile. Use `/magic-login-link` to sign in and view the email.\n";
             return message;
         }
 
