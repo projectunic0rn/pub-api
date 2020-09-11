@@ -9,6 +9,7 @@ using Domain.Exceptions;
 using Domain.MappingConfig;
 using Infrastructure.Persistence.Entities;
 using Common.AppSettings;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace Domain.Models
 {
@@ -89,12 +90,22 @@ namespace Domain.Models
             return mappedProject;
         }
 
-        public async Task<ProjectDto> UpdateProjectAsync(ProjectDto project)
+        public async Task<DetailedProjectDto> UpdateProjectAsync(DetailedProjectDto project)
         {
-            await ValidateProject(project);
+            await ValidateProject(new ProjectDto() { CommunicationPlatform = project.CommunicationPlatform });
             var mappedEntity = _mapper.Map<ProjectEntity>(project);
             ProjectEntity updatedProject = await _projectStorage.UpdateAsync(mappedEntity);
-            return _mapper.Map<ProjectDto>(updatedProject);
+            DetailedProjectDto detailedProjectDto = _mapper.Map<DetailedProjectDto>(updatedProject);
+            return detailedProjectDto;
+        }
+
+        public async Task<DetailedProjectDto> PatchProjectAsync(Guid Id, JsonPatchDocument projectPatch)
+        {
+            ProjectEntity project = await _projectStorage.FindAsync(m => m.Id == Id);
+            projectPatch.ApplyTo(project);
+            ProjectEntity updatedProject = await _projectStorage.UpdateAsync(project);
+            DetailedProjectDto detailedProjectDto = _mapper.Map<DetailedProjectDto>(updatedProject);
+            return detailedProjectDto;
         }
 
         public async Task DeleteProjectAsync(Guid id)

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Common.Contracts;
 using Domain.Exceptions;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace API.Controllers
 {
@@ -76,20 +77,46 @@ namespace API.Controllers
 
         // PUT api/[controller]
         [HttpPut]
-        [ProducesResponseType(200, Type = typeof(ResponseDto<ProjectDto>))]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<DetailedProjectDto>))]
         [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
         #if !DEBUG
         [Authorize]
         #endif
-        public async Task<IActionResult> UpdateProject([FromBody] ProjectDto project)
+        public async Task<IActionResult> UpdateProject([FromBody] DetailedProjectDto project)
         {
-            ResponseDto<ProjectDto> okResponse = new ResponseDto<ProjectDto>(true);
+            ResponseDto<DetailedProjectDto> okResponse = new ResponseDto<DetailedProjectDto>(true);
             ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
 
             try
             {
                 var updatedProject = await _project.UpdateProjectAsync(project);
                 okResponse.Data = updatedProject;
+            }
+            catch (ProjectException e)
+            {
+                errorResponse.Data = new ErrorDto(e.Message);
+                return BadRequest(errorResponse);
+            }
+
+            return Ok(okResponse);
+        }
+
+        // PATCH api/[controller]
+        [HttpPatch("{id}")]
+        [ProducesResponseType(200, Type = typeof(ResponseDto<DetailedProjectDto>))]
+        [ProducesResponseType(400, Type = typeof(ResponseDto<ErrorDto>))]
+        #if !DEBUG
+        [Authorize]
+        #endif
+        public async Task<IActionResult> PatchProject(Guid Id, [FromBody] JsonPatchDocument projectPatch)
+        {
+            ResponseDto<DetailedProjectDto> okResponse = new ResponseDto<DetailedProjectDto>(true);
+            ResponseDto<ErrorDto> errorResponse = new ResponseDto<ErrorDto>(false);
+
+            try
+            {
+                var patchedProject = await _project.PatchProjectAsync(Id, projectPatch);
+                okResponse.Data = patchedProject;
             }
             catch (ProjectException e)
             {

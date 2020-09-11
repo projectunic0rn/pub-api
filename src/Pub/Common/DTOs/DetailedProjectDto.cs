@@ -12,6 +12,7 @@ namespace Common.DTOs
         public string RepositoryUrl { get; set; }
         public string CommunicationPlatformUrl { get; set; }
         public string CommunicationPlatform { get; set; }
+        public bool LookingForMembers { get; set; }
         public List<ProjectTechnologyDto> ProjectTechnologies { get; set; }
         public List<DetailedProjectUserDto> ProjectUsers { get; set; }
     }

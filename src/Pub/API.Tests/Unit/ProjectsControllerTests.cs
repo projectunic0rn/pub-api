@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System;
 using Domain.Exceptions;
+using Microsoft.AspNetCore.JsonPatch;
 
 namespace API.Tests.Unit
 {
@@ -42,9 +43,10 @@ namespace API.Tests.Unit
             // Arrange
             var mock = new Mock<IProject>();
             var projectGuid = Guid.NewGuid();
-            var project = new DetailedProjectDto(){
-                 Id = projectGuid, 
-                 Name = "Project"
+            var project = new DetailedProjectDto()
+            {
+                Id = projectGuid,
+                Name = "Project"
             };
 
             mock.Setup(project => project.GetProjectAsync(projectGuid)).ReturnsAsync(project);
@@ -67,9 +69,10 @@ namespace API.Tests.Unit
             // Arrange
             var mock = new Mock<IProject>();
             var projectGuid = Guid.Empty;
-            var projectDto = new ProjectDto(){
-                 Id = projectGuid,
-                 Name = "Project"
+            var projectDto = new ProjectDto()
+            {
+                Id = projectGuid,
+                Name = "Project"
             };
 
             mock.Setup(project => project.CreateProjectAsync(projectDto)).ReturnsAsync(projectDto);
@@ -91,9 +94,10 @@ namespace API.Tests.Unit
             // Arrange
             var mock = new Mock<IProject>();
             var projectGuid = Guid.Empty;
-            var projectDto = new ProjectDto(){
-                 Id = projectGuid,
-                 Name = "Project"
+            var projectDto = new ProjectDto()
+            {
+                Id = projectGuid,
+                Name = "Project"
             };
 
             var message = "ExceptionThrown";
@@ -118,9 +122,10 @@ namespace API.Tests.Unit
             // Arrange
             var mock = new Mock<IProject>();
             var projectGuid = Guid.Empty;
-            var projectDto = new ProjectDto(){
-                 Id = projectGuid,
-                 Name = "Project"
+            var projectDto = new DetailedProjectDto()
+            {
+                Id = projectGuid,
+                Name = "Project"
             };
 
             mock.Setup(project => project.UpdateProjectAsync(projectDto)).ReturnsAsync(projectDto);
@@ -129,11 +134,11 @@ namespace API.Tests.Unit
             // Act
             var result = await projectsController.UpdateProject(projectDto);
             var response = (OkObjectResult)result;
-            var objectResult = (ResponseDto<ProjectDto>)response.Value;
+            var objectResult = (ResponseDto<DetailedProjectDto>)response.Value;
 
             // Assert
             Assert.IsType<OkObjectResult>(result);
-            Assert.IsType<ResponseDto<ProjectDto>>(response.Value);
+            Assert.IsType<ResponseDto<DetailedProjectDto>>(response.Value);
         }
 
         [Fact]
@@ -142,9 +147,10 @@ namespace API.Tests.Unit
             // Arrange
             var mock = new Mock<IProject>();
             var projectGuid = Guid.Empty;
-            var projectDto = new ProjectDto(){
-                 Id = projectGuid,
-                 Name = "Project"
+            var projectDto = new DetailedProjectDto()
+            {
+                Id = projectGuid,
+                Name = "Project"
             };
 
             var message = "ExceptionThrown";
@@ -164,14 +170,72 @@ namespace API.Tests.Unit
         }
 
         [Fact]
+        public async Task PatchProject_CallWithMockedIProject_ReturnsOkObjectResult()
+        {
+            // Arrange
+            var mock = new Mock<IProject>();
+            var projectGuid = Guid.NewGuid();
+            var projectDto = new DetailedProjectDto()
+            {
+                Id = projectGuid,
+                Name = "Project"
+            };
+
+            var jsonPatchDoc = new JsonPatchDocument();
+
+            mock.Setup(project => project.PatchProjectAsync(projectGuid, jsonPatchDoc)).ReturnsAsync(projectDto);
+            var projectsController = new ProjectsController(mock.Object);
+
+            // Act
+            var result = await projectsController.PatchProject(projectGuid, jsonPatchDoc);
+            var response = (OkObjectResult)result;
+            var objectResult = (ResponseDto<DetailedProjectDto>)response.Value;
+
+            // Assert
+            Assert.IsType<OkObjectResult>(result);
+            Assert.IsType<ResponseDto<DetailedProjectDto>>(response.Value);
+        }
+
+        [Fact]
+        public async Task PatchProject_CallWithMockedIProject_ThrowsAndCatchesProjectException()
+        {
+            // Arrange
+            var mock = new Mock<IProject>();
+            var projectGuid = Guid.NewGuid();
+            var projectDto = new DetailedProjectDto()
+            {
+                Id = projectGuid,
+                Name = "Project"
+            };
+
+            var jsonPatchDoc = new JsonPatchDocument();
+
+            var message = "ExceptionThrown";
+            var ex = new ProjectException(message);
+            mock.Setup(project => project.PatchProjectAsync(projectGuid, jsonPatchDoc)).ThrowsAsync(ex);
+            var projectsController = new ProjectsController(mock.Object);
+
+            // Act
+            var result = await projectsController.PatchProject(projectGuid, jsonPatchDoc);
+            var response = (BadRequestObjectResult)result;
+            var objectResult = (ResponseDto<ErrorDto>)response.Value;
+
+            // Assert
+            Assert.IsType<BadRequestObjectResult>(result);
+            Assert.IsType<ResponseDto<ErrorDto>>(response.Value);
+            Assert.Equal(message, objectResult.Data.Message);
+        }
+
+        [Fact]
         public async Task DeleteProject_CallWithMockedIProject_ReturnsOkObjectResult()
         {
             // Arrange
             var mock = new Mock<IProject>();
             var projectGuid = Guid.NewGuid();
-            var projectDto = new ProjectDto(){
-                 Id = projectGuid,
-                 Name = "Project"
+            var projectDto = new ProjectDto()
+            {
+                Id = projectGuid,
+                Name = "Project"
             };
 
             mock.Setup(project => project.DeleteProjectAsync(projectGuid)).Returns(Task.Delay(0));
