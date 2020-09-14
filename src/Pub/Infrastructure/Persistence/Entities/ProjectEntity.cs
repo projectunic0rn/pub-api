@@ -30,6 +30,7 @@ namespace Infrastructure.Persistence.Entities
         public string CommunicationPlatform { get; set; }
         public List<ProjectUserEntity> ProjectUsers { get; set; }
         public List<TechnologyEntity> ProjectTechnologies { get; set; }
+        public List<ProjectCollaboratorSuggestionEntity> ProjectCollaboratorSuggestions { get; set; }
         public bool Searchable { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
@@ -98,6 +99,8 @@ namespace Infrastructure.Persistence.Entities
             using var context = new DatabaseContext(optionsBuilder.Options);
             ProjectEntity item = await context.Projects
                            .Include(p => p.ProjectTechnologies)
+                           .Include(p => p.ProjectCollaboratorSuggestions)
+                           .ThenInclude(pcs => pcs.User)
                            .Include(p => p.ProjectUsers)
                            .ThenInclude(p => p.User)
                            .SingleOrDefaultAsync(predicate);
@@ -117,6 +120,11 @@ namespace Infrastructure.Persistence.Entities
         }
 
         public Task<List<ProjectEntity>> FindAllAsync(Expression<Func<ProjectEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAllAsync(Expression<Func<ProjectEntity, bool>> predicate)
         {
             throw new NotImplementedException();
         }

@@ -15,5 +15,6 @@ namespace Common.DTOs
         public bool LookingForMembers { get; set; }
         public List<ProjectTechnologyDto> ProjectTechnologies { get; set; }
         public List<DetailedProjectUserDto> ProjectUsers { get; set; }
+        public List<ProjectCollaboratorSuggestionDto> ProjectCollaboratorSuggestions { get; set; }
     }
 }

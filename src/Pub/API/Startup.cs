@@ -162,6 +162,7 @@ namespace API
             AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
             AppSettings.ApiKey = Configuration["ApiKey"];
             AppSettings.PubSlackAppQueueName = Configuration["PubSlackAppQueueName"];
+            AppSettings.PubJobsQueueName = Configuration["PubJobsQueueName"];
 
             if (AppSettings.ServiceBusConnectionString == null
             || AppSettings.ServiceBusQueueName == null
@@ -176,6 +177,7 @@ namespace API
             || _settings.MailTrackingTableName == null
             || AppSettings.SendGridTemplatesApiKey == null
             || AppSettings.ApiKey == null
+            || AppSettings.PubJobsQueueName == null
             || AppSettings.PubSlackAppQueueName == null)
             {
                 throw new StartupException(ExceptionMessage.ApplicationMissingStartupVariables);

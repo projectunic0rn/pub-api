@@ -19,6 +19,7 @@ namespace Common.AppSettings
         public static string FeedbackRecipients { get; set; } = Environment.GetEnvironmentVariable("FeedbackRecipients", EnvironmentVariableTarget.Process);
         public static string ApiKey { get; set; } = Environment.GetEnvironmentVariable("ApiKey", EnvironmentVariableTarget.Process);
         public static string PubSlackAppQueueName { get; set; } = Environment.GetEnvironmentVariable("PubSlackAppQueueName", EnvironmentVariableTarget.Process);
+        public static string PubJobsQueueName { get; set; } = Environment.GetEnvironmentVariable("PubJobsQueueName", EnvironmentVariableTarget.Process);
 
         // Communication Apps (e.g. slack, discord)
         public static string MainUrl { get; set; } = Environment.GetEnvironmentVariable("MainUrl", EnvironmentVariableTarget.Process);
