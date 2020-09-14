@@ -7,5 +7,6 @@ namespace Common.DTOs
         public Guid UserId { get; set; }
         public string Username { get; set; }
         public string ProfilePictureUrl { get; set; }
+        public DateTimeOffset CreatedAt { get; set; }
     }
 }
