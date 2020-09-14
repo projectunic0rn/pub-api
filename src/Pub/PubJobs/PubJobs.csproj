@@ -15,4 +15,8 @@
       <GlobalPropertiesToRemove></GlobalPropertiesToRemove>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="MessageHandlers\" />
+    <Folder Include="DTOs\" />
+  </ItemGroup>
 </Project>

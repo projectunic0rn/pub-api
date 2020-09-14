@@ -23,6 +23,7 @@ namespace Domain.Models
         private readonly INotifier _notifier;
         private readonly IMessageQueue _messageQueue;
         private readonly string _pubSlackAppQueueName;
+        private readonly string _pubJobsQueueName;
 
         public Project(INotifier notifier, IMessageQueue messageQueue)
         {
@@ -33,6 +34,7 @@ namespace Domain.Models
             _notifier = notifier;
             _messageQueue = messageQueue;
             _pubSlackAppQueueName = AppSettings.PubSlackAppQueueName;
+            _pubJobsQueueName = AppSettings.PubJobsQueueName;
         }
 
         public int Id { get; set; }
@@ -82,11 +84,14 @@ namespace Domain.Models
 
             if (project.CommunicationPlatform != "other")
             {
+                // send workspace app download link if CommunicationPlatform not
+                // set to other
                 await _notifier.SendProjectPostedNotificationAsync(notificationDto);
             }
 
             ProjectDto mappedProject = _mapper.Map<ProjectDto>(createdProject);
             await _messageQueue.SendMessageAsync(mappedProject, "projectpost", queueName: _pubSlackAppQueueName);
+            await RecomputeProjectCollaboratorSuggestions(_mapper.Map<DetailedProjectDto>(mappedProject));
             return mappedProject;
         }
 
@@ -94,6 +99,7 @@ namespace Domain.Models
         {
             await ValidateProject(new ProjectDto() { CommunicationPlatform = project.CommunicationPlatform });
             var mappedEntity = _mapper.Map<ProjectEntity>(project);
+            await RecomputeProjectCollaboratorSuggestions(project);
             ProjectEntity updatedProject = await _projectStorage.UpdateAsync(mappedEntity);
             DetailedProjectDto detailedProjectDto = _mapper.Map<DetailedProjectDto>(updatedProject);
             return detailedProjectDto;
@@ -101,9 +107,10 @@ namespace Domain.Models
 
         public async Task<DetailedProjectDto> PatchProjectAsync(Guid Id, JsonPatchDocument projectPatch)
         {
-            ProjectEntity project = await _projectStorage.FindAsync(m => m.Id == Id);
-            projectPatch.ApplyTo(project);
-            ProjectEntity updatedProject = await _projectStorage.UpdateAsync(project);
+            ProjectEntity patchedProject = await _projectStorage.FindAsync(m => m.Id == Id);
+            projectPatch.ApplyTo(patchedProject);
+            await RecomputeProjectCollaboratorSuggestions(_mapper.Map<DetailedProjectDto>(patchedProject));
+            ProjectEntity updatedProject = await _projectStorage.UpdateAsync(patchedProject);
             DetailedProjectDto detailedProjectDto = _mapper.Map<DetailedProjectDto>(updatedProject);
             return detailedProjectDto;
         }
@@ -132,6 +139,53 @@ namespace Domain.Models
 
                 throw new ProjectException(message);
             }
+        }
+
+        /// <summary>
+        /// Decide if project collaborator recommendations needs to be recomputed
+        /// if so queue message to pub jobs to recompute.
+        /// </summary>
+        /// <param name="project">Project to be compared against stored project</param>
+        /// <returns></returns>
+        private async Task RecomputeProjectCollaboratorSuggestions(DetailedProjectDto projectDto)
+        {
+            bool recompute;
+            ProjectEntity storedProject = await _projectStorage.FindAsync(p => p.Id == projectDto.Id);
+            recompute = ProjectTechnologiesDiff(projectDto, storedProject);
+
+            if(recompute)
+            {
+                await _messageQueue.SendMessageAsync(projectDto, "compute_project_collaborator_suggestions", queueName: _pubJobsQueueName);
+            }
+
+            return;
+        }
+
+        /// <summary>
+        /// Indicate if there is a diff in technologies between projectDto 
+        /// and stored project
+        /// </summary>
+        /// <param name="projectDto">Project to be compared</param>
+        /// <param name="project">Project to be compared</param>
+        /// <returns></returns>
+        private bool ProjectTechnologiesDiff(DetailedProjectDto projectDto, ProjectEntity project)
+        {
+            bool result = false;
+
+            if (project == null)
+            {
+                return result;
+            }
+
+            var storedTechnologies = project.ProjectTechnologies.Select(p => p.Name);
+            var dtoTechnologies = projectDto.ProjectTechnologies.Select(p => p.Name);
+
+            // 2 conditions, 
+            // if stored technologies length does not match dto length they represent different 
+            // technologies so return true to recompute, otherwise if both sets are same length check intersection 
+            // if intersection count is less then either set then return true. 
+            result = storedTechnologies.Count() != dtoTechnologies.Count() || storedTechnologies.Intersect(dtoTechnologies).Count() < storedTechnologies.Count();
+            return result;
         }
     }
 }

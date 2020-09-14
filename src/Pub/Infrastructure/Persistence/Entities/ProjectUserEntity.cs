@@ -40,6 +40,11 @@ namespace Infrastructure.Persistence.Entities
             return item;
         }
 
+        public Task DeleteAllAsync(Expression<Func<ProjectUserEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteAsync(Guid id)
         {
             var projectType = new ProjectUserEntity { Id = id };

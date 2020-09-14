@@ -11,7 +11,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Common.AppSettings;
-using PubJobs.Jobs;
+using PubJobs.BackgroundServices;
 using Common.Exceptions;
 using Common.Services;
 using Common.Contracts;
@@ -56,6 +56,7 @@ namespace PubJobs
             services.AddSingleton(provider => new WorkspaceAppService(_workspaceAppUrls));
 
             services.AddHostedService<HideDeadProjects>();
+            services.AddHostedService<MessageListener>();
             ValidateSettings();
         }
 
@@ -71,10 +72,12 @@ namespace PubJobs
             // directly to read send grid api key. Because of that we need to set AppSettings.SendGrid...
             // var directly. In future have SendGridService.cs depend on _settings.SendGridTemplatesApiKey
             AppSettings.SendGridTemplatesApiKey = Configuration["SendGridTemplatesApiKey"];
+            AppSettings.ConnectionString = Configuration["ConnectionString"];
 
             if (_settings.PubApiEndpoint == null
                 || _settings.ServiceBusConnectionString == null
                 || _settings.ServiceBusQueueName == null
+                || _settings.PubJobsQueueName == null
                 || _settings.ConnectionString == null
                 || _settings.ApiKey == null
                 || _settings.SendGridTemplatesApiKey == null

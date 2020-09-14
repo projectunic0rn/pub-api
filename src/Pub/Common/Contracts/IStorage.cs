@@ -13,5 +13,6 @@ namespace Common.Contracts
         Task<List<T>> FindAsync();
         Task<T> UpdateAsync(T item);
         Task DeleteAsync(Guid id);
+        Task DeleteAllAsync(Expression<Func<T, bool>> predicate);
     }
 }

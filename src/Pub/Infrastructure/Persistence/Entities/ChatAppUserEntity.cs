@@ -92,5 +92,10 @@ namespace Infrastructure.Persistence.Entities
         {
             throw new NotImplementedException();
         }
+
+        public Task DeleteAllAsync(Expression<Func<ChatAppUserEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

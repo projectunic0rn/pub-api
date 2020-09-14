@@ -18,7 +18,8 @@ namespace Infrastructure.Persistence
         public DbSet<CommunicationPlatformTypeEntity> CommunicationPlatforms { get; set; }
         public DbSet<TechnologyEntity> Technologies { get; set; }
         public DbSet<ChatAppUserEntity> ChatAppUsers { get; set; }
-
+        public DbSet<ProjectCollaboratorSuggestionEntity> ProjectCollaboratorSuggestions { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserEntity>().HasIndex(u => u.Email).IsUnique();

@@ -7,7 +7,7 @@ using Common.DTOs;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 
-namespace PubJobs.Jobs
+namespace PubJobs.BackgroundServices
 {
     /// <summary>
     /// Flags projects with expired workspace invite link. If invalid, project

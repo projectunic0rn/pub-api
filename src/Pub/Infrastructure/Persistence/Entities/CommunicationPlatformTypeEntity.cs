@@ -34,6 +34,11 @@ namespace Infrastructure.Persistence.Entities
             return item;
         }
 
+        public Task DeleteAllAsync(Expression<Func<CommunicationPlatformTypeEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task DeleteAsync(Guid id)
         {
             var communicationPlatformType = new CommunicationPlatformTypeEntity { Id = id };

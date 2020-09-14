@@ -12,13 +12,10 @@ namespace Infrastructure.Persistence.Entities
 {
     public class TechnologyEntity : IStorage<TechnologyEntity>
     {
-        private readonly DatabaseContext _context;
+        private readonly string _connectionString;
         public TechnologyEntity()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseMySql(AppSettings.ConnectionString);
-            _context = new DatabaseContext(optionsBuilder.Options);
-            
+            _connectionString = AppSettings.ConnectionString;
             CreatedAt = DateTimeOffset.UtcNow;
             UpdatedAt = DateTimeOffset.UtcNow;
         }
@@ -36,53 +33,81 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<TechnologyEntity> CreateAsync(TechnologyEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.CreatedAt = DateTimeOffset.UtcNow;
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            await _context.Technologies.AddAsync(item);
-            await _context.SaveChangesAsync();
+            await context.Technologies.AddAsync(item);
+            await context.SaveChangesAsync();
             return item;
         }
 
         public async Task DeleteAsync(Guid id)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             var tech = new TechnologyEntity { Id = id };
-            _context.Technologies.Attach(tech);
-            _context.Technologies.Remove(tech);
-            await _context.SaveChangesAsync();
+            context.Technologies.Attach(tech);
+            context.Technologies.Remove(tech);
+            await context.SaveChangesAsync();
         }
 
         public async Task DeleteAsync(List<TechnologyEntity> technologies)
         {
-            _context.Technologies.RemoveRange(technologies);
-            await _context.SaveChangesAsync();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            context.Technologies.RemoveRange(technologies);
+            await context.SaveChangesAsync();
         }
 
         public async Task<List<TechnologyEntity>> FindAsync()
         {
-            List<TechnologyEntity> items = await _context.Technologies.ToListAsync();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            List<TechnologyEntity> items = await context.Technologies.ToListAsync();
             return items;
         }
 
         public async Task<TechnologyEntity> FindAsync(Expression<Func<TechnologyEntity, bool>> predicate)
         {
-            TechnologyEntity item = await _context.Technologies.SingleOrDefaultAsync(predicate);
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            TechnologyEntity item = await context.Technologies.SingleOrDefaultAsync(predicate);
             return item;
         }
 
         public async Task<TechnologyEntity> UpdateAsync(TechnologyEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            _context.Technologies.Update(item);
-            await _context.SaveChangesAsync();
+            context.Technologies.Update(item);
+            await context.SaveChangesAsync();
             return item;
         }
 
         public async Task<List<ProjectTechnologies>> GetProjectTechnologiesAsync(params string[] technologyNames)
         {
-            var query = from p in _context.Set<ProjectEntity>()
-                        join t in _context.Set<TechnologyEntity>()
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            var query = from p in context.Set<ProjectEntity>()
+                        join t in context.Set<TechnologyEntity>()
                         on p.Id equals t.ProjectId
                         where p.Searchable && p.LookingForMembers && technologyNames.Contains(t.Name)
                         select new ProjectTechnologies
@@ -99,7 +124,33 @@ namespace Infrastructure.Persistence.Entities
             return entities;
         }
 
+        public async Task<List<DeveloperTechnologies>> GetDeveloperTechnologiesAsync(params string[] technologyNames)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            var query = from u in context.Set<UserEntity>()
+                        join t in context.Set<TechnologyEntity>()
+                            on u.Id equals t.UserId
+                        where technologyNames.Contains(t.Name)
+                        select new DeveloperTechnologies
+                        {
+                            UserId = u.Id,
+                            CreatedAt = t.CreatedAt,
+                            Name = t.Name,
+                        };
+
+            var entities = await query.ToListAsync();
+            return entities;
+        }
+
         public Task<List<TechnologyEntity>> FindAllAsync(Expression<Func<TechnologyEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task DeleteAllAsync(Expression<Func<TechnologyEntity, bool>> predicate)
         {
             throw new NotImplementedException();
         }

@@ -17,8 +17,12 @@ namespace Domain.MappingConfig
             CreateMap<UserTechnologyDto, TechnologyEntity>().ReverseMap();
             CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
             CreateMap<ProjectDto, ProjectEntity>().ReverseMap();
+            CreateMap<ProjectDto, DetailedProjectDto>().ReverseMap();
             CreateMap<DetailedProjectDto, ProjectEntity>().ReverseMap();
             CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
+            CreateMap<ProjectCollaboratorSuggestionDto, ProjectCollaboratorSuggestionEntity>().ReverseMap()
+                .ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username))
+                .ForMember(dest => dest.ProfilePictureUrl, opt => opt.MapFrom(src => src.User.ProfilePictureUrl));
             CreateMap<ProjectTechnologyDto, TechnologyEntity>().ReverseMap();
             CreateMap<CommunicationPlatformTypeDto, CommunicationPlatformTypeEntity>().ReverseMap();
             CreateMap<ProjectUserDto, ProjectUserEntity>().ReverseMap().ForMember(dest => dest.Username, opt => opt.MapFrom(src => src.User.Username));

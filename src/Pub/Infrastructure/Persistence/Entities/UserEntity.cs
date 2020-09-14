@@ -101,5 +101,10 @@ namespace Infrastructure.Persistence.Entities
             await _context.SaveChangesAsync();
             return item;
         }
+
+        public Task DeleteAllAsync(Expression<Func<UserEntity, bool>> predicate)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
