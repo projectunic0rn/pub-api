@@ -133,7 +133,7 @@ namespace Infrastructure.Persistence.Entities
             var query = from u in context.Set<UserEntity>()
                         join t in context.Set<TechnologyEntity>()
                             on u.Id equals t.UserId
-                        where technologyNames.Contains(t.Name)
+                        where technologyNames.Contains(t.Name) && u.LookingForProject
                         select new DeveloperTechnologies
                         {
                             UserId = u.Id,

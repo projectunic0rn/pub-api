@@ -11,13 +11,11 @@ namespace Infrastructure.Persistence.Entities
 {
     public class UserEntity : IStorage<UserEntity>
     {
-        private readonly DatabaseContext _context;
+        private readonly string _connectionString;
 
         public UserEntity()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseMySql(AppSettings.ConnectionString);
-            _context = new DatabaseContext(optionsBuilder.Options);
+            _connectionString = AppSettings.ConnectionString;
         }
 
         public Guid Id { get; set; }
@@ -42,25 +40,37 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<UserEntity> CreateAsync(UserEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.CreatedAt = DateTimeOffset.UtcNow;
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            await _context.Users.AddAsync(item);
-            await _context.SaveChangesAsync();
+            await context.Users.AddAsync(item);
+            await context.SaveChangesAsync();
             return item;
         }
 
         public async Task DeleteAsync(Guid id)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             var user = new UserEntity { Id = id };
-            _context.Users.Attach(user);
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
+            context.Users.Attach(user);
+            context.Users.Remove(user);
+            await context.SaveChangesAsync();
         }
 
         public async Task<List<UserEntity>> FindAsync()
         {
-            List<UserEntity> items = await _context.Users
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            List<UserEntity> items = await context.Users
             .Include(u => u.UserTechnologies)
             .Include(u => u.ProjectUsers)
             .ToListAsync();
@@ -69,7 +79,11 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<UserEntity> FindAsync(Expression<Func<UserEntity, bool>> predicate)
         {
-            UserEntity item = await _context.Users
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            UserEntity item = await context.Users
             .Include(u => u.UserTechnologies)
             .Include(u => u.ProjectUsers)
             .SingleOrDefaultAsync(predicate);
@@ -78,7 +92,11 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<List<UserEntity>> FindAllAsync(Expression<Func<UserEntity, bool>> predicate)
         {
-            List<UserEntity> items = await _context.Users
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            List<UserEntity> items = await context.Users
                 .Where(predicate)
                 .OrderByDescending(u=> u.UpdatedAt)
                 .Take(20)
@@ -90,15 +108,23 @@ namespace Infrastructure.Persistence.Entities
         // with incrementing value
         public async Task<UserEntity> FindLastUnicornRecord()
         {
-            UserEntity item = await _context.Users.OrderByDescending(u => u.CreatedAt).Where(u => u.Username.StartsWith("unicorn")).FirstOrDefaultAsync();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            UserEntity item = await context.Users.OrderByDescending(u => u.CreatedAt).Where(u => u.Username.StartsWith("unicorn")).FirstOrDefaultAsync();
             return item;
         }
 
         public async Task<UserEntity> UpdateAsync(UserEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.UpdatedAt = DateTimeOffset.UtcNow;
-            _context.Users.Update(item);
-            await _context.SaveChangesAsync();
+            context.Users.Update(item);
+            await context.SaveChangesAsync();
             return item;
         }
 

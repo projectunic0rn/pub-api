@@ -119,9 +119,35 @@ namespace Infrastructure.Persistence.Entities
             return item;
         }
 
-        public Task<List<ProjectEntity>> FindAllAsync(Expression<Func<ProjectEntity, bool>> predicate)
+        public async Task<List<ProjectEntity>> FindAllAsync(Expression<Func<ProjectEntity, bool>> predicate)
         {
-            throw new NotImplementedException();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            List<ProjectEntity> items = await context.Projects
+                .Include(p => p.ProjectTechnologies)
+                .Include(p => p.ProjectUsers)
+                .ThenInclude(p => p.User)
+                .Where(predicate)
+                .ToListAsync();
+            return items;
+        }
+
+        public async Task<List<Guid?>> FindProjectsWithAnyTechnologies(params string[] technologies)
+        {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            var query = (from p in context.Set<ProjectEntity>()
+                        join t in context.Set<TechnologyEntity>()
+                        on p.Id equals t.ProjectId
+                        where p.Searchable && p.LookingForMembers && technologies.Contains(t.Name)
+                        select t.ProjectId).Distinct();
+
+            var entities = await query.ToListAsync();
+            return entities;
         }
 
         public Task DeleteAllAsync(Expression<Func<ProjectEntity, bool>> predicate)

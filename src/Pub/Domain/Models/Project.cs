@@ -153,7 +153,7 @@ namespace Domain.Models
             ProjectEntity storedProject = await _projectStorage.FindAsync(p => p.Id == projectDto.Id);
             recompute = ProjectTechnologiesDiff(projectDto, storedProject);
 
-            if(recompute)
+            if (recompute)
             {
                 await _messageQueue.SendMessageAsync(projectDto, "compute_project_collaborator_suggestions", queueName: _pubJobsQueueName);
             }
