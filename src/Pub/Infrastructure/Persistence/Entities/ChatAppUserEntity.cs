@@ -74,7 +74,7 @@ namespace Infrastructure.Persistence.Entities
         {
             var query = from c in _context.Set<ChatAppUserEntity>()
             join t in _context.Set<TechnologyEntity>()
-                on c.UserId equals t.UserId 
+                on c.UserId equals t.UserId
                 where technologyNames.Contains(t.Name)
             select new DeveloperTechnologies
             {
