@@ -59,11 +59,12 @@ namespace Domain.Models
             userEntity.UserTechnologies.RemoveAll(t => t.UserId == user.Id);
 
             userEntity.Bio = user.Bio;
-            userEntity.ProfilePictureUrl = user.ProfilePictureUrl;
             userEntity.Username = user.Username;
-            userEntity.Email = user.Email;
             userEntity.LookingForProject = user.LookingForProject;
-            userEntity.GitHubUsername = user.GitHubUsername;
+            // TODO: Refactor 
+            //userEntity.Email = user.Email;
+            //userEntity.GitHubUsername = user.GitHubUsername;
+            //userEntity.ProfilePictureUrl = user.ProfilePictureUrl;
             userEntity.UserTechnologies.AddRange(MapTechnologies(user.Technologies));
             await RecomputeProjectCollaboratorSuggestions(user);
             await _userStorage.UpdateAsync(userEntity);
