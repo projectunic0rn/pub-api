@@ -12,10 +12,10 @@ namespace Domain.Models
     public class ProjectUser : IProjectUser
     {
         private readonly IMapper _mapper;
-
         private readonly IStorage<ProjectUserEntity> _projectUserStorage;
         private readonly IStorage<UserEntity> _userStorage;
         private readonly IStorage<ProjectEntity> _projectStorage;
+        private readonly IStorage<ProjectCollaboratorSuggestionEntity> _projectCollaboratorSuggestionStorage;
         private readonly INotifier _notifier;
 
         public ProjectUser(INotifier notifier)
@@ -30,6 +30,7 @@ namespace Domain.Models
 
         public async Task<ProjectUserDto> CreateProjectUserAsync(ProjectUserDto projectUser)
         {
+            // TODO: Remove collaborator suggestion from project if member joins project
             UserEntity userEntity = await _userStorage.FindAsync(u => u.Id == projectUser.UserId);
             if (userEntity == null)
             {
@@ -38,10 +39,13 @@ namespace Domain.Models
 
             ProjectEntity project = await _projectStorage.FindAsync(p => p.Id == projectUser.ProjectId);
             ProjectUserEntity projectUserEntity = _mapper.Map<ProjectUserEntity>(projectUser);
-            
+
             // if there are currently no members on the project,
             // default first member to project owner
             projectUserEntity.IsOwner = project.ProjectUsers.Count == 0;
+
+            // Remove user if project collaborator exist
+            await _projectCollaboratorSuggestionStorage.DeleteAllAsync(pcs => pcs.ProjectId == projectUser.ProjectId && pcs.UserId == projectUser.UserId);
             
             var createdProjectUser = await _projectUserStorage.CreateAsync(projectUserEntity);
             var createdProjectUserDto = _mapper.Map<ProjectUserDto>(createdProjectUser);
@@ -57,9 +61,9 @@ namespace Domain.Models
             return createdProjectUserDto;
         }
 
-        public async Task DeleteProjectUserAsync(Guid id)
+        public async Task DeleteProjectUserAsync(Guid Id)
         {
-            await _projectUserStorage.DeleteAsync(id);
+            await _projectUserStorage.DeleteAsync(Id);
             return;
         }
     }
