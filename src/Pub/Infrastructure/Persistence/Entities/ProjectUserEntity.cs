@@ -11,12 +11,10 @@ namespace Infrastructure.Persistence.Entities
 {
     public class ProjectUserEntity : IStorage<ProjectUserEntity>
     {
-        private readonly DatabaseContext _context;
+        private readonly string _connectionString;
         public ProjectUserEntity()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseMySql(AppSettings.ConnectionString);
-            _context = new DatabaseContext(optionsBuilder.Options);
+            _connectionString = AppSettings.ConnectionString;
         }
 
         public Guid Id { get; set; }
@@ -32,11 +30,15 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<ProjectUserEntity> CreateAsync(ProjectUserEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.CreatedAt = DateTimeOffset.UtcNow;
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            await _context.ProjectUsers.AddAsync(item);
-            await _context.SaveChangesAsync();
+            await context.ProjectUsers.AddAsync(item);
+            await context.SaveChangesAsync();
             return item;
         }
 
@@ -47,10 +49,14 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task DeleteAsync(Guid id)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             var projectType = new ProjectUserEntity { Id = id };
-            _context.ProjectUsers.Attach(projectType);
-            _context.ProjectUsers.Remove(projectType);
-            await _context.SaveChangesAsync();
+            context.ProjectUsers.Attach(projectType);
+            context.ProjectUsers.Remove(projectType);
+            await context.SaveChangesAsync();
         }
 
         public Task<List<ProjectUserEntity>> FindAllAsync(Expression<Func<ProjectUserEntity, bool>> predicate)
@@ -60,7 +66,11 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<List<ProjectUserEntity>> FindAsync()
         {
-            List<ProjectUserEntity> items = await _context.ProjectUsers
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            List<ProjectUserEntity> items = await context.ProjectUsers
                 .Include(p => p.User)
                 .ToListAsync();
             return items;
@@ -68,7 +78,11 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<ProjectUserEntity> FindAsync(Expression<Func<ProjectUserEntity, bool>> predicate)
         {
-            ProjectUserEntity item = await _context.ProjectUsers
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            ProjectUserEntity item = await context.ProjectUsers
                 .Include(p => p.User)
                 .SingleOrDefaultAsync(predicate);
             return item;
@@ -76,10 +90,14 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<ProjectUserEntity> UpdateAsync(ProjectUserEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            _context.ProjectUsers.Update(item);
-            await _context.SaveChangesAsync();
+            context.ProjectUsers.Update(item);
+            await context.SaveChangesAsync();
             return item;
         }
     }
