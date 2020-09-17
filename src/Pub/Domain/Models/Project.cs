@@ -91,7 +91,7 @@ namespace Domain.Models
 
             ProjectDto mappedProject = _mapper.Map<ProjectDto>(createdProject);
             await _messageQueue.SendMessageAsync(mappedProject, "projectpost", queueName: _pubSlackAppQueueName);
-            await RecomputeProjectCollaboratorSuggestions(_mapper.Map<DetailedProjectDto>(mappedProject));
+            await RecomputeProjectCollaboratorSuggestions(mappedProject);
             return mappedProject;
         }
 
@@ -99,7 +99,7 @@ namespace Domain.Models
         {
             await ValidateProject(new ProjectDto() { CommunicationPlatform = project.CommunicationPlatform });
             var mappedEntity = _mapper.Map<ProjectEntity>(project);
-            await RecomputeProjectCollaboratorSuggestions(project);
+            await RecomputeProjectCollaboratorSuggestions(_mapper.Map<ProjectDto>(project));
             ProjectEntity updatedProject = await _projectStorage.UpdateAsync(mappedEntity);
             DetailedProjectDto detailedProjectDto = _mapper.Map<DetailedProjectDto>(updatedProject);
             return detailedProjectDto;
@@ -109,7 +109,7 @@ namespace Domain.Models
         {
             ProjectEntity patchedProject = await _projectStorage.FindAsync(m => m.Id == Id);
             projectPatch.ApplyTo(patchedProject);
-            await RecomputeProjectCollaboratorSuggestions(_mapper.Map<DetailedProjectDto>(patchedProject));
+            await RecomputeProjectCollaboratorSuggestions(_mapper.Map<ProjectDto>(patchedProject));
             ProjectEntity updatedProject = await _projectStorage.UpdateAsync(patchedProject);
             DetailedProjectDto detailedProjectDto = _mapper.Map<DetailedProjectDto>(updatedProject);
             return detailedProjectDto;
@@ -147,7 +147,7 @@ namespace Domain.Models
         /// </summary>
         /// <param name="project">Project to be compared against stored project</param>
         /// <returns></returns>
-        private async Task RecomputeProjectCollaboratorSuggestions(DetailedProjectDto projectDto)
+        private async Task RecomputeProjectCollaboratorSuggestions(ProjectDto projectDto)
         {
             bool recompute;
             ProjectEntity storedProject = await _projectStorage.FindAsync(p => p.Id == projectDto.Id);
@@ -168,7 +168,7 @@ namespace Domain.Models
         /// <param name="projectDto">Project to be compared</param>
         /// <param name="project">Project to be compared</param>
         /// <returns></returns>
-        private bool ProjectTechnologiesDiff(DetailedProjectDto projectDto, ProjectEntity project)
+        private bool ProjectTechnologiesDiff(ProjectDto projectDto, ProjectEntity project)
         {
             bool result = false;
 
