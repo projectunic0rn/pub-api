@@ -91,7 +91,7 @@ namespace Domain.Models
 
             ProjectDto mappedProject = _mapper.Map<ProjectDto>(createdProject);
             await _messageQueue.SendMessageAsync(mappedProject, "projectpost", queueName: _pubSlackAppQueueName);
-            await RecomputeProjectCollaboratorSuggestions(mappedProject);
+            await RecomputeProjectCollaboratorSuggestions(mappedProject, true);
             return mappedProject;
         }
 
@@ -147,8 +147,14 @@ namespace Domain.Models
         /// </summary>
         /// <param name="project">Project to be compared against stored project</param>
         /// <returns></returns>
-        private async Task RecomputeProjectCollaboratorSuggestions(ProjectDto projectDto)
+        private async Task RecomputeProjectCollaboratorSuggestions(ProjectDto projectDto, bool projectCreateOverride = false)
         {
+            if (projectCreateOverride)
+            {
+                await _messageQueue.SendMessageAsync(projectDto, "compute_project_collaborator_suggestions", queueName: _pubJobsQueueName);
+                return;
+            }
+
             bool recompute;
             ProjectEntity storedProject = await _projectStorage.FindAsync(p => p.Id == projectDto.Id);
             recompute = ProjectTechnologiesDiff(projectDto, storedProject);
