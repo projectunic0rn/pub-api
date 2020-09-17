@@ -24,6 +24,7 @@ namespace Domain.Models
             _projectUserStorage = new ProjectUserEntity();
             _userStorage = new UserEntity();
             _projectStorage = new ProjectEntity();
+            _projectCollaboratorSuggestionStorage = new ProjectCollaboratorSuggestionEntity();
             _mapper = new InitializeMapper().GetMapper;
 
         }
