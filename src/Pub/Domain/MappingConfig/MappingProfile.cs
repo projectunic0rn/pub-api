@@ -18,6 +18,7 @@ namespace Domain.MappingConfig
             CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
             CreateMap<ProjectDto, ProjectEntity>().ReverseMap();
             CreateMap<ProjectDto, DetailedProjectDto>().ReverseMap();
+            CreateMap<ProjectUserDto, DetailedProjectUserDto>().ReverseMap();
             CreateMap<DetailedProjectDto, ProjectEntity>().ReverseMap();
             CreateMap<ProjectTypeDto, ProjectTypeEntity>().ReverseMap();
             CreateMap<ProjectCollaboratorSuggestionDto, ProjectCollaboratorSuggestionEntity>().ReverseMap()
