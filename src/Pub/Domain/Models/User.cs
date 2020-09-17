@@ -55,7 +55,8 @@ namespace Domain.Models
         public async Task<UserDto> UpdateUserAsync(UserDto user)
         {
             UserEntity userEntity = await _userStorage.FindAsync(u => u.Id == user.Id);
-            List<TechnologyEntity> technologiesToDelete = new List<TechnologyEntity>(userEntity.UserTechnologies);
+            List<TechnologyEntity> storedTechnologies = new List<TechnologyEntity>(userEntity.UserTechnologies);
+            bool storedLookingForProject = userEntity.LookingForProject;
             userEntity.UserTechnologies.RemoveAll(t => t.UserId == user.Id);
 
             userEntity.Bio = user.Bio;
@@ -66,9 +67,9 @@ namespace Domain.Models
             //userEntity.GitHubUsername = user.GitHubUsername;
             //userEntity.ProfilePictureUrl = user.ProfilePictureUrl;
             userEntity.UserTechnologies.AddRange(MapTechnologies(user.Technologies));
-            await RecomputeProjectCollaboratorSuggestions(user);
             await _userStorage.UpdateAsync(userEntity);
-            await _techStorage.DeleteAsync(technologiesToDelete);
+            await _techStorage.DeleteAsync(storedTechnologies);
+            await RecomputeProjectCollaboratorSuggestions(user, storedTechnologies, storedLookingForProject);
             UserDto userDto = _mapper.Map<UserDto>(userEntity);
             return userDto;
         }
@@ -97,16 +98,15 @@ namespace Domain.Models
         /// </summary>
         /// <param name="userDto">User to be compared against stored user</param>
         /// <returns></returns>
-        private async Task RecomputeProjectCollaboratorSuggestions(UserDto userDto)
+        private async Task RecomputeProjectCollaboratorSuggestions(UserDto userDto, List<TechnologyEntity> storedTechnologies, bool storedLookingForProject)
         {
-            UserEntity storedUser = await _userStorage.FindAsync(u => u.Id == userDto.Id);
             List<Guid?> projectIds;
 
             // Recompute if user not looking for project and previous state
             // is set to looking for project
-            if (!userDto.LookingForProject && storedUser.LookingForProject)
+            if (!userDto.LookingForProject && storedLookingForProject)
             {
-                projectIds = await _projectStorage.FindProjectsWithAnyTechnologies(storedUser.UserTechnologies.Select(t => t.Name).ToArray());
+                projectIds = await _projectStorage.FindProjectsWithAnyTechnologies(storedTechnologies.Select(t => t.Name).ToArray());
                 await _messageQueue.SendMessagesAsync(await RetrieveProjects(projectIds), "compute_project_collaborator_suggestions", queueName: _pubJobsQueueName);
                 return;
             }
@@ -114,7 +114,7 @@ namespace Domain.Models
             // if user is looking for project find technology diffs if any
             // and recompute suggestions.
             HashSet<string> technologiesDiff;
-            technologiesDiff = UserTechnologiesDiff(userDto, storedUser);
+            technologiesDiff = UserTechnologiesDiff(userDto, storedTechnologies);
 
             if (technologiesDiff.Count == 0)
             {
@@ -134,14 +134,9 @@ namespace Domain.Models
         /// <param name="userDto">User to be compared</param>
         /// <param name="user">User to be compared</param>
         /// <returns></returns>
-        private HashSet<string> UserTechnologiesDiff(UserDto userDto, UserEntity user)
+        private HashSet<string> UserTechnologiesDiff(UserDto userDto, List<TechnologyEntity> storedTech)
         {
-            if (user == null)
-            {
-                return new HashSet<string>();
-            }
-
-            var storedTechnologies = user.UserTechnologies.Select(t => t.Name).ToHashSet();
+            var storedTechnologies = storedTech.Select(t => t.Name).ToHashSet();
             var dtoTechnologies = userDto.Technologies.Select(t => t.Name).ToHashSet();
 
             // take diff between both technology sets
