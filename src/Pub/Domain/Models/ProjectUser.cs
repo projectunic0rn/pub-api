@@ -31,7 +31,6 @@ namespace Domain.Models
 
         public async Task<ProjectUserDto> CreateProjectUserAsync(ProjectUserDto projectUser)
         {
-            // TODO: Remove collaborator suggestion from project if member joins project
             UserEntity userEntity = await _userStorage.FindAsync(u => u.Id == projectUser.UserId);
             if (userEntity == null)
             {

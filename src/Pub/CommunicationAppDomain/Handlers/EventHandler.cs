@@ -337,6 +337,8 @@ namespace CommunicationAppDomain.Handlers
                 return;
             }
 
+            // TODO: Replace with call to update user so that collab
+            // suggestions are generated.
             await _technologiesStorage.CreateAsync(technology);
             return;
         }

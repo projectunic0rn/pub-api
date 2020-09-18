@@ -39,7 +39,7 @@ namespace CommunicationAppDomain.ChatMessages
 
         public static string ProjectPostedMessage(ProjectDto project, string projectUrl)
         {
-            string message = $"New project posted\n>*{project.Name}*\n>{project.Description}\n>{project.RepositoryUrl}\n>{project.CommunicationPlatformUrl}\nCollaborate or follow progress: {projectUrl}\n\n";
+            string message = $"New project posted\n>*{project.Name}*\n>{project.Description}\n>{project.RepositoryUrl}\n>{project.CommunicationPlatformUrl}\nJoin team via workspace page: {projectUrl}\n\n";
             return message;
         }
     }
