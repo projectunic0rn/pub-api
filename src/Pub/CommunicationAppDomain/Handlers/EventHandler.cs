@@ -34,6 +34,7 @@ namespace CommunicationAppDomain.Handlers
         private readonly string _projectIdeasChannel;
         private readonly string _mainUrl;
         private readonly PrivilegedMembersDto _privilegedMembers;
+        private readonly Dictionary<string, string> _keywords;
 
         public EventHandler(IConfiguration configuration)
         {
@@ -49,6 +50,7 @@ namespace CommunicationAppDomain.Handlers
             _mapper = new InitializeMapper().GetMapper;
             _privilegedMembers = JsonConvert.DeserializeObject<PrivilegedMembersDto>(configuration["PrivilegedMembers"]);
             _mainUrl = configuration["MainUrl"];
+            _keywords = new Dictionary<string, string>() { { "dot", "." }, { "sharp", "#" } };
         }
 
         public async Task ProcessEvent(SlackEventDto slackEventDto)
@@ -182,7 +184,7 @@ namespace CommunicationAppDomain.Handlers
                 }
 
                 string memberList = string.Empty;
-                foreach(var memberId in recommendation.Value)
+                foreach (var memberId in recommendation.Value)
                 {
                     var tech = technologies.Find(t => t.WorkspaceMemberId == memberId);
                     memberList = $"{memberList}\n<@{memberId}>,  <{_mainUrl}/profile/{tech.UserId}|contact>";
@@ -320,6 +322,14 @@ namespace CommunicationAppDomain.Handlers
             // get technology from reaction and persist
             string reaction = slackEventDto.Event.Reaction;
             string technologyName = reaction.Remove(reaction.LastIndexOf("-"));
+
+            // if technology name uses keywords - replace them with appropriate 
+            // value
+            foreach (var word in _keywords)
+            {
+                technologyName = technologyName.Replace(word.Key, word.Value);
+            }
+
             string workspaceId = slackEventDto.TeamId;
             string workspaceMemberId = slackEventDto.Event.ItemUser;
             UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
@@ -371,6 +381,14 @@ namespace CommunicationAppDomain.Handlers
             }
 
             string technologyName = reactionName.Remove(reactionName.LastIndexOf("-"));
+
+            // if technology name uses keywords - replace them with appropriate 
+            // value
+            foreach (var word in _keywords)
+            {
+                technologyName = technologyName.Replace(word.Key, word.Value);
+            }
+
             string workspaceId = slackEventDto.TeamId;
             string workspaceMemberId = slackEventDto.Event.ItemUser;
             UserEntity user = await GetUserEntity(workspaceId, workspaceMemberId);
