@@ -34,21 +34,27 @@ namespace PubJobs.BackgroundServices
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            while(!stoppingToken.IsCancellationRequested)
+            while (!stoppingToken.IsCancellationRequested)
             {
                 _logger.LogInformation($"Executing {GetType().Name}");
                 var projects = await _pubService.GetProjects();
 
                 foreach (var project in projects.Data)
                 {
-                    _workspaceServices.TryGetValue(project.CommunicationPlatform, out IWorkspaceService service);
+                    bool result = _workspaceServices.TryGetValue(project.CommunicationPlatform, out IWorkspaceService service);
+                    
+                    if (!result)
+                    {
+                        continue;
+                    }
+
                     var invite = await service.GetInviteStatus(project.CommunicationPlatformUrl);
                     if (!invite.Valid)
                     {
                         project.Searchable = false;
                         await _pubService.UpdateProject(project);
                         var projectOwner = GetProjectOwner(project);
-                        if(projectOwner == default(ProjectUserDto))
+                        if (projectOwner == default(ProjectUserDto))
                         {
                             // no owner found for project
                             continue;
@@ -63,7 +69,7 @@ namespace PubJobs.BackgroundServices
 
                     if (invite.Valid)
                     {
-                        if(!project.Searchable)
+                        if (!project.Searchable)
                         {
                             project.Searchable = true;
                             await _pubService.UpdateProject(project);
