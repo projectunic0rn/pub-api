@@ -13,13 +13,11 @@ namespace Infrastructure.Persistence.Entities
 {
     public class ChatAppUserEntity : IStorage<ChatAppUserEntity>
     {
-        private readonly DatabaseContext _context;
+        private readonly string _connectionString;
 
         public ChatAppUserEntity()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseMySql(AppSettings.ConnectionString);
-            _context = new DatabaseContext(optionsBuilder.Options);
+            _connectionString = AppSettings.ConnectionString;
         }
 
         public Guid Id { get; set; }
@@ -36,44 +34,68 @@ namespace Infrastructure.Persistence.Entities
             item.CreatedAt = DateTimeOffset.UtcNow;
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            await _context.ChatAppUsers.AddAsync(item);
-            await _context.SaveChangesAsync();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            await context.ChatAppUsers.AddAsync(item);
+            await context.SaveChangesAsync();
             return item;
         }
 
         public async Task DeleteAsync(Guid id)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             var item = new ChatAppUserEntity { Id = id };
-            _context.ChatAppUsers.Attach(item);
-            _context.ChatAppUsers.Remove(item);
-            await _context.SaveChangesAsync();
+            context.ChatAppUsers.Attach(item);
+            context.ChatAppUsers.Remove(item);
+            await context.SaveChangesAsync();
         }
 
         public async Task<List<ChatAppUserEntity>> FindAsync()
         {
-            List<ChatAppUserEntity> items = await _context.ChatAppUsers.Include(c => c.User).ThenInclude(u => u.UserTechnologies).ToListAsync();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            List<ChatAppUserEntity> items = await context.ChatAppUsers.Include(c => c.User).ThenInclude(u => u.UserTechnologies).ToListAsync();
             return items;
         }
 
         public async Task<ChatAppUserEntity> FindAsync(Expression<Func<ChatAppUserEntity, bool>> predicate)
         {
-            ChatAppUserEntity item = await _context.ChatAppUsers.Include(c => c.User).ThenInclude(u => u.UserTechnologies).SingleOrDefaultAsync(predicate);
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            ChatAppUserEntity item = await context.ChatAppUsers.Include(c => c.User).ThenInclude(u => u.UserTechnologies).SingleOrDefaultAsync(predicate);
             return item;
         }
 
         public async Task<ChatAppUserEntity> UpdateAsync(ChatAppUserEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            _context.ChatAppUsers.Update(item);
-            await _context.SaveChangesAsync();
+            context.ChatAppUsers.Update(item);
+            await context.SaveChangesAsync();
             return item;
         }
 
         public async Task<List<DeveloperTechnologies>> GetDeveloperTechnologiesAsync(params string[] technologyNames)
         {
-            var query = from c in _context.Set<ChatAppUserEntity>()
-            join t in _context.Set<TechnologyEntity>()
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            var query = from c in context.Set<ChatAppUserEntity>()
+            join t in context.Set<TechnologyEntity>()
                 on c.UserId equals t.UserId
                 where technologyNames.Contains(t.Name)
             select new DeveloperTechnologies
