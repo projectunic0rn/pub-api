@@ -139,6 +139,7 @@ namespace Infrastructure.Persistence.Entities
                             UserId = u.Id,
                             CreatedAt = t.CreatedAt,
                             Name = t.Name,
+                            Bio = u.Bio,
                         };
 
             var entities = await query.ToListAsync();
