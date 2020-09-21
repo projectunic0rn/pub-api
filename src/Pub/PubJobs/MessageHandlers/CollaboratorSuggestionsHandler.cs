@@ -26,6 +26,7 @@ namespace PubJobs.MessageHandlers
 
             IEnumerable<string> tech = project.ProjectTechnologies.Select(t => t.Name);
             List<DeveloperTechnologies> developers = await _technologyStorage.GetDeveloperTechnologiesAsync(tech.ToArray());
+            developers.RemoveAll(d => string.IsNullOrEmpty(d.Bio));
             List<Guid> collaboratorSuggestions = new HashSet<Guid>(developers.Select(d => d.UserId)).ToList();
 
             // Remove current project team members from suggestions
@@ -38,7 +39,7 @@ namespace PubJobs.MessageHandlers
             {
                 await _projectCollaboratorSuggestionsStorage.CreateAsync(new ProjectCollaboratorSuggestionEntity() { ProjectId = project.Id, UserId = Id });
             }
-            
+
         }
 
         public Task ComputeDeveloperCollaboratorSuggestions(Guid developerId)
