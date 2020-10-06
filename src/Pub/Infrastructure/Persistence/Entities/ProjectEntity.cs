@@ -22,7 +22,6 @@ namespace Infrastructure.Persistence.Entities
         public string Name { get; set; }
         public string Description { get; set; }
         public string ExtendedMarkdownDescription { get; set; }
-        public DateTimeOffset LaunchDate { get; set; }
         public string ProjectType { get; set; }
         public string RepositoryUrl { get; set; }
         public string CommunicationPlatformUrl { get; set; }
