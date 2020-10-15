@@ -19,16 +19,15 @@ namespace Infrastructure.Persistence
         public DbSet<TechnologyEntity> Technologies { get; set; }
         public DbSet<ChatAppUserEntity> ChatAppUsers { get; set; }
         public DbSet<ProjectCollaboratorSuggestionEntity> ProjectCollaboratorSuggestions { get; set; }
-        
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<UserEntity>().HasIndex(u => u.Email).IsUnique();
             modelBuilder.Entity<UserEntity>().HasIndex(u => u.Username).IsUnique();
             modelBuilder.Entity<ProjectEntity>().Property(p => p.Searchable).HasDefaultValue(true);
+            modelBuilder.Entity<ProjectEntity>().Property(p => p.WorkspaceAppInstalled).HasDefaultValue(false);
             modelBuilder.Entity<ProjectEntity>().Property(p => p.LookingForMembers).HasDefaultValue(true);
-            modelBuilder.Entity<ChatAppUserEntity>().HasIndex(u => new {u.WorkspaceId, u.WorkspaceMemberId}).IsUnique();
-            SeedData.SeedAll(modelBuilder, Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+            modelBuilder.Entity<ChatAppUserEntity>().HasIndex(u => new { u.WorkspaceId, u.WorkspaceMemberId }).IsUnique();
         }
     }
 }
-
