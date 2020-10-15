@@ -27,6 +27,12 @@ namespace Infrastructure.Persistence.Entities
         public string CommunicationPlatformUrl { get; set; }
         public bool LookingForMembers { get; set; }
         public string CommunicationPlatform { get; set; }
+        public bool WorkspaceAppInstalled { get; set; }
+        public string WorkspaceMemberName { get; set; }
+        public string WorkspaceRecentMessages { get; set; }
+        public string WorkspaceId { get; set; }
+        public string WorkspaceProjectChannelId { get; set; }
+        public string WorkspaceProjectChannelName { get; set; }
         public List<ProjectUserEntity> ProjectUsers { get; set; }
         public List<TechnologyEntity> ProjectTechnologies { get; set; }
         public List<ProjectCollaboratorSuggestionEntity> ProjectCollaboratorSuggestions { get; set; }

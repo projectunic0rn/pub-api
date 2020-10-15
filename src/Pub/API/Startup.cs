@@ -54,7 +54,7 @@ namespace API
                 options.AddPolicy(name: "AllowLocal",
                     builder =>
                     {
-                        builder.WithOrigins("http://localhost:8000")
+                        builder.WithOrigins("http://localhost:8000", "http://localhost:8002")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                     });
