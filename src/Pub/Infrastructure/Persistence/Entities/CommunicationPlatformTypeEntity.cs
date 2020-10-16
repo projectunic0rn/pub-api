@@ -10,12 +10,10 @@ namespace Infrastructure.Persistence.Entities
 {
     public class CommunicationPlatformTypeEntity : IStorage<CommunicationPlatformTypeEntity>
     {
-        private readonly DatabaseContext _context;
+        private readonly string _connectionString;
         public CommunicationPlatformTypeEntity()
         {
-            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
-            optionsBuilder.UseMySql(AppSettings.ConnectionString);
-            _context = new DatabaseContext(optionsBuilder.Options);
+            _connectionString = AppSettings.ConnectionString;
         }
 
         public Guid Id { get; set; }
@@ -26,11 +24,15 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<CommunicationPlatformTypeEntity> CreateAsync(CommunicationPlatformTypeEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.CreatedAt = DateTimeOffset.UtcNow;
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            await _context.CommunicationPlatforms.AddAsync(item);
-            await _context.SaveChangesAsync();
+            await context.CommunicationPlatforms.AddAsync(item);
+            await context.SaveChangesAsync();
             return item;
         }
 
@@ -41,10 +43,14 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task DeleteAsync(Guid id)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             var communicationPlatformType = new CommunicationPlatformTypeEntity { Id = id };
-            _context.CommunicationPlatforms.Attach(communicationPlatformType);
-            _context.CommunicationPlatforms.Remove(communicationPlatformType);
-            await _context.SaveChangesAsync();
+            context.CommunicationPlatforms.Attach(communicationPlatformType);
+            context.CommunicationPlatforms.Remove(communicationPlatformType);
+            await context.SaveChangesAsync();
         }
 
         public Task<List<CommunicationPlatformTypeEntity>> FindAllAsync(Expression<Func<CommunicationPlatformTypeEntity, bool>> predicate)
@@ -54,22 +60,34 @@ namespace Infrastructure.Persistence.Entities
 
         public async Task<List<CommunicationPlatformTypeEntity>> FindAsync()
         {
-            List<CommunicationPlatformTypeEntity> items = await _context.CommunicationPlatforms.ToListAsync();
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            List<CommunicationPlatformTypeEntity> items = await context.CommunicationPlatforms.ToListAsync();
             return items;
         }
 
         public async Task<CommunicationPlatformTypeEntity> FindAsync(Expression<Func<CommunicationPlatformTypeEntity, bool>> predicate)
         {
-            CommunicationPlatformTypeEntity item = await _context.CommunicationPlatforms.SingleOrDefaultAsync(predicate);
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
+            CommunicationPlatformTypeEntity item = await context.CommunicationPlatforms.SingleOrDefaultAsync(predicate);
             return item;
         }
 
         public async Task<CommunicationPlatformTypeEntity> UpdateAsync(CommunicationPlatformTypeEntity item)
         {
+            var optionsBuilder = new DbContextOptionsBuilder<DatabaseContext>();
+            optionsBuilder.UseMySql(_connectionString);
+            using var context = new DatabaseContext(optionsBuilder.Options);
+
             item.UpdatedAt = DateTimeOffset.UtcNow;
 
-            _context.CommunicationPlatforms.Update(item);
-            await _context.SaveChangesAsync();
+            context.CommunicationPlatforms.Update(item);
+            await context.SaveChangesAsync();
             return item;
         }
     }
