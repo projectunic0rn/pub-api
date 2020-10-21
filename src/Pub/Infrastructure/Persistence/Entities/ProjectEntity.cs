@@ -13,6 +13,7 @@ namespace Infrastructure.Persistence.Entities
     public class ProjectEntity : IStorage<ProjectEntity>
     {
         private readonly string _connectionString;
+        
         public ProjectEntity()
         {
             _connectionString = AppSettings.ConnectionString;
@@ -27,6 +28,7 @@ namespace Infrastructure.Persistence.Entities
         public string CommunicationPlatformUrl { get; set; }
         public bool LookingForMembers { get; set; }
         public string CommunicationPlatform { get; set; }
+        // public int ActivityScore { get; set; }
         public bool WorkspaceAppInstalled { get; set; }
         public string WorkspaceMemberName { get; set; }
         public string WorkspaceRecentMessages { get; set; }
@@ -146,10 +148,10 @@ namespace Infrastructure.Persistence.Entities
             using var context = new DatabaseContext(optionsBuilder.Options);
 
             var query = (from p in context.Set<ProjectEntity>()
-                        join t in context.Set<TechnologyEntity>()
-                        on p.Id equals t.ProjectId
-                        where p.Searchable && p.LookingForMembers && technologies.Contains(t.Name)
-                        select t.ProjectId).Distinct();
+                         join t in context.Set<TechnologyEntity>()
+                         on p.Id equals t.ProjectId
+                         where p.Searchable && p.LookingForMembers && technologies.Contains(t.Name)
+                         select t.ProjectId).Distinct();
 
             var entities = await query.ToListAsync();
             return entities;
