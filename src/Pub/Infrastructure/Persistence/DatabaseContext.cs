@@ -28,6 +28,7 @@ namespace Infrastructure.Persistence
             modelBuilder.Entity<ProjectEntity>().Property(p => p.WorkspaceAppInstalled).HasDefaultValue(false);
             modelBuilder.Entity<ProjectEntity>().Property(p => p.LookingForMembers).HasDefaultValue(true);
             modelBuilder.Entity<ChatAppUserEntity>().HasIndex(u => new { u.WorkspaceId, u.WorkspaceMemberId }).IsUnique();
+            modelBuilder.Entity<ChatAppUserEntity>().Property(p => p.Deactived).HasDefaultValue(false);
         }
     }
 }

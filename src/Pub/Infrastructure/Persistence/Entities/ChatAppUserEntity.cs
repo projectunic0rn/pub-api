@@ -26,6 +26,7 @@ namespace Infrastructure.Persistence.Entities
         [ForeignKey("UserId")]
         public UserEntity User { get; set; }
         public Guid UserId { get; set; }
+        public bool Deactived { get; set; }
         public DateTimeOffset CreatedAt { get; set; }
         public DateTimeOffset UpdatedAt { get; set; }
 
