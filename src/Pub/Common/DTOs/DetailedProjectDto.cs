@@ -11,7 +11,7 @@ namespace Common.DTOs
         public string ExtendedMarkdownDescription { get; set; }
         public bool WorkspaceAppInstalled { get; set; }
         public string WorkspaceMemberName { get; set; }
-        public string WorkspaceRecentMessages { get; set; }
+        public List<string> WorkspaceRecentMessages { get; set; }
         public string WorkspaceProjectChannelName { get; set; }
         public string RepositoryUrl { get; set; }
         public string CommunicationPlatformUrl { get; set; }
