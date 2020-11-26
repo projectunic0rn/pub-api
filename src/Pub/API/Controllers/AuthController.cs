@@ -77,7 +77,7 @@ namespace API.Controllers
                     {
                         int at = ex.InnerException.Message.IndexOf("@");
                         string[] words = ex.InnerException.Message.Split(" ");
-                        errorResponse.Data = new ErrorDto("Email already exists. Try reseting the paasword (this is expected if you joined our slack group).");
+                        errorResponse.Data = new ErrorDto("Email already exists. Try resetting the paasword (this is expected if you joined our slack group).");
                     }
                     else
                     {
