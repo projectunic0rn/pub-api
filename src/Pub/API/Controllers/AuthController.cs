@@ -69,9 +69,26 @@ namespace API.Controllers
                 errorResponse.Data = new ErrorDto(ex.Message);
                 return BadRequest(errorResponse);
             }
-            catch (DbUpdateException)
+            catch (DbUpdateException ex)
             {
-                errorResponse.Data = new ErrorDto(ExceptionMessage.UniquenessConstraintViolation);
+                if (ex.Message.ToLower().Contains("inner exception"))
+                {
+                    if (ex.InnerException.Message.ToLower().Contains("email") && ex.InnerException.Message.ToLower().Contains("duplicate"))
+                    {
+                        int at = ex.InnerException.Message.IndexOf("@");
+                        string[] words = ex.InnerException.Message.Split(" ");
+                        errorResponse.Data = new ErrorDto("Email already exists. Try reseting the paasword (this is expected if you joined our slack group).");
+                    }
+                    else
+                    {
+                        errorResponse.Data = new ErrorDto(ex.Message);
+                    }
+                }
+                else
+                {
+                    errorResponse.Data = new ErrorDto(ex.Message);
+                }
+
                 return BadRequest(errorResponse);
             }
         }
@@ -80,9 +97,9 @@ namespace API.Controllers
         [HttpPost("change-password")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        #if !DEBUG
+#if !DEBUG
         [Authorize]
-        #endif
+#endif
         public async Task<IActionResult> ChangePassword([FromBody] ChangePasswordDto changePassword)
         {
             string userId = HttpContext.User.Identity.GetUserId();
