@@ -173,14 +173,29 @@ namespace Common.Http
 
         private HttpRequestMessage BuildRequestMessage(HttpMethod method, string requestUri)
         {
-
-            HttpRequestMessage httpRequestMessage = new HttpRequestMessage
+            try
             {
-                Method = method,
-                RequestUri = new Uri(requestUri)
-            };
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage
+                {
+                    Method = method,
+                    RequestUri = new Uri(requestUri)
+                };
 
-            return httpRequestMessage;
+                return httpRequestMessage;
+
+            }
+            catch (UriFormatException)
+            {
+                string formattedUri = $"https://{requestUri}";
+                HttpRequestMessage httpRequestMessage = new HttpRequestMessage
+                {
+                    Method = method,
+                    RequestUri = new Uri(formattedUri)
+                };
+
+                return httpRequestMessage;
+
+            }
         }
 
         private HttpRequestMessage BuildRequestMessage(HttpMethod method, string requestUri, object content)
