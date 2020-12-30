@@ -6,6 +6,7 @@ using Common.Services;
 using Common.DTOs;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using System;
 
 namespace PubJobs.BackgroundServices
 {
@@ -36,49 +37,56 @@ namespace PubJobs.BackgroundServices
         {
             while (!stoppingToken.IsCancellationRequested)
             {
-                _logger.LogInformation($"Executing {GetType().Name}");
-                var projects = await _pubService.GetProjects();
-
-                foreach (var project in projects.Data)
+                try
                 {
-                    bool result = _workspaceServices.TryGetValue(project.CommunicationPlatform, out IWorkspaceService service);
-                    
-                    if (!result)
-                    {
-                        continue;
-                    }
 
-                    var invite = await service.GetInviteStatus(project.CommunicationPlatformUrl);
-                    if (!invite.Valid)
+                    _logger.LogInformation($"Executing {GetType().Name}");
+                    var projects = await _pubService.GetProjects();
+
+                    foreach (var project in projects.Data)
                     {
-                        project.Searchable = false;
-                        await _pubService.UpdateProject(project);
-                        var projectOwner = GetProjectOwner(project);
-                        if (projectOwner == default(ProjectUserDto))
+                        bool result = _workspaceServices.TryGetValue(project.CommunicationPlatform, out IWorkspaceService service);
+
+                        if (!result)
                         {
-                            // no owner found for project
                             continue;
                         }
 
-                        var notificationDto = new NotificationDto(projectOwner.UserId)
+                        var invite = await service.GetInviteStatus(project.CommunicationPlatformUrl);
+                        if (!invite.Valid)
                         {
-                            NotificationObject = project
-                        };
-                        await _notifier.SendInvalidWorkspaceInviteNotificationAsync(notificationDto);
-                    }
-
-                    if (invite.Valid)
-                    {
-                        if (!project.Searchable)
-                        {
-                            project.Searchable = true;
+                            project.Searchable = false;
                             await _pubService.UpdateProject(project);
+                            var projectOwner = GetProjectOwner(project);
+                            if (projectOwner == default(ProjectUserDto))
+                            {
+                                // no owner found for project
+                                continue;
+                            }
+
+                            var notificationDto = new NotificationDto(projectOwner.UserId)
+                            {
+                                NotificationObject = project
+                            };
+                            await _notifier.SendInvalidWorkspaceInviteNotificationAsync(notificationDto);
+                        }
+
+                        if (invite.Valid)
+                        {
+                            if (!project.Searchable)
+                            {
+                                project.Searchable = true;
+                                await _pubService.UpdateProject(project);
+                            }
                         }
                     }
-
+                    _logger.LogDebug($"Found {projects.Data.Count} projects.");
+                }
+                catch(Exception ex)
+                {
+                    _logger.LogCritical($"Message: {ex.Message}\nStackTrace:\n{ex.StackTrace}");
                 }
 
-                _logger.LogDebug($"Found {projects.Data.Count} projects.");
                 await Task.Delay(1800000, stoppingToken);
             }
         }
