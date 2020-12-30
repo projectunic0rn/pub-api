@@ -49,7 +49,7 @@ namespace PubJobs
 
             services.AddSingleton<IMessageQueue>((container) =>
             {
-                container.GetRequiredService<ILogger<Startup>>().LogError("PubJobs v0.0.1");
+                container.GetRequiredService<ILogger<Startup>>().LogError("PubJobs v0.0.2");
                 var logger = container.GetRequiredService<ILogger<MessageQueue>>();
                 return new MessageQueue(_settings.ServiceBusConnectionString, _settings.ServiceBusQueueName, logger);
             });
