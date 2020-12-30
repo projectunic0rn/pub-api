@@ -42,6 +42,7 @@ namespace PubJobs.BackgroundServices
 
                     _logger.LogInformation($"Executing {GetType().Name}");
                     var projects = await _pubService.GetProjects();
+                    projects.Data.Reverse();
                     _logger.LogInformation($"Total Projects {projects.Data.Count}");
 
                     foreach (var project in projects.Data)
@@ -49,6 +50,11 @@ namespace PubJobs.BackgroundServices
                         _logger.LogInformation($"Project {project.Name}");
 
                         bool result = _workspaceServices.TryGetValue(project.CommunicationPlatform, out IWorkspaceService service);
+
+                        if(project.Name != "Fortified")
+                        {
+                            continue;
+                        }
 
                         if (!result)
                         {
@@ -60,7 +66,7 @@ namespace PubJobs.BackgroundServices
                         {
                             _logger.LogInformation($"Invalid project invite for {project.Name}");
                             project.Searchable = false;
-                            await _pubService.UpdateProject(project);
+                            // await _pubService.UpdateProject(project);
                             var projectOwner = GetProjectOwner(project);
                             if (projectOwner == default(ProjectUserDto))
                             {
@@ -72,7 +78,7 @@ namespace PubJobs.BackgroundServices
                             {
                                 NotificationObject = project
                             };
-                            await _notifier.SendInvalidWorkspaceInviteNotificationAsync(notificationDto);
+                            // await _notifier.SendInvalidWorkspaceInviteNotificationAsync(notificationDto);
                         }
 
                         if (invite.Valid)
