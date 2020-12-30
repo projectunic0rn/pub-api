@@ -50,11 +50,6 @@ namespace PubJobs.BackgroundServices
 
                         bool result = _workspaceServices.TryGetValue(project.CommunicationPlatform, out IWorkspaceService service);
 
-                        if(project.Name != "Fortified")
-                        {
-                            continue;
-                        }
-
                         if (!result)
                         {
                             continue;
