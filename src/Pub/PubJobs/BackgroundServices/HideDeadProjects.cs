@@ -25,7 +25,6 @@ namespace PubJobs.BackgroundServices
         public HideDeadProjects(ILogger<HideDeadProjects> logger, PubService pubService, INotifier notifier)
         {
             _logger = logger;
-            _logger.LogError("PubJobs v0.0.1");
             _pubService = pubService;
             _workspaceServices = new Dictionary<string, IWorkspaceService>();
             _workspaceServices.Add("slack", new SlackService());
