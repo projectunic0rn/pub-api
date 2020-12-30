@@ -42,10 +42,18 @@ namespace PubJobs.BackgroundServices
 
                     _logger.LogInformation($"Executing {GetType().Name}");
                     var projects = await _pubService.GetProjects();
+                    _logger.LogInformation($"Total Projects {projects.Data.Count}");
 
                     foreach (var project in projects.Data)
                     {
+                        _logger.LogInformation($"Project {project.Name}");
+
                         bool result = _workspaceServices.TryGetValue(project.CommunicationPlatform, out IWorkspaceService service);
+
+                        if(project.Name != "Fortified")
+                        {
+                            continue;
+                        }
 
                         if (!result)
                         {
