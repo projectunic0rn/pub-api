@@ -66,7 +66,7 @@ namespace PubJobs.BackgroundServices
                         {
                             _logger.LogInformation($"Invalid project invite for {project.Name}");
                             project.Searchable = false;
-                            // await _pubService.UpdateProject(project);
+                            await _pubService.UpdateProject(project);
                             var projectOwner = GetProjectOwner(project);
                             if (projectOwner == default(ProjectUserDto))
                             {
@@ -78,7 +78,7 @@ namespace PubJobs.BackgroundServices
                             {
                                 NotificationObject = project
                             };
-                            // await _notifier.SendInvalidWorkspaceInviteNotificationAsync(notificationDto);
+                            await _notifier.SendInvalidWorkspaceInviteNotificationAsync(notificationDto);
                         }
 
                         if (invite.Valid)
