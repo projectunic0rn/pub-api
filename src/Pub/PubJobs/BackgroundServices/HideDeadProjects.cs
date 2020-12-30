@@ -55,6 +55,7 @@ namespace PubJobs.BackgroundServices
                         var invite = await service.GetInviteStatus(project.CommunicationPlatformUrl);
                         if (!invite.Valid)
                         {
+                            _logger.LogInformation($"Invalid project invite for {project.Name}");
                             project.Searchable = false;
                             await _pubService.UpdateProject(project);
                             var projectOwner = GetProjectOwner(project);
