@@ -58,6 +58,14 @@ namespace API
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                     });
+    
+                options.AddPolicy(name: "AllowProd",
+                    builder =>
+                    {
+                        builder.WithOrigins("https://projectunicorn.net")
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                    });
             });
 
             services.AddControllers().AddNewtonsoftJson();
@@ -123,6 +131,7 @@ namespace API
                 app.UseHttpsRedirection();
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
+                app.UseCors("AllowProd");
             }
 
             app.UseSwagger();
