@@ -39,7 +39,7 @@ namespace API
             _logger = logger;
             _mqLogger = mqLogger;
             _workspaceAppUrls = Configuration["ASPNETCORE_ENVIRONMENT"] == "Production" ?
-                new Dictionary<string, string> { { "slack", "https://pub-slack-workspace.azurewebsites.net" }, { "discord", "https://pub-discord-workspace.azurewebsites.net" } }
+                new Dictionary<string, string> { { "slack", "https://pubslackworkspaceapp.nasapps.net" }, { "discord", "https://pubdiscordworkspaceapp.nasapps.net" } }
                 :
                 new Dictionary<string, string> { { "slack", "https://pub-slack-workspace-test.azurewebsites.net" }, { "discord", "https://pub-discord-workspace-test.azurewebsites.net" } };
         }
